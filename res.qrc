@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/assets">
+        <file>assets/Launcher.png</file>
+        <file>assets/background.png</file>
+    </qresource>
+</RCC>

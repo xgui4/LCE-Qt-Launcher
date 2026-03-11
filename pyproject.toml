@@ -1,0 +1,5 @@
+[project]
+name = "PySide Widgets Project"
+
+[tool.pyside6-project]
+files = ["config.py", "form.ui", "launcher.py", "license.md", "readme.md", "requirements.txt", "res.qrc", "setup.bat", "setup.sh"]

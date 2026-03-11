@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>launcher</class>
+ <widget class="QMainWindow" name="launcher">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Minecraft LCE QT Launcher</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/assets/assets/Launcher.png</normaloff>:/assets/assets/Launcher.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Adwaita Sans</family>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>751</width>
+      <height>337</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logo">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="res.qrc">:/assets/assets/Launcher.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="title">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Adwaita Sans</family>
+           <pointsize>31</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>LCE QT Launcher</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="playButton">
+       <property name="text">
+        <string>Play</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+    <addaction name="actionUpdate"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAbout_QT"/>
+    <addaction name="actionSystem_Information"/>
+   </widget>
+   <widget class="QMenu" name="menuInstances">
+    <property name="title">
+     <string>Instances</string>
+    </property>
+    <addaction name="actionComing_Soon_2"/>
+   </widget>
+   <widget class="QMenu" name="menuProfiles">
+    <property name="title">
+     <string>Profiles</string>
+    </property>
+    <addaction name="actionComing_Soon"/>
+   </widget>
+   <widget class="QMenu" name="menuPlugins">
+    <property name="title">
+     <string>Plugins</string>
+    </property>
+    <addaction name="actionComing_soon"/>
+   </widget>
+   <widget class="QMenu" name="menuNews">
+    <property name="title">
+     <string>News</string>
+    </property>
+    <addaction name="actionComing_soon_2"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionComing_Soon_3"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+   <addaction name="menuInstances"/>
+   <addaction name="menuProfiles"/>
+   <addaction name="menuPlugins"/>
+   <addaction name="menuNews"/>
+   <addaction name="menuSettings"/>
+  </widget>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit the app</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::QuitRole</enum>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="icon">
+    <iconset theme="system-software-update"/>
+   </property>
+   <property name="text">
+    <string>Update</string>
+   </property>
+   <property name="toolTip">
+    <string>Update The App</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="dialog-information"/>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::AboutRole</enum>
+   </property>
+  </action>
+  <action name="actionAbout_QT">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
+   </property>
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="actionSystem_Information">
+   <property name="icon">
+    <iconset theme="computer"/>
+   </property>
+   <property name="text">
+    <string>System Information</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionComing_Soon">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon_2">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionComing_soon">
+   <property name="text">
+    <string>Coming soon</string>
+   </property>
+  </action>
+  <action name="actionComing_soon_2">
+   <property name="text">
+    <string>Coming soon</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon_3">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
