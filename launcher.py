@@ -44,7 +44,12 @@ class launcher(QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    widget = launcher()
-    widget.show()
-    sys.exit(app.exec())
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--gen-config":
+            config = Config()
+            config.generate_default_config()
+    else:
+        app = QApplication(sys.argv)
+        widget = launcher()
+        widget.show()
+        sys.exit(app.exec())

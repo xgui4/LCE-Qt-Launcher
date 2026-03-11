@@ -1,5 +1,15 @@
-[project]
-name = "PySide Widgets Project"
+[project] 
+name = "LCE-Qt-Launcher"
 
 [tool.pyside6-project]
-files = ["config.py", "form.ui", "launcher.py", "license.md", "readme.md", "requirements.txt", "res.qrc", "setup.bat", "setup.sh"]
+files = [
+    "config.py", 
+    "form.ui",
+    "launcher.py", 
+    "license.md", 
+    "readme.md", 
+    "requirements.txt", 
+    "res.qrc", 
+    "setup.bat", 
+    "setup.sh"
+]
