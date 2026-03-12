@@ -1,15 +1,22 @@
-[project] 
+[project]
 name = "LCE-Qt-Launcher"
+version = "0.0.0"
+description = "This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind."
 
 [tool.pyside6-project]
 files = [
-    "config.py", 
-    "form.ui",
-    "launcher.py", 
-    "license.md", 
-    "readme.md", 
-    "requirements.txt", 
-    "res.qrc", 
-    "setup.bat", 
-    "setup.sh"
+    "src/app_config.py",
+    "src/config.py",
+    "src/downloader.py",
+    "src/instance_manager.py",
+    "src/launcher.py",
+    "src/system_manager.py",
+    "src/form.ui",
+    "pkg/LCE-Qt-Launcher.desktop",
+    "license.md",
+    "readme.md",
+    "requirements.txt",
+    "res.qrc",
+    "CODE-DE-CONDUITE.md",
+    "code-of-conduct.md"
 ]

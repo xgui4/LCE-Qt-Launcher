@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "PySide: build",
+            "type": "shell",
+            "command": "/usr/lib/qt6/uic -g python ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py && /usr/lib/qt6/rcc -g python ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

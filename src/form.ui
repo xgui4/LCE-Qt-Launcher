@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>launcher</class>
+ <widget class="QMainWindow" name="launcher">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Adwaita Sans</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Minecraft LCE QT Launcher</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/assets/launcher_small.png</normaloff>:/assets/launcher_small.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Adwaita Sans</family>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>781</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="usernameInputBoxLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>86</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="usernameInputBox"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="pathInputBoxLabel">
+       <property name="text">
+        <string>Path</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="pathInputBox"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="serverIPInputBoxLabel">
+       <property name="text">
+        <string>Server IP</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="serverIPInputBox"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="serverNameInputBoxLabel">
+       <property name="text">
+        <string>Server Name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="serverNameInputBox"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="playButton">
+       <property name="text">
+        <string>Play</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="installButton">
+       <property name="text">
+        <string>Install</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="settingButton">
+       <property name="text">
+        <string>Setting</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>520</y>
+      <width>751</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="accessibleName">
+     <string>Installation Progress Bar</string>
+    </property>
+    <property name="accessibleDescription">
+     <string>The percentage of the installation</string>
+    </property>
+    <property name="accessibleIdentifier">
+     <string>install progress bar</string>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="progressLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>500</y>
+      <width>131</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Progress</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>0</y>
+      <width>461</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Adwaita Sans</family>
+      <pointsize>31</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../res.qrc">:/assets/minecraft_lce_titl;e.png</pixmap>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+    <addaction name="actionUpdate"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionCreate_New_Instance"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAbout_QT"/>
+    <addaction name="actionSystem_Information"/>
+    <addaction name="actionAbout_Minecraft"/>
+    <addaction name="actionMore_Minecraft_LCE_Projects"/>
+   </widget>
+   <widget class="QMenu" name="menuInstances">
+    <property name="title">
+     <string>Instances</string>
+    </property>
+    <addaction name="actionDefault"/>
+   </widget>
+   <widget class="QMenu" name="menuPlugins">
+    <property name="title">
+     <string>Plugins</string>
+    </property>
+    <addaction name="actionComing_soon"/>
+   </widget>
+   <widget class="QMenu" name="menuNews">
+    <property name="title">
+     <string>News</string>
+    </property>
+    <addaction name="actionComing_soon_2"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuInstances"/>
+   <addaction name="menuView"/>
+   <addaction name="menuPlugins"/>
+   <addaction name="menuNews"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit the app</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::QuitRole</enum>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="icon">
+    <iconset theme="system-software-update"/>
+   </property>
+   <property name="text">
+    <string>Update</string>
+   </property>
+   <property name="toolTip">
+    <string>Update The App</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="dialog-information"/>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::AboutRole</enum>
+   </property>
+  </action>
+  <action name="actionAbout_QT">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
+   </property>
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="actionSystem_Information">
+   <property name="icon">
+    <iconset theme="computer"/>
+   </property>
+   <property name="text">
+    <string>System Information</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionComing_Soon">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon_2">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionComing_soon">
+   <property name="text">
+    <string>Coming soon</string>
+   </property>
+  </action>
+  <action name="actionComing_soon_2">
+   <property name="text">
+    <string>Coming soon</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon_3">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionDefault">
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionAbout_Minecraft">
+   <property name="icon">
+    <iconset>
+     <normalon>:/assets/minecraft.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>About Minecraft</string>
+   </property>
+  </action>
+  <action name="actionMore_Minecraft_LCE_Projects">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+   </property>
+   <property name="text">
+    <string>More Minecraft LCE Projects</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save Instance</string>
+   </property>
+  </action>
+  <action name="actionCreate_New_Instance">
+   <property name="text">
+    <string>Create New Instance</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>usernameInputBox</tabstop>
+  <tabstop>pathInputBox</tabstop>
+  <tabstop>serverIPInputBox</tabstop>
+  <tabstop>serverNameInputBox</tabstop>
+  <tabstop>playButton</tabstop>
+  <tabstop>installButton</tabstop>
+  <tabstop>settingButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../res.qrc"/>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

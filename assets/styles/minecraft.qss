@@ -1,0 +1,18 @@
+* {
+    color : white;
+    font-family : "Monocraft"
+}
+
+QPushButton {
+    border-image : url(":/assets/button.png"); 
+    border : none;
+}
+
+QPushButton::pressed {
+    border-image : url(":/assets/button-pressed.png"); 
+    border : none;
+}
+
+QLineEdit {
+    background : black;
+}

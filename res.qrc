@@ -1,6 +1,15 @@
 <RCC>
     <qresource prefix="/assets">
-        <file>assets/Launcher.png</file>
-        <file>assets/background.png</file>
+        <file alias="launcher_small.png">assets/Launcher_small.png</file>
+        <file alias="background.png">assets/background.png</file>
+        <file alias="launcher_medium.png">assets/Launcher_medium.png</file>
+        <file alias="launcher_big.png">assets/Launcher.png</file>
+        <file alias="minecraft.png">assets/minecraft.png</file>
+        <file alias="minecraft_lce_titl;e.png">assets/minecraft-lce-title.png</file>
+        <file alias="button.png">assets/button.png</file>
+        <file alias="button-pressed.png">assets/button-pressed.png</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file alias="minecrafts.qss">assets/styles/minecraft.qss</file>
     </qresource>
 </RCC>
