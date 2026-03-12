@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+     contents: write
+
 jobs:
   nightly:
     name: Build Nightly
@@ -30,14 +33,20 @@ jobs:
           pip install -r requirements.txt
           pip install nuitka
 
-      - name: Build with Nuitka
+      - name: Build with Nuitka for Linux
+        if: matrix.os == 'ubuntu-latest' 
         run: |
           python -m nuitka --onefile --standalone --enable-plugin=pyside6 --output-dir=dist src/launcher.py
+
+      - name: Build with Nuitka for Windows
+        if: matrix.os == 'ubuntu-latest' 
+        run: |
+          python -m nuitka --enable-plugin=pyside6 --output-dir=dist src/launcher.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
         run: |
-          powershell Compress-Archive -Path dist/* -DestinationPath LCE-WQt-Launcher-Windows.zip
+          7z a -r LCE-WQt-Launcher-Windows.zip dist/* 
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
