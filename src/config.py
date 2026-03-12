@@ -2,12 +2,11 @@ from PySide6.QtCore import QSettings
 
 class Config (QSettings):
     def __init__(self):
-        super().__init__(QSettings.NativeFormat, QSettings.UserScope, "Xgui4", "LCE QT Laucher")
+        super().__init__(QSettings.NativeFormat, QSettings.UserScope, "Xgui4", "LCE-QT-Laucher")
 
     def set_instance_url(self, url_str : str):
         super().setValue("instances/repo", url_str)
         super().sync()
-
     def set_instance_exe_name(self, filename : str):
         super().setValue("instances/filename", filename)
         super().sync()
@@ -34,16 +33,12 @@ class Config (QSettings):
 
     def get__instance_url(self) -> str:
         return  self.value("instances/repo", "https://github.com/smartcmd/MinecraftConsoles");
-
     def get_instance_name(self) -> str:
         return self.value("instances/name", "default")
-    
     def get_instance_exe_name(self) -> str:
         return self.value("instances/filename", "Minecraft.Client.exe")
-
     def get_instance_archive(self) -> str:
         return self.value("instances/archive", "LCEWindows64.zip")
-
     def get_instance_version(self) -> str:
         return self.value("instances/version", "default")
 

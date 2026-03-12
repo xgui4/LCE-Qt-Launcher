@@ -2,29 +2,23 @@
 
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 
 from config import Config
+from app_config import AppConfig
 
 import webbrowser
-import requests
-import zipfile
-import io
-import subprocess
 
 config = Config()
 
-LAUNCHER_REPO = "https://github.com/xgui4/LCE_QT_Launcher"
+appConfig = AppConfig()
 
-LAUNCHER_STRING = config.get__instance_url() + \
-                  "/releases/download/" + \
-                  config.get_instance_version() + "/" + \
-                  config.get_instance_archive()
+
 
 SUCCESS_STATUS_CODE = 200
 
-BACKGROUND_PIXMAP_IMG = ":/assets/assets/background.png"
+BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
 
 GEN_CONFIG_CMD_ARG = "--gen-config"
 GEN_CONFIG_CMD_ARG_SHORT = "-g"
@@ -53,35 +47,11 @@ HELP_STR = """
 """
 
 def launch():
-        config = Config()
-        print(f"Lauching {config.get_instance_name()} {config.get_instance_version()}")
-        
-        print(f"Downloading {LAUNCHER_STRING}.")
-
-        response = requests.get(LAUNCHER_STRING)
-
-        if response.status_code == SUCCESS_STATUS_CODE:
-            try:
-                    with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
-                        archive.extractall("./MinecraftLCEClient")
-            except zipfile.BadZipFile as err:
-                print(f"Error : {err}")
-            except zipfile.zipfile.LargeZipFile as err:
-                print(f"Error : {err}")
-            else:
-                client = f"./MinecraftLCEClient/{config.get_instance_exe_name}"
-                print(f"Launching {client}")
-                subprocess.run(client)
-        else:
-            print(f"Error : {response.status_code} during the dowbloading of the Minecraft LCE Client")
+        print("not implemented yet!")
 
 def update_page():
-    webbrowser.open_new_tab(LAUNCHER_REPO)
+    webbrowser.open_new_tab(config.LAUNCHER_REPO)
 
-# Important:
-# You need to run the following command to generate the ui_form.py file
-#     pyside6-uic form.ui -o ui_form.py, or
-#     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_launcher
 
 class launcher(QMainWindow):
@@ -97,13 +67,12 @@ class launcher(QMainWindow):
 
         self.ui = Ui_launcher()
         self.ui.setupUi(self)
-
         self.ui.actionQuit.triggered.connect(app.quit)
         self.ui.playButton.clicked.connect(launch)
-
         self.ui.actionUpdate.triggered.connect(update_page)
-
         self.ui.actionAbout.triggered.connect(self.createPopupMenu)
+        self.versionlabel = QLabel(f"Version {VERSION}")
+        self.ui.statusbar.addPermanentWidget(self.versionlabel)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -120,6 +89,13 @@ if __name__ == "__main__":
             print(HELP_STR)
     else:
         app = QApplication(sys.argv)
+
+        try:
+            with open("assets/styles/minecraft.qss", "r") as file:
+                app.setStyleSheet(file.read())
+        except FileNotFoundError:
+            print(f"Error : qrc:/styles/minecraft.qss file not found. Reverting to default theme")
+
         widget = launcher()
         widget.show()
         sys.exit(app.exec())
