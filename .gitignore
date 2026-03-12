@@ -290,3 +290,5 @@ tmp/
 /out/
 rc_res.py
 ui_form.py
+
+MinecraftLCEClient/
