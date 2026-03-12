@@ -11,7 +11,7 @@ import webbrowser
 import requests
 import zipfile
 import io
-import os
+import subprocess
 
 config = Config()
 
@@ -28,16 +28,12 @@ BACKGROUND_PIXMAP_IMG = ":/assets/assets/background.png"
 
 GEN_CONFIG_CMD_ARG = "--gen-config"
 GEN_CONFIG_CMD_ARG_SHORT = "-g"
-
 VERSION_CMD_ARG = "--version"
 VERSION_CMD_ARG_SHORT = "-v"
-
 LICENSE_CMD_ARG = "--license"
 LICENSE_CMD_ARG_SHORT = "-L"
-
 ABOUT_CMD_ARG = "--about"
 ABOUT_CMD_ARG_SHORT = "-a"
-
 HELP_CMD_ARG = "--help"
 HELP_CMD_ARG_SHORT = "-h"
 
@@ -45,6 +41,15 @@ VERSION = "0.0.0.1-pre-alpha"
 DESCRIPTION = """
 This is a custom MCLCE Launcher written in python and Qt with Freedom 
 and GNU/Linux support in mind.
+"""
+LICENSE = "GPLv3"
+HELP_STR = """
+-h or --help to get this help 
+-v or --version to get the app version
+-L or --license to get the license information
+-a or --about to get information about the app
+-g or --gen-config to generate or update the app config
+
 """
 
 def launch():
@@ -66,7 +71,7 @@ def launch():
             else:
                 client = f"./MinecraftLCEClient/{config.get_instance_exe_name}"
                 print(f"Launching {client}")
-                os.system(client)
+                subprocess.run(client)
         else:
             print(f"Error : {response.status_code} during the dowbloading of the Minecraft LCE Client")
 
@@ -102,9 +107,17 @@ class launcher(QMainWindow):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == GEN_CONFIG_CMD_ARG:
-            config = Config()
+        if sys.argv[1] in (GEN_CONFIG_CMD_ARG , GEN_CONFIG_CMD_ARG_SHORT):
             config.generate_default_config()
+            print("Config Updated !")
+        elif sys.argv[1] in (VERSION_CMD_ARG, VERSION_CMD_ARG_SHORT):
+            print(VERSION)
+        elif sys.argv[1] in (LICENSE_CMD_ARG, LICENSE_CMD_ARG_SHORT):
+            print(LICENSE)
+        elif sys.argv[1] in (ABOUT_CMD_ARG, ABOUT_CMD_ARG_SHORT):
+            print(DESCRIPTION)
+        elif sys.argv[1] in (HELP_CMD_ARG, HELP_CMD_ARG_SHORT):
+            print(HELP_STR)
     else:
         app = QApplication(sys.argv)
         widget = launcher()
