@@ -5,11 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "PySide: Launch",
+            "name": "PySide: Launch (GNU/Linux)",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/launcher.py",
-            "preLaunchTask": "PySide: build"
+            "preLaunchTask": "PySide: build (GNU/Linux)"
+        },
+        {
+            "name": "PySide: Launch (Windows)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/launcher.py",
+            "preLaunchTask": "PySide: build (Windows)"
         }
     ]
 }
