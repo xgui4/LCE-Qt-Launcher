@@ -46,7 +46,7 @@ jobs:
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
         run: |
-          7z a -r LCE-WQt-Launcher-Windows.zip dist/* 
+          powershell Compress-Archive -Path dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
