@@ -5,8 +5,8 @@ description = "This is a custom MCLCE Launcher written in python and Qt with Fre
 
 [tool.pyside6-project]
 files = [
-    "src/app_config.py",
-    "src/config.py",
+    "src/build_info.py",
+    "src/user_pref.py",
     "src/downloader.py",
     "src/instance_manager.py",
     "src/launcher.py",

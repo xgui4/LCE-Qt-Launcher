@@ -1,6 +1,6 @@
 from PySide6.QtCore import QSettings
 
-class Config (QSettings):
+class UserPref (QSettings):
     def __init__(self):
         super().__init__(QSettings.NativeFormat, QSettings.UserScope, "Xgui4", "LCE-QT-Laucher")
 

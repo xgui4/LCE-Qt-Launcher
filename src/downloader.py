@@ -4,6 +4,13 @@ import requests
 import zipfile
 import io
 
+_GITHUB_RELEASE_STR = "/releases/download/"
+
+#LAUNCHER_STRING : str = config.get__instance_url() + \
+#                  GITHUB_RELEASE_STR + \
+#                  config.get_instance_version() + "/" + \
+#                  config.get_instance_archive()
+
 SUCCESS_STATUS_CODE = 200
 
 class Downloader:
