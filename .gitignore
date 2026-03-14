@@ -292,3 +292,5 @@ tmp/
 
 MinecraftLCEClient/
 src/LCE-Qt-Windows-Launcher.zip
+
+output/

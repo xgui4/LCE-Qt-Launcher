@@ -1,0 +1,10 @@
+{
+    "Version" : "Version", 
+    "help-message" : "-h or --help to get this help \n -v or --version to get the app version \n -L or --license to get the license information \n -a or --about to get information about the app \n -g or --gen-config to generate or update the app config",
+    "play" : "Play",
+    "install" : "Install",
+    "username" : "Username",
+    "path" : "Path", 
+    "server-ip" : "Server IP",
+    "error" : "Error: "
+}

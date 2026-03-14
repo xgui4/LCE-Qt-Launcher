@@ -2,6 +2,8 @@ from PySide6.QtCore import qVersion
 
 from system_manager import SystemManager
 
+from utils import get_project_root_dir, get_locales_dir, get_assets_dir
+
 import subprocess
 
 _APP_NAME = "Minecraft LCE QT Launcher"
@@ -9,6 +11,10 @@ _VERSION_TYPE = "pre-alpha"
 _LICENSE = "GPLv3"
 _LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0.en.html"
 _GIT_REPO_URL = "https://github.com/xgui4/LCE_QT_Launcher"
+
+PROJET_ROOT_DIR = get_project_root_dir()
+LOCALES_FOLDER = get_locales_dir()
+ASSETS_FOLDER = get_assets_dir()
 
 def get_git_info():
     try:

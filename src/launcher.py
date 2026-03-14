@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
 
-import sys
-
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 
 from user_pref import UserPref
 from build_info import BuildInfo
 # from downloader import Downloader
-# from instance_manager import InstanceManager
-
+from instance_manager import InstanceManager, Instance
 from cmd_arg import CmdArgAction, parse_args, argsDetected
 
 import webbrowser
+import sys
 
 userPref = UserPref()
 buildInfo = BuildInfo()
 # downloader = Downloader()
-#instanceManager = InstanceManager()
+
+defaultInstance = Instance()
+instanceManager = InstanceManager(defaultInstance)
 
 SUCCESS_STATUS_CODE = 200
 
 BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
-
-def launch():
-        print("not implemented yet!")
 
 def update_page():
     webbrowser.open_new_tab(userPref.LAUNCHER_REPO)
@@ -32,6 +29,8 @@ def update_page():
 from ui_form import Ui_launcher
 
 class launcher(QMainWindow):
+    def launch(self):
+        instanceManager.play() 
     def show_aboutQt(self):
         QMessageBox.aboutQt(self, "About Qt")
     def show_about(self):
@@ -72,7 +71,7 @@ class launcher(QMainWindow):
         self.ui = Ui_launcher()
         self.ui.setupUi(self)
         self.ui.actionQuit.triggered.connect(app.quit)
-        self.ui.playButton.clicked.connect(launch)
+        self.ui.playButton.clicked.connect(self.launch)
         self.ui.actionUpdate.triggered.connect(update_page)
 
         self.ui.actionAbout.triggered.connect(self.show_about)
