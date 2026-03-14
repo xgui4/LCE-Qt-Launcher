@@ -21,7 +21,7 @@ icon = assets/app.ico
 [python]
 packages = Nuitka==2.7.11,PySide6
 python_packages = Nuitka==2.7.11,PySide6
-python_path = /home/xgui4/develop/LCE-Qt-Launcher/.venv/bin/python
+python_path = .venv/bin/python
 
 [qt]
 
