@@ -5,7 +5,6 @@ import os
 
 import build_info
 
-
 class JsonTrans(QObject):
 
     languageChanged: Signal = Signal()  # Signal QT about the language changes

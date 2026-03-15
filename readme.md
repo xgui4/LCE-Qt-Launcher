@@ -13,6 +13,11 @@ This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Li
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed 
 - A display server or compositor (for Unix like system, MacOS and Windows use their own proprietary one)
 
+## Compiling Suggestion 
+
+- uv (to create a virtual env)
+
+- use `uv sync --seed` to create a virtual env with pip which is require for pyside6-deploy
 
 ## Compatible Operating System
 

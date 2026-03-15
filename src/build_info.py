@@ -2,7 +2,9 @@ from PySide6.QtCore import qVersion
 
 from system_manager import SystemManager
 
-from utils import get_project_root_dir, get_locales_dir, get_assets_dir
+from pathlib import Path
+
+import os
 
 import subprocess
 
@@ -11,6 +13,20 @@ _VERSION_TYPE = "pre-alpha"
 _LICENSE = "GPLv3"
 _LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0.en.html"
 _GIT_REPO_URL = "https://github.com/xgui4/LCE_QT_Launcher"
+
+def get_source_dir() -> str:
+    return os.path.abspath(os.path.dirname(__file__))
+
+def get_project_root_dir() -> str:
+    dir: Path = Path(get_source_dir())
+    return str(dir.parent)
+
+def get_locales_dir() -> str:
+    return os.path.join(get_project_root_dir(),"assets", "languages")
+
+def get_assets_dir() -> str:
+    return os.path.join(get_project_root_dir(), "assets")
+
 
 PROJET_ROOT_DIR = get_project_root_dir()
 LOCALES_FOLDER = get_locales_dir()

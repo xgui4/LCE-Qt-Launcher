@@ -5,23 +5,35 @@ from PySide6.QtGui import QPalette, QPixmap, QBrush
 
 from user_pref import UserPref
 from build_info import BuildInfo
-# from downloader import Downloader
 from instance_manager import InstanceManager, Instance
 from cmd_arg import CmdArgAction, parse_args, argsDetected
 
 import webbrowser
 import sys
+import os
+import platform
 
 userPref = UserPref()
 buildInfo = BuildInfo()
-# downloader = Downloader()
 
 defaultInstance = Instance()
 instanceManager = InstanceManager(defaultInstance)
 
-SUCCESS_STATUS_CODE = 200
-
 BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
+
+if platform.system() == "Linux": 
+    os.environ["QT_PLUGIN_PATH"] = "/usr/lib/qt6/plugins"
+
+if platform.system() == "FreeBSD": 
+    os.environ["QT_PLUGIN_PATH"] = "/usr/local/lib/qt6/plugins"
+
+HELP_STR = """
+-h or --help to get this help 
+-v or --version to get the app version
+-L or --license to get the license information
+-a or --about to get information about the app
+-g or --gen-config to generate or update the app config
+"""
 
 def update_page():
     webbrowser.open_new_tab(userPref.LAUNCHER_REPO)
@@ -30,25 +42,25 @@ from ui_form import Ui_launcher
 
 class launcher(QMainWindow):
     def launch(self):
+        print("Starting the game!")
         instanceManager.play() 
+    def install(self):
+        print("Starting the installation!")
+        instanceManager.install() 
     def show_aboutQt(self):
-        QMessageBox.aboutQt(self, "About Qt")
+        QMessageBox.aboutQt("About Qt")
     def show_about(self):
         self.aboutPopupWindow = QDialog() 
         self.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
 
         imageLabel = QLabel()
-
         logoPixmap = QPixmap(":/assets/launcher_small.png")
-
         imageLabel.setPixmap(logoPixmap)
 
         mainLayout = QVBoxLayout(self.aboutPopupWindow)
 
         titleLabel = QLabel(buildInfo.app_name)
-
         versionLabel = QLabel(f"Version {buildInfo.version}")
-
         licenseLabel = QLabel(f"License {buildInfo.license}")
 
         mainLayout.addWidget(imageLabel)
@@ -72,6 +84,7 @@ class launcher(QMainWindow):
         self.ui.setupUi(self)
         self.ui.actionQuit.triggered.connect(app.quit)
         self.ui.playButton.clicked.connect(self.launch)
+        self.ui.playButton.clicked.connect(self.install)
         self.ui.actionUpdate.triggered.connect(update_page)
 
         self.ui.actionAbout.triggered.connect(self.show_about)
@@ -90,9 +103,9 @@ if __name__ == "__main__":
             print(f"{buildInfo.app_name} is licensed via the {buildInfo.license} License.")
             print(f"See {buildInfo.license_link} for more info")
         if action == CmdArgAction.PRINT_HELP:
-            print("Not Implemented Yet!")
+            print(HELP_STR)
         if action == CmdArgAction.PRINT_ABOUT_INFO:
-            print("Not Inplemented Yet!")
+            print("This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind.")
         if action == CmdArgAction.PRINT_VERSION: 
             print(f"{buildInfo.app_name} Version {buildInfo.version}")
             print(f"Qt Version {buildInfo.qt_version}")
@@ -100,7 +113,6 @@ if __name__ == "__main__":
             print("Not Implemented Yet!")
     else:
         app = QApplication(sys.argv)
-
         try:
             with open("assets/styles/minecraft.qss", "r") as file:
                 app.setStyleSheet(file.read())
