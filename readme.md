@@ -17,7 +17,7 @@ This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Li
 
 - uv (to create a virtual env)
 
-- use `uv sync --seed` to create a virtual env with pip which is require for pyside6-deploy
+> TBD : Need to learn more
 
 ## Compatible Operating System
 

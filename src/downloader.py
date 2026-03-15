@@ -20,7 +20,7 @@ class Downloader:
         if response.status_code == SUCCESS_STATUS_CODE:
             try:
                 with ZipFile(BytesIO(response.content)) as archive:
-                    archive.extractall(self.installation_path)
+                    archive.extractall(instance.installation_path)
             except BadZipFile as err:
                 print(f"Error : {err} while extracting {archive.filename}")
             except LargeZipFile as err:
@@ -29,7 +29,7 @@ class Downloader:
                 if os.name == "posix":
                     exe_abs_path = os.path.join(instance.installation_path, instance.exe_name)
                     curr_perm = os.stat(exe_abs_path)
-                    new_perm = curr_perm | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
+                    new_perm = curr_perm.st_mode | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
                     os.chmod(exe_abs_path, new_perm)
         else:
             print(f"Error : {response.status_code} during the dowbloading of the Minecraft LCE Client")
