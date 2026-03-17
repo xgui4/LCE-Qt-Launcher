@@ -3,24 +3,26 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from instance_manager import Instance
+    from build_info import BuildInfo
 
 from zipfile import ZipFile, BadZipFile, LargeZipFile
 from io import BytesIO
 
 import requests
 import os
-import stat
-import platform
 
 SUCCESS_STATUS_CODE = 200
 
 class Downloader:
-    def download_client(self, instance : Instance):
+    def __init__(self, build_info: BuildInfo):
+        self._build_info = build_info
+
+    def download_instance(self, instance : Instance):
         response = requests.get(instance.get_download_url())
         if response.status_code == SUCCESS_STATUS_CODE:
+            print(f"Download of {instance.name} from {instance.get_download_url} was a success")
             try:
-                with ZipFile(BytesIO(response.content)) as archive:
-                    archive.extractall(instance.installation_path)
+                archive : ZipFile = self.extract_instance(response, instance)
             except BadZipFile as err:
                 print(f"Error : {err} while extracting {archive.filename}")
             except LargeZipFile as err:
@@ -28,8 +30,11 @@ class Downloader:
             else:
                 if os.name == "posix":
                     exe_abs_path = os.path.join(instance.installation_path, instance.exe_name)
-                    curr_perm = os.stat(exe_abs_path)
-                    new_perm = curr_perm.st_mode | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
-                    os.chmod(exe_abs_path, new_perm)
+                    system = self._build_info.system_manager
+                    system.set_file_permission(exe_abs_path)
         else:
-            print(f"Error : {response.status_code} during the dowbloading of the Minecraft LCE Client")
+            print(f"Error : {response.status_code} during the dowloading of the Minecraft LCE Client")
+    
+    def extract_instance(self, response, instance) -> ZipFile:
+        with ZipFile(BytesIO(response.content)) as archive:
+            return archive.extractall(instance.installation_path)

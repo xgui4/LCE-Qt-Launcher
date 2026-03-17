@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from term_image.image import from_file
 from rich import print
 
@@ -31,9 +33,10 @@ buildInfo = BuildInfo()
 defaultInstance = Instance()
 instanceManager = InstanceManager(defaultInstance)
 
-if user_output == "1":
-    instanceManager.play() 
-if user_output == "2":
-    instanceManager.install()
-else:
-    print("not implemented yet") 
+if __name__ == "__main__":    
+    if user_output == "1":
+        instanceManager.play() 
+    if user_output == "2":
+        instanceManager.install_instance()
+    else:
+        print("not implemented yet") 

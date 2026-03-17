@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sys_info_dialog</class>
+ <widget class="QDialog" name="sys_info_dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LCE Qt Launcher - System Info </string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/assets/app.ico</normaloff>:/assets/app.ico</iconset>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>391</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="appVersion">
+      <property name="text">
+       <string>LCE Qt Launcher V. Unknow</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="qVersionLabel">
+      <property name="text">
+       <string>Qt Version Unknow</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="pyVersionLabel">
+      <property name="text">
+       <string>Python Version Unknow</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="osInfoLabel">
+      <property name="text">
+       <string>Operating System info :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="pluginsInfoLabel">
+      <property name="text">
+       <string>Plugins : </string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="runnersLabel">
+      <property name="text">
+       <string>Runners: </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>sys_info_dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>sys_info_dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

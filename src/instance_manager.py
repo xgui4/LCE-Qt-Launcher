@@ -1,15 +1,19 @@
 from enum import Enum
 
 from downloader import Downloader
+from build_info import BuildInfo
 
-_GITHUB_RELEASE_STR = "/releases/download/"
+from subprocess import TimeoutExpired
 
 import subprocess
 
+_GITHUB_RELEASE_STR = "/releases/download/"
+
 class InstanceType(Enum):
     GITHUB_RELEASE = 0
-    GIT_SOURCE_CODE = 1
-    LOCAL_NO_INSTALL = 2
+    REMOTE_GIT_SOURCE = 1
+    LOCAL_INSTALLATION = 2
+    LOCAL_SOURCE_CODE = 3
 
 class Instance:
     def __init__(self, 
@@ -39,18 +43,32 @@ class Instance:
                     _GITHUB_RELEASE_STR + \
                     self.version + "/" + \
                     self.archive_file
-        if self.instance_type == InstanceType.GIT_SOURCE_CODE:
+        if self.instance_type == InstanceType.REMOTE_GIT_SOURCE:
             return f"{self.repo_url}.git"
-        if self.instance_type == InstanceType.LOCAL_NO_INSTALL:
+        if self.instance_type == InstanceType.LOCAL_INSTALLATION:
             return RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
         else:
             return RuntimeError("Not implemented yet!")
 
 class InstanceManager:
-    def __init__(self, instance : Instance):
+    def __init__(self, instance : Instance, build_info : BuildInfo):
         self.instance = instance
-        self._downloader = Downloader()
-    def play(self):
-        subprocess.run(self.instance.installation_path + self.instance.exe_name)
-    def install(self):
-        self._downloader.download_client(self.instance); 
+        self._downloader = Downloader(build_info)
+        self._build_info = build_info
+    def play(self) -> str:
+        try:
+            game_process = subprocess.run(self.instance.installation_path, self.instance.exe_name)
+        except TimeoutExpired as err: 
+            print(f"Error : process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
+            return f"Error : process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
+        except PermissionError as err:
+            print(f"Error : Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
+            return f"Error : Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
+        
+        else:
+            return f"Client closed with code {game_process.returncode}"  
+    def install_instance(self) -> str:
+        if self.instance in [InstanceType.GITHUB_RELEASE, InstanceType.REMOTE_GIT_SOURCE]:
+            self._downloader.download_instance(self.instance)
+        else:
+            return "Already Installed, skip installation."

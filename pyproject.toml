@@ -3,6 +3,7 @@ name = "LCE-Qt-Launcher"
 version = "0.0.0"
 description = "This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind."
 requires-python = "==3.12.*"
+
 dependencies = [
     "pyside6",
     "requests",
@@ -20,13 +21,15 @@ files = [
     "src/instance_manager.py",
     "src/launcher.py",
     "src/system_manager.py",
-    "src/user_data",
+    "src/user_data.py",
     "src/form.ui",
+    "src/system_info.ui",
     "src/json_trans.py",
     "pkg/LCE-Qt-Launcher.desktop",
     "license.md",
     "readme.md",
-    "requirements.txt",
+    "src/main.py",
+    "src/cli.py",
     "res.qrc",
     "CODE-DE-CONDUITE.md",
     "code-of-conduct.md",

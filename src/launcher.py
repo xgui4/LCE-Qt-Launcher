@@ -2,6 +2,7 @@
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox
 from PySide6.QtGui import QPalette, QPixmap, QBrush
+from PySide6.QtCore import Qt
 
 from user_pref import UserPref
 from build_info import BuildInfo
@@ -17,7 +18,7 @@ userPref = UserPref()
 buildInfo = BuildInfo()
 
 defaultInstance = Instance()
-instanceManager = InstanceManager(defaultInstance)
+instanceManager = InstanceManager(defaultInstance, buildInfo)
 
 BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
 
@@ -46,11 +47,15 @@ class launcher(QMainWindow):
         instanceManager.play() 
     def install(self):
         print("Starting the installation!")
-        instanceManager.install() 
+        instanceManager.install_instance() 
     def show_aboutQt(self):
-        QMessageBox.aboutQt("About Qt")
+        print("Show About Qt popup.")
+        QMessageBox.aboutQt(self, "About Qt")
     def show_about(self):
         self.aboutPopupWindow = QDialog() 
+
+        self.aboutPopupWindow.setWindowModality(Qt,)
+
         self.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
 
         imageLabel = QLabel()
@@ -89,7 +94,7 @@ class launcher(QMainWindow):
 
         self.ui.actionAbout.triggered.connect(self.show_about)
 
-        self.ui.actionAbout.triggered.connect(QMessageBox.aboutQt)
+        self.ui.actionAbout_QT.triggered.connect(self.show_aboutQt)
 
         self.versionlabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
