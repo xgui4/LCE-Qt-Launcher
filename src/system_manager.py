@@ -2,6 +2,7 @@ from enum import StrEnum
 
 import platform
 import os
+import pathlib
 import stat
 
 class OperatingSystemType(StrEnum):
@@ -41,3 +42,6 @@ class SystemManager():
                 os.chmod(file_abs_path, new_perm)
         else:
             pass
+    
+    def found_default_save_path(self) -> str:
+        return os.path.join(pathlib.Path.home(), "saves")  

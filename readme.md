@@ -2,22 +2,34 @@
 
 ![LCE-QT-Launcher](assets/Launcher.png)
 
+> [WARNING]
+> This launcher is work in progress and its feature could be changes or remove at any time.
+> PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.mc) and [Code of Respect](code-of-conduct.md)
+
 ## About 
 
 This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind.
 
+## Features 
+
+- cli.y : simple way to install and launch the game 
+- launcher.py 
+
 ## Software Requirement 
 
-- Pythom 3.10 and later
-- PySide6 and its tool
+- [Python 3.12.x](https://www.python.org/downloads/latest/python3.12/)
+    - with a virtual env with the required library install (specified in the readme and [`pyproject.toml`](pyproject.toml))
+- [PySide6](https://pypi.org/project/PySide6/)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed 
 - A display server or compositor (for Unix like system, MacOS and Windows use their own proprietary one)
 
-## Compiling Suggestion 
-
-- uv (to create a virtual env)
-
-> TBD : Need to learn more
+## Python Library Used 
+ - pyside6,
+ - requests,
+ - rich,
+ - term-image,
+ - pillow,
+ - pip
 
 ## Compatible Operating System
 
@@ -28,7 +40,7 @@ This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Li
 
 ## Code of Respect 
 
-- [English](code-of-respect.md)
+- [English](code-of-conduct.md)
 - [French](CODE-DE-CONDUITE.md)
 
 ## License

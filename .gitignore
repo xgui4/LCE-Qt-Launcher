@@ -288,7 +288,7 @@ tmp/
 /*-release/
 /out/
 **/res_rc.py
-**/ui_form.py
+**/ui_**.py
 
 MinecraftLCEClient/
 src/LCE-Qt-Windows-Launcher.zip
