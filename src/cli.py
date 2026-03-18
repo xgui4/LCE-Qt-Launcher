@@ -3,19 +3,7 @@
 from term_image.image import from_file
 from rich import print
 
-from user_pref import UserPref
-from build_info import BuildInfo
 from instance_manager import InstanceManager, Instance
-from cmd_arg import CmdArgAction, parse_args, argsDetected
-
-import webbrowser
-import sys
-import os
-import platform
-
-image = from_file("/home/xgui4/Downloads/ascii-art-text.png")
-
-image.draw()
 
 MENU_STR = """
 1. [bold green] Play [/bold green]
@@ -23,17 +11,18 @@ MENU_STR = """
 3. [bold red] Others : Coming Soon ! [/bold red]
 """
 
-print(MENU_STR)
+def launch_cli():    
+    image = from_file("/home/xgui4/Downloads/ascii-art-text.png")
 
-user_output = input()
+    image.draw()
 
-userPref = UserPref()
-buildInfo = BuildInfo()
+    print(MENU_STR)
 
-defaultInstance = Instance()
-instanceManager = InstanceManager(defaultInstance)
+    user_output = input()
 
-if __name__ == "__main__":    
+    defaultInstance = Instance()
+    instanceManager = InstanceManager(defaultInstance)
+
     if user_output == "1":
         instanceManager.play() 
     if user_output == "2":

@@ -5,8 +5,8 @@ from system_manager import SystemManager
 from pathlib import Path
 
 import os
-
 import subprocess
+from datetime import date
 
 _APP_NAME = "Minecraft LCE QT Launcher"
 _VERSION_TYPE = "nighly"
@@ -33,8 +33,10 @@ PROJET_ROOT_DIR = get_project_root_dir()
 LOCALES_FOLDER = get_locales_dir()
 ASSETS_FOLDER = get_assets_dir()
 
-def get_git_info():
+def get_version_info():
     try:
+        date_info = date.today()
+
         branch = subprocess.check_output(
             ["git", "rev-parse", "--abbrev-ref", "HEAD"], 
             text=True
@@ -45,14 +47,13 @@ def get_git_info():
             text=True
         ).strip()
         
-        return f"{branch}-{commit_hash}"
+        return f"{branch}-{date_info}_{commit_hash}"
     except Exception:
-        print("Not a development version")
-        return ""
+        return f"{_VERSION_TYPE} {_VERSION_NUMBER}"
 
 class BuildInfo:
     def __init__(self):
-        self.version : str = _VERSION_NUMBER + "-" + get_git_info() 
+        self.version : str = _VERSION_NUMBER + "-" + get_version_info() 
         self.app_name : str = _APP_NAME
         self.version_type : str = _VERSION_TYPE
         self.license : str = _LICENSE

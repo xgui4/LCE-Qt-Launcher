@@ -8,7 +8,8 @@ class CmdArgAction(Enum):
     PRINT_LICENSE = 2
     PRINT_ABOUT_INFO = 3
     PRINT_HELP = 4
-    NO_ARGS = 5
+    CLI_VERSION = 5
+    NO_ARGS = 6
 
 def argsDetected(action :CmdArgAction) -> bool:
     """Return True if there is a Args detected, Else Return False"""
@@ -23,6 +24,8 @@ class CmdArg(StrEnum):
     LICENSE_CMD_ARG_SHORT = "-L"
     ABOUT_CMD_ARG = "--about"
     ABOUT_CMD_ARG_SHORT = "-a"
+    CLI_VERSION_CMD_ARG = "--cli"
+    CLI_VERSION_CMD_ARG_SHORT = "-c"
     HELP_CMD_ARG = "--help"
     HELP_CMD_ARG_SHORT = "-h"
 
@@ -38,5 +41,7 @@ def parse_args(argv : list) -> CmdArgAction:
             return CmdArgAction.PRINT_ABOUT_INFO
         elif argv[1] in (CmdArg.HELP_CMD_ARG, CmdArg.HELP_CMD_ARG_SHORT):
             return CmdArgAction.PRINT_HELP
+        elif argv[1] in (CmdArg.CLI_VERSION_CMD_ARG, CmdArg.CLI_VERSION_CMD_ARG_SHORT):
+            return CmdArgAction.CLI_VERSION
     else : 
         return CmdArgAction.NO_ARGS

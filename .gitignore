@@ -287,11 +287,16 @@ tmp/
 /*-debug/
 /*-release/
 /out/
-**/res_rc.py
-**/ui_**.py
 
+# Pyside6 py files
+**/ui_**.py
+**/rc_**.py
+**/**_rc.py
+
+# Minecraft Client
 MinecraftLCEClient/
 src/LCE-Qt-Windows-Launcher.zip
 
+# Output
 output/
 .vscode/settings.json
