@@ -5,6 +5,10 @@ from rich import print
 
 from instance_manager import InstanceManager, Instance
 
+import build_info
+
+import os
+
 MENU_STR = """
 1. [bold green] Play [/bold green]
 2. [bold green] Install [/bold green]
@@ -12,7 +16,10 @@ MENU_STR = """
 """
 
 def launch_cli():    
-    image = from_file("/home/xgui4/Downloads/ascii-art-text.png")
+
+    ascii_art = os.path.join(build_info.get_assets_dir(), "ascii-art-text.png")
+    
+    image = from_file(ascii_art)
 
     image.draw()
 

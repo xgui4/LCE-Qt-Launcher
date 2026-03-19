@@ -12,7 +12,7 @@ _APP_NAME = "Minecraft LCE QT Launcher"
 _VERSION_TYPE = "nighly"
 _VERSION_NUMBER  = "0.0.1"
 _LICENSE = "GPLv3"
-_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0.en.html"
+_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 _INSTANCE_EXTENSION = ".lce_inst"
 
@@ -49,11 +49,11 @@ def get_version_info():
         
         return f"{branch}-{date_info}_{commit_hash}"
     except Exception:
-        return f"{_VERSION_TYPE} {_VERSION_NUMBER}"
+        return ""
 
 class BuildInfo:
     def __init__(self):
-        self.version : str = _VERSION_NUMBER + "-" + get_version_info() 
+        self.version : str =  f"{_VERSION_TYPE} { _VERSION_NUMBER}-{get_version_info()}"
         self.app_name : str = _APP_NAME
         self.version_type : str = _VERSION_TYPE
         self.license : str = _LICENSE

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from PySide6.QtWidgets  import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion
 from user_pref import UserPref
@@ -9,6 +9,7 @@ from instance_manager import InstanceManager, Instance
 from cmd_arg import CmdArgAction, parse_args, argsDetected
 
 from browser_dialog import BrowserDialog
+from setting_dialog import SettingDialog
 from cli import launch_cli
 
 import sys
@@ -144,6 +145,9 @@ class launcher(QMainWindow):
         file_name = QFileDialog.getSaveFileName(self, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
         instanceManager.load_instance(file_name)
 
+    def show_setting_dialog(self):
+        SettingDialog(self)
+
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -178,6 +182,7 @@ class launcher(QMainWindow):
         self.ui.playButton.clicked.connect(self.launch)
         self.ui.installButton.clicked.connect(self.install)
         self.ui.confirmChangesButton.clicked.connect(self.confirm_changes_button)
+        self.ui.settingButton.clicked.connect(self.show_setting_dialog)
 
         self.ui.actionQuit.triggered.connect(app.quit)
         self.ui.actionUpdate.triggered.connect(self.update_page)
@@ -217,7 +222,7 @@ if __name__ == "__main__":
             with open("assets/styles/minecraft.qss", "r") as file:
                 app.setStyleSheet(file.read())
         except FileNotFoundError:
-            print(f"Error : qrc:/styles/minecraft.qss file not found. Reverting to default theme")
+            print(f"Error : :/styles/minecraft.qss file not found. Reverting to default theme")
 
         widget = launcher()
         widget.show()

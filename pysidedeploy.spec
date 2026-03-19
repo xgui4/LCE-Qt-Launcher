@@ -7,7 +7,7 @@ title = LCE Qt Launcher
 project_dir = .
 
 # source file entry point path. default = main.py
-input_file = src/launcher.py
+input_file = src/main.py
 
 # directory where the executable output is generated
 exec_directory = output/

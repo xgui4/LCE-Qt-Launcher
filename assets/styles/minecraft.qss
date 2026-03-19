@@ -1,6 +1,6 @@
 * {
     color : white;
-    font-family : "Monocraft"
+    font-family : "Monocraft";
 }
 
 QPushButton {
@@ -10,9 +10,30 @@ QPushButton {
 
 QPushButton::pressed {
     border-image : url(":/assets/button-pressed.png"); 
+    font : bold; 
     border : none;
+}
+
+QPushButton::hover { 
+    border-image : url(":/assets/button-pressed.png"); 
+    text-decoration : underline
+    border : none;
+}
+
+QPushButton::disabled { 
+    border-image : url(":/assets/button.png"); 
+    color : black; 
+    border : none;
+}
+
+QMenuBar {
+    background-color : black
 }
 
 QLineEdit {
     background : black;
+}
+
+QWidget {
+    background-color : black; 
 }

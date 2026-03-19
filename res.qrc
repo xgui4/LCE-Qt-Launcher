@@ -9,8 +9,12 @@
         <file alias="button.png">assets/button.png</file>
         <file alias="button-pressed.png">assets/button-pressed.png</file>
         <file alias="app.ico">assets/app.ico</file>
+        <file alias="pointer.png">assets/pointer.png</file>
+        <file alias="ascii_art_title.png">assets/ascii-art-text.png</file>
     </qresource>
     <qresource prefix="/styles">
-        <file alias="minecrafts.qss">assets/styles/minecraft.qss</file>
+        <file alias="minecraft.qss">assets/styles/minecraft.qss</file>
+        <file alias="dark.qss">assets/styles/dark.qss</file>
+        <file alias="light.qss">assets/styles/light.qss</file>
     </qresource>
 </RCC>
