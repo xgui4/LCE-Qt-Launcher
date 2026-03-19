@@ -2,7 +2,7 @@
 
 ![LCE-QT-Launcher](assets/Launcher.png)
 
-> [WARNING]
+> [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
 > PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.mc) and [Code of Respect](code-of-conduct.md)
 

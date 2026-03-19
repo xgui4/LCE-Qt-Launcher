@@ -8,14 +8,14 @@
             "name": "PySide: Launch (GNU/Linux)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/launcher.py",
+            "program": "${workspaceFolder}/src/main.py",
             "preLaunchTask": "PySide: build (GNU/Linux)"
         },
         {
             "name": "PySide: Launch (Windows)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/launcher.py",
+            "program": "${workspaceFolder}/src/main.py",
             "preLaunchTask": "PySide: build (Windows)"
         }
     ]

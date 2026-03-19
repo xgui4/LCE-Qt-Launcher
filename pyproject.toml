@@ -1,8 +1,13 @@
 [project]
 name = "LCE-Qt-Launcher"
 version = "0.0.1"
-description = "This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind."
+description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
 requires-python = "==3.12.*"
+license = {text = "GPLv3"}
+
+[project.urls]
+repository = "https://github.com/xgui4/LCE-QT-Launcher"
+license = "https://www.gnu.org/licenses/gpl-3.0"
 
 dependencies = [
     "pyside6",
@@ -21,7 +26,8 @@ files = [
     "src/instance_manager.py",
     "src/launcher.py",
     "src/system_manager.py",
-    "src/user_data.py",
+    "src/theme.py",
+    "src/setting_dialog.py",
     "src/form.ui",
     "src/system_info.ui",
     "src/json_trans.py",

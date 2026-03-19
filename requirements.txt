@@ -1,6 +1,0 @@
-pyside6
-requests
-rich
-term-image
-pillow
-pip
