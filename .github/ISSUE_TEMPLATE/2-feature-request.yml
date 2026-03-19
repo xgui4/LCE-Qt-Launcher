@@ -20,10 +20,3 @@ body:
       options:
         - label: I agree to follow this project's Code of Respect
           required: true
-  - type: upload
-    id: screenshots
-    attributes:
-      label: Upload screenshots
-      description: If applicable, add screenshots to help understand your idea.
-    validations:
-      required: false

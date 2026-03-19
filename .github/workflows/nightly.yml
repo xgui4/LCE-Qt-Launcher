@@ -3,7 +3,7 @@ name: Build and Deploy Nightly
 on:
   push:
     branches:
-      - master
+      - nightly
 
 permissions:
      contents: write
@@ -30,18 +30,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install .
           pip install nuitka
 
       - name: Build with Nuitka for Linux
         if: matrix.os == 'ubuntu-latest' 
         run: |
-          python -m nuitka --onefile --standalone --enable-plugin=pyside6 --output-dir=dist src/launcher.py
+          python -m nuitka --onefile --standalone --enable-plugin=pyside6 --output-dir=dist src/main.py
 
       - name: Build with Nuitka for Windows
         if: matrix.os == 'ubuntu-latest' 
         run: |
-          python -m nuitka --enable-plugin=pyside6 --output-dir=dist src/launcher.py
+          python -m nuitka --enable-plugin=pyside6 --output-dir=dist src/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
