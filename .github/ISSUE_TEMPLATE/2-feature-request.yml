@@ -3,7 +3,6 @@ description: File a feature request.
 title: "[Feature Request]: "
 labels: ["feature", "improvement"]
 
-type: feature
 body:
   - type: textarea
     id: idea
