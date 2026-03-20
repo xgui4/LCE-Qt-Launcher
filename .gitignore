@@ -294,3 +294,4 @@ MinecraftLCEClient/
 src/LCE-Qt-Windows-Launcher.zip
 
 output/
+nuitka-crash-report.xml
