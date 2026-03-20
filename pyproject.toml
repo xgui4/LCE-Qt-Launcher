@@ -1,14 +1,14 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.1"
+dynamic = ["version"]
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
 requires-python = "==3.12.*"
-license = {text = "GPLv3"}
-
-[project.urls]
-repository = "https://github.com/xgui4/LCE-QT-Launcher"
-license = "https://www.gnu.org/licenses/gpl-3.0"
-
+license = "GPL-3.0-or-later"
+readme = "readme.md"
 dependencies = [
     "pyside6",
     "requests",
@@ -17,6 +17,20 @@ dependencies = [
     "pillow",
     "pip"
 ]
+
+[project.urls]
+Repository = "https://github.com/xgui4/LCE-QT-Launcher"
+LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+version_scheme = "no-guess-dev"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
 
 [tool.pyside6-project]
 files = [
@@ -42,4 +56,3 @@ files = [
     "code-of-conduct.md",
     "assets/app.ico"
 ]
-

@@ -7,10 +7,11 @@ from pathlib import Path
 import os
 import subprocess
 from datetime import date
+import importlib.metadata
 
 _APP_NAME = "Minecraft LCE QT Launcher"
-_VERSION_TYPE = "nighly"
 _VERSION_NUMBER  = "0.0.1"
+_VERSION_TYPE = "dev"
 _LICENSE = "GPLv3"
 _LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -50,6 +51,29 @@ def get_version_info():
         return f"{branch}-{date_info}_{commit_hash}"
     except Exception:
         return ""
+    
+try:
+    metadata = importlib.metadata.metadata("LCE-Qt-Launcher")
+
+    version_metadata = importlib.metadata.version("LCE-Qt-Launcher")
+    app_name_metadata = metadata["Name"]
+    repo_url_metadata = metadata["Repository"]
+    license_url_metadata = metadata["LicenseURL"]
+    license_metadata = metadata["License"]
+
+    if version_metadata is not None:
+        _VERSION_NUMBER = version_metadata
+    if app_name_metadata is not None:
+        _APP_NAME = app_name_metadata
+    if repo_url_metadata is not None:
+        _GIT_REPO_URL = repo_url_metadata
+    if license_url_metadata is not None:
+        _LICENSE_LINK = license_url_metadata
+    if license_metadata is not None:
+        _LICENSE = license_metadata
+
+except importlib.metadata.PackageNotFoundError:
+    pass
 
 class BuildInfo:
     def __init__(self):

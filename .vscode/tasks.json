@@ -14,6 +14,14 @@
             "command":"pyside6-uic ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py; pyside6-rcc ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py; pyside6-uic ${workspaceFolder}/src/system_info.ui -o ${workspaceFolder}/src/ui_system_info.py",
             "group": "build",
             "problemMatcher": []
+        },
+        {
+            "label": "Python: Sync Virtual Env",
+            "type": "shell",
+            "command": "${command:python.interpreterPath} -m pip install -e .",
+            "group": "build",
+            "problemMatcher": []
         }
     ]
 }
+

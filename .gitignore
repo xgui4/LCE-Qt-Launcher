@@ -300,3 +300,6 @@ src/LCE-Qt-Windows-Launcher.zip
 # Output
 output/
 .vscode/settings.json
+
+# Build tool auto-generated file
+**/_pycache__
