@@ -1,0 +1,36 @@
+* {
+    color : white;
+    font-family : "Monocraft"
+}
+
+*::disabled {
+    color : gray;
+}
+
+
+QPushButton {
+    color : black; 
+    border : none;
+}
+
+QPushButton::pressed {
+    color : blue; 
+    border : none;
+}
+
+QPushButton::hover { 
+    color : gray;
+    border : none;
+}
+
+QMenuBar {
+    background-color : black
+}
+
+QLineEdit {
+    background : black;
+}
+
+QLineEdit {
+    background : black;
+}

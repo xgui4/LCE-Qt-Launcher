@@ -1,0 +1,58 @@
+name: Bug Report
+description: File a bug report or error
+title: "[BUG] <concise description>"
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Software Version
+      description: What version of the software are you running?
+      placeholder: "e.g. 0.0.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Provide clear and concise steps that someone else can follow to reproduce the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What is the environment you are running this in?
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - FreeBSD
+        - Android
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://www.github.com/xgui4/code-of-respect/).
+      options:
+        - label: I agree to follow the project's Code of Conduct
+          required: true

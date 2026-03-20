@@ -1,32 +1,40 @@
-from instance_manager import Instance
+from __future__ import annotations 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from instance_manager import Instance
+    from build_info import BuildInfo
+
+from zipfile import ZipFile, BadZipFile, LargeZipFile
+from io import BytesIO
 
 import requests
-import zipfile
-import io
-
-_GITHUB_RELEASE_STR = "/releases/download/"
-
-#LAUNCHER_STRING : str = config.get__instance_url() + \
-#                  GITHUB_RELEASE_STR + \
-#                  config.get_instance_version() + "/" + \
-#                  config.get_instance_archive()
+import os
 
 SUCCESS_STATUS_CODE = 200
 
 class Downloader:
-    def __init__(self, instance : Instance):
-        self.instance: Instance = instance 
+    def __init__(self, build_info: BuildInfo):
+        self._build_info = build_info
 
-    def download_client(self):
-        response = requests.get(self.instance)
-
+    def download_instance(self, instance : Instance):
+        response = requests.get(instance.get_download_url())
         if response.status_code == SUCCESS_STATUS_CODE:
+            print(f"Download of {instance.name} from {instance.get_download_url} was a success")
             try:
-                with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
-                    archive.extractall(self.installation_path)
-            except zipfile.BadZipFile as err:
+                archive : ZipFile = self.extract_instance(response, instance)
+            except BadZipFile as err:
                 print(f"Error : {err} while extracting {archive.filename}")
-            except zipfile.zipfile.LargeZipFile as err:
+            except LargeZipFile as err:
                 print(f"Error : {archive.filename} was too big.")
+            else:
+                if os.name == "posix":
+                    exe_abs_path = os.path.join(instance.installation_path, instance.exe_name)
+                    system = self._build_info.system_manager
+                    system.set_file_permission(exe_abs_path)
         else:
-            print(f"Error : {response.status_code} during the dowbloading of the Minecraft LCE Client")
+            print(f"Error : {response.status_code} during the dowloading of the Minecraft LCE Client")
+    
+    def extract_instance(self, response, instance) -> ZipFile:
+        with ZipFile(BytesIO(response.content)) as archive:
+            return archive.extractall(instance.installation_path)

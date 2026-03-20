@@ -1,0 +1,21 @@
+name: Feature Request
+description: File a feature request.
+title: "[Feature Request]: "
+labels: ["feature", "improvement"]
+
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What is your suggestion ?
+      description: What features/modification do you want to see ? 
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Respect
+      description: By submitting this issue, you agree to follow our [Code of Respect](code-of-conduct.md).
+      options:
+        - label: I agree to follow this project's Code of Respect
+          required: true

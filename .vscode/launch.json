@@ -5,18 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "PySide: Launch (GNU/Linux)",
+            "name": "PySide: Build and Launch (GNU/Linux)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/launcher.py",
+            "program": "${workspaceFolder}/src/main.py",
             "preLaunchTask": "PySide: build (GNU/Linux)"
         },
         {
-            "name": "PySide: Launch (Windows)",
+            "name": "PySide: Build and Launch (Windows)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/launcher.py",
+            "program": "${workspaceFolder}/src/main.py",
             "preLaunchTask": "PySide: build (Windows)"
+        },
+        {
+            "name" : "Pyside : Sync Virtual Env and Launch",
+            "type" : "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/main.py",
+            "preLaunchTask": "Python: Sync Virtual Env"
         }
     ]
 }
