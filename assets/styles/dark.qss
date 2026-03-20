@@ -3,6 +3,11 @@
     font-family : "Monocraft"
 }
 
+*::disabled {
+    color : gray;
+}
+
+
 QPushButton {
     color : black; 
     border : none;
@@ -22,7 +27,9 @@ QMenuBar {
     background-color : black
 }
 
-QSatusBar
+QLineEdit {
+    background : black;
+}
 
 QLineEdit {
     background : black;

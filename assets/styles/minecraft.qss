@@ -3,6 +3,10 @@
     font-family : "Monocraft";
 }
 
+*::disabled {
+    color : gray;
+}
+
 QPushButton {
     border-image : url(":/assets/button.png"); 
     border : none;
