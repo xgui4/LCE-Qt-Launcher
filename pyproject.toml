@@ -9,6 +9,7 @@ description = "This is a custom Free/Libre Minecraft LCE Launcher written in Pyt
 requires-python = "==3.12.*"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
+licence-files = "license.md"
 dependencies = [
     "pyside6",
     "requests",
@@ -25,9 +26,11 @@ LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 [tool.hatch.version]
 source = "vcs"
 
+[tool.hatch.build.hooks.vcs]
+version-file = "src/_version.py"
+
 [tool.hatch.version.raw-options]
 local_scheme = "no-local-version"
-version_scheme = "no-guess-dev"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]

@@ -303,3 +303,4 @@ output/
 
 # Build tool auto-generated file
 **/_pycache__
+**/_version.py

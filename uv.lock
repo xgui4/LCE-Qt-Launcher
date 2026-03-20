@@ -47,8 +47,7 @@ wheels = [
 
 [[package]]
 name = "lce-qt-launcher"
-version = "0.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pillow" },
     { name = "pip" },
