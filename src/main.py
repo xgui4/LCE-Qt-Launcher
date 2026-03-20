@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog
-from PySide6.QtGui import QPalette, QPixmap, QBrush
+from PySide6.QtGui import QPalette, QPixmap, QBrush, Qt
 from PySide6.QtCore import qVersion
 from user_pref import UserPref
 from build_info import BuildInfo

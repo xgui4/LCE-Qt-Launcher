@@ -61,26 +61,29 @@ try:
     license_url_metadata = metadata["LicenseURL"]
     license_metadata = metadata["License"]
 
-    if version_metadata is not None:
+    if version_metadata is not "" or None:
         _VERSION_NUMBER = version_metadata
-    if app_name_metadata is not None:
+    if app_name_metadata is not "" or None:
         _APP_NAME = app_name_metadata
-    if repo_url_metadata is not None:
+    if repo_url_metadata is not "" or None:
         _GIT_REPO_URL = repo_url_metadata
-    if license_url_metadata is not None:
+    if license_url_metadata is not "" or None:
         _LICENSE_LINK = license_url_metadata
-    if license_metadata is not None:
+    if license_metadata is not "" or None:
         _LICENSE = license_metadata
 
 except importlib.metadata.PackageNotFoundError:
     pass
+
+except RuntimeError:
+    print(f"Error : Metadata not found! More info : {RuntimeError.with_traceback}")
 
 class BuildInfo:
     def __init__(self):
         self.version : str =  f"{_VERSION_TYPE} { _VERSION_NUMBER}-{get_version_info()}"
         self.app_name : str = _APP_NAME
         self.version_type : str = _VERSION_TYPE
-        self.license : str = _LICENSE
+        self.license : str = "GPLv3" # temporaliy masure until I  find the solution to why the one from metadata is "None"
         self.license_link: str = _LICENSE_LINK
         self.git_repo_url = _GIT_REPO_URL 
         self.qt_version : str = qVersion()

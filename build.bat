@@ -1,6 +1,6 @@
 uv sync &&
 
-source ".venv\bin\activate.bat" &&
+source ".venv\Scripts\activate.bat" &&
 
 pyside6-rcc "res.qrc" -o "src\res_rc.py" &&
 pyside6-uic "src\system_info.ui" -o "src\ui_system_info.py" &&

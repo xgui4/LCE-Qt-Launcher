@@ -1,43 +1,42 @@
 * {
-    color : white;
     font-family : "Monocraft";
-}
-
-*::disabled {
-    color : gray;
 }
 
 QPushButton {
     border-image : url(":/assets/button.png"); 
+    color : white;
     border : none;
 }
 
 QPushButton::pressed {
     border-image : url(":/assets/button-pressed.png"); 
+    color : white;
     font : bold; 
     border : none;
 }
 
 QPushButton::hover { 
     border-image : url(":/assets/button-pressed.png"); 
-    text-decoration : underline
+    color : white;
+    text-decoration : underline;
     border : none;
 }
 
 QPushButton::disabled { 
     border-image : url(":/assets/button.png"); 
-    color : black; 
+    color : gray; 
     border : none;
 }
 
-QMenuBar {
-    background-color : black
+QMainWindow QLabel {
+    color : white;
 }
 
-QLineEdit {
-    background : black;
+QStatusBar {
+    color : white;
+    background-color : black;
 }
 
 QWidget {
-    background-color : black; 
+    background-color : black;
 }
