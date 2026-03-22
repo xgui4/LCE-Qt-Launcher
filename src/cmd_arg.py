@@ -25,7 +25,7 @@ class CmdArg(StrEnum):
     ABOUT_CMD_ARG = "--about"
     ABOUT_CMD_ARG_SHORT = "-a"
     CLI_VERSION_CMD_ARG = "--cli"
-    CLI_VERSION_CMD_ARG_SHORT = "-c"
+    CLI_VERSION_CMD_ARG_SHORT = "-cl"
     HELP_CMD_ARG = "--help"
     HELP_CMD_ARG_SHORT = "-h"
 

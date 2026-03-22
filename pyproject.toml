@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
-build-backend = "hatchling.build"
+requires = ["nuitka", "setuptools", "hatch-vcs"]
+build-backend = "nuitka.distutils.Build"
 
 [project]
 name = "LCE-Qt-Launcher"
@@ -34,6 +34,14 @@ local_scheme = "no-local-version"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
+
+[tool.nuitka]
+standalone = true
+onefile = false
+enable-plugin = "pyside6"
+windows-icon-from-ico = asssets/app.ico 
+include-data-dir = assets
+include-distribution-metadata = "LCE-Qt-Launcher"
 
 [tool.pyside6-project]
 files = [

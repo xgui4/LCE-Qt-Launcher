@@ -1,7 +1,7 @@
 [app]
 
 # title of your application
-title = LCE Qt Launcher
+title = LCE-Qt-Launcher
 
 # project root directory. default = The parent directory of input_file
 project_dir = .
