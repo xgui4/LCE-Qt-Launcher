@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog
-from PySide6.QtGui import QPalette, QPixmap, QBrush, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog
+from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion
 from user_pref import UserPref
 from build_info import BuildInfo
 from instance_manager import InstanceManager, Instance
 from cmd_arg import CmdArgAction, parse_args, argsDetected
+
+import term_service
+import features
 
 from browser_dialog import BrowserDialog
 from setting_dialog import SettingDialog
@@ -37,7 +40,7 @@ HELP_STR = """
 -v or --version to get the app version
 -L or --license to get the license information
 -a or --about to get information about the app
--c or --cli to launch the cli version
+-cl or --cli to launch the cli version
 -g or --gen-config to generate or update the app config
 """
 
@@ -45,34 +48,13 @@ from ui_form import Ui_launcher
 from ui_system_info import Ui_sys_info_dialog
 
 def gen_inst_from_form(parent):
-    username_str = parent.ui.usernameInputBox.text()
-    path_str = parent.ui.pathInputBox.text()
-    server_ip_str = parent.ui.serverIPInputBox.text()
-    server_name_str = parent.ui.serverNameInputBox.text()
-    repo_url_str = parent.ui.repoURLInputBox.text()
-
-    instance_name = QInputDialog.getText(parent, "Name your instance", "Set the name of the instance")
-
-    newInstance = Instance()
-
-    if instance_name:
-        newInstance.name = instance_name
-    if username_str:
-        newInstance.username = username_str
-    if path_str:
-        newInstance.installation_path = path_str
-    if server_ip_str and server_name_str:
-        newInstance.servers = { f"ip : {server_ip_str}, name : {server_name_str}" }
-    if repo_url_str:
-        newInstance.repo_url = repo_url_str
-
-    instanceManager.instance = newInstance
+    instanceManager.instance = features.new_instance_from_form(parent)
 
 def about_to_quit_event():
-    anwser = QMessageBox.question("Instance Manager", "Do you want to save the instance to a file ?",  QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+    anwser = QMessageBox.question(None, "Instance Manager", "Do you want to save the instance to a file ?",  QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
     if anwser == QMessageBox.StandardButton.Yes:
-        file_name = QFileDialog.getSaveFileName("Set the instance save file path", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
-        instanceManager.save_instance(file_name)
+        file_name = QFileDialog.getSaveFileName(None, "Set the instance save file path", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+        instanceManager.save_instance(file_name[0])
 
 class launcher(QMainWindow):
     def confirm_changes_button(self):
@@ -81,7 +63,7 @@ class launcher(QMainWindow):
     def update_page(self):
         BrowserDialog(self, buildInfo.git_repo_url)
     def launch(self):
-        print("Starting the game!")
+        term_service.print_information("Starting the game!")
         instanceManager.play() 
 
     def install(self):
@@ -91,7 +73,7 @@ class launcher(QMainWindow):
                                             " so a backup is recommended.",
                                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         if button_reply == QMessageBox.StandardButton.Yes:
-            print("Starting Installation")
+            term_service.print_information("Starting Installation")
             self.ui.progressLabel.setVisible(True) 
             self.ui.progressBar.setVisible(True)
             self.ui.progressBar.setEnabled(True)
@@ -100,7 +82,7 @@ class launcher(QMainWindow):
             instanceManager.install_instance() 
             self.ui.progressBar.setValue(100)
         else:
-            QMessageBox.information(self, "Minecraft LCE Qt Launcher" "Installation Cancelled")
+            QMessageBox.critical(self, "Minecraft LCE Qt Launcher" "Installation Cancelled")
 
     def show_aboutQt(self):
         print("Show About Qt popup.")
@@ -157,6 +139,8 @@ class launcher(QMainWindow):
             palette.setBrush(QPalette.ColorRole.Window, QBrush(background_pixmap))
             self.setPalette(palette)
             self.setAutoFillBackground(True)
+        else:
+            term_service.print_error("Cannot set the background")
 
         self.ui = Ui_launcher()
 
@@ -203,30 +187,30 @@ if __name__ == "__main__":
         if action == CmdArgAction.GEN_CONFIG:
             userPref.generate_default_config()
         if action == CmdArgAction.PRINT_LICENSE:
-            print(f"{buildInfo.app_name} is licensed via the {buildInfo.license} License.")
-            print(f"See {buildInfo.license_link} for more info")
+            term_service.print_information(f"{buildInfo.app_name} is licensed via the {buildInfo.license} License.")
+            term_service.print_information(f"See {buildInfo.license_link} for more info")
         if action == CmdArgAction.PRINT_HELP:
             print(HELP_STR)
         if action == CmdArgAction.PRINT_ABOUT_INFO:
-            print("This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind.")
+            term_service.print_information("This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and GNU/Linux support in mind.")
         if action == CmdArgAction.PRINT_VERSION: 
-            print(f"{buildInfo.app_name} Version {buildInfo.version}")
-            print(f"Qt Version {buildInfo.qt_version}")
+            term_service.print_information(f"{buildInfo.app_name} Version {buildInfo.version}")
+            term_service.print_information(f"Qt Version {buildInfo.qt_version}")
         if action == CmdArgAction.CLI_VERSION:
             launch_cli()
         else:
-            print("Not Implemented Yet!")
+            term_service.print_information("Not Implemented Yet!")
     else:
         app = QApplication(sys.argv)
         try:
             with open("assets/styles/minecraft.qss", "r") as file:
                 app.setStyleSheet(file.read())
         except FileNotFoundError:
-            print(f"Error : :/styles/minecraft.qss file not found. Reverting to default theme")
+            QMessageBox.warning(None,"Error", ":/styles/minecraft.qss file not found. Reverting to default theme")
 
         widget = launcher()
         widget.show()
 
-        app.aboutToQuit.connect(instanceManager.save_instance)
+        app.aboutToQuit.connect(gen_inst_from_form)
 
         sys.exit(app.exec())

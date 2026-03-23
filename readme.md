@@ -8,13 +8,25 @@
 
 ## About 
 
-This is a custom MCLCE Launcher written in python and Qt with Freedom and GNU/Linux support in mind.
+This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and GNU/Linux support in mind.
 
 ## Features 
 
-- cli.y : simple way to install and launch the game 
-- launcher.py 
-
+- Command Line interface
+- Qt 6 GUI (Native like Interface)
+- Written in Python (No Electron or Rust)
+- Customisable 
+- Free Software (GPLv3)
+- Multiple Instance (Work in progress)
+<!-- Coming laters: 
+- Plugins
+- Skin support
+- Modding Support 
+-->
+- GNU/Linux compatibility first (with secondary Windows and FreeBSD support)
+- Focus on being the main hub for Minecraft LCE on GNU/Linux 
+- Minecraft Theme pre-configured
+ 
 ## Software Requirement 
 
 - [Python 3.12.x](https://www.python.org/downloads/latest/python3.12/)

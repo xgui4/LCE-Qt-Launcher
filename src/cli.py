@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
-
-from term_image.image import from_file
-from rich import print
-
 from instance_manager import InstanceManager, Instance
 
+import term_service
 import build_info
 
 import os
@@ -16,14 +12,19 @@ MENU_STR = """
 """
 
 def launch_cli():    
-
-    ascii_art = os.path.join(build_info.get_assets_dir(), "ascii-art-text.png")
-    
-    image = from_file(ascii_art)
-
-    image.draw()
-
-    print(MENU_STR)
+    try:
+        ascii_art = os.path.join(build_info.get_assets_dir(), "ascii-art-text.png")
+        term_service.show_image(ascii_art)
+    except FileNotFoundError:
+        term_service.print_error("Image cannot be found.")
+        print("LCE Qt Launcher")
+    except PermissionError:
+        term_service.print_error("File Permission error on the file")
+        print("LCE Qt Launcher")
+    except:
+        term_service.print_error("An unkown error occurred")
+        print("LCE Qt Launcher")
+    term_service.print_pretty(MENU_STR)
 
     user_output = input()
 
@@ -35,4 +36,4 @@ def launch_cli():
     if user_output == "2":
         instanceManager.install_instance()
     else:
-        print("not implemented yet") 
+        term_service.print_information("Not implemented Yet!")

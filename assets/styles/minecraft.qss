@@ -1,5 +1,6 @@
 * {
     font-family : "Monocraft";
+    background-image : ":/assets/background.png"
 }
 
 QPushButton {
@@ -17,7 +18,7 @@ QPushButton::pressed {
 
 QPushButton::hover { 
     border-image : url(":/assets/button-pressed.png"); 
-    color : white;
+    color : yellow;
     text-decoration : underline;
     border : none;
 }
@@ -32,11 +33,20 @@ QMainWindow QLabel {
     color : white;
 }
 
+QMenu::item:selected {
+    color: yellow;
+    text-decoration: underline;
+}
+
 QStatusBar {
     color : white;
     background-color : black;
 }
 
-QWidget {
+QMenu {
+    background-color : black;
+}
+
+QMenuBar {
     background-color : black;
 }

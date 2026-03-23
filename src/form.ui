@@ -10,11 +10,6 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Adwaita Sans</family>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>Minecraft LCE QT Launcher</string>
   </property>
@@ -26,11 +21,6 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="font">
-    <font>
-     <family>Adwaita Sans</family>
-    </font>
-   </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
@@ -148,17 +138,11 @@
          <height>50</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Adwaita Sans</family>
-         <pointsize>31</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../res.qrc">:/assets/minecraft_lce_titl;e.png</pixmap>
+        <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
        </property>
       </widget>
      </item>
@@ -186,7 +170,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -413,6 +397,9 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>See Instance Options</string>
    </property>
@@ -425,7 +412,6 @@
   <tabstop>serverNameInputBox</tabstop>
  </tabstops>
  <resources>
-  <include location="../res.qrc"/>
   <include location="../res.qrc"/>
  </resources>
  <connections/>
