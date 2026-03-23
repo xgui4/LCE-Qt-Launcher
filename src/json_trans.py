@@ -19,7 +19,7 @@ class JsonTrans(QObject):
         self.load_lang(lang_code)
 
     def load_lang(self, lang_code: str):
-        file_path: str = os.path.join(build_info.os, f"{lang_code}.json")
+        file_path: str = os.path.join(build_info.get_locales_dir(), f"{lang_code}.json")
 
         if not os.path.exists(path=file_path):
             term_service.print_error(f"Language file {file_path} not found. Defaulting to English Fallback")

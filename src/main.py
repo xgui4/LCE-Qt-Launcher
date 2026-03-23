@@ -11,6 +11,8 @@ from cmd_arg import CmdArgAction, parse_args, argsDetected
 import term_service
 import features
 
+from theme import Theme
+from json_trans import JsonTrans
 from browser_dialog import BrowserDialog
 from setting_dialog import SettingDialog
 from cli import launch_cli
@@ -22,18 +24,25 @@ import platform
 userPref = UserPref()
 buildInfo = BuildInfo()
 
+translator = JsonTrans()
+
 defaultInstance = Instance()
 instanceManager = InstanceManager(defaultInstance, buildInfo)
 
 BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
-LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
-FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
+ICON = ":/assets/launcher_small.png"
+MINECRAFT_WEBSITE = "https://minecraft.net"
+MINECRAFT_LCE_WEBSITE = "https://minecraftlegacy.com/"
+
+theme = Theme.MINECRAFT.value
 
 if platform.system() == "Linux": 
-    os.environ["QT_PLUGIN_PATH"] = LINUX_QT6_PATH
+    _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
+    os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
 
 if platform.system() == "FreeBSD": 
-    os.environ["QT_PLUGIN_PATH"] = FREEBSD_QT6_PATH
+    _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
+    os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
 HELP_STR = """
 -h or --help to get this help 
@@ -44,6 +53,12 @@ HELP_STR = """
 -g or --gen-config to generate or update the app config
 """
 
+INSTANCE_MANAGER_LABEL = translator.translate("instance_manager_label")
+SAVE_INSTANCE_MSG_BOX_LABEL = translator.translate("save_instance_msg_box_label")
+STARTING_GAME_MSG = translator.translate("start_game_msg")
+
+QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+
 from ui_form import Ui_launcher
 from ui_system_info import Ui_sys_info_dialog
 
@@ -51,7 +66,7 @@ def gen_inst_from_form(parent):
     instanceManager.instance = features.new_instance_from_form(parent)
 
 def about_to_quit_event():
-    anwser = QMessageBox.question(None, "Instance Manager", "Do you want to save the instance to a file ?",  QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+    anwser = QMessageBox.question(None, INSTANCE_MANAGER_LABEL, SAVE_INSTANCE_MSG_BOX_LABEL, QUESTIONS_OPTIONS)
     if anwser == QMessageBox.StandardButton.Yes:
         file_name = QFileDialog.getSaveFileName(None, "Set the instance save file path", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
         instanceManager.save_instance(file_name[0])
@@ -63,7 +78,7 @@ class launcher(QMainWindow):
     def update_page(self):
         BrowserDialog(self, buildInfo.git_repo_url)
     def launch(self):
-        term_service.print_information("Starting the game!")
+        term_service.print_information(STARTING_GAME_MSG)
         instanceManager.play() 
 
     def install(self):
@@ -94,7 +109,7 @@ class launcher(QMainWindow):
         self.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
 
         imageLabel = QLabel()
-        logoPixmap = QPixmap(":/assets/launcher_small.png")
+        logoPixmap = QPixmap(ICON)
         imageLabel.setPixmap(logoPixmap)
 
         mainLayout = QVBoxLayout(self.aboutPopupWindow)
@@ -114,10 +129,10 @@ class launcher(QMainWindow):
         self.sysinfo_dialog.show()
 
     def show_about_minecraft(self):
-        BrowserDialog(self, "https://www.minecraft.com")
+        BrowserDialog(self, MINECRAFT_WEBSITE)
     
     def show_more_lce_projects(self):
-        BrowserDialog(self, "https://minecraftlegacy.com/")
+        BrowserDialog(self, MINECRAFT_LCE_WEBSITE)
 
     def save_instance(self):
         file_name = QFileDialog.getSaveFileName(self, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
@@ -203,10 +218,10 @@ if __name__ == "__main__":
     else:
         app = QApplication(sys.argv)
         try:
-            with open("assets/styles/minecraft.qss", "r") as file:
+            with open(":/styles/minecraft.qss", "r") as file:
                 app.setStyleSheet(file.read())
         except FileNotFoundError:
-            QMessageBox.warning(None,"Error", ":/styles/minecraft.qss file not found. Reverting to default theme")
+            QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")
 
         widget = launcher()
         widget.show()

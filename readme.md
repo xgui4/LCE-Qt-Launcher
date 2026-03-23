@@ -4,7 +4,7 @@
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
-> PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.mc) and [Code of Respect](code-of-conduct.md)
+> PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.md) and [Code of Respect](code-of-conduct.md)
 
 ## About 
 
@@ -26,6 +26,26 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - GNU/Linux compatibility first (with secondary Windows and FreeBSD support)
 - Focus on being the main hub for Minecraft LCE on GNU/Linux 
 - Minecraft Theme pre-configured
+
+## How to run 
+
+### VSCode
+
+1. Create a Python Virtual Env via a tool like UV
+
+2. Set VSCode to that Python Virtual Env
+
+3. Run "Pyside : Sync Virtual Env and Launch"
+
+4. Run the app via Vscode debug mode or directly the `src/main.py` file. 
+
+### Others
+
+Guide coming laters
+
+## How to build
+
+Coming in version 0.0.1 when the program will be more stable
  
 ## Software Requirement 
 
@@ -41,6 +61,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
  - rich,
  - term-image,
  - pillow,
+ - hatch,
+ - uv, 
  - pip
 
 ## Compatible Operating System
@@ -56,4 +78,5 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - [French](CODE-DE-CONDUITE.md)
 
 ## License
+
 [GPLV3](license.md)

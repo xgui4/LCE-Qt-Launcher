@@ -9,8 +9,8 @@ description = "This is a custom Free/Libre Minecraft LCE Launcher written in Pyt
 requires-python = "==3.12.*"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
-license-files = "license.md"
-
+license-files = { "license.md" }
+ 
 dependencies = [
     "pyside6",
     "requests",
