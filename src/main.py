@@ -177,16 +177,6 @@ if __name__ == "__main__":
             term_service.print_information("Not Implemented Yet!")
     else:
         app = QApplication(sys.argv)
-        
-        try:
-            with open(":/styles/minecraft.qss", "r") as file:
-                app.setStyleSheet(file.read())
-        except FileNotFoundError:
-            try: 
-                with open(os.path.join(get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
-                    app.setStyleSheet(file.read())
-            except FileNotFoundError:
-                QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")
 
         widget = launcher()
         widget.show()
