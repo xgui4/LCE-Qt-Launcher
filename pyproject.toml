@@ -60,7 +60,7 @@ windows-product-version = "{from_modules:src._version}"
 include-data-dir = "assets"
 include-distribution-metadata = "LCE-Qt-Launcher"
 include-module = [
-    "res_rc"
+    "res_rc",
     "ui_form",
     "ui_system_info"
 ]
