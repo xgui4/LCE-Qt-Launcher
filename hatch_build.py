@@ -8,5 +8,5 @@ class CustomBuildHook(BuildHookInterface):
         if os.name == "posix":
             subprocess.run("./build.sh", check=True)
         if os.name == "nt":
-            subprocess.run("./build.bat", check=True, shell=True)
+            subprocess.run("build.bat", check=True, shell=True)
         return super().initialize(version, build_data)
