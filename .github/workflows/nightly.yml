@@ -37,20 +37,18 @@ jobs:
 
       - name: Build with Nuitka
         run: |
-          hatch shell
-          python -m nuitka --standalone --enable-plugin=pyside6 src/main.py
+          hatch run python -m nuitka --standalone --enable-plugin=pyside6 --output-dir=dist src/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          Compress-Archive -Path dist-build/main.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
+          Compress-Archive -Path dist/main.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
         run: |
-          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist-build/main.dist .
-
+          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/main.dist .
       - name: Upload Nightly
         uses: andelf/nightly-release@main
         env:
