@@ -13,11 +13,17 @@ import os
 
 _GITHUB_RELEASE_STR = "/releases/download/"
 
-class InstanceType(Enum):
+class InstanceSource(Enum):
     GITHUB_RELEASE = 0
     REMOTE_GIT_SOURCE = 1
     LOCAL_INSTALLATION = 2
     LOCAL_SOURCE_CODE = 3
+
+# class InstanceType(Enum):
+#    CLIENT_VANILLA = 0
+#    CLENT_MODDED = 1
+#    SERVER_VANILLA = 2
+#    SERVER_MODDED = 3
 
 class Instance:
     def __init__(self, 
@@ -27,7 +33,8 @@ class Instance:
                  exe_name : str = "Minecraft.Client.exe",
                  archive_file : str = "LCEWindows64.zip",
                  url : str = "https://github.com/smartcmd/MinecraftConsoles", 
-                 instance_type : InstanceType = InstanceType.GITHUB_RELEASE,
+                 instance_source : InstanceSource = InstanceSource.GITHUB_RELEASE,
+                 #instance_type : InstanceType = InstanceType.CLIENT_VANILLA, 
                  version : str = "nightly",
                  skin_path : str = "",
                  servers : list = {}
@@ -38,20 +45,21 @@ class Instance:
         self.archive_file = archive_file
         self.exe_name = exe_name
         self.repo_url = url
-        self.instance_type = instance_type
+        self.instance_source = instance_source
+        # self.instance_type = instance_type
         self.version = version
         self.skin_path = skin_path
         self.servers = servers
 
     def get_download_url(self) -> str:
-        if self.instance_type == InstanceType.GITHUB_RELEASE:
+        if self.instance_source == InstanceSource.GITHUB_RELEASE:
             return self.repo_url + \
                     _GITHUB_RELEASE_STR + \
                     self.version + "/" + \
                     self.archive_file
-        if self.instance_type == InstanceType.REMOTE_GIT_SOURCE:
+        if self.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
             return f"{self.repo_url}.git"
-        if self.instance_type == InstanceType.LOCAL_INSTALLATION:
+        if self.instance_source == InstanceSource.LOCAL_INSTALLATION:
             return RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
         else:
             return RuntimeError("Not implemented yet!")        
@@ -74,7 +82,7 @@ class InstanceManager:
             return f"Client closed with code {game_process.returncode}"  
     
     def install_instance(self):
-        if self.instance.instance_type in [InstanceType.GITHUB_RELEASE, InstanceType.REMOTE_GIT_SOURCE]:
+        if self.instance.instance_source in [InstanceSource.GITHUB_RELEASE, InstanceSource.REMOTE_GIT_SOURCE]:
             return self._downloader.download_instance(self.instance)
         else:
             return "Already Installed, skip installation."

@@ -1,7 +1,7 @@
 from rich import print
 
-def print_error(msg : str):
-    print(f"[bold red]Error![/bold red] {msg}")
+def print_error(msg : str, header : str = "Error! :"):
+    print(f"[bold red]{header}[/bold red] {msg}")
 
 def print_information(msg : str):
     print(f"[yellow]{msg}[/yellow]")

@@ -299,6 +299,12 @@ src/LCE-Qt-Windows-Launcher.zip
 
 # Output
 output/
+dist/
+
+*.dist/
+*.build/
+
+# VScode Folder
 .vscode/settings.json
 
 # Build tool auto-generated file

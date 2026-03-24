@@ -36,24 +36,6 @@ PROJET_ROOT_DIR = get_project_root_dir()
 LOCALES_FOLDER = get_locales_dir()
 ASSETS_FOLDER = get_assets_dir()
 
-def get_version_info():
-    try:
-        date_info = date.today()
-
-        branch = subprocess.check_output(
-            ["git", "rev-parse", "--abbrev-ref", "HEAD"], 
-            text=True
-        ).strip()
-        
-        commit_hash = subprocess.check_output(
-            ["git", "rev-parse", "--short", "HEAD"], 
-            text=True
-        ).strip()
-        
-        return f"{branch}-{date_info}_{commit_hash}"
-    except Exception:
-        return ""
-    
 try:
     metadata = importlib.metadata.metadata("LCE-Qt-Launcher")
 
@@ -80,7 +62,7 @@ except RuntimeError:
 
 class BuildInfo:
     def __init__(self):
-        self.version : str =  f"{_VERSION_TYPE} { _VERSION_NUMBER}-{get_version_info()}"
+        self.version : str =  f"{_VERSION_NUMBER}"
         self.app_name : str = _APP_NAME
         self.version_type : str = _VERSION_TYPE
         self.license : str = "GPLv3" # temporaliy masure until I  find the solution to why the one from metadata is "None"

@@ -10,23 +10,23 @@ QPushButton {
     border : none;
 }
 
-QPushButton::pressed {
+QPushButton:pressed {
     border-image : url(":/assets/button-pressed.png"); 
     color : white;
     font : bold; 
     border : none;
 }
 
-QPushButton::hover { 
+QPushButton:hover { 
     border-image : url(":/assets/button-pressed.png"); 
     color : white;
     text-decoration : underline;
     border : none;
 }
 
-QPushButton::disabled { 
+QPushButton:disabled { 
     border-image : url(":/assets/button.png"); 
-    color : gray; 
+    opacity : 200;
     border : none;
 }
 

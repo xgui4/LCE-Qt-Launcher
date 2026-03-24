@@ -22,6 +22,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Plugins
 - Skin support
 - Modding Support 
+- in-app news
+- localisatiions
 -->
 - GNU/Linux compatibility first (with secondary Windows and FreeBSD support)
 - Focus on being the main hub for Minecraft LCE on GNU/Linux 
@@ -32,11 +34,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 ### VSCode
 
 1. Create a Python Virtual Env via a tool like UV
-
 2. Set VSCode to that Python Virtual Env
-
 3. Run "Pyside : Sync Virtual Env and Launch"
-
 4. Run the app via Vscode debug mode or directly the `src/main.py` file. 
 
 ### Others
@@ -47,6 +46,16 @@ Guide coming laters
 
 Coming in version 0.0.1 when the program will be more stable
  
+## Nigthly Build
+
+> [!NOTE]
+> This automatic nighly build is currently not-stable and very experimental and is in constant change
+
+In this [GitHub Relese](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically
+via GitHub Action when change are made in the `nighly` branch
+This branch is not stable and changes are made almost daily and this branch can sometime break
+MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it since I do not own a Mac
+
 ## Software Requirement 
 
 - [Python 3.12.x](https://www.python.org/downloads/latest/python3.12/)
