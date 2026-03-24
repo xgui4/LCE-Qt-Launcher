@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# THIS SCRIPT WAS NOT TESTED YET ! USE AT YOUR OWN RISK 
+
 set -e
 
 if [[ ! -d ".venv/" ]]; then

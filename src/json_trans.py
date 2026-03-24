@@ -4,6 +4,7 @@ import json
 import os
 
 import build_info
+import term_service
 
 class JsonTrans(QObject):
 
@@ -18,10 +19,10 @@ class JsonTrans(QObject):
         self.load_lang(lang_code)
 
     def load_lang(self, lang_code: str):
-        file_path: str = os.path.join(build_info.os, f"{lang_code}.json")
+        file_path: str = os.path.join(build_info.get_locales_dir(), f"{lang_code}.json")
 
         if not os.path.exists(path=file_path):
-            print(f"Error: Language file {file_path} not found. Defaulting to English Fallback.")
+            term_service.print_error(f"Language file {file_path} not found. Defaulting to English Fallback")
             return
 
         try:
@@ -30,7 +31,7 @@ class JsonTrans(QObject):
                 self._current_lang = lang_code
                 self.languageChanged.emit()  # Notify the UI
         except Exception as e:
-            print(f"Error loading JSON: {e}. Defaulting to English Fallback.")
+            term_service.print_error(f"loading JSON: {e}. Defaulting to English Fallback.")
 
     def translate(self, key: str, default: str = "") -> str:
         return self.json_data.get(key, default or key)

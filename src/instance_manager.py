@@ -3,6 +3,8 @@ from enum import Enum
 from downloader import Downloader
 from build_info import BuildInfo
 
+import term_service
+
 from subprocess import TimeoutExpired
 
 import subprocess
@@ -63,18 +65,17 @@ class InstanceManager:
         try:
             game_process = subprocess.run(self.instance.installation_path + self.instance.exe_name)
         except TimeoutExpired as err: 
-            print(f"Error : process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
-            return f"Error : process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
+            term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
+            return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
         except PermissionError as err:
-            print(f"Error : Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
-            return f"Error : Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
-        
+            term_service.print_error(f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
+            return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
             return f"Client closed with code {game_process.returncode}"  
     
-    def install_instance(self) -> str:
-        if self.instance in [InstanceType.GITHUB_RELEASE, InstanceType.REMOTE_GIT_SOURCE]:
-            self._downloader.download_instance(self.instance)
+    def install_instance(self):
+        if self.instance.instance_type in [InstanceType.GITHUB_RELEASE, InstanceType.REMOTE_GIT_SOURCE]:
+            return self._downloader.download_instance(self.instance)
         else:
             return "Already Installed, skip installation."
 
@@ -93,11 +94,11 @@ class InstanceManager:
             f.write(json_string)
     
     def load_instance(self, save_file : str):
-        print("Not implemented Yet!")
-        #if not save_file.endswith(self._build_info.instance_extension):
-        #    save_file = os.path.join(save_file, ".lce_inst")
+        term_service.print_information("Not Implemented Yet!")
+        if not save_file.endswith(self._build_info.instance_extension):
+            save_file = os.path.join(save_file, ".lce_inst")
 
-        #with open(save_file, 'r') as f:
-            #json_file = f.read(save_file)
+        with open(save_file, 'r') as f:
+            json_file = f.read(save_file)
 
-        #self.instance = json.load(json_file)
+        self.instance = json.load(json_file)

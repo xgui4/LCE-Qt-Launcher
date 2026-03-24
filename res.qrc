@@ -5,7 +5,7 @@
         <file alias="launcher_medium.png">assets/Launcher_medium.png</file>
         <file alias="launcher_big.png">assets/Launcher.png</file>
         <file alias="minecraft.png">assets/minecraft.png</file>
-        <file alias="minecraft_lce_titl;e.png">assets/minecraft-lce-title.png</file>
+        <file alias="minecraft_lce_title.png">assets/minecraft-lce-title.png</file>
         <file alias="button.png">assets/button.png</file>
         <file alias="button-pressed.png">assets/button-pressed.png</file>
         <file alias="app.ico">assets/app.ico</file>

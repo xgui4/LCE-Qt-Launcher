@@ -1,3 +1,5 @@
+REM THIS SCRIPT WAS NOT TESTED YET ! USE AT YOUR OWN RISK 
+
 IF %1 = "--use-uv" (
     uv sync &&
 

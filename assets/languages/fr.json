@@ -1,10 +1,14 @@
 {
     "Version" : "Version", 
-    "help-message" : "-h ou --help pour obtenir cette aide \n -v ou --version pour obtenir la version de l'application \n -L ou --license pour obtenir les informations de licence \n -a ou --about pour obtenir des informations sur l'application \n -c ou --cli pour lancer la version en ligne de commande \n -g ou --gen-config pour générer ou mettre à jour la configuration de l'application",
+    "help-message" : "-h ou --help pour obtenir cette aide \n -v ou --version pour obtenir la version de l'application \n -L ou --license pour obtenir les informations de licence \n -a ou --about pour obtenir des informations sur l'application \n -cl ou --cli pour lancer la version en ligne de commande \n -g ou --gen-config pour générer ou mettre à jour la configuration de l'application",
     "play" : "Jouer",
     "install" : "Installer",
     "username" : "Nom d'utilisateur",
     "path" : "Chemin",
     "server-ip" : "Adresse IP du serveur",
-    "error" : "Erreur : "
+    "error" : "Erreur : ",
+    "instance_manager_label" : "Gestionnaire d'instances",
+    "save_instance_msg_box_label" : "Voulez-vous enregistrer l'instance dans un fichier ?",
+    "start_game_msg" : "Démarrage du jeux"
+
 }  

@@ -2,6 +2,8 @@ from PySide6.QtCore import qVersion
 
 from system_manager import SystemManager
 
+import term_service
+
 from pathlib import Path
 
 import os
@@ -71,12 +73,10 @@ try:
         _LICENSE_LINK = license_url_metadata
     if license_metadata is not "" or None:
         _LICENSE = license_metadata
-
 except importlib.metadata.PackageNotFoundError:
     pass
-
 except RuntimeError:
-    print(f"Error : Metadata not found! More info : {RuntimeError.with_traceback}")
+    term_service.print_error(f"Metadata not found! More info : {RuntimeError.with_traceback}")
 
 class BuildInfo:
     def __init__(self):

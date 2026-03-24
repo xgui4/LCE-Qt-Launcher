@@ -1,6 +1,8 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
+import term_service
+
 if TYPE_CHECKING:
     from instance_manager import Instance
     from build_info import BuildInfo
@@ -18,15 +20,17 @@ class Downloader:
         self._build_info = build_info
 
     def download_instance(self, instance : Instance):
+        print("Go to installation")
         response = requests.get(instance.get_download_url())
+        response.raise_for_status()
         if response.status_code == SUCCESS_STATUS_CODE:
-            print(f"Download of {instance.name} from {instance.get_download_url} was a success")
+            term_service.print_success(f"Download of {instance.name} from {instance.get_download_url} was a success")
             try:
                 archive : ZipFile = self.extract_instance(response, instance)
             except BadZipFile as err:
-                print(f"Error : {err} while extracting {archive.filename}")
+                term_service.print_error(f"{err} while extracting {archive.filename}")
             except LargeZipFile as err:
-                print(f"Error : {archive.filename} was too big.")
+                term_service.print_error(f"{archive.filename} was too big.")
             else:
                 if os.name == "posix":
                     exe_abs_path = os.path.join(instance.installation_path, instance.exe_name)
