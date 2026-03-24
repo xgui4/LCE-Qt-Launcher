@@ -13,7 +13,7 @@ MENU_STR = """
 
 def launch_cli():    
     try:
-        ascii_art = os.path.join(build_info.get_assets_dir(), "ascii-art-text.png")
+        ascii_art = os.path.join(build_info.get_assets_dir(), "images" "ascii-art-text.png")
         term_service.show_image(ascii_art)
     except FileNotFoundError:
         term_service.print_error("Image cannot be found.")

@@ -6,27 +6,27 @@
 QPushButton {
     border-image : url(":/assets/button.png"); 
     color : white;
-    border : none;
+    border : 5px;
 }
 
-QPushButton::pressed {
+QPushButton:pressed {
     border-image : url(":/assets/button-pressed.png"); 
     color : white;
     font : bold; 
-    border : none;
+    border : 5px;
 }
 
-QPushButton::hover { 
+QPushButton:hover { 
     border-image : url(":/assets/button-pressed.png"); 
     color : yellow;
     text-decoration : underline;
-    border : none;
+    border : 5px;
 }
 
-QPushButton::disabled { 
+QPushButton:disabled { 
     border-image : url(":/assets/button.png"); 
-    color : gray; 
-    border : none;
+    opacity : 200;
+    border : 5px;
 }
 
 QMainWindow QLabel {
@@ -49,4 +49,8 @@ QMenu {
 
 QMenuBar {
     background-color : black;
+}
+
+QGroupBox {
+    background-color: transparent;
 }

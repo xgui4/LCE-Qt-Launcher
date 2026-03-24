@@ -4,32 +4,70 @@ from PySide6.QtCore import qVersion
 from user_pref import UserPref
 from build_info import BuildInfo
 from instance_manager import InstanceManager, Instance
-from cmd_arg import CmdArgAction, parse_args, argsDetected
 
 import term_service
+import cli 
 
 from browser_dialog import BrowserDialog
 from setting_dialog import SettingDialog
-from cli import launch_cli
 
-import sys
-import os
-import platform
+def install_game(parent, instance : Instance, instanceManager : InstanceManager):
+    button_reply = QMessageBox.question(parent, 'Confirm Installation', 
+                                    "Do you really want to re-install the game? " \
+                                    "This version does not support update a installation yet," \
+                                    " so a backup is recommended.",
+                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+    if button_reply == QMessageBox.StandardButton.Yes:
+        term_service.print_information("Starting Installation")
+        parent.ui.progressLabel.setVisible(True) 
+        parent.ui.progressBar.setVisible(True)
+        parent.ui.progressBar.setEnabled(True)
+        parent.ui.progressLabel.setText(f"Installation of {instance.name} Progress")
+        parent.ui.progressBar.setValue(30)
+        instanceManager.install_instance() 
+        parent.ui.progressBar.setValue(100)
+    else:
+        QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled")
 
-def confirm_changes(parent):
-    pass
+def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str):
+    term_service.print_information(starting_game_msg_str)
+    instanceManager.play() 
 
-def launch_game(parent):
-    pass
+def show_setting(parent):
+    SettingDialog(parent)
 
-def launch_game(parent):
-    pass
+def show_system_info(parent):
+    parent.sysinfo_dialog.show()
 
-def launch_setting(parent):
-    pass
+def load_instance(parent, instanceManager : InstanceManager, buildInfo):
+    file_name = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+    instanceManager.load_instance(file_name)
 
-def load_instance(parent):
-    pass
+def show_about_qt(parent):
+    print("Show About Qt popup.")
+    QMessageBox.aboutQt(parent, "About Qt")
+
+def show_about_app(parent,buildInfo : BuildInfo, icon : str):
+    parent.aboutPopupWindow = QDialog() 
+
+    parent.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
+
+    imageLabel = QLabel()
+    logoPixmap = QPixmap(icon)
+    imageLabel.setPixmap(logoPixmap)
+
+    mainLayout = QVBoxLayout(parent.aboutPopupWindow)
+
+    titleLabel = QLabel(buildInfo.app_name)
+    versionLabel = QLabel(f"Version {buildInfo.version}")
+    licenseLabel = QLabel(f"License {buildInfo.license}")
+
+    mainLayout.addWidget(imageLabel)
+    mainLayout.addWidget(titleLabel)
+    mainLayout.addWidget(versionLabel)
+    mainLayout.addWidget(licenseLabel)
+    
+    parent.aboutPopupWindow.show()
 
 def new_instance_from_form(mainWindow : QMainWindow):
     form = mainWindow.ui
@@ -57,11 +95,32 @@ def new_instance_from_form(mainWindow : QMainWindow):
 
     return newInstance; 
 
-def setup_update(parent):
-    pass
+def show_webbrowser(parent, url : str):
+    BrowserDialog(parent, url)
+
+def save_instance(parent, instanceManager : InstanceManager, buildInfo : BuildInfo):
+    file_name = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+    instanceManager.save_instance(file_name)
+
+def launch_cli_interface():
+    cli.launch_cli()
+
+def generate_user_config(userPref : UserPref):
+    userPref.generate_default_config()
+
+def display_license(buildInfo : BuildInfo):
+    term_service.print_information(f"{buildInfo.app_name} is licensed via the {buildInfo.license} License.")
+    term_service.print_information(f"See {buildInfo.license_link} for more info")
+
+def display_help(help_str : str):
+    term_service.print_pretty(help_str)
+
+def display_about(about_str : str):
+    term_service.print_pretty(about_str)
+
+def display_version(buildInfo : BuildInfo):
+    term_service.print_information(f"{buildInfo.app_name} Version {buildInfo.version}")
+    term_service.print_information(f"Qt Version {buildInfo.qt_version}")
 
 def hide_options(parent):
-    pass
-
-def show_webpage(parent):
     pass
