@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion, QFile, QIODevice
 from src.user_pref import UserPref
@@ -16,6 +16,7 @@ from src.json_trans import JsonTrans
 
 import src.utils as utils
 
+import platform
 import sys
 import os
 
@@ -34,13 +35,13 @@ MINECRAFT_LCE_WEBSITE = "https://minecraftlegacy.com/"
 
 theme = Theme.MINECRAFT.value
 
-# if platform.system() == "Linux": 
-  #  _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
-  #  os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
+if platform.system() == "Linux": 
+    _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
+    os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
 
-# if platform.system() == "FreeBSD": 
-   # _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
-   # os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
+if platform.system() == "FreeBSD": 
+   _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
+   os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
 HELP_STR = """
 -h or --help to get this help 
@@ -59,24 +60,24 @@ SAVE_FILEDIALOG_TITLE = "save_filedialog_title"
 
 QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
 
-from ui_form import Ui_launcher
-from ui_system_info import Ui_sys_info_dialog
+from src.ui_form import Ui_launcher
+from src.ui_system_info import Ui_sys_info_dialog
 
-def gen_inst_from_form(parent):
+def gen_inst_from_form(parent : QWidget):
     instanceManager.instance = features.new_instance_from_form(parent)
 
 def about_to_quit_event():
     anwser = QMessageBox.question(None, INSTANCE_MANAGER_LABEL, SAVE_INSTANCE_MSG_BOX_LABEL, QUESTIONS_OPTIONS)
     if anwser == QMessageBox.StandardButton.Yes:
-        file_name = QFileDialog.getSaveFileName(None, SAVE_FILEDIALOG_TITLE, f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
-        instanceManager.save_instance(file_name[0])
+        file_name: str = QFileDialog.getSaveFileName(None, SAVE_FILEDIALOG_TITLE, f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
+        instanceManager.save_instance(file_name)
 
 class launcher(QMainWindow):
     def confirm_changes_button(self):
         gen_inst_from_form(self)
 
     def update_page(self):
-        features.show_webbrowser(self, buildInfo.git_repo_url)
+        features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
 
     def launch(self):
         features.launch_game(instanceManager, STARTING_GAME_MSG)
@@ -94,10 +95,10 @@ class launcher(QMainWindow):
         features.show_system_info(self)
 
     def show_about_minecraft(self):
-        features.show_webbrowser(self, MINECRAFT_WEBSITE)
+        features.show_webbrowser(self, MINECRAFT_WEBSITE, buildInfo)
 
     def show_more_lce_projects(self):
-        features.show_webbrowser(self, MINECRAFT_LCE_WEBSITE)
+        features.show_webbrowser(self, MINECRAFT_LCE_WEBSITE, buildInfo)
 
     def save_instance(self):
         features.save_instance(self, instanceManager, buildInfo)
@@ -141,20 +142,20 @@ class launcher(QMainWindow):
         self.ui.progressBar.setVisible(False)
         self.ui.progressBar.setEnabled(False)
 
-        self.ui.playButton.clicked.connect(self.launch)
-        self.ui.installButton.clicked.connect(self.install)
-        self.ui.confirmChangesButton.clicked.connect(self.confirm_changes_button)
-        self.ui.settingButton.clicked.connect(self.show_setting_dialog)
+        _ = self.ui.playButton.clicked.connect(self.launch)
+        _ = self.ui.installButton.clicked.connect(self.install)
+        _ = self.ui.confirmChangesButton.clicked.connect(self.confirm_changes_button)
+        _ = self.ui.settingButton.clicked.connect(self.show_setting_dialog)
 
-        self.ui.actionQuit.triggered.connect(app.quit)
-        self.ui.actionUpdate.triggered.connect(self.update_page)
-        self.ui.actionSystem_Information.triggered.connect(self.show_system_information)
-        self.ui.actionAbout.triggered.connect(self.show_about)
-        self.ui.actionAbout_QT.triggered.connect(self.show_aboutQt)
-        self.ui.actionAbout_Minecraft.triggered.connect(self.show_about_minecraft)
-        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(self.show_more_lce_projects)
-        self.ui.actionSave.triggered.connect(self.save_instance)
-        self.ui.actionImport_Instance.triggered.connect(self.load_instance)
+        _ = self.ui.actionQuit.triggered.connect(app.quit)
+        _ = self.ui.actionUpdate.triggered.connect(self.update_page)
+        _ = self.ui.actionSystem_Information.triggered.connect(self.show_system_information)
+        _ = self.ui.actionAbout.triggered.connect(self.show_about)
+        _ = self.ui.actionAbout_QT.triggered.connect(self.show_aboutQt)
+        _ = self.ui.actionAbout_Minecraft.triggered.connect(self.show_about_minecraft)
+        _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(self.show_more_lce_projects)
+        _ = self.ui.actionSave.triggered.connect(self.save_instance)
+        _ = self.ui.actionImport_Instance.triggered.connect(self.load_instance)
 
         self.versionlabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
@@ -173,7 +174,7 @@ if __name__ == "__main__":
         if action == CmdArgAction.PRINT_VERSION: 
             features.display_version(buildInfo)
         if action == CmdArgAction.CLI_VERSION:
-            features.launch_cli_interfaces()
+            features.launch_cli_interface()
         else:
             term_service.print_information("Not Implemented Yet!")
     else:
@@ -182,18 +183,20 @@ if __name__ == "__main__":
         widget = launcher()
         widget.show()
 
+        if os.name == "nt":
+            os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=2"
 
         try:
             file = QFile(":/styles/minecraft.qss")
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
                 content = file.readAll()
-                stylesheet = str(content, encoding='utf-8')
+                stylesheet = str(content, encoding='utf-8')  # pyright: ignore[reportArgumentType]
                 app.setStyleSheet(stylesheet)
-        except FileNotFoundError:
+        except:
             try: 
                 with open(os.path.join(utils.get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
                     app.setStyleSheet(file.read())
             except FileNotFoundError:
-                QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")
+                _ = QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")
 
         sys.exit(app.exec())

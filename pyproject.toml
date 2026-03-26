@@ -28,6 +28,7 @@ Repository = "https://github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 
 [tool.hatch.version]
+fallback_version = "0.0.0"
 source = "vcs"
 
 [tool.hatch.build.targets.wheel.hooks.custom]

@@ -1,3 +1,4 @@
+from tkinter import W
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion
@@ -20,6 +21,9 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
                                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
     if button_reply == QMessageBox.StandardButton.Yes:
         term_service.print_information("Starting Installation")
+
+        progressLabel : QLabel =  parent.ui.progressLabel; 
+
         parent.ui.progressLabel.setVisible(True) 
         parent.ui.progressBar.setVisible(True)
         parent.ui.progressBar.setEnabled(True)
@@ -28,27 +32,27 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
         print(instanceManager.install_instance())
         parent.ui.progressBar.setValue(100)
     else:
-        QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled")
+        _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled", QMessageBox.StandardButton.Ok)
 
 def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str):
     term_service.print_information(starting_game_msg_str)
-    instanceManager.play() 
+    print(instanceManager.play())
 
-def show_setting(parent):
-    SettingDialog(parent)
+def show_setting(parent : QWidget) :
+    _= SettingDialog(parent)
 
-def show_system_info(parent):
+def show_system_info(parent : QWidget):
     parent.sysinfo_dialog.show()
 
-def load_instance(parent, instanceManager : InstanceManager, buildInfo):
+def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo):
     file_name = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
     instanceManager.load_instance(file_name)
 
-def show_about_qt(parent):
+def show_about_qt(parent : QWidget):
     print("Show About Qt popup.")
     QMessageBox.aboutQt(parent, "About Qt")
 
-def show_about_app(parent,buildInfo : BuildInfo, icon : str):
+def show_about_app(parent, buildInfo : BuildInfo, icon : str):  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
     parent.aboutPopupWindow = QDialog() 
 
     parent.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
