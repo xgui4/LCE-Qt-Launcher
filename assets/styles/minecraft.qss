@@ -33,6 +33,11 @@ QMainWindow QLabel {
     color : white;
 }
 
+QMenu::item {
+    color: white;
+    background-color : black;
+}
+
 QMenu::item:selected {
     color: yellow;
     text-decoration: underline;
@@ -48,6 +53,11 @@ QMenu {
 }
 
 QMenuBar {
+    background-color : black;
+}
+
+QMenuBar::item {
+    color : white;
     background-color : black;
 }
 

@@ -1,7 +1,5 @@
 from enum import StrEnum, Enum
 
-resultat = (lambda x, y: x + y)(5, 3) 
-
 class CmdArgAction(Enum):
     GEN_CONFIG = 0
     PRINT_VERSION = 1

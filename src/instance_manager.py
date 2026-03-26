@@ -1,9 +1,9 @@
 from enum import Enum
 
-from downloader import Downloader
-from build_info import BuildInfo
+from src.downloader import Downloader
+from src.build_info import BuildInfo
 
-import term_service
+import src.term_service as term_service
 
 from subprocess import TimeoutExpired
 
@@ -39,17 +39,17 @@ class Instance:
                  skin_path : str = "",
                  servers : list = {}
                 ):
-        self.name = name
-        self.installation_path = installation_path
-        self.username = username
-        self.archive_file = archive_file
-        self.exe_name = exe_name
-        self.repo_url = url
-        self.instance_source = instance_source
+        self.name: str = name
+        self.installation_path: str = installation_path
+        self.username: str = username
+        self.archive_file: str = archive_file
+        self.exe_name: str = exe_name
+        self.repo_url: str = url
+        self.instance_source: InstanceSource = instance_source
         # self.instance_type = instance_type
-        self.version = version
-        self.skin_path = skin_path
-        self.servers = servers
+        self.version: str = version
+        self.skin_path: str = skin_path
+        self.servers: list = servers
 
     def get_download_url(self) -> str:
         if self.instance_source == InstanceSource.GITHUB_RELEASE:
@@ -60,15 +60,15 @@ class Instance:
         if self.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
             return f"{self.repo_url}.git"
         if self.instance_source == InstanceSource.LOCAL_INSTALLATION:
-            return RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
+            _ = RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
         else:
-            return RuntimeError("Not implemented yet!")        
+            _ = RuntimeError("Not implemented yet!")        
 
 class InstanceManager:
     def __init__(self, instance : Instance, build_info : BuildInfo):
-        self.instance = instance
-        self._downloader = Downloader(build_info)
-        self._build_info = build_info
+        self.instance: Instance = instance
+        self._downloader: Downloader = Downloader(build_info)
+        self._build_info: BuildInfo = build_info
     def play(self) -> str:
         try:
             game_process = subprocess.run(self.instance.installation_path + self.instance.exe_name)
@@ -94,12 +94,12 @@ class InstanceManager:
             json_string = json.dumps(vars(self.instance), default=str)
 
         if not save_file[0].endswith(self._build_info.instance_extension):
-            save_file[0] =+ self._build_info.instance_extension
-        
+            save_file[0] = save_file[0] + self._build_info.instance_extension
+    
         os.makedirs(os.path.dirname(save_file[0]), exist_ok=True)
         
         with open(save_file[0], 'w') as f:
-            f.write(json_string)
+            _ = f.write(json_string)
     
     def load_instance(self, save_file : str):
         term_service.print_information("Not Implemented Yet!")

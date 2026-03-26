@@ -1,15 +1,16 @@
 [build-system]
 requires = ["hatchling", "hatch-vcs", "PySide6"]
 build-backend = "hatchling.build"
+
 [project]
 name = "LCE-Qt-Launcher"
-dynamic = ["version"]
+dynamic = [ "version" ]
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
 requires-python = "==3.12.*"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
 license-files = [ "license.md" ] 
- 
+
 dependencies = [
     "pyside6",
     "requests",
@@ -19,7 +20,7 @@ dependencies = [
     "pip",
     "hatch",
     "nuitka",
-    "patchelf"
+    "patchelf; sys_platform == 'linux'",
 ]
 
 [project.urls]
@@ -27,14 +28,13 @@ Repository = "https://github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 
 [tool.hatch.version]
+fallback_version = "0.0.0"
 source = "vcs"
 
 [tool.hatch.build.targets.wheel.hooks.custom]
-# Hatch cherchera par défaut hatch_build.py à la racine
 path = "hatch_build.py"
 
 [tool.hatch.build]
-# Assurez-vous que les fichiers générés sont inclus dans le paquet final
 artifacts = [
     "src/ui_*.py",
     "src/res_rc.py",
@@ -82,6 +82,7 @@ files = [
     "src/json_trans.py",
     "src/main.py",
     "src/cli.py",
+    "src/utils.py",
     "src/term_service.py",
     "src/features.py",
     "src/browser_dialog.py",
