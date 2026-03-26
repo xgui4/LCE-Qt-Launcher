@@ -1,6 +1,6 @@
 # LCE QT Launcher
 
-![LCE-QT-Launcher](assets/Launcher.png)
+![LCE-QT-Launcher](assets/images/Launcher.png)
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
@@ -18,7 +18,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Customisable 
 - Free Software (GPLv3)
 - Multiple Instance (Work in progress)
-<!-- Coming laters: 
+<!--
+- Coming laters: 
 - Plugins
 - Skin support
 - Modding Support 
@@ -78,8 +79,12 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
 
 - Windows 10 and later (not tested yet)
 - GNU/Linux 
-- MacOS (not officially supported, since I cannot test it, but should work with POISX compatibility)
-- Android (not tested yet)
+
+# Unsupported OS
+
+- FreeBSD for now , until i found a solution to port it to FreeBSD it is currently Unsupported.
+- Android since Minecraft LCE is currently quite laggy and buggy on Android
+- MacOS since I cannot test it legally, but should work with POISX compatibility but it is not officially supported. 
 
 ## Code of Respect 
 
