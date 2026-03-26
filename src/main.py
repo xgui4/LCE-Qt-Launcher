@@ -2,21 +2,22 @@
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog
 from PySide6.QtGui import QPalette, QPixmap, QBrush
-from PySide6.QtCore import qVersion
-from user_pref import UserPref
-from build_info import BuildInfo, get_assets_dir
-from instance_manager import InstanceManager, Instance
-from cmd_arg import CmdArgAction, parse_args, argsDetected
+from PySide6.QtCore import qVersion, QFile, QIODevice
+from src.user_pref import UserPref
+from src.build_info import BuildInfo
+from src.instance_manager import InstanceManager, Instance
+from src.cmd_arg import CmdArgAction, parse_args, argsDetected
 
-import term_service
-import features
+import src.term_service as term_service
+import src.features as features
 
-from theme import Theme
-from json_trans import JsonTrans
+from src.theme import Theme
+from src.json_trans import JsonTrans
+
+import src.utils as utils
 
 import sys
 import os
-import platform
 
 userPref = UserPref()
 buildInfo = BuildInfo()
@@ -180,5 +181,19 @@ if __name__ == "__main__":
 
         widget = launcher()
         widget.show()
+
+
+        try:
+            file = QFile(":/styles/minecraft.qss")
+            if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
+                content = file.readAll()
+                stylesheet = str(content, encoding='utf-8')
+                app.setStyleSheet(stylesheet)
+        except FileNotFoundError:
+            try: 
+                with open(os.path.join(utils.get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
+                    app.setStyleSheet(file.read())
+            except FileNotFoundError:
+                QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")
 
         sys.exit(app.exec())

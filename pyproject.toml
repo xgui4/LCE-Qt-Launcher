@@ -18,7 +18,8 @@ dependencies = [
     "pillow",
     "pip",
     "hatch",
-    "nuitka"
+    "nuitka",
+    "utils"
 ]
 
 [project.urls]
@@ -78,6 +79,7 @@ files = [
     "src/json_trans.py",
     "src/main.py",
     "src/cli.py",
+    "src/utils.py",
     "src/term_service.py",
     "src/features.py",
     "src/browser_dialog.py",

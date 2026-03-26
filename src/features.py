@@ -1,20 +1,21 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion
-from user_pref import UserPref
-from build_info import BuildInfo
-from instance_manager import InstanceManager, Instance
 
-import term_service
-import cli 
+import src.term_service as term_service
+import src.cli as cli 
 
-from browser_dialog import BrowserDialog
-from setting_dialog import SettingDialog
+from src.browser_dialog import BrowserDialog
+from src.setting_dialog import SettingDialog
+from src.user_pref import UserPref
+from src.build_info import BuildInfo
+from src.instance_manager import InstanceManager, Instance
 
-def install_game(parent, instance : Instance, instanceManager : InstanceManager):
+
+def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager):
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 
-                                    "Do you really want to re-install the game? " \
-                                    "This version does not support update a installation yet," \
+                                    "Do you really want to re-install the game? " +
+                                    "This version does not support update a installation yet," +
                                     " so a backup is recommended.",
                                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
     if button_reply == QMessageBox.StandardButton.Yes:
@@ -24,7 +25,7 @@ def install_game(parent, instance : Instance, instanceManager : InstanceManager)
         parent.ui.progressBar.setEnabled(True)
         parent.ui.progressLabel.setText(f"Installation of {instance.name} Progress")
         parent.ui.progressBar.setValue(30)
-        instanceManager.install_instance() 
+        print(instanceManager.install_instance())
         parent.ui.progressBar.setValue(100)
     else:
         QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled")
@@ -72,13 +73,13 @@ def show_about_app(parent,buildInfo : BuildInfo, icon : str):
 def new_instance_from_form(mainWindow : QMainWindow):
     form = mainWindow.ui
 
-    username_str = form.usernameInputBox.text()
-    path_str = form.pathInputBox.text()
-    server_ip_str = form.serverIPInputBox.text()
-    server_name_str = form.serverNameInputBox.text()
-    repo_url_str = form.repoURLInputBox.text()
+    username_str :str = form.usernameInputBox.text() 
+    path_str : str = form.pathInputBox.text() 
+    server_ip_str: str = form.serverIPInputBox.text()
+    server_name_str : str = form.serverNameInputBox.text() 
+    repo_url_str: str = form.repoURLInputBox.text() 
 
-    instance_name = QInputDialog.getText(mainWindow, "Name your instance", "Set the name of the instance")
+    instance_name: str = QInputDialog.getText(mainWindow, "Name your instance", "Set the name of the instance")[0]
 
     newInstance = Instance()
 
@@ -95,11 +96,11 @@ def new_instance_from_form(mainWindow : QMainWindow):
 
     return newInstance; 
 
-def show_webbrowser(parent, url : str):
-    BrowserDialog(parent, url)
+def show_webbrowser(parent : QWidget, url : str, buildInfo : BuildInfo):
+    _ = BrowserDialog(parent, url, buildInfo)
 
-def save_instance(parent, instanceManager : InstanceManager, buildInfo : BuildInfo):
-    file_name = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo):
+    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
     instanceManager.save_instance(file_name)
 
 def launch_cli_interface():
@@ -122,5 +123,5 @@ def display_version(buildInfo : BuildInfo):
     term_service.print_information(f"{buildInfo.app_name} Version {buildInfo.version}")
     term_service.print_information(f"Qt Version {buildInfo.qt_version}")
 
-def hide_options(parent):
+def hide_options():
     pass

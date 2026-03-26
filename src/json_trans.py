@@ -3,8 +3,8 @@ from PySide6.QtCore import QObject, Signal
 import json
 import os
 
-import build_info
-import term_service
+from src import utils
+import src.term_service as term_service
 
 class JsonTrans(QObject):
 
@@ -15,11 +15,11 @@ class JsonTrans(QObject):
     def __init__(self, lang_code: str = FALLBACK_LANG):
         super().__init__()
         self.json_data : dict[str, str] = {}
-        self._current_lang = lang_code
+        self._current_lang: str = lang_code
         self.load_lang(lang_code)
 
-    def load_lang(self, lang_code: str):
-        file_path: str = os.path.join(build_info.get_locales_dir(), f"{lang_code}.json")
+    def load_lang(self, lang_code: str) -> None:
+        file_path: str = os.path.join(utils.get_locales_dir(), f"{lang_code}.json")
 
         if not os.path.exists(path=file_path):
             term_service.print_error(f"Language file {file_path} not found. Defaulting to English Fallback")
