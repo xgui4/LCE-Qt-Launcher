@@ -1,11 +1,13 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
-import term_service
+from src.build_info import BuildInfo
+
+import src.term_service as term_service 
 
 if TYPE_CHECKING:
-    from instance_manager import Instance
-    from build_info import BuildInfo
+    from src.instance_manager import Instance
+    from src.build_info import BuildInfo
 
 from zipfile import ZipFile, BadZipFile, LargeZipFile
 from io import BytesIO
@@ -17,7 +19,7 @@ SUCCESS_STATUS_CODE = 200
 
 class Downloader:
     def __init__(self, build_info: BuildInfo):
-        self._build_info = build_info
+        self._build_info: BuildInfo = build_info
 
     def download_instance(self, instance : Instance):
         print("Go to installation")
@@ -28,14 +30,14 @@ class Downloader:
             try:
                 archive : ZipFile = self.extract_instance(response, instance)
             except BadZipFile as err:
-                term_service.print_error(f"{err} while extracting {archive.filename}")
+                term_service.print_error(f"{err} while extracting {instance.name} games files")
             except LargeZipFile as err:
-                term_service.print_error(f"{archive.filename} was too big.")
+                term_service.print_error(f"The archive file for {instance.name} ({archive.filename}) was too big.")
             else:
                 if os.name == "posix":
                     exe_abs_path = os.path.join(instance.installation_path, instance.exe_name)
                     system = self._build_info.system_manager
-                    system.set_file_permission(exe_abs_path)
+                    _ = system.set_file_permission(exe_abs_path)
         else:
             print(f"Error : {response.status_code} during the dowloading of the Minecraft LCE Client")
     

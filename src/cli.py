@@ -1,7 +1,8 @@
-from instance_manager import InstanceManager, Instance
+from src.instance_manager import InstanceManager, Instance
+from  src.build_info import BuildInfo
 
-import term_service
-import build_info
+import src.term_service as term_service
+import src.utils as utils
 
 import os
 
@@ -13,7 +14,7 @@ MENU_STR = """
 
 def launch_cli():    
     try:
-        ascii_art = os.path.join(build_info.get_assets_dir(), "images" "ascii-art-text.png")
+        ascii_art: str = os.path.join(utils.get_assets_dir(), "images", "ascii-art-text.png")
         term_service.show_image(ascii_art)
     except FileNotFoundError:
         term_service.print_error("Image cannot be found.")
@@ -26,14 +27,15 @@ def launch_cli():
         print("LCE Qt Launcher")
     term_service.print_pretty(MENU_STR)
 
-    user_output = input()
+    user_output: str = input()
 
+    buildInfo = BuildInfo()
     defaultInstance = Instance()
-    instanceManager = InstanceManager(defaultInstance)
+    instanceManager = InstanceManager(defaultInstance,buildInfo)
 
     if user_output == "1":
-        instanceManager.play() 
+        print(instanceManager.play())
     if user_output == "2":
-        instanceManager.install_instance()
+        print(instanceManager.install_instance())
     else:
         term_service.print_information("Not implemented Yet!")
