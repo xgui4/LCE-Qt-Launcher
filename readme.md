@@ -63,7 +63,9 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
     - with a virtual env with the required library install (specified in the readme and [`pyproject.toml`](pyproject.toml))
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed 
-- A display server or compositor (for Unix like system, MacOS and Windows use their own proprietary one)
+- For UNIX like system
+    - A display server or compositor (Except on MacOS where it use its own proprietary one)
+    - Bash (normally pre-installed on Linux but often demand installation in *BSD and MacOS)
 
 ## Python Library Used 
  - pyside6,
@@ -80,9 +82,13 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
 - Windows 10 and later (not tested yet)
 - GNU/Linux 
 
-# Unsupported OS
+### Experimental Support 
 
-- FreeBSD for now , until i found a solution to port it to FreeBSD it is currently Unsupported.
+- FreeBSD
+
+### Unsupported OS
+
+- Other *BSD like system
 - Android since Minecraft LCE is currently quite laggy and buggy on Android
 - MacOS since I cannot test it legally, but should work with POISX compatibility but it is not officially supported. 
 

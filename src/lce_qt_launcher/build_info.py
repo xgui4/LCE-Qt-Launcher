@@ -1,4 +1,4 @@
-from lce_qt_launcher.system_manager import SystemManager
+from lce_qt_launcher.managers.system_manager import SystemManager
 
 import lce_qt_launcher.term_service as term_service
 

@@ -10,7 +10,7 @@ from lce_qt_launcher.gui.browser_dialog import BrowserDialog
 from lce_qt_launcher.gui.setting_dialog import SettingDialog
 from lce_qt_launcher.user_pref import UserPref
 from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.instance_manager import InstanceManager, Instance
+from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager):
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 

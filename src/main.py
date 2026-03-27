@@ -6,7 +6,7 @@ from PySide6.QtCore import qVersion, QFile, QIODevice
 
 from lce_qt_launcher.user_pref import UserPref
 from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.instance_manager import InstanceManager, Instance
+from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 from lce_qt_launcher.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.gui.theme import Theme
 from lce_qt_launcher.json_trans import JsonTrans
@@ -59,8 +59,8 @@ SAVE_FILEDIALOG_TITLE = "save_filedialog_title"
 
 QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
 
-from src.ui_form import Ui_launcher
-from src.ui_system_info import Ui_sys_info_dialog
+from ui_form import Ui_launcher
+from ui_system_info import Ui_sys_info_dialog
 
 def gen_inst_from_form(parent : QWidget):
     instanceManager.instance = features.new_instance_from_form(parent)

@@ -2,7 +2,7 @@ from PySide6.QtWidgets  import QDialog, QHBoxLayout, QWidget
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
 
-from src.lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.build_info import BuildInfo
 
 class BrowserDialog(QDialog):
     def __init__(self, parent : QWidget, url : str, build_info : BuildInfo):

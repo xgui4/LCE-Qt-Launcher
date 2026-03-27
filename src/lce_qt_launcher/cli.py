@@ -1,4 +1,4 @@
-from lce_qt_launcher.instance_manager import InstanceManager, Instance
+from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 from  lce_qt_launcher.build_info import BuildInfo
 
 import lce_qt_launcher.term_service as term_service
