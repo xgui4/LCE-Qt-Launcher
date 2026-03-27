@@ -1,6 +1,6 @@
-from src.system_manager import SystemManager
+from lce_qt_launcher.system_manager import SystemManager
 
-import src.term_service as term_service
+import lce_qt_launcher.term_service as term_service
 
 import importlib.metadata
 

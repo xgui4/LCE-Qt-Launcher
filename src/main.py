@@ -3,18 +3,17 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion, QFile, QIODevice
-from src.user_pref import UserPref
-from src.build_info import BuildInfo
-from src.instance_manager import InstanceManager, Instance
-from src.cmd_arg import CmdArgAction, parse_args, argsDetected
 
-import src.term_service as term_service
-import src.features as features
+from lce_qt_launcher.user_pref import UserPref
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.instance_manager import InstanceManager, Instance
+from lce_qt_launcher.cmd_arg import CmdArgAction, parse_args, argsDetected
+from lce_qt_launcher.gui.theme import Theme
+from lce_qt_launcher.json_trans import JsonTrans
 
-from src.theme import Theme
-from src.json_trans import JsonTrans
-
-import src.utils as utils
+import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.features as features
+import lce_qt_launcher.utils as utils
 
 import platform
 import sys

@@ -1,8 +1,8 @@
-from src.instance_manager import InstanceManager, Instance
-from  src.build_info import BuildInfo
+from lce_qt_launcher.instance_manager import InstanceManager, Instance
+from  lce_qt_launcher.build_info import BuildInfo
 
-import src.term_service as term_service
-import src.utils as utils
+import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.utils as utils
 
 import os
 

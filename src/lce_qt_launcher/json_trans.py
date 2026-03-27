@@ -3,8 +3,8 @@ from PySide6.QtCore import QObject, Signal
 import json
 import os
 
-from src import utils
-import src.term_service as term_service
+from lce_qt_launcher import utils
+import lce_qt_launcher.term_service as term_service
 
 class JsonTrans(QObject):
 
