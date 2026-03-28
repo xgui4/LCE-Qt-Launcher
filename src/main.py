@@ -3,18 +3,17 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion, QFile, QIODevice
-from src.user_pref import UserPref
-from src.build_info import BuildInfo
-from src.instance_manager import InstanceManager, Instance
-from src.cmd_arg import CmdArgAction, parse_args, argsDetected
 
-import src.term_service as term_service
-import src.features as features
+from lce_qt_launcher.user_pref import UserPref
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
+from lce_qt_launcher.cmd_arg import CmdArgAction, parse_args, argsDetected
+from lce_qt_launcher.gui.theme import Theme
+from lce_qt_launcher.json_trans import JsonTrans
 
-from src.theme import Theme
-from src.json_trans import JsonTrans
-
-import src.utils as utils
+import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.features as features
+import lce_qt_launcher.utils as utils
 
 import platform
 import sys
@@ -43,14 +42,11 @@ if platform.system() == "FreeBSD":
    _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
    os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
-HELP_STR = """
--h or --help to get this help 
--v or --version to get the app version
--L or --license to get the license information
--a or --about to get information about the app
--cl or --cli to launch the cli version
--g or --gen-config to generate or update the app config
-"""
+PLAY_BUTTON_LABEL = "play"
+
+HELP_STR = "help-message"
+
+ABOUT_STR = "about-message"
 
 INSTANCE_MANAGER_LABEL = translator.translate("instance_manager_label")
 SAVE_INSTANCE_MSG_BOX_LABEL = translator.translate("save_instance_msg_box_label")
@@ -60,8 +56,8 @@ SAVE_FILEDIALOG_TITLE = "save_filedialog_title"
 
 QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
 
-from src.ui_form import Ui_launcher
-from src.ui_system_info import Ui_sys_info_dialog
+from ui_form import Ui_launcher
+from ui_system_info import Ui_sys_info_dialog
 
 def gen_inst_from_form(parent : QWidget):
     instanceManager.instance = features.new_instance_from_form(parent)

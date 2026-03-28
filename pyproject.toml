@@ -1,18 +1,18 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs", "PySide6"]
+requires = ["hatchling", "pyside6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'"]
 build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-dynamic = [ "version" ]
+version = "26.3.27a0"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
-requires-python = "==3.12.*"
+requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
 license-files = [ "license.md" ] 
 
 dependencies = [
-    "pyside6",
+    "pyside6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
     "requests",
     "rich",
     "term-image",
@@ -20,16 +20,13 @@ dependencies = [
     "pip",
     "hatch",
     "nuitka",
+    "walker; sys_platform == 'win32'",
     "patchelf; sys_platform == 'linux'",
 ]
 
 [project.urls]
 Repository = "https://github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
-
-[tool.hatch.version]
-fallback_version = "0.0.0"
-source = "vcs"
 
 [tool.hatch.build.targets.wheel.hooks.custom]
 path = "hatch_build.py"
@@ -40,13 +37,6 @@ artifacts = [
     "src/res_rc.py",
 ]
 
-[tool.hatch.build.hooks.vcs]
-version-file = "src/_version.py"
-
-[tool.hatch.version.raw-options]
-fallback_version = "0.0.0"
-local_scheme = "no-local-version"
-
 [tool.nuitka]
 standalone = true
 onefile = false
@@ -55,8 +45,8 @@ windows-icon-from-ico = "assets/app.ico"
 product-name = "LCE-Qt-Launcher"
 file-description = "Custom Free/Libre Minecraft LCE Launcher"
 copyright = "GPL-3.0-or-later"
-windows-file-version = "{from_modules:src._version}"
-windows-product-version = "{from_modules:src._version}"
+windows-file-version = "26.3.27a0.0"
+windows-product-version = "26.3.27a0.0"
 include-data-dir = "assets"
 include-distribution-metadata = "LCE-Qt-Launcher"
 include-module = [
@@ -65,27 +55,28 @@ include-module = [
     "ui_system_info"
 ]
 
-packages = ["src"]
-
 [tool.pyside6-project]
 files = [
-    "src/build_info.py",
-    "src/user_pref.py",
-    "src/downloader.py",
-    "src/instance_manager.py",
-    "src/launcher.py",
-    "src/system_manager.py",
-    "src/theme.py",
-    "src/setting_dialog.py",
-    "src/form.ui",
+    "src/lce_qt_launcher/__init__.py",
+    "src/lce_qt_launcher/build_info.py",
+    "src/lce_qt_launcher/user_pref.py",
+    "src/lce_qt_launcher/downloader.py",
+    "src/lce_qt_launcher/launcher.py",
+    "src/lce_qt_launcher/theme.py",
+    "src/lce_qt_launcher/json_trans.py",
+    "src/lce_qt_launcher/cli.py",
+    "src/lce_qt_launcher/utils.py",
+    "src/lce_qt_launcher/term_service.py",
+    "src/lce_qt_launcher/features.py",
+    "src/lce_qt_launcher/gui/__init__.py",
+    "src/lce_qt_launcher/gui/setting_dialog.py",
+    "src/lce_qt_launcher/gui/browser_dialog.py",
+    "src/lce_qt_launcher/managers/__init__.py",
+    "src/lce_qt_launcher/managers/instance.py",
+    "src/lce_qt_launcher/managers/system_managers.py",
     "src/system_info.ui",
-    "src/json_trans.py",
+    "src/form.ui",
     "src/main.py",
-    "src/cli.py",
-    "src/utils.py",
-    "src/term_service.py",
-    "src/features.py",
-    "src/browser_dialog.py",
     "license.md",
     "readme.md",
     "res.qrc",

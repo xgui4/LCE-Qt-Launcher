@@ -7,7 +7,7 @@ def get_source_dir() -> str:
 
 def get_project_root_dir() -> str:
     dir: Path = Path(get_source_dir())
-    return str(dir.parent)
+    return str(dir.parent.parent)
 
 def get_locales_dir() -> str:
     return os.path.join(get_project_root_dir(),"assets", "languages")

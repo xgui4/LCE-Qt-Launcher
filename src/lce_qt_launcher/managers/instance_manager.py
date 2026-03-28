@@ -1,9 +1,9 @@
 from enum import Enum
 
-from src.downloader import Downloader
-from src.build_info import BuildInfo
+from lce_qt_launcher.downloader import Downloader
+from lce_qt_launcher.build_info import BuildInfo
 
-import src.term_service as term_service
+import lce_qt_launcher.term_service as term_service
 
 from subprocess import TimeoutExpired
 
