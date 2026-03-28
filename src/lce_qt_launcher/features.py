@@ -1,17 +1,16 @@
 from tkinter import W
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QProgressBar, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion
 
-import src.term_service as term_service
-import src.cli as cli 
+import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.cli as cli 
 
-from src.browser_dialog import BrowserDialog
-from src.setting_dialog import SettingDialog
-from src.user_pref import UserPref
-from src.build_info import BuildInfo
-from src.instance_manager import InstanceManager, Instance
-
+from lce_qt_launcher.gui.browser_dialog import BrowserDialog
+from lce_qt_launcher.gui.setting_dialog import SettingDialog
+from lce_qt_launcher.user_pref import UserPref
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager):
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 
@@ -22,15 +21,16 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
     if button_reply == QMessageBox.StandardButton.Yes:
         term_service.print_information("Starting Installation")
 
-        progressLabel : QLabel =  parent.ui.progressLabel; 
+        progressLabel : QLabel =  parent.ui.progressLabel
+        progressBar : QProgressBar = parent.ui.progressBar  
 
-        parent.ui.progressLabel.setVisible(True) 
-        parent.ui.progressBar.setVisible(True)
-        parent.ui.progressBar.setEnabled(True)
-        parent.ui.progressLabel.setText(f"Installation of {instance.name} Progress")
-        parent.ui.progressBar.setValue(30)
+        progressLabel.setVisible(True) 
+        progressBar.setVisible(True)
+        progressBar.setEnabled(True)
+        progressLabel.setText(f"Installation of {instance.name} Progress")
+        progressBar.setValue(30)
         print(instanceManager.install_instance())
-        parent.ui.progressBar.setValue(100)
+        progressBar.setValue(100)
     else:
         _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled", QMessageBox.StandardButton.Ok)
 

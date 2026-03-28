@@ -18,15 +18,17 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Customisable 
 - Free Software (GPLv3)
 - Multiple Instance (Work in progress)
+- localisatiions (Work in progress)
 <!--
 - Coming laters: 
 - Plugins
 - Skin support
 - Modding Support 
 - in-app news
-- localisatiions
 -->
-- GNU/Linux compatibility first (with secondary Windows and FreeBSD support)
+- GNU/Linux compatibility
+- Experimental FreeBSD support 
+- Windows support
 - Focus on being the main hub for Minecraft LCE on GNU/Linux 
 - Minecraft Theme pre-configured
 
@@ -45,12 +47,12 @@ Guide coming laters
 
 ## How to build
 
-Coming in version 0.0.1 when the program will be more stable
+Coming in the next stable release when the program will be more stable
  
 ## Nigthly Build
 
 > [!NOTE]
-> This automatic nighly build is currently not-stable and very experimental and is in constant change
+> This automatic nighly build is currently not-stable and very experimental and active developpement
 
 In this [GitHub Relese](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically
 via GitHub Action when change are made in the `nighly` branch
@@ -59,11 +61,13 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
 
 ## Software Requirement 
 
-- [Python 3.12.x](https://www.python.org/downloads/latest/python3.12/)
+- [Python 3.10 to Python 3.13](https://www.python.org)
     - with a virtual env with the required library install (specified in the readme and [`pyproject.toml`](pyproject.toml))
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed 
-- A display server or compositor (for Unix like system, MacOS and Windows use their own proprietary one)
+- For UNIX like system
+    - A display server or compositor (Except on MacOS where it use its own proprietary one)
+    - Bash (normally pre-installed on Linux but often demand installation in *BSD and MacOS)
 
 ## Python Library Used 
  - pyside6,
@@ -80,9 +84,13 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
 - Windows 10 and later (not tested yet)
 - GNU/Linux 
 
-# Unsupported OS
+### Experimental Support 
 
-- FreeBSD for now , until i found a solution to port it to FreeBSD it is currently Unsupported.
+- FreeBSD
+
+### Unsupported OS
+
+- Other *BSD like system
 - Android since Minecraft LCE is currently quite laggy and buggy on Android
 - MacOS since I cannot test it legally, but should work with POISX compatibility but it is not officially supported. 
 

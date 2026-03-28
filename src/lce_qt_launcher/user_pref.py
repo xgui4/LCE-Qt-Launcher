@@ -1,6 +1,6 @@
 from PySide6.QtCore import QSettings
 
-from theme import Theme
+from lce_qt_launcher.gui.theme import Theme
 
 class UserPref (QSettings):
 

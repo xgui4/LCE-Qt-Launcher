@@ -1,13 +1,13 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
-from src.build_info import BuildInfo
+from lce_qt_launcher.build_info import BuildInfo
 
-import src.term_service as term_service 
+import lce_qt_launcher.term_service as term_service 
 
 if TYPE_CHECKING:
-    from src.instance_manager import Instance
-    from src.build_info import BuildInfo
+    from lce_qt_launcher.managers.instance_manager import Instance
+    from lce_qt_launcher.build_info import BuildInfo
 
 from zipfile import ZipFile, BadZipFile, LargeZipFile
 from io import BytesIO

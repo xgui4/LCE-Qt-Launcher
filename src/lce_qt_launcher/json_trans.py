@@ -3,14 +3,14 @@ from PySide6.QtCore import QObject, Signal
 import json
 import os
 
-from src import utils
-import src.term_service as term_service
+from lce_qt_launcher import utils
+import lce_qt_launcher.term_service as term_service
 
 class JsonTrans(QObject):
 
-    languageChanged: Signal = Signal()  # Signal QT about the language changes
+    languageChanged: Signal = Signal()
 
-    FALLBACK_LANG: str = "en"
+    FALLBACK_LANG: str = "translations"
 
     def __init__(self, lang_code: str = FALLBACK_LANG):
         super().__init__()
@@ -26,10 +26,10 @@ class JsonTrans(QObject):
             return
 
         try:
-            with open(file_path, "r", "utf-8") as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 self.json_data = json.load(f)
                 self._current_lang = lang_code
-                self.languageChanged.emit()  # Notify the UI
+                self.languageChanged.emit()
         except Exception as e:
             term_service.print_error(f"loading JSON: {e}. Defaulting to English Fallback.")
 
