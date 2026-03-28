@@ -1,6 +1,7 @@
 {
     "version" : "Version", 
     "help-message" : "-h ou --help pour obtenir cette aide \n -v ou --version pour obtenir la version de l'application \n -L ou --license pour obtenir les informations de licence \n -a ou --about pour obtenir des informations sur l'application \n -cl ou --cli pour lancer la version en ligne de commande \n -g ou --gen-config pour générer ou mettre à jour la configuration de l'application",
+    "about-meessage" : "Il s'agit d'un lanceur Minecraft LCE personnalisé, écrit en Python et Qt, conçu pour prendre en charge Freedom et GNU/Linux.",
     "play" : "Jouer",
     "install" : "Installer",
     "username" : "Nom d'utilisateur",

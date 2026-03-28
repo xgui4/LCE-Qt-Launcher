@@ -42,14 +42,11 @@ if platform.system() == "FreeBSD":
    _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
    os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
-HELP_STR = """
--h or --help to get this help 
--v or --version to get the app version
--L or --license to get the license information
--a or --about to get information about the app
--cl or --cli to launch the cli version
--g or --gen-config to generate or update the app config
-"""
+PLAY_BUTTON_LABEL = "play"
+
+HELP_STR = "help-message"
+
+ABOUT_STR = "about-message"
 
 INSTANCE_MANAGER_LABEL = translator.translate("instance_manager_label")
 SAVE_INSTANCE_MSG_BOX_LABEL = translator.translate("save_instance_msg_box_label")

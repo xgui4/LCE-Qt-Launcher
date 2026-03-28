@@ -473,10 +473,11 @@ dependencies = [
     { name = "patchelf", marker = "sys_platform == 'linux'" },
     { name = "pillow" },
     { name = "pip" },
-    { name = "pyside6" },
+    { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "requests" },
     { name = "rich" },
     { name = "term-image" },
+    { name = "walker", marker = "sys_platform == 'win32'" },
 ]
 
 [package.metadata]
@@ -486,10 +487,11 @@ requires-dist = [
     { name = "patchelf", marker = "sys_platform == 'linux'" },
     { name = "pillow" },
     { name = "pip" },
-    { name = "pyside6" },
+    { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "requests" },
     { name = "rich" },
     { name = "term-image" },
+    { name = "walker", marker = "sys_platform == 'win32'" },
 ]
 
 [[package]]
@@ -954,6 +956,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/aa/92/58199fe10049f9703
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c6/59/7d02447a55b2e55755011a647479041bc92a82e143f96a8195cb33bd0a1c/virtualenv-21.2.0-py3-none-any.whl", hash = "sha256:1bd755b504931164a5a496d217c014d098426cddc79363ad66ac78125f9d908f", size = 5825084, upload-time = "2026-03-09T17:24:35.378Z" },
 ]
+
+[[package]]
+name = "walker"
+version = "0.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/60/27737c77b9447b08baa7796f3ab210e22d4d4bfbdfd4f49a7d932be27efb/walker-0.0.2.tar.gz", hash = "sha256:50d3e3fac38d88383a471e27eff2740ac77a838d577c795997434c597eee333d", size = 11659, upload-time = "2014-09-13T07:37:38.531Z" }
 
 [[package]]
 name = "zipp"
