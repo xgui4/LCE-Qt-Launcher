@@ -32,7 +32,7 @@ ICON = ":/assets/launcher_small.png"
 MINECRAFT_WEBSITE = "https://minecraft.net"
 MINECRAFT_LCE_WEBSITE = "https://minecraftlegacy.com/"
 
-theme = Theme.MINECRAFT.value
+theme : Theme = Theme.MINECRAFT
 
 if platform.system() == "Linux": 
     _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
@@ -164,9 +164,9 @@ if __name__ == "__main__":
         if action == CmdArgAction.PRINT_LICENSE:
             features.display_license(buildInfo)
         if action == CmdArgAction.PRINT_HELP:
-            features.display_help(HELP_STR)
+            features.display_help(translator.translate(HELP_STR))
         if action == CmdArgAction.PRINT_ABOUT_INFO:
-            features.display_about("This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and GNU/Linux support in mind.")
+            features.display_about(translator.translate("about_message"))
         if action == CmdArgAction.PRINT_VERSION: 
             features.display_version(buildInfo)
         if action == CmdArgAction.CLI_VERSION:
@@ -183,12 +183,16 @@ if __name__ == "__main__":
             os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=2"
 
         try:
-            file = QFile(":/styles/minecraft.qss")
+            theme_file : str = theme.value
+
+            file = QFile(theme_file)
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
                 content = file.readAll()
                 stylesheet = str(content, encoding='utf-8')  # pyright: ignore[reportArgumentType]
                 app.setStyleSheet(stylesheet)
-        except:
+        except FileNotFoundError:
+            print(FileNotFoundError.with_traceback)
+            term_service.print_warning("Theme ({theme}) not found in ressource, searching in the local storage.")
             try: 
                 with open(os.path.join(utils.get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
                     app.setStyleSheet(file.read())
