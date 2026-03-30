@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.3.27a1"
+version = "26.3.30a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -16,7 +16,6 @@ dependencies = [
     "requests",
     "rich",
     "term-image",
-    "pillow",
     "pip",
     "hatch",
     "nuitka",
@@ -45,8 +44,8 @@ windows-icon-from-ico = "assets/app.ico"
 product-name = "LCE-Qt-Launcher"
 file-description = "Custom Free/Libre Minecraft LCE Launcher"
 copyright = "GPL-3.0-or-later"
-windows-file-version = "26.3.27.a1."
-windows-product-version = "26.27.a1"
+windows-file-version = "26.3.30.a1."
+windows-product-version = "26.30.a1"
 include-data-dir = "assets"
 include-distribution-metadata = "LCE-Qt-Launcher"
 include-module = [
@@ -75,6 +74,7 @@ files = [
     "src/lce_qt_launcher/managers/instance.py",
     "src/lce_qt_launcher/managers/system_managers.py",
     "src/system_info.ui",
+    "src/instance.ui",
     "src/form.ui",
     "src/main.py",
     "license.md",

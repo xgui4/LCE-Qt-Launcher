@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QDialog, QMessageBox, QFileDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion, QFile, QIODevice
 
@@ -58,6 +58,8 @@ QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.
 
 from ui_form import Ui_launcher
 from ui_system_info import Ui_sys_info_dialog
+
+import res_rc
 
 def gen_inst_from_form(parent : QWidget):
     instanceManager.instance = features.new_instance_from_form(parent)
@@ -176,15 +178,15 @@ if __name__ == "__main__":
     else:
         app = QApplication(sys.argv)
 
+        app.setStyle("Fusion")
+
         widget = launcher()
         widget.show()
 
         if os.name == "nt":
             os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=2"
-
         try:
             theme_file : str = theme.value
-
             file = QFile(theme_file)
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
                 content = file.readAll()
