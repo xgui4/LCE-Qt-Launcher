@@ -5,7 +5,7 @@ from PySide6.QtCore import qVersion
 import lce_qt_launcher.term_service as term_service
 import lce_qt_launcher.cli as cli 
 
-from lce_qt_launcher.gui.browser_dialog import BrowserDialog
+# from lce_qt_launcher.gui.browser_dialog import BrowserDialog
 from lce_qt_launcher.gui.setting_dialog import SettingDialog
 from lce_qt_launcher.user_pref import UserPref
 from lce_qt_launcher.build_info import BuildInfo
@@ -100,7 +100,8 @@ def new_instance_from_form(mainWindow : QMainWindow):
     return newInstance; 
 
 def show_webbrowser(parent : QWidget, url : str, buildInfo : BuildInfo):
-    _ = BrowserDialog(parent, url, buildInfo)
+    #_ = BrowserDialog(parent, url, buildInfo)
+    pass
 
 def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo):
     file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
