@@ -3,6 +3,9 @@ from rich import print
 def print_error(msg : str, header : str = "Error! :"):
     print(f"[bold red]{header}[/bold red] {msg}")
 
+def print(msg : str, header : str = "Warning! :"):
+    print(f"[yellow bold]{header}[/yellow bold]{msg}")
+
 def print_information(msg : str):
     print(f"[yellow]{msg}[/yellow]")
 

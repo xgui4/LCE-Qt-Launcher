@@ -70,11 +70,11 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
     - Bash (normally pre-installed on Linux but often demand installation in *BSD and MacOS)
 
 ## Python Library Used 
+
  - pyside6,
  - requests,
  - rich,
  - term-image,
- - pillow,
  - hatch,
  - uv, 
  - pip
@@ -93,6 +93,11 @@ MacOS is not avaiable in the Nigthly Build for now since I lack a way to test it
 - Other *BSD like system
 - Android since Minecraft LCE is currently quite laggy and buggy on Android
 - MacOS since I cannot test it legally, but should work with POISX compatibility but it is not officially supported. 
+
+## Thank to 
+
+- [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) for certain UI elements and ui files 
+- [smartcmd/MinecraftConsoles](https://github.com/smartcmd/MinecraftConsoles)) for the port of the game
 
 ## Code of Respect 
 
