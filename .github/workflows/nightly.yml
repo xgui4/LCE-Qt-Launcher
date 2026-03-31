@@ -37,7 +37,7 @@ jobs:
 
       - name: Build with Nuitka
         run: |
-          hatch run python -m nuitka --standalone --enable-plugin=pyside6 --output-dir=dist src/main.py
+          hatch run python -m nuitka --standalone --enable-plugin=pyside6 --assume-yes-for-downloads --console=force --output-dir=dist src/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
