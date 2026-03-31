@@ -1,4 +1,3 @@
-from tkinter import W
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QProgressBar, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion

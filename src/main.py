@@ -68,8 +68,6 @@ QUESTIONS_OPTIONS = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.
 from ui_form import Ui_launcher
 from ui_system_info import Ui_sys_info_dialog
 
-import res_rc
-
 def gen_inst_from_form(parent : QWidget):
     instanceManager.instance = features.new_instance_from_form(parent)
 
