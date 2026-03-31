@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+# nuitka-project: --standalone
+# nuitka-project: --enable-plugin=pyside6
+# nuitka-project: --windows-icon-from-ico=assets/app.ico
+# nuitka-project: --product-name=LCE-Qt-Launcher
+# nuitka-project: --product-version="0.26.30.2"
+# nuitka-project: --file-version="0.26.30.2"
+# nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
+# nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
+
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QDialog, QMessageBox, QFileDialog, QWidget
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 from PySide6.QtCore import qVersion, QFile, QIODevice
