@@ -39,7 +39,7 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 1. Create a Python Virtual Env via a tool like UV
 2. Set VSCode to that Python Virtual Env
 3. Run "Pyside : Sync Virtual Env and Launch"
-4. Run the app via Vscode debug mode or directly the `src/main.py` file. 
+4. Run the app via Vscode debug mode or directly the [`src/main.py`](src/main.py) file. 
 
 ### Others
 
