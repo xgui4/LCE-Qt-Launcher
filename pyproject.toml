@@ -1,26 +1,26 @@
 [build-system]
-requires = ["hatchling", "pyside6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'"]
+requires = ["hatchling", "PySide6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'"]
 build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.3.30a1"
-description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
+version = "26.3.3a1"
+description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
 license-files = [ "license.md" ] 
 
 dependencies = [
-    "pyside6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
-    "requests",
-    "rich",
-    "term-image",
-    "pip",
-    "hatch",
-    "nuitka",
-    "walker; sys_platform == 'win32'",
-    "patchelf; sys_platform == 'linux'",
+    "PySide6==6.11.0; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
+    "requests==2.33.1",
+    "rich==14.3.3",
+    "term-image==0.7.2",
+    "pip==26.0.1",
+    "hatch==1.16.5",
+    "Nuitka==4.0.7",
+    "walker==0.0.2; sys_platform == 'win32'",
+    "patchelf==0.17.2.4; sys_platform == 'linux'",
 ]
 
 [project.urls]
@@ -44,8 +44,8 @@ windows-icon-from-ico = "assets/app.ico"
 product-name = "LCE-Qt-Launcher"
 file-description = "Custom Free/Libre Minecraft LCE Launcher"
 copyright = "GPL-3.0-or-later"
-windows-file-version = "26.3.30.a1."
-windows-product-version = "26.30.a1"
+windows-file-version = "0.26.3.3" 
+windows-product-version = "0.26.3.3"
 include-data-dir = "assets"
 include-distribution-metadata = "LCE-Qt-Launcher"
 include-module = [
