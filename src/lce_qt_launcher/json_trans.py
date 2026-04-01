@@ -24,7 +24,6 @@ class JsonTrans(QObject):
         if not os.path.exists(path=file_path):
             term_service.print_error(f"Language file {file_path} not found. Defaulting to English Fallback")
             return
-
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 self.json_data = json.load(f)

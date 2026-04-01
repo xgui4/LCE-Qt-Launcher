@@ -60,9 +60,9 @@ class Instance:
         if self.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
             return f"{self.repo_url}.git"
         if self.instance_source == InstanceSource.LOCAL_INSTALLATION:
-            _ = RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
+            raise RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
         else:
-            _ = RuntimeError("Not implemented yet!")        
+            raise RuntimeError("Not implemented yet!")        
 
 class InstanceManager:
     def __init__(self, instance : Instance, build_info : BuildInfo):
@@ -80,33 +80,29 @@ class InstanceManager:
             return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
             return f"Client closed with code {game_process.returncode}"  
-    
-    def install_instance(self):
+    def install_instance(self) -> None:
         if self.instance.instance_source in [InstanceSource.GITHUB_RELEASE, InstanceSource.REMOTE_GIT_SOURCE]:
             return self._downloader.download_instance(self.instance)
         else:
-            return "Already Installed, skip installation."
+            raise RuntimeWarning("Already Installed")
 
     def save_instance(self, save_file : str):
         try:
-            json_string = json.dumps(vars(self.instance))
+            json_string: str = json.dumps(vars(self.instance))
         except TypeError:
-            json_string = json.dumps(vars(self.instance), default=str)
+            json_string: str = json.dumps(vars(self.instance), default=str)
 
         if not save_file[0].endswith(self._build_info.instance_extension):
-            save_file[0] = save_file[0] + self._build_info.instance_extension
+            save_file: str = save_file[0] + self._build_info.instance_extension
     
         os.makedirs(os.path.dirname(save_file[0]), exist_ok=True)
         
         with open(save_file[0], 'w') as f:
             _ = f.write(json_string)
     
-    def load_instance(self, save_file : str):
-        term_service.print_information("Not Implemented Yet!")
+    def load_instance(self, save_file : str) -> None:
         if not save_file.endswith(self._build_info.instance_extension):
             save_file = os.path.join(save_file, ".lce_inst")
 
-        with open(save_file, 'r') as f:
-            json_file = f.read(save_file)
-
-        self.instance = json.load(json_file)
+        with open(save_file, 'r') as json_file:
+            self.instance = json.load(json_file)

@@ -53,7 +53,7 @@ if platform.system() == "FreeBSD":
    _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
    os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
-# os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
+os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
 PLAY_BUTTON_LABEL = "play"
 
@@ -94,31 +94,31 @@ class launcher(QMainWindow):
     def install(self):
         features.install_game(self, defaultInstance, instanceManager)
 
-    def show_aboutQt(self):
+    def show_aboutQt(self) -> None:
         features.show_about_qt(self)
 
-    def show_about(self):
+    def show_about(self) -> None:
         features.show_about_app(self, buildInfo, ICON)
 
-    def show_system_information(self):
+    def show_system_information(self) -> None:
         features.show_system_info(self)
 
-    def show_about_minecraft(self):
+    def show_about_minecraft(self) -> None:
         features.show_webbrowser(self, MINECRAFT_WEBSITE, buildInfo)
 
-    def show_more_lce_projects(self):
+    def show_more_lce_projects(self) -> None:
         features.show_webbrowser(self, MINECRAFT_LCE_WEBSITE, buildInfo)
 
-    def save_instance(self):
+    def save_instance(self) -> None:
         features.save_instance(self, instanceManager, buildInfo)
 
-    def load_instance(self):
+    def load_instance(self) -> None:
         features.load_instance(self, instanceManager, buildInfo)
 
-    def show_setting_dialog(self):
+    def show_setting_dialog(self) -> None:
         features.show_setting(self)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
         background_pixmap = QPixmap(BACKGROUND_PIXMAP_IMG)
@@ -183,13 +183,13 @@ if __name__ == "__main__":
         if action == CmdArgAction.PRINT_VERSION: 
             features.display_version(buildInfo)
         if action == CmdArgAction.CLI_VERSION:
-            features.launch_cli_interface()
+            features.launch_cli_interface(instanceManager)
         else:
             term_service.print_information("Not Implemented Yet!")
     else:
         app = QApplication(sys.argv)
 
-        app.setStyle("Fusion")
+        _ = app.setStyle("Fusion")
 
         widget = launcher()
         widget.show()

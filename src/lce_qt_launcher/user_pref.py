@@ -4,8 +4,8 @@ from lce_qt_launcher.gui.theme import Theme
 
 class UserPref (QSettings):
 
-    _THEME_OPTION = "customisation/theme"
-    _DEFAULT_THEME = Theme.MINECRAFT
+    _THEME_OPTION : str = "customisation/theme"
+    _DEFAULT_THEME : Theme = Theme.MINECRAFT
 
     def __init__(self):
         super().__init__(QSettings.NativeFormat, QSettings.UserScope, "Xgui4", "LCE-QT-Laucher")

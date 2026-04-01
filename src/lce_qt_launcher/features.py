@@ -5,13 +5,14 @@ from PySide6.QtCore import qVersion
 import lce_qt_launcher.term_service as term_service
 import lce_qt_launcher.cli as cli 
 
-# from lce_qt_launcher.gui.browser_dialog import BrowserDialog
+from lce_qt_launcher.gui.browser_dialog import BrowserDialog
 from lce_qt_launcher.gui.setting_dialog import SettingDialog
 from lce_qt_launcher.user_pref import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
+from main import buildInfo
 
-def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager):
+def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager) -> None:
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 
                                     "Do you really want to re-install the game? " +
                                     "This version does not support update a installation yet," +
@@ -20,38 +21,38 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
     if button_reply == QMessageBox.StandardButton.Yes:
         term_service.print_information("Starting Installation")
 
-        progressLabel : QLabel =  parent.ui.progressLabel
+        progressLabel : QLabel =  parent.ui.progressLabel 
         progressBar : QProgressBar = parent.ui.progressBar  
 
-        progressLabel.setVisible(True) 
-        progressBar.setVisible(True)
-        progressBar.setEnabled(True)
-        progressLabel.setText(f"Installation of {instance.name} Progress")
-        progressBar.setValue(30)
+        _ = progressLabel.setVisible(True) 
+        _ = progressBar.setVisible(True)  
+        _ = progressBar.setEnabled(True)  
+        _ = progressLabel.setText(f"Installation of {instance.name} Progress")  
+        _ = progressBar.setValue(30) 
         print(instanceManager.install_instance())
-        progressBar.setValue(100)
+        _ = progressBar.setValue(100) 
     else:
-        _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher" "Installation Cancelled", QMessageBox.StandardButton.Ok)
+        _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher", "Installation Cancelled", QMessageBox.StandardButton.Ok)
 
-def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str):
+def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str) -> None:
     term_service.print_information(starting_game_msg_str)
     print(instanceManager.play())
 
-def show_setting(parent : QWidget) :
-    _= SettingDialog(parent)
+def show_setting(parent : QWidget)  -> None:
+    _ = SettingDialog(parent)
 
-def show_system_info(parent : QWidget):
-    parent.sysinfo_dialog.show()
+def show_system_info(parent : QWidget) -> None:
+    parent.sysinfo_dialog.show()  
 
-def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo):
-    file_name = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
+    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
     instanceManager.load_instance(file_name)
 
-def show_about_qt(parent : QWidget):
+def show_about_qt(parent : QWidget) -> None:
     print("Show About Qt popup.")
     QMessageBox.aboutQt(parent, "About Qt")
 
-def show_about_app(parent, buildInfo : BuildInfo, icon : str):  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
+def show_about_app(parent : QWidget, buildInfo : BuildInfo, icon : str) -> None:
     parent.aboutPopupWindow = QDialog() 
 
     parent.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
@@ -73,14 +74,14 @@ def show_about_app(parent, buildInfo : BuildInfo, icon : str):  # pyright: ignor
     
     parent.aboutPopupWindow.show()
 
-def new_instance_from_form(mainWindow : QMainWindow):
-    form = mainWindow.ui
+def new_instance_from_form(mainWindow : QMainWindow) -> Instance:
+    form = mainWindow.ui  
 
-    username_str :str = form.usernameInputBox.text() 
+    username_str :str = form.usernameInputBox.text()  
     path_str : str = form.pathInputBox.text() 
-    server_ip_str: str = form.serverIPInputBox.text()
-    server_name_str : str = form.serverNameInputBox.text() 
-    repo_url_str: str = form.repoURLInputBox.text() 
+    server_ip_str: str = form.serverIPInputBox.text() 
+    server_name_str : str = form.serverNameInputBox.text()   
+    repo_url_str: str = form.repoURLInputBox.text()
 
     instance_name: str = QInputDialog.getText(mainWindow, "Name your instance", "Set the name of the instance")[0]
 
@@ -93,22 +94,21 @@ def new_instance_from_form(mainWindow : QMainWindow):
     if path_str:
         newInstance.installation_path = path_str
     if server_ip_str and server_name_str:
-        newInstance.servers = {f"ip : {server_ip_str}, name : {server_name_str}" }
+        newInstance.servers = [f"ip : {server_ip_str}, name : {server_name_str}"]
     if repo_url_str:
         newInstance.repo_url = repo_url_str
 
     return newInstance; 
 
 def show_webbrowser(parent : QWidget, url : str, buildInfo : BuildInfo):
-    #_ = BrowserDialog(parent, url, buildInfo)
-    pass
+    _ = BrowserDialog(parent, url, buildInfo)
 
 def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo):
     file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
     instanceManager.save_instance(file_name)
 
-def launch_cli_interface():
-    cli.launch_cli()
+def launch_cli_interface(instance_man : InstanceManager):
+    cli.launch_cli(instance_man)
 
 def generate_user_config(userPref : UserPref):
     userPref.generate_default_config()
