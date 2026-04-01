@@ -471,12 +471,10 @@ dependencies = [
     { name = "hatch" },
     { name = "nuitka" },
     { name = "patchelf", marker = "sys_platform == 'linux'" },
-    { name = "pip" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "requests" },
     { name = "rich" },
     { name = "term-image" },
-    { name = "walker", marker = "sys_platform == 'win32'" },
 ]
 
 [package.metadata]
@@ -484,12 +482,10 @@ requires-dist = [
     { name = "hatch", specifier = "==1.16.5" },
     { name = "nuitka", specifier = "==4.0.7" },
     { name = "patchelf", marker = "sys_platform == 'linux'", specifier = "==0.17.2.4" },
-    { name = "pip", specifier = "==26.0.1" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'", specifier = "==6.11.0" },
     { name = "requests", specifier = "==2.33.1" },
     { name = "rich", specifier = "==14.3.3" },
     { name = "term-image", specifier = "==0.7.2" },
-    { name = "walker", marker = "sys_platform == 'win32'", specifier = "==0.0.2" },
 ]
 
 [[package]]
@@ -619,15 +615,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/b6/f5/f71fe1888b96083b3f6dfa0709101f61fc9e972c0c8d04e9d93ccef2a045/pillow-10.4.0-pp310-pypy310_pp73-manylinux_2_28_aarch64.whl", hash = "sha256:dc3e2db6ba09ffd7d02ae9141cfa0ae23393ee7687248d46a7507b75d610f4f5", size = 3476125, upload-time = "2024-07-01T09:48:14.891Z" },
     { url = "https://files.pythonhosted.org/packages/96/b9/c0362c54290a31866c3526848583a2f45a535aa9d725fd31e25d318c805f/pillow-10.4.0-pp310-pypy310_pp73-manylinux_2_28_x86_64.whl", hash = "sha256:02a2be69f9c9b8c1e97cf2713e789d4e398c751ecfd9967c18d0ce304efbf885", size = 3579373, upload-time = "2024-07-01T09:48:17.601Z" },
     { url = "https://files.pythonhosted.org/packages/52/3b/ce7a01026a7cf46e5452afa86f97a5e88ca97f562cafa76570178ab56d8d/pillow-10.4.0-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:0755ffd4a0c6f267cccbae2e9903d95477ca2f77c4fcf3a3a09570001856c8a5", size = 2554661, upload-time = "2024-07-01T09:48:20.293Z" },
-]
-
-[[package]]
-name = "pip"
-version = "26.0.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/48/83/0d7d4e9efe3344b8e2fe25d93be44f64b65364d3c8d7bc6dc90198d5422e/pip-26.0.1.tar.gz", hash = "sha256:c4037d8a277c89b320abe636d59f91e6d0922d08a05b60e85e53b296613346d8", size = 1812747, upload-time = "2026-02-05T02:20:18.702Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl", hash = "sha256:bdb1b08f4274833d62c1aa29e20907365a2ceb950410df15fc9521bad440122b", size = 1787723, upload-time = "2026-02-05T02:20:16.416Z" },
 ]
 
 [[package]]
@@ -954,12 +941,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/aa/92/58199fe10049f9703
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c6/59/7d02447a55b2e55755011a647479041bc92a82e143f96a8195cb33bd0a1c/virtualenv-21.2.0-py3-none-any.whl", hash = "sha256:1bd755b504931164a5a496d217c014d098426cddc79363ad66ac78125f9d908f", size = 5825084, upload-time = "2026-03-09T17:24:35.378Z" },
 ]
-
-[[package]]
-name = "walker"
-version = "0.0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d6/60/27737c77b9447b08baa7796f3ab210e22d4d4bfbdfd4f49a7d932be27efb/walker-0.0.2.tar.gz", hash = "sha256:50d3e3fac38d88383a471e27eff2740ac77a838d577c795997434c597eee333d", size = 11659, upload-time = "2014-09-13T07:37:38.531Z" }
 
 [[package]]
 name = "zipp"

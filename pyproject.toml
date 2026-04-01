@@ -16,10 +16,8 @@ dependencies = [
     "requests==2.33.1",
     "rich==14.3.3",
     "term-image==0.7.2",
-    "pip==26.0.1",
     "hatch==1.16.5",
     "Nuitka==4.0.7",
-    "walker==0.0.2; sys_platform == 'win32'",
     "patchelf==0.17.2.4; sys_platform == 'linux'",
 ]
 
