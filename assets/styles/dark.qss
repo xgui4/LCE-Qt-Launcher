@@ -5,7 +5,7 @@
 
 QLabel:disabled {
     color : gray; 
-    opacity : 150;
+    opacity : 100;
 }
 
 QPushButton {
@@ -26,13 +26,17 @@ QPushButton:hover {
 }
 
 QPushButton:disabled { 
-    opacity : 200;
+    opacity : 100;
     border : none;
 }
 
 QPushButton:disabled { 
-    opacity : 150;
+    opacity : 100;
     border : 5px;
+}
+
+QTabWidget {
+    background-color : transparent; 
 }
 
 QMainWindow QLabel {
@@ -60,7 +64,7 @@ QMenu::item:selected {
 
 QMenu::item:disabled {
     color: gray;
-    opacity : 150;
+    opacity : 100;
 }
 
 QMenu {

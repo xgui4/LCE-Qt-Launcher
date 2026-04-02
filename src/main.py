@@ -11,11 +11,27 @@
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QDialog, QMessageBox, QFileDialog, QWidget
-from PySide6.QtGui import QPalette, QPixmap, QBrush
-from PySide6.QtCore import qVersion, QFile, QIODevice
+from PySide6.QtWidgets import ( 
+    QApplication, 
+    QMainWindow, 
+    QLabel, 
+    QDialog, 
+    QMessageBox, 
+    QFileDialog, 
+    QWidget
+)
+from PySide6.QtGui import ( 
+    QPalette, 
+    QPixmap, 
+    QBrush
+)
+from PySide6.QtCore import ( 
+    qVersion, 
+    QFile, 
+    QIODevice 
+)
 
-from lce_qt_launcher.user_pref import UserPref
+from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 from lce_qt_launcher.cmd_arg import CmdArgAction, parse_args, argsDetected

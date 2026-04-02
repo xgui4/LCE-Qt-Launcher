@@ -46,7 +46,7 @@ include-module = [
 files = [
     "src/lce_qt_launcher/__init__.py",
     "src/lce_qt_launcher/build_info.py",
-    "src/lce_qt_launcher/user_pref.py",
+    "src/lce_qt_launcher/preferences.py",
     "src/lce_qt_launcher/downloader.py",
     "src/lce_qt_launcher/launcher.py",
     "src/lce_qt_launcher/theme.py",

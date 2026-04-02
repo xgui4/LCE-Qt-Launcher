@@ -20,6 +20,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -33,12 +36,24 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>2</horstretch>
+        <verstretch>2</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="launcherTab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Launcher</string>
        </attribute>
        <widget class="QGroupBox" name="verticalGroupBox">
         <property name="geometry">
@@ -50,7 +65,7 @@
          </rect>
         </property>
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>1</horstretch>
           <verstretch>1</verstretch>
          </sizepolicy>
@@ -200,9 +215,21 @@
           </widget>
          </item>
          <item row="13" column="2">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="openInstanceEditor">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>More Options</string>
+            <string>Open Instances Editor (Coming Soon)</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>true</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -319,9 +346,9 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="instancesTab">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Instances</string>
        </attribute>
       </widget>
      </widget>
@@ -585,7 +612,7 @@
  </tabstops>
  <resources>
   <include location="../res.qrc"/>
-  <include location="../../../.designer/res.qrc"/>
+  <include location="../res.qrc"/>
  </resources>
  <connections/>
 </ui>
