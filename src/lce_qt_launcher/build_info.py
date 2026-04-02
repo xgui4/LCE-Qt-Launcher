@@ -1,31 +1,29 @@
-from lce_qt_launcher.managers.system_manager import SystemManager
-
-import lce_qt_launcher.term_service as term_service
-
-import importlib.metadata
-
 from PySide6.QtCore import qVersion
+from importlib.metadata import PackageNotFoundError, metadata, version
 from importlib.metadata._meta import PackageMetadata
 
+from lce_qt_launcher.managers.system_manager import SystemManager
+import lce_qt_launcher.term_service as term_service
+
 _FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-_FALLBACK_VERSION_NUMBER  = "0.0.1"
+_FALLBACK_VERSION_NUMBER  = "26.3.2a1"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
-_VERSION_TYPE = "pre-alpha"
+_VERSION_TYPE = "nighly"
 _INSTANCE_EXTENSION = ".lce_inst"
 
 class BuildInfo:
     def __init__(self):
         try:
-            metadata: PackageMetadata = importlib.metadata.metadata("LCE-Qt-Launcher")
+            app_metadata: PackageMetadata = metadata("LCE-Qt-Launcher")
 
-            version_metadata: str = importlib.metadata.version("LCE-Qt-Launcher")
-            app_name_metadata: str = metadata["Name"]
-            repo_url_metadata: str = metadata["Repository"]
-            license_url_metadata: str = metadata["LicenseURL"]
-            license_metadata: str = metadata["License"]
+            version_metadata: str = version("LCE-Qt-Launcher")
+            app_name_metadata: str = app_metadata["Name"]
+            repo_url_metadata: str = app_metadata["Repository"]
+            license_url_metadata: str = app_metadata["LicenseURL"]
+            license_metadata: str = app_metadata["License"]
 
             if version_metadata:
                 self.version : str  = version_metadata
@@ -48,8 +46,8 @@ class BuildInfo:
             else:
                 self.license : str = _FALLBACK_LICENSE 
             
-        except importlib.metadata.PackageNotFoundError:
-            term_service.print_error(f"Package not found! More info : {importlib.metadata.PackageNotFoundError.with_traceback}")
+        except PackageNotFoundError:
+            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.with_traceback}")
             self.version : str = _FALLBACK_VERSION_NUMBER
             self.app_name = _FALLBACK_APP_NAME
             self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 

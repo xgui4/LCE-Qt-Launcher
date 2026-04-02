@@ -1,13 +1,25 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QProgressBar, QVBoxLayout, QDialog, QMessageBox, QFileDialog, QInputDialog, QWidget
-from PySide6.QtGui import QPalette, QPixmap, QBrush
-from PySide6.QtCore import qVersion
+from PySide6.QtWidgets import(
+    QApplication, 
+    QMainWindow, 
+    QLabel, 
+    QProgressBar, 
+    QVBoxLayout, 
+    QDialog, 
+    QMessageBox, 
+    QFileDialog, 
+    QInputDialog,
+    QWidget 
+)
+from PySide6.QtGui import (
+     QPixmap
+) 
 
 import lce_qt_launcher.term_service as term_service
 import lce_qt_launcher.cli as cli 
 
 from lce_qt_launcher.gui.browser_dialog import BrowserDialog
 from lce_qt_launcher.gui.setting_dialog import SettingDialog
-from lce_qt_launcher.user_pref import UserPref
+from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 from main import buildInfo

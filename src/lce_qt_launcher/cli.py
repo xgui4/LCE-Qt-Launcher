@@ -1,5 +1,5 @@
-from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
-from  lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.managers.instance_manager import InstanceManager
+from lce_qt_launcher.build_info import BuildInfo
 
 import lce_qt_launcher.term_service as term_service
 
@@ -9,16 +9,17 @@ MENU_STR = """
 3. [bold red] Others : Coming Soon ! [/bold red]
 """
 
-def launch_cli(instance_man : InstanceManager):    
-    print("LCE Qt Launcher")
+def launch_cli(instance_man : InstanceManager, build_info : BuildInfo, argv : set = {}):    
+    term_service.print_pretty(build_info.app_name)
 
     term_service.print_pretty(MENU_STR)
 
-    user_output: str = input()
+    if len(argv) < 1:
+        user_output: str = input()
 
-    if user_output == "1":
+    if user_output == "1" or argv[1] == "play":
         print(instance_man.play())
-    if user_output == "2":
+    if user_output == "2" or argv[1] == "install":
         print(instance_man.install_instance())
     else:
         term_service.print_information("Not implemented Yet!")

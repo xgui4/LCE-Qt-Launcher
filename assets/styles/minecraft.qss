@@ -3,6 +3,11 @@
     background-image : ":/assets/background.png"
 }
 
+QLabel:disabled {
+    color : gray; 
+    opacity : 100;
+}
+
 QPushButton {
     border-image : url(":/assets/button.png"); 
     color : white;
@@ -24,9 +29,13 @@ QPushButton:hover {
 }
 
 QPushButton:disabled { 
-    border-image : url(":/assets/button.png"); 
-    opacity : 200;
+    opacity : 150;
     border : 5px;
+    border-image : url(":/assets/button-disabled.png");
+}
+
+QTabWidget {
+    background-color : transparent; 
 }
 
 QMainWindow QLabel {
@@ -41,6 +50,12 @@ QMenu::item {
 QMenu::item:selected {
     color: yellow;
     text-decoration: underline;
+}
+
+QMenu::item:disabled {
+    color: gray;
+    border : 5px;
+    opacity : 100;
 }
 
 QStatusBar {
@@ -58,6 +73,11 @@ QMenuBar {
 
 QMenuBar::item {
     color : white;
+    background-color : black;
+}
+
+QMenuBar::item:disabled {
+    color : gray;
     background-color : black;
 }
 

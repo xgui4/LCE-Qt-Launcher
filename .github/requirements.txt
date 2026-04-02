@@ -1,4 +1,3 @@
 PySide6
 requests
 rich
-term-image

@@ -1,37 +1,42 @@
 * {
     background-color : black;
     color : white; 
-    font-family : "Monocraft";
 }
 
-*:disabled{
-    color : gray;
+QLabel:disabled {
+    color : gray; 
+    opacity : 100;
 }
 
 QPushButton {
-    border-image : url(":/assets/button.png"); 
     color : white;
     border : none;
 }
 
 QPushButton:pressed {
-    border-image : url(":/assets/button-pressed.png"); 
     color : white;
     font : bold; 
     border : none;
 }
 
 QPushButton:hover { 
-    border-image : url(":/assets/button-pressed.png"); 
     color : white;
     text-decoration : underline;
     border : none;
 }
 
 QPushButton:disabled { 
-    border-image : url(":/assets/button.png"); 
-    opacity : 200;
+    opacity : 100;
     border : none;
+}
+
+QPushButton:disabled { 
+    opacity : 100;
+    border : 5px;
+}
+
+QTabWidget {
+    background-color : transparent; 
 }
 
 QMainWindow QLabel {
@@ -39,6 +44,47 @@ QMainWindow QLabel {
 }
 
 QStatusBar {
+    color : white;
+    background-color : black;
+}
+
+QMainWindow QLabel {
+    color : white;
+}
+
+QMenu::item {
+    color: white;
+    background-color : black;
+}
+
+QMenu::item:selected {
+    color: yellow;
+    text-decoration: underline;
+}
+
+QMenu::item:disabled {
+    color: gray;
+    opacity : 100;
+}
+
+QMenu {
+    background-color : black;
+}
+
+QMenuBar {
+    background-color : black;
+}
+
+QMenuBar::item {
     color : black;
-    background-color : white;
+    background-color : black;
+}
+
+QMenuBar::item:disabled {
+    color : gray;
+    background-color : black;
+}
+
+QGroupBox {
+    background-color: transparent;
 }
