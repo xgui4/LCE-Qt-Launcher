@@ -1,33 +1,38 @@
 * {
     background-color : white;
     color : black; 
-    font-family : "Monocraft";
+}
+
+QLabel:disabled {
+    color : gray; 
+    opacity : 150;
 }
 
 QPushButton {
-    border-image : url(":/assets/button.png"); 
     color : white;
     border : none;
 }
 
 QPushButton:pressed {
-    border-image : url(":/assets/button-pressed.png"); 
     color : white;
     font : bold; 
     border : none;
 }
 
 QPushButton:hover { 
-    border-image : url(":/assets/button-pressed.png"); 
     color : white;
     text-decoration : underline;
     border : none;
 }
 
 QPushButton:disabled { 
-    border-image : url(":/assets/button.png"); 
     opacity : 200;
     border : none;
+}
+
+QPushButton:disabled { 
+    opacity : 150;
+    border : 5px;
 }
 
 QMainWindow QLabel {
@@ -37,4 +42,45 @@ QMainWindow QLabel {
 QStatusBar {
     color : black;
     background-color : white;
+}
+
+QMainWindow QLabel {
+    color : black;
+}
+
+QMenu::item {
+    color: white;
+    background-color : black;
+}
+
+QMenu::item:selected {
+    color: yellow;
+    text-decoration: underline;
+}
+
+QMenu::item:disabled {
+    color: gray;
+    opacity : 150;
+}
+
+QMenu {
+    background-color : white;
+}
+
+QMenuBar {
+    background-color : white;
+}
+
+QMenuBar::item {
+    color : black;
+    background-color : white;
+}
+
+QMenuBar::item:disabled {
+    color : gray;
+    background-color : white;
+}
+
+QGroupBox {
+    background-color: transparent;
 }

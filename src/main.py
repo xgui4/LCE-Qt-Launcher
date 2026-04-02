@@ -6,8 +6,8 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.3.2"
-# nuitka-project: --file-version="0.26.3.2"
+# nuitka-project: --product-version="0.26.4.2"
+# nuitka-project: --file-version="0.26.4.2"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Instance</class>
- <widget class="QMainWindow" name="Instance">
+ <class>InstancesEditor</class>
+ <widget class="QMainWindow" name="InstancesEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +9,13 @@
     <width>1164</width>
     <height>706</height>
    </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LCE Qt Launcher - Instances Editor</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/assets/app.ico</normaloff>:/assets/app.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -138,7 +145,6 @@
     <addaction name="separator"/>
     <addaction name="actionViewIconThemeFolder"/>
     <addaction name="actionViewWidgetThemeFolder"/>
-    <addaction name="actionViewCatPackFolder"/>
     <addaction name="actionViewIconsFolder"/>
     <addaction name="separator"/>
     <addaction name="actionViewLogsFolder"/>
@@ -150,10 +156,8 @@
     <property name="toolTipsVisible">
      <bool>true</bool>
     </property>
-    <addaction name="actionClearMetadata"/>
     <addaction name="actionReportBug"/>
     <addaction name="actionViewLog"/>
-    <addaction name="actionAddToPATH"/>
     <addaction name="separator"/>
     <addaction name="actionOpenWiki"/>
     <addaction name="actionAbout"/>
@@ -605,6 +609,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections/>
 </ui>
