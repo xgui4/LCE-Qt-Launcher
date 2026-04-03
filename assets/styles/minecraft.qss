@@ -1,6 +1,5 @@
 * {
     font-family : "Monocraft";
-    background-image : ":/assets/background.png"
 }
 
 QLabel:disabled {
