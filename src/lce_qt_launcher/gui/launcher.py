@@ -109,10 +109,16 @@ class Launcher(QMainWindow):
         self.ui.progressBar.setVisible(False)
         self.ui.progressBar.setEnabled(False)
 
+        self.ui.openInstanceEditor.setEnabled(False)
+
+        self.ui.openInstanceEditor.setText(self.ui.openInstanceEditor.text() + " (Coming Soon)") # Not Finished YET
+
+
         _ = self.ui.playButton.clicked.connect(launch)
         _ = self.ui.installButton.clicked.connect(install)
         _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.settingButton.clicked.connect(show_setting_dialog)
+
         _ = self.ui.openInstanceEditor.clicked.connect(show_instance_editor)
 
         _ = self.ui.actionQuit.triggered.connect(app.quit)

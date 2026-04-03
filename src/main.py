@@ -2,14 +2,12 @@
 
 # nuitka-project: --enable-plugin=pyside6
 # nuitka-project: --windows-icon-from-ico=assets/app.ico
-# nuitka-project: --product-name=LCE-Qt-Launcher
+# nuitka-project: --windows-product-name=LCE-Qt-Launcher
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
 # nuitka-project: --product-version="0.26.4.3"
 # nuitka-project: --file-version="0.26.4.3"
-# nuitka-project: --include-distribution-metadata=LCE-Qt-Launcher
-# nuitka-project: --project-name=LCE-Qt-Launcher
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
@@ -63,6 +61,6 @@ if __name__ == "__main__":
 
         _ = app.setStyle("Fusion")
 
-        app.aboutToQuit.connect(about_to_quit_event)
+        # app.aboutToQuit.connect(about_to_quit_event) # Not Tested yet
 
         sys.exit(app.exec())
