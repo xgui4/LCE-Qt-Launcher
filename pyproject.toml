@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.4.2a1"
+version = "26.4.3a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -33,18 +33,10 @@ artifacts = [
     "src/res_rc.py",
 ]
 
-[tool.nuitka]
-product-name = "LCE-Qt-Launcher"
-include-distribution-metadata = "LCE-Qt-Launcher"
-include-module = [
-    "res_rc",
-    "ui_form",
-    "ui_system_info"
-]
-
 [tool.pyside6-project]
 files = [
     "src/lce_qt_launcher/__init__.py",
+    "src/lce_qt_launcher/app.py",
     "src/lce_qt_launcher/build_info.py",
     "src/lce_qt_launcher/preferences.py",
     "src/lce_qt_launcher/downloader.py",
@@ -55,6 +47,7 @@ files = [
     "src/lce_qt_launcher/utils.py",
     "src/lce_qt_launcher/term_service.py",
     "src/lce_qt_launcher/features.py",
+    "src/lce_qt_launcher/gui/launcher.py",
     "src/lce_qt_launcher/gui/__init__.py",
     "src/lce_qt_launcher/gui/setting_dialog.py",
     "src/lce_qt_launcher/gui/browser_dialog.py",

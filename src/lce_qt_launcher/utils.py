@@ -1,5 +1,6 @@
 import os
-import sys
+
+from lce_qt_launcher.gui.theme import Theme
 
 from pathlib import Path
 

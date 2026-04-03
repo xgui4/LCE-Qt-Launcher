@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import(
-    QApplication, 
     QMainWindow, 
     QLabel, 
     QProgressBar, 
@@ -22,7 +21,6 @@ from lce_qt_launcher.gui.setting_dialog import SettingDialog
 from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
-from main import buildInfo
 
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager) -> None:
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 
@@ -55,6 +53,9 @@ def show_setting(parent : QWidget)  -> None:
 
 def show_system_info(parent : QWidget) -> None:
     parent.sysinfo_dialog.show()  
+
+def show_instance_editor(parent : QWidget) -> None:
+    parent.instance_window.show()  
 
 def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
     file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]

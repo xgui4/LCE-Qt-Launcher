@@ -217,16 +217,16 @@
          <item row="13" column="2">
           <widget class="QPushButton" name="openInstanceEditor">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
-            <string>Open Instances Editor (Coming Soon)</string>
+            <string>Open Instances Editor</string>
            </property>
            <property name="checkable">
             <bool>false</bool>
            </property>
            <property name="default">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="flat">
             <bool>false</bool>
