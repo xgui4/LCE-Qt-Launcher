@@ -48,8 +48,8 @@ def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str) 
     term_service.print_information(starting_game_msg_str)
     print(instanceManager.play())
 
-def show_setting(parent : QWidget)  -> None:
-    _ = SettingDialog(parent)
+def show_setting(parent : QWidget, setting_ui : object)  -> None:
+    _ = SettingDialog(parent, setting_ui)
 
 def show_system_info(parent : QWidget) -> None:
     parent.sysinfo_dialog.show()  

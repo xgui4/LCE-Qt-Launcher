@@ -311,5 +311,3 @@ dist/
 **/_pycache__
 **/_version.py
 nuitka-crash-report.xml
-
-**.tar.gz

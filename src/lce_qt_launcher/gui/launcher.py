@@ -18,11 +18,19 @@ from lce_qt_launcher.app_context import AppContext
 
 import lce_qt_launcher.term_service as term_service
 import lce_qt_launcher.features as features
+import lce_qt_launcher.holyday as holyday
 
 import sys
 
 class Launcher(QMainWindow):
-    def __init__(self, appContext : AppContext, launcher_ui : object, sys_dialog_ui: object, instance_ui_editor: object, app : QApplication, parent=None) -> None:
+    def __init__(self, 
+                 appContext : AppContext, 
+                 launcher_ui : object, 
+                 sys_dialog_ui: object,
+                 instance_ui_editor: object, 
+                 setting_ui : object,
+                 app : QApplication, 
+                 parent=None) -> None:
         super().__init__(parent)
 
         translator = appContext.translator
@@ -37,7 +45,7 @@ class Launcher(QMainWindow):
             instanceManager.instance = features.new_instance_from_form(self)
 
         def confirm_changes_button():
-            gen_inst_from_form(self)
+            gen_inst_from_form()
 
         def update_page():
             features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
@@ -70,7 +78,7 @@ class Launcher(QMainWindow):
             features.load_instance(self, instanceManager, buildInfo)
 
         def show_setting_dialog() -> None:
-            features.show_setting(self)
+            features.show_setting(self, setting_ui)
 
         def show_instance_editor() -> None:
             features.show_instance_editor(self)
@@ -113,7 +121,6 @@ class Launcher(QMainWindow):
 
         self.ui.openInstanceEditor.setText(self.ui.openInstanceEditor.text() + " (Coming Soon)") # Not Finished YET
 
-
         _ = self.ui.playButton.clicked.connect(launch)
         _ = self.ui.installButton.clicked.connect(install)
         _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
@@ -133,3 +140,5 @@ class Launcher(QMainWindow):
 
         self.versionlabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
+        holyday_label = QLabel(holyday.get_holyday())
+        self.ui.statusbar.addWidget(holyday_label)
