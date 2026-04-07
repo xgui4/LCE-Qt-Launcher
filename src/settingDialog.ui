@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>731</width>
-    <height>307</height>
+    <width>695</width>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
     <enum>Qt::Orientation::Horizontal</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Close|QDialogButtonBox::StandardButton::Help|QDialogButtonBox::StandardButton::RestoreDefaults|QDialogButtonBox::StandardButton::Save</set>
+    <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Close|QDialogButtonBox::StandardButton::Help|QDialogButtonBox::StandardButton::RestoreDefaults</set>
    </property>
   </widget>
   <widget class="QFrame" name="frame">
@@ -49,7 +49,7 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>361</width>
+      <width>551</width>
       <height>41</height>
      </rect>
     </property>
@@ -133,7 +133,7 @@
     </property>
     <item>
      <property name="text">
-      <string>Defau;t</string>
+      <string>Default</string>
      </property>
     </item>
     <item>
@@ -151,10 +151,15 @@
       <string>Dark</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>System</string>
+     </property>
+    </item>
    </widget>
    <widget class="QCheckBox" name="holydayDheckBox">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -188,7 +193,7 @@
      <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
     </property>
     <property name="checked">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="tristate">
      <bool>false</bool>

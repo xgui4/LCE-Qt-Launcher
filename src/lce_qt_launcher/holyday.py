@@ -19,8 +19,8 @@ HOLIDAYS = {
     f"{MONTH.JANUARY.value}-1": "Happy New Years Day! 🎇",
     f"{MONTH.FEBRURAY.value}-14": "Happy Valentine Day! 💘",
     f"{MONTH.APRIL.value}-1": "April Fool Day 🐟",
-    f"{MONTH.APRIL.value}-2": "Celebrate Autism Accetance Day Today! 🎉🌈♾️",
-    f"{MONTH.APRIL.value}": "Happy Autism Accetance Month! 🎉🌈♾️",
+    f"{MONTH.APRIL.value}-2": "Celebrate Autism Acceptance Day Today! 🎉🌈♾️",
+    f"{MONTH.APRIL.value}": "Happy Autism Acceptance Month! 🎉🌈♾️",
     f"{MONTH.MAY.value}-4": "Star Wars Day 🌟",
     f"{MONTH.MAY.value}-17": "Minecraft Anniversary 🎂",
     f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
@@ -29,7 +29,21 @@ HOLIDAYS = {
     f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆"
 }
 
-NO_HOLYDAY = "No holiday"
+HOLIDAYS_FRENCH = {
+f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
+f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
+f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",
+f"{MONTH.APRIL.value}-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
+f"{MONTH.APRIL.value}": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
+f"{MONTH.MAY.value}-4": "Journée Star Wars 🌟",
+f"{MONTH.MAY.value}-17": "Anniversaire de Minecraft 🎂",
+f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
+f"{MONTH.DECEMBER.value}-24": "Veille de Noël 🎄",
+f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
+f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆"
+}
+
+NO_HOLYDAY = ""
 
 def get_holyday() -> str:
     today = datetime.now()

@@ -125,9 +125,12 @@ class Launcher(QMainWindow):
         _ = self.ui.installButton.clicked.connect(install)
         _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.settingButton.clicked.connect(show_setting_dialog)
-
+        _ = self.ui.savetInstanceButton.clicked.connect(save_instance)
         _ = self.ui.openInstanceEditor.clicked.connect(show_instance_editor)
 
+        _ = self.ui.actionSetting.triggered.connect(show_setting_dialog)
+        _ = self.ui.actionSetting_2.triggered.connect(show_setting_dialog)
+        _ = self.ui.actionSetting_3.triggered.connect(show_setting_dialog)
         _ = self.ui.actionQuit.triggered.connect(app.quit)
         _ = self.ui.actionUpdate.triggered.connect(update_page)
         _ = self.ui.actionSystem_Information.triggered.connect(show_system_information)

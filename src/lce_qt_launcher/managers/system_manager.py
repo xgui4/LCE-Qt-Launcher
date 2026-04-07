@@ -68,4 +68,4 @@ class SystemManager():
             pass
     
     def found_default_save_path(self) -> str:
-        return os.path.join(pathlib.Path.home(), "saves")  
+        return os.path.join(pathlib.Path.home(), "lce-qt-launcher")  

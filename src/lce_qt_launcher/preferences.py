@@ -6,9 +6,7 @@ from lce_qt_launcher.gui.theme import Theme
 import lce_qt_launcher.utils as utils
 
 _THEME_OPTION : str = "customisation/theme"
-
 _INSTANCE_PATH_OPTION : str = "preferences/default_path"
-
 _LANGUAGE_OPTION : str = "preferences/languages"
 
 class UserPref (QSettings):

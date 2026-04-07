@@ -4,14 +4,14 @@
         {
             "label": "PySide: build (GNU/Linux)",
             "type": "shell",
-            "command": "/usr/lib/qt6/uic -g python ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py && /usr/lib/qt6/rcc -g python ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/system_info.ui -o ${workspaceFolder}/src/ui_system_info.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py",
+            "command": "/usr/lib/qt6/uic -g python ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py && /usr/lib/qt6/rcc -g python ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/system_info.ui -o ${workspaceFolder}/src/ui_system_info.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py  && /usr/lib/qt6/uic -g python ${workspaceFolder}/src/settingDialog.ui -o ${workspaceFolder}/src/ui_settingDialog.py",
             "group": "build",
             "problemMatcher": []
         },
         {
             "label": "PySide: build (Windows)",
             "type": "shell",
-            "command":"pyside6-uic ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py; pyside6-rcc ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py; pyside6-uic ${workspaceFolder}/src/system_info.ui -o ${workspaceFolder}/src/ui_system_info.py; pyside6-uic ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.pyl pyside6-uic ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py",
+            "command":"pyside6-uic ${workspaceFolder}/src/form.ui -o ${workspaceFolder}/src/ui_form.py; pyside6-rcc ${workspaceFolder}/res.qrc -o ${workspaceFolder}/src/res_rc.py; pyside6-uic ${workspaceFolder}/src/system_info.ui -o ${workspaceFolder}/src/ui_system_info.py; pyside6-uic ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.pyl pyside6-uic ${workspaceFolder}/src/instance.ui -o ${workspaceFolder}/src/ui_instance.py; pyside6-uic ${workspaceFolder}/src/settingDialog.ui -o ${workspaceFolder}/src/ui_settingDialog.py",
             "group": "build",
             "problemMatcher": []
         },

@@ -29,12 +29,9 @@ def parse_cmd_arg(action, appContext):
 
 def launch_cli(instance_man : InstanceManager, build_info : BuildInfo, argv : set = {}):    
     term_service.print_pretty(build_info.app_name)
-
     term_service.print_pretty(MENU_STR)
-
     if len(argv) < 1:
         user_output: str = input()
-
     if user_output == "1" or argv[1] == "play":
         print(instance_man.play())
     if user_output == "2" or argv[1] == "install":
