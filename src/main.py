@@ -6,12 +6,10 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.4.3"
-# nuitka-project: --file-version="0.26.4.3"
+# nuitka-project: --product-version="0.26.4.6"
+# nuitka-project: --file-version="0.26.4.6"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
-
-from PySide6.QtWidgets import QMainWindow
 
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
@@ -26,6 +24,7 @@ import os
 from ui_form import Ui_launcher
 from ui_instance import Ui_InstancesEditor
 from ui_system_info import Ui_sys_info_dialog
+from ui_settingDialog import Ui_settingDialog
 
 if __name__ == "__main__":
     appContext = AppContext()
@@ -57,7 +56,7 @@ if __name__ == "__main__":
     else:
         os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
-        app = App(appContext.theme, Ui_launcher, Ui_sys_info_dialog, Ui_InstancesEditor, appContext, sys.argv)
+        app = App(appContext.theme, Ui_launcher, Ui_sys_info_dialog, Ui_InstancesEditor, Ui_settingDialog, appContext, sys.argv)
 
         _ = app.setStyle("Fusion")
 

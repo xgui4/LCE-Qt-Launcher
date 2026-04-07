@@ -22,6 +22,7 @@ class App(QApplication):
                 launcher_ui : object,
                 sys_diag_ui : object,
                 instance_editor_ui : object,
+                setting_ui : object,
                 appContext : AppContext,
                 argv : list ):
         super().__init__(argv)        
@@ -29,7 +30,7 @@ class App(QApplication):
 
         _ = self.setStyle("Fusion")
 
-        self.widget = Launcher(self.appContext, launcher_ui, sys_diag_ui, instance_editor_ui, self)
+        self.widget = Launcher(self.appContext, launcher_ui, sys_diag_ui, instance_editor_ui, setting_ui, self)
         self.widget.show()
 
         try:

@@ -12,6 +12,7 @@
         <file alias="pointer.png">assets/images/pointer.png</file>
         <file alias="ascii_art_title.png">assets/images/ascii-art-text.png</file>
         <file alias="button-disabled.png">assets/images/button-disabled.png</file>
+        <file alias="gear.gif">assets/images/gear.gif</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>
