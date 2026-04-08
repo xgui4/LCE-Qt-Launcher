@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>921</width>
-    <height>726</height>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -361,7 +361,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Default (smartcmd)</string>
+              <string>Default (MCLCE)</string>
              </property>
             </widget>
            </item>
@@ -419,7 +419,7 @@
          <widget class="QWebEngineView" name="newsEngineView">
           <property name="url">
            <url>
-            <string>https://github.com/smartcmd/MinecraftConsoles/commits</string>
+            <string>https://github.com/MCLCE/MinecraftConsoles/commits</string>
            </url>
           </property>
          </widget>
