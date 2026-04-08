@@ -1,0 +1,90 @@
+* {
+    background-color : white;
+    color : black; 
+}
+
+QLabel:disabled {
+    color : gray; 
+    opacity : 100;
+}
+
+QPushButton {
+    color : white;
+    border : none;
+}
+
+QPushButton:pressed {
+    color : white;
+    font : bold; 
+    border : none;
+}
+
+QPushButton:hover { 
+    color : white;
+    text-decoration : underline;
+    border : none;
+}
+
+QPushButton:disabled { 
+    opacity : 100;
+    border : none;
+}
+
+QPushButton:disabled { 
+    opacity : 100;
+    border : 5px;
+}
+
+QTabWidget {
+    background-color : transparent; 
+}
+
+QMainWindow QLabel {
+    color : white;
+}
+
+QStatusBar {
+    color : black;
+    background-color : white;
+}
+
+QMainWindow QLabel {
+    color : black;
+}
+
+QMenu::item {
+    color: white;
+    background-color : black;
+}
+
+QMenu::item:selected {
+    color: yellow;
+    text-decoration: underline;
+}
+
+QMenu::item:disabled {
+    color: gray;
+    opacity : 100;
+}
+
+QMenu {
+    background-color : white;
+}
+
+QMenuBar {
+    background-color : white;
+}
+
+QMenuBar::item {
+    color : black;
+    background-color : white;
+}
+
+QMenuBar::item:disabled {
+    color : gray;
+    background-color : white;
+}
+
+QGroupBox {
+    background-color: transparent;
+}

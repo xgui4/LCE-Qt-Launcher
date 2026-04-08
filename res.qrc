@@ -1,16 +1,18 @@
 <RCC>
     <qresource prefix="/assets">
-        <file alias="launcher_small.png">assets/Launcher_small.png</file>
-        <file alias="background.png">assets/background.png</file>
-        <file alias="launcher_medium.png">assets/Launcher_medium.png</file>
-        <file alias="launcher_big.png">assets/Launcher.png</file>
-        <file alias="minecraft.png">assets/minecraft.png</file>
-        <file alias="minecraft_lce_titl;e.png">assets/minecraft-lce-title.png</file>
-        <file alias="button.png">assets/button.png</file>
-        <file alias="button-pressed.png">assets/button-pressed.png</file>
+        <file alias="launcher_small.png">assets/images/Launcher_small.png</file>
+        <file alias="background.png">assets/images/background.png</file>
+        <file alias="launcher_medium.png">assets/images/Launcher_medium.png</file>
+        <file alias="launcher_big.png">assets/images/Launcher.png</file>
+        <file alias="minecraft.png">assets/images/minecraft.png</file>
+        <file alias="minecraft_lce_title.png">assets/images/minecraft-lce-title.png</file>
+        <file alias="button.png">assets/images/button.png</file>
+        <file alias="button-pressed.png">assets/images/button-pressed.png</file>
         <file alias="app.ico">assets/app.ico</file>
-        <file alias="pointer.png">assets/pointer.png</file>
-        <file alias="ascii_art_title.png">assets/ascii-art-text.png</file>
+        <file alias="pointer.png">assets/images/pointer.png</file>
+        <file alias="ascii_art_title.png">assets/images/ascii-art-text.png</file>
+        <file alias="button-disabled.png">assets/images/button-disabled.png</file>
+        <file alias="gear.gif">assets/images/gear.gif</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>

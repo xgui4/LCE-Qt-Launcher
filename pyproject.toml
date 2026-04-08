@@ -1,40 +1,64 @@
+[build-system]
+requires = ["hatchling", "PySide6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'"]
+build-backend = "hatchling.build"
+
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.1"
-description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt."
-requires-python = "==3.12.*"
-license = {text = "GPLv3"}
-
-[project.urls]
-repository = "https://github.com/xgui4/LCE-QT-Launcher"
-license = "https://www.gnu.org/licenses/gpl-3.0"
+version = "26.4.7a1"
+description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
+requires-python = ">3.10, <3.13"
+license = "GPL-3.0-or-later"
+readme = "readme.md"
+license-files = [ "license.md" ] 
 
 dependencies = [
-    "pyside6",
-    "requests",
-    "rich",
-    "term-image",
-    "pillow",
-    "pip"
+    "PySide6==6.11.0; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
+    "requests==2.33.1",
+    "rich==14.3.3",
+    "hatch==1.16.5",
+    "Nuitka==4.0.7",
+    "patchelf==0.17.2.4; sys_platform == 'linux'",
+]
+
+[project.urls]
+Repository = "https://github.com/xgui4/LCE-QT-Launcher"
+LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build]
+artifacts = [
+    "src/ui_*.py",
+    "src/res_rc.py",
 ]
 
 [tool.pyside6-project]
 files = [
-    "src/build_info.py",
-    "src/user_pref.py",
-    "src/downloader.py",
-    "src/instance_manager.py",
-    "src/launcher.py",
-    "src/system_manager.py",
-    "src/theme.py",
-    "src/setting_dialog.py",
-    "src/form.ui",
+    "src/lce_qt_launcher/__init__.py",
+    "src/lce_qt_launcher/app.py",
+    "src/lce_qt_launcher/build_info.py",
+    "src/lce_qt_launcher/preferences.py",
+    "src/lce_qt_launcher/downloader.py",
+    "src/lce_qt_launcher/launcher.py",
+    "src/lce_qt_launcher/theme.py",
+    "src/lce_qt_launcher/json_trans.py",
+    "src/lce_qt_launcher/cli.py",
+    "src/lce_qt_launcher/holyday.py",
+    "src/lce_qt_launcher/utils.py",
+    "src/lce_qt_launcher/term_service.py",
+    "src/lce_qt_launcher/features.py",
+    "src/lce_qt_launcher/gui/launcher.py",
+    "src/lce_qt_launcher/gui/__init__.py",
+    "src/lce_qt_launcher/gui/setting_dialog.py",
+    "src/lce_qt_launcher/gui/browser_dialog.py",
+    "src/lce_qt_launcher/managers/__init__.py",
+    "src/lce_qt_launcher/managers/instance.py",
+    "src/lce_qt_launcher/managers/system_managers.py",
     "src/system_info.ui",
-    "src/json_trans.py",
+    "src/instance.ui",
+    "src/form.ui",
     "src/main.py",
-    "src/cli.py",
-    "src/browser_dialog.py",
-    "pkg/LCE-Qt-Launcher.desktop",
     "license.md",
     "readme.md",
     "res.qrc",
@@ -42,4 +66,3 @@ files = [
     "code-of-conduct.md",
     "assets/app.ico"
 ]
-

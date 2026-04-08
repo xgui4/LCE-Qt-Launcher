@@ -6,14 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>921</width>
+    <height>810</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <family>Adwaita Sans</family>
-   </font>
   </property>
   <property name="windowTitle">
    <string>Minecraft LCE QT Launcher</string>
@@ -25,159 +20,415 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="font">
-    <font>
-     <family>Adwaita Sans</family>
-    </font>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+     <horstretch>1</horstretch>
+     <verstretch>1</verstretch>
+    </sizepolicy>
    </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
+   <property name="contextMenuPolicy">
+    <enum>Qt::ContextMenuPolicy::ActionsContextMenu</enum>
    </property>
-   <widget class="QGroupBox" name="verticalGroupBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>781</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="11" column="0">
-      <widget class="QLineEdit" name="serverNameInputBox"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLineEdit" name="usernameInputBox"/>
-     </item>
-     <item row="9" column="0">
-      <widget class="QLineEdit" name="serverIPInputBox"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="usernameInputBoxLabel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Username</string>
-       </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>2</horstretch>
+        <verstretch>2</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::TabShape::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="launcherTab">
+       <attribute name="title">
+        <string>Launcher</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QGroupBox" name="verticalGroupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>1</width>
+            <height>1</height>
+           </size>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="3" column="0">
+            <widget class="QLabel" name="instance_img">
+             <property name="minimumSize">
+              <size>
+               <width>182</width>
+               <height>71</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>182</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0" colspan="3">
+            <widget class="QProgressBar" name="progressBar">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="accessibleName">
+              <string>Installation Progress Bar</string>
+             </property>
+             <property name="accessibleDescription">
+              <string>The percentage of the installation</string>
+             </property>
+             <property name="accessibleIdentifier">
+              <string>install progress bar</string>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="progressLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Progress</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="title">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>false</bool>
+             </property>
+             <property name="indent">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" rowspan="2" colspan="3">
+            <widget class="QWidget" name="ModifyInstance" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QFrame" name="mdoifyInstanceFrame">
+                <layout class="QFormLayout" name="formLayout">
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="modifyInstancSectionLabel">
+                   <property name="font">
+                    <font>
+                     <pointsize>14</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Modify Instance</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="usernameInputBoxLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Username</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="pathInputBoxLabel">
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Installation Path</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="0">
+                  <widget class="QLabel" name="repoURKLabel">
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Repo URL</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="12" column="0">
+                  <widget class="QLabel" name="serverNameInputBoxLabel">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Server Name (Coming Soon)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0" colspan="2">
+                  <widget class="QLineEdit" name="usernameInputBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0" colspan="2">
+                  <widget class="QLineEdit" name="pathInputBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="0" colspan="2">
+                  <widget class="QLineEdit" name="repoURLInputBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="0" colspan="2">
+                  <widget class="QLabel" name="serverIPInputBoxLabel">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Server IP (Coming Soon)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="11" column="0" colspan="2">
+                  <widget class="QLineEdit" name="serverIPInputBox">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="0" colspan="2">
+                  <widget class="QLineEdit" name="serverNameInputBox">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="14" column="0" colspan="2">
+                  <widget class="QPushButton" name="confirmChangesButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Confirm Changes</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="15" column="0" colspan="2">
+                  <widget class="QPushButton" name="savetInstanceButton">
+                   <property name="text">
+                    <string>Save Instances Config</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="repo_name_branch">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Default (MCLCE)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0" colspan="3">
+            <widget class="QPushButton" name="playButton">
+             <property name="text">
+              <string>Play</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0" colspan="3">
+            <widget class="QPushButton" name="installButton">
+             <property name="text">
+              <string>Install</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0" colspan="3">
+            <widget class="QPushButton" name="openInstanceEditor">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Open Instances Editor</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="0" colspan="3">
+            <widget class="QPushButton" name="settingButton">
+             <property name="text">
+              <string>Setting</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="serverIPInputBoxLabel">
-       <property name="text">
-        <string>Server IP</string>
-       </property>
+      <widget class="QWidget" name="NewsTab">
+       <attribute name="title">
+        <string>News</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QWebEngineView" name="newsEngineView">
+          <property name="url">
+           <url>
+            <string>https://github.com/MCLCE/MinecraftConsoles/commits</string>
+           </url>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="pathInputBoxLabel">
-       <property name="text">
-        <string>Path</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLineEdit" name="repoURLInputBox"/>
-     </item>
-     <item row="14" column="1">
-      <widget class="QPushButton" name="settingButton">
-       <property name="text">
-        <string>Setting</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLineEdit" name="pathInputBox"/>
-     </item>
-     <item row="13" column="1">
-      <widget class="QPushButton" name="installButton">
-       <property name="text">
-        <string>Install</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="0">
-      <widget class="QLabel" name="progressLabel">
-       <property name="text">
-        <string>Progress</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="0">
-      <widget class="QLabel" name="serverNameInputBoxLabel">
-       <property name="text">
-        <string>Server Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="repoURKLabel">
-       <property name="text">
-        <string>Repo URL</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="0">
-      <widget class="QProgressBar" name="progressBar">
-       <property name="accessibleName">
-        <string>Installation Progress Bar</string>
-       </property>
-       <property name="accessibleDescription">
-        <string>The percentage of the installation</string>
-       </property>
-       <property name="accessibleIdentifier">
-        <string>install progress bar</string>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-       <property name="invertedAppearance">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="title">
-       <property name="minimumSize">
-        <size>
-         <width>50</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Adwaita Sans</family>
-         <pointsize>31</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../res.qrc">:/assets/minecraft_lce_titl;e.png</pixmap>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="0">
-      <widget class="QPushButton" name="confirmChangesButton">
-       <property name="text">
-        <string>Confirm Chances</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="1">
-      <widget class="QPushButton" name="playButton">
-       <property name="text">
-        <string>Play</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -185,8 +436,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>27</height>
+     <width>921</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -196,8 +447,9 @@
     <addaction name="actionQuit"/>
     <addaction name="actionUpdate"/>
     <addaction name="actionSave"/>
-    <addaction name="actionCreate_New_Instance"/>
     <addaction name="actionImport_Instance"/>
+    <addaction name="actionCreate_New_Instance"/>
+    <addaction name="actionSetting"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -209,37 +461,43 @@
     <addaction name="actionAbout_Minecraft"/>
     <addaction name="actionMore_Minecraft_LCE_Projects"/>
    </widget>
-   <widget class="QMenu" name="menuInstances">
+   <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Instances</string>
+     <string>Edit</string>
     </property>
     <addaction name="actionDefault"/>
+    <addaction name="separator"/>
+    <addaction name="actionSetting_3"/>
    </widget>
-   <widget class="QMenu" name="menuPlugins">
-    <property name="title">
-     <string>Plugins</string>
+   <widget class="QMenu" name="menuFolders">
+    <property name="enabled">
+     <bool>false</bool>
     </property>
-    <addaction name="actionComing_soon"/>
-   </widget>
-   <widget class="QMenu" name="menuNews">
     <property name="title">
-     <string>News</string>
+     <string>Folders</string>
     </property>
-    <addaction name="actionComing_soon_2"/>
+    <addaction name="actionLogs"/>
+    <addaction name="actionConfiguration"/>
+    <addaction name="actionThemese"/>
+    <addaction name="actionSkins"/>
+    <addaction name="actionInstances"/>
+    <addaction name="actionApp_Root"/>
    </widget>
    <widget class="QMenu" name="menuView">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionSee_Advanced_Option"/>
-    <addaction name="actionSee_Skin"/>
-    <addaction name="actionSee_Instance_Option"/>
+    <addaction name="actionInstance_Editor"/>
+    <addaction name="actionNews"/>
+    <addaction name="actionSetting_2"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuInstances"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
-   <addaction name="menuPlugins"/>
-   <addaction name="menuNews"/>
+   <addaction name="menuFolders"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionQuit">
@@ -275,7 +533,7 @@
     <iconset theme="dialog-information"/>
    </property>
    <property name="text">
-    <string>About</string>
+    <string>About LCE Qt Launcher</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::AboutRole</enum>
@@ -303,35 +561,12 @@
     <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
    </property>
   </action>
-  <action name="actionComing_Soon">
-   <property name="text">
-    <string>Coming Soon</string>
-   </property>
-  </action>
-  <action name="actionComing_Soon_2">
-   <property name="text">
-    <string>Coming Soon</string>
-   </property>
-  </action>
   <action name="actionComing_soon">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
     <string>Coming soon</string>
-   </property>
-  </action>
-  <action name="actionComing_soon_2">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Coming soon</string>
-   </property>
-  </action>
-  <action name="actionComing_Soon_3">
-   <property name="text">
-    <string>Coming Soon</string>
    </property>
   </action>
   <action name="actionDefault">
@@ -365,17 +600,6 @@
     <string>Save Instance</string>
    </property>
   </action>
-  <action name="actionCreate_New_Instance">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::ContactNew"/>
-   </property>
-   <property name="text">
-    <string>Create New Instance (Coming Soon)</string>
-   </property>
-  </action>
   <action name="actionImport_Instance">
    <property name="icon">
     <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
@@ -391,9 +615,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="text">
-    <string>See Advanced Option (Coming Soon)</string>
-   </property>
   </action>
   <action name="actionSee_Skin">
    <property name="checkable">
@@ -401,9 +622,6 @@
    </property>
    <property name="enabled">
     <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>See Skin (Coming Soon)</string>
    </property>
   </action>
   <action name="actionSee_Instance_Option">
@@ -413,17 +631,142 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>See Instance Options</string>
    </property>
   </action>
+  <action name="actionCreate_New_Instance">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+   </property>
+   <property name="text">
+    <string>Create New Instance</string>
+   </property>
+  </action>
+  <action name="actionLogs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Logs</string>
+   </property>
+  </action>
+  <action name="actionConfiguration">
+   <property name="text">
+    <string>Configuration</string>
+   </property>
+  </action>
+  <action name="actionThemese">
+   <property name="text">
+    <string>Themes</string>
+   </property>
+  </action>
+  <action name="actionSkins">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Skins</string>
+   </property>
+  </action>
+  <action name="actionInstances">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Instances</string>
+   </property>
+  </action>
+  <action name="actionApp_Root">
+   <property name="text">
+    <string>App Root</string>
+   </property>
+  </action>
+  <action name="actionSee_News">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>See News</string>
+   </property>
+  </action>
+  <action name="actionSeeProgressBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>See Progress Bar</string>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="text">
+    <string> Setting</string>
+   </property>
+  </action>
+  <action name="actionInstance_Editor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Instance Editor</string>
+   </property>
+  </action>
+  <action name="actionNews">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>News</string>
+   </property>
+  </action>
+  <action name="actionSetting_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
+  <action name="actionSetting_3">
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
  </widget>
- <tabstops>
-  <tabstop>usernameInputBox</tabstop>
-  <tabstop>pathInputBox</tabstop>
-  <tabstop>serverIPInputBox</tabstop>
-  <tabstop>serverNameInputBox</tabstop>
- </tabstops>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../res.qrc"/>
   <include location="../res.qrc"/>
