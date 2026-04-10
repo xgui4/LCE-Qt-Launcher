@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>695</width>
+    <width>692</width>
     <height>272</height>
    </rect>
   </property>
@@ -60,7 +60,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Settings (Work in Progress)</string>
+     <string>Settings</string>
     </property>
    </widget>
    <widget class="QLabel" name="LanguagesComboBoxlabel">
@@ -131,6 +131,18 @@
       <height>32</height>
      </rect>
     </property>
+    <property name="whatsThis">
+     <string>Set The App Thene</string>
+    </property>
+    <property name="accessibleName">
+     <string>chooseAppsTheme</string>
+    </property>
+    <property name="accessibleDescription">
+     <string>Choose The Apps Theme</string>
+    </property>
+    <property name="accessibleIdentifier">
+     <string>chooseAppsThemeComboBox</string>
+    </property>
     <item>
      <property name="text">
       <string>Default</string>
@@ -193,15 +205,15 @@
      <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="tristate">
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="holydayDheckBox_2">
+   <widget class="QCheckBox" name="developperModeDheckBox">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -234,6 +246,9 @@
     <property name="icon">
      <iconset theme="QIcon::ThemeIcon::Computer"/>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
     <property name="checked">
      <bool>false</bool>
     </property>
@@ -244,10 +259,10 @@
    <widget class="QLabel" name="gearIconlabel">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>60</y>
-      <width>121</width>
-      <height>121</height>
+      <x>490</x>
+      <y>30</y>
+      <width>181</width>
+      <height>141</height>
      </rect>
     </property>
     <property name="text">
@@ -258,6 +273,34 @@
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="accesibilitycheckBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>421</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="accessibleName">
+     <string>acccesbilityToggle</string>
+    </property>
+    <property name="accessibleDescription">
+     <string>Toggle the Accessibility Mode</string>
+    </property>
+    <property name="accessibleIdentifier">
+     <string>acccesbilityToggle</string>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::RightToLeft</enum>
+    </property>
+    <property name="text">
+     <string>Acccesible Mode </string>
+    </property>
+    <property name="icon">
+     <iconset theme="preferences-desktop-accessibility"/>
     </property>
    </widget>
   </widget>

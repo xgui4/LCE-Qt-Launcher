@@ -10,19 +10,18 @@ import subprocess
 import json
 import os
 
-_GITHUB_RELEASE_STR = "/releases/download/"
-
 class InstanceSource(Enum):
     GITHUB_RELEASE = 0
-    REMOTE_GIT_SOURCE = 1
-    LOCAL_INSTALLATION = 2
-    LOCAL_SOURCE_CODE = 3
+    FORGEJO_RELEASE = 1
+    REMOTE_GIT_SOURCE = 2
+    LOCAL_INSTALLATION = 3
+    LOCAL_SOURCE_CODE = 4
 
-# class InstanceType(Enum):
-#    CLIENT_VANILLA = 0
-#    CLENT_MODDED = 1
-#    SERVER_VANILLA = 2
-#    SERVER_MODDED = 3
+class InstanceType(Enum):
+   CLIENT_VANILLA = 0
+   CLENT_MODDED = 1
+   SERVER_VANILLA = 2
+   SERVER_MODDED = 3
 
 DEFAULT_INSTANCE_NAME = "Default"
 DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
@@ -31,6 +30,7 @@ DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
 DEFAULT_URL = "https://github.com/MCLCE/MinecraftConsoles"
 DEFAULT_INSTANCE_SOURCE = InstanceSource.GITHUB_RELEASE
+DEFAULT_INSTANCE_TYPE = InstanceType.CLIENT_VANILLA
 DEFAULT_VERSION = "nightly"
 DEFAULT_SKIN_PATH = ""
 DEFAULT_SERVERS = ""
@@ -44,7 +44,7 @@ class Instance:
                  archive_file : str = DEFAULT_ARCHIVE_FILE,
                  url : str = DEFAULT_URL, 
                  instance_source : InstanceSource = DEFAULT_INSTANCE_SOURCE,
-                 #instance_type : InstanceType = InstanceType.CLIENT_VANILLA, 
+                 instance_type : InstanceType = DEFAULT_INSTANCE_TYPE, 
                  version : str = DEFAULT_VERSION,
                  skin_path : str = DEFAULT_SKIN_PATH,
                  servers : list = DEFAULT_SERVERS
@@ -56,7 +56,7 @@ class Instance:
         self.exe_name: str = exe_name
         self.repo_url: str = url
         self.instance_source: InstanceSource = instance_source
-        # self.instance_type = instance_type
+        self.instance_type = instance_type
         self.version: str = version
         self.skin_path: str = skin_path
         self.servers: list = servers
@@ -69,20 +69,22 @@ class Instance:
         self.archive_file = inst_dict.get("archive_file", DEFAULT_ARCHIVE_FILE)
         self.url = inst_dict.get("url", DEFAULT_URL)
         self.instance_source = inst_dict.get("instances_source", DEFAULT_INSTANCE_SOURCE)
+        self.instance_type = inst_dict.get("instance_type")
         self.version = inst_dict.get("version", DEFAULT_VERSION)
         self.skin_path = inst_dict.get("skin_path", DEFAULT_SKIN_PATH)
         self.servers = inst_dict.get("servers", DEFAULT_SERVERS)
 
     def get_download_url(self) -> str:
-        if self.instance_source == InstanceSource.GITHUB_RELEASE:
+        download_release_url = "/releases/download/"
+        if self.instance_source == InstanceSource.GITHUB_RELEASE or self.instance_source == InstanceSource.FORGEJO_RELEASE:
             return self.repo_url + \
-                    _GITHUB_RELEASE_STR + \
+                    download_release_url + \
                     self.version + "/" + \
                     self.archive_file
         if self.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
             return f"{self.repo_url}.git"
         if self.instance_source == InstanceSource.LOCAL_INSTALLATION:
-            raise RuntimeError("Error ! Ressource Cannot be downloaded. Reason : Ressource is local")
+            raise RuntimeError("Error ! Local Installation does not have a download URL")
         else:
             raise RuntimeError("Not implemented yet!")        
 
@@ -113,15 +115,15 @@ class InstanceManager:
             json_string: str = json.dumps(vars(self.instance))
         except TypeError:
             json_string: str = json.dumps(vars(self.instance), default=str)
-        if not save_file[0].endswith(self._build_info.instance_extension):
+        if not save_file.endswith(self._build_info.instance_extension):
             save_file: str = save_file[0] + self._build_info.instance_extension
         os.makedirs(os.path.dirname(save_file), exist_ok=True)
-        with open(save_file[0], 'w') as f:
+        with open(save_file, 'w') as f:
             _ = f.write(json_string)
     
     def load_instance(self, save_file : str) -> None:
         if not save_file.endswith(self._build_info.instance_extension):
-            save_file = os.path.join(save_file, ".lce_inst")
+            save_file = os.path.join(save_file, self._build_info.instance_extension)
         inst_dict : dict = {}
         with open(save_file, 'r') as json_file:
             inst_dict = json.load(json_file)

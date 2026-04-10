@@ -21,6 +21,7 @@ import lce_qt_launcher.features as features
 import lce_qt_launcher.holyday as holyday
 
 import sys
+import platform
 
 class Launcher(QMainWindow):
     def __init__(self, 
@@ -29,6 +30,7 @@ class Launcher(QMainWindow):
                  sys_dialog_ui: object,
                  instance_ui_editor: object, 
                  setting_ui : object,
+                 ui_about_dialog : object,
                  app : QApplication, 
                  parent=None) -> None:
         super().__init__(parent)
@@ -60,7 +62,7 @@ class Launcher(QMainWindow):
             features.show_about_qt(self)
 
         def show_about() -> None:
-            features.show_about_app(self, buildInfo, appContext.ICON)
+            features.show_about_app(self)
 
         def show_system_information() -> None:
             features.show_system_info(self)
@@ -96,13 +98,35 @@ class Launcher(QMainWindow):
 
         self.ui.setupUi(self)
         
+        self.about = ui_about_dialog()
+        self.aboutDialog = QDialog()
+
         self.sysinfo_dialog = QDialog() 
         self.dialog_ui = sys_dialog_ui()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
+        self.about.setupUi(self.aboutDialog)
+
+        # app_icon = QPixmap(":/assets/launcher.png");
+
+        # self.about.icon.setPixmap(app_icon)
+        self.about.title.setText(appContext.buildInfo.app_name)
+        self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
+        self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
+        self.about.creditsText.setText("Xgui4")
+        self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
+        self.about.commitLabel.setText(f"Commit : UNKOWMN")
+        self.about.buildDateLabel.setText(f"Build date : UNKOWN")
+        self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
+        self.about.platformLabel.setText(f"Platform : {platform.release()}")
+        from lce_qt_launcher.gui.license_str import license_str
+        self.about.licenseText.setText(license_str)
+
+        window_title: str = translator.translate(key="App Title")
 
         self.instance_window = QMainWindow()
         self.instance_editor = instance_ui_editor()
         self.instance_editor.setupUi(self.instance_window)
+        self.instance_window.setWindowTitle(window_title)
 
         systemManager = buildInfo.system_manager
 

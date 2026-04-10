@@ -1,0 +1,16 @@
+{
+    "name" : "default", // Name of the instance 
+    "installation_path": ".lce", // Installation Path of the game files
+    "username" : "Steve", // Your Username
+    "exe_name" : "Minecraft.Client.exe", // The executable name 
+    "archive_name" : "LCEWindows64.zip", // The archive to download
+    "url" : "https://github.com/MCLCE/MinecraftConsoles", // The ur/repo of the project
+    // InstanceSource.GITHUB_RELEASE : GitHub, 
+    // InstanceSource.FORGEJO_RELEASE : Forgejo (like Codeberge), 
+    // InstanceSource.REMOTE_GIT_SOURCE = Remote Git  (not implemented yet)
+    // InstanceSource.LOCAL_INSTALLATION = Local Installation (not implemented yet)
+    // InstanceSource.LOCAL_SOURCE_CODE = Local Source Code (not implemented yet)
+    "instance_source" : "InstanceSource.GITHUB_RELEASE", 
+    "instance_type": "InstanceType.CLIENT_VANILLA", // Type of the instance (not implemented/functionnal yet)
+    "version" : "nightly" // version/tag of the release
+}

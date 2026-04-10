@@ -59,33 +59,14 @@ def show_instance_editor(parent : QWidget) -> None:
 
 def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
     file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
-    instanceManager.load_instance(file_name)
+    instanceManager.load_instance(file_name[0])
 
 def show_about_qt(parent : QWidget) -> None:
     print("Show About Qt popup.")
     QMessageBox.aboutQt(parent, "About Qt")
 
-def show_about_app(parent : QWidget, buildInfo : BuildInfo, icon : str) -> None:
-    parent.aboutPopupWindow = QDialog() 
-
-    parent.aboutPopupWindow.setWindowTitle(f"About {buildInfo.app_name} {buildInfo.version}")
-
-    imageLabel = QLabel()
-    logoPixmap = QPixmap(icon)
-    imageLabel.setPixmap(logoPixmap)
-
-    mainLayout = QVBoxLayout(parent.aboutPopupWindow)
-
-    titleLabel = QLabel(buildInfo.app_name)
-    versionLabel = QLabel(f"Version {buildInfo.version}")
-    licenseLabel = QLabel(f"License {buildInfo.license}")
-
-    mainLayout.addWidget(imageLabel)
-    mainLayout.addWidget(titleLabel)
-    mainLayout.addWidget(versionLabel)
-    mainLayout.addWidget(licenseLabel)
-    
-    parent.aboutPopupWindow.show()
+def show_about_app(parent) -> None:
+    parent.aboutDialog.show()
 
 def new_instance_from_form(mainWindow : QMainWindow) -> Instance:
     form = mainWindow.ui  

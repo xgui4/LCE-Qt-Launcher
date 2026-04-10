@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>921</width>
-    <height>810</height>
+    <width>1302</width>
+    <height>854</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,8 +60,11 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <property name="usesScrollButtons">
+       <bool>false</bool>
+      </property>
       <property name="documentMode">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="tabsClosable">
        <bool>true</bool>
@@ -73,6 +76,10 @@
        <bool>true</bool>
       </property>
       <widget class="QWidget" name="launcherTab">
+       <attribute name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/assets/minecraft.png</normaloff>:/assets/minecraft.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>Launcher</string>
        </attribute>
@@ -361,7 +368,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Default (MCLCE)</string>
+              <string>Default (MCLCE)  - Vanilla Client</string>
              </property>
             </widget>
            </item>
@@ -411,6 +418,10 @@
        </layout>
       </widget>
       <widget class="QWidget" name="NewsTab">
+       <attribute name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/assets/news.png</normaloff>:/assets/news.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>News</string>
        </attribute>
@@ -436,7 +447,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>921</width>
+     <width>1302</width>
      <height>22</height>
     </rect>
    </property>
@@ -720,6 +731,9 @@
    </property>
   </action>
   <action name="actionSetting">
+   <property name="icon">
+    <iconset theme="preferences-system"/>
+   </property>
    <property name="text">
     <string> Setting</string>
    </property>
@@ -755,6 +769,9 @@
    </property>
   </action>
   <action name="actionSetting_3">
+   <property name="icon">
+    <iconset theme="preferences-system"/>
+   </property>
    <property name="text">
     <string>Setting</string>
    </property>
@@ -768,7 +785,6 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../res.qrc"/>
   <include location="../res.qrc"/>
  </resources>
  <connections/>

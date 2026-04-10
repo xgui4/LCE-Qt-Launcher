@@ -46,42 +46,42 @@
     <item>
      <widget class="QLabel" name="appVersion">
       <property name="text">
-       <string>LCE Qt Launcher V. Unknow</string>
+       <string>appVersionLabel</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="qVersionLabel">
       <property name="text">
-       <string>Qt Version Unknow</string>
+       <string>qVersionLabel</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="pyVersionLabel">
       <property name="text">
-       <string>Python Version Unknow</string>
+       <string>pyVersionLabel</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="osInfoLabel">
       <property name="text">
-       <string>Operating System info :</string>
+       <string>osInfoLabel</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="pluginsInfoLabel">
       <property name="text">
-       <string>Plugins : </string>
+       <string>pluginsInfoLabel</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="runnersLabel">
       <property name="text">
-       <string>Runners: </string>
+       <string>runnersLabel</string>
       </property>
      </widget>
     </item>

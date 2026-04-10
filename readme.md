@@ -2,7 +2,7 @@
 
 ![LCE-QT-Launcher](assets/images/Launcher.png)
 
-<!-- ![Screnshot of the launcher](.github/screenshots/image.png) <!-- This Image is obselete -->
+![Screnshot of the launcher](.github/screenshots/image.png) 
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
@@ -26,12 +26,17 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Plugins
 - Skin support
 - Modding Support -->
+- Multiples Defaults Instances : MCLE and Legacy Evolved
 - in-app news
-- GNU/Linux compatibility
-- Experimental FreeBSD support 
-- Windows support
-- Focus on being the main hub for Minecraft LCE on GNU/Linux 
 - Minecraft Theme pre-configured
+
+## Long Term Goal 
+
+- Accessibility 
+- GNU/Linux compatibility
+- Windows support
+- Experimental FreeBSD support 
+- Focus on being the main hub for Minecraft LCE on GNU/Linux 
 
 ## How to run 
 
@@ -54,7 +59,7 @@ Coming in the next stable release when the program will be more stable
 
 > [!NOTE]
 > This automatic nighly build is currently not-stable and is very experimental and in active developpement
-> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
+> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac. For temporaly problem, the Linux automatic Build was disabled as it was overrided the Windows build. It will be re-enabled when fixed
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch
 
