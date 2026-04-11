@@ -11,6 +11,7 @@ from PySide6.QtGui import (
     QBrush
 )
 from PySide6.QtCore import ( 
+    Qt,
     qVersion, 
 )
 
@@ -40,6 +41,10 @@ class Launcher(QMainWindow):
         instanceManager = appContext.instanceMan
 
         buildInfo = appContext.buildInfo
+
+        self.image_label = instanceManager.instance.image
+        self.news_feed = instanceManager.instance.news_feed
+        self.instance_name = instanceManager.instance.name
 
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
@@ -78,6 +83,16 @@ class Launcher(QMainWindow):
 
         def load_instance() -> None:
             features.load_instance(self, instanceManager, buildInfo)
+            self.image_label = instanceManager.instance.image
+            self.news_feed = instanceManager.instance.news_feed
+            self.instance_name = instanceManager.instance.name
+            self.ui.usernameInputBox.setText(instanceManager.instance.username)
+            self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+            self.ui.repoURLInputBox.setText(instanceManager.instance.url)
+            pixmap = QPixmap(self.image_label)
+            self.ui.instance_img.setPixmap(pixmap)
+            self.ui.repo_name_branch.setText(self.instance_name)
+            self.ui.newsEngineView.setUrl(self.news_feed)
 
         def show_setting_dialog() -> None:
             features.show_setting(self, setting_ui)
@@ -107,7 +122,6 @@ class Launcher(QMainWindow):
         self.about.setupUi(self.aboutDialog)
 
         # app_icon = QPixmap(":/assets/launcher.png");
-
         # self.about.icon.setPixmap(app_icon)
         self.about.title.setText(appContext.buildInfo.app_name)
         self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
@@ -119,7 +133,9 @@ class Launcher(QMainWindow):
         self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
         from lce_qt_launcher.gui.license_str import license_str
-        self.about.licenseText.setText(license_str)
+        self.about.licenseText.setMarkdown(license_str)
+        self.about.aboutQt.clicked.connect(show_aboutQt)
+        self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
         window_title: str = translator.translate(key="App Title")
 

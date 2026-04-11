@@ -1,11 +1,14 @@
 {
+    "$schema" : "../../schemas/lce_qrt_inst_config.json",
     "name" : "Legacy Evolved",
     "installation_path": ".lce-evolved", 
     "username" : "Steve",
     "exe_name" : "Minecraft.Client.exe",
     "archive_name" : "LCEWindows64.zip",
     "url" : "https://codeberg.org/piebot/LegacyEvolved",
+    "news_feed" : "https://codeberg.org/piebot/LegacyEvolved",
+    "image" : ":/assets/lce-evolved-ico.png",
     "instance_source": "InstanceSource.FORGEJO_RELEASE", 
-    "instance_type": "InstanceType.CLIENT_MODDED", 
+    "instance_type": "InstanceType.CLIENT_VANILLA", 
     "version" : "nightly" 
 }

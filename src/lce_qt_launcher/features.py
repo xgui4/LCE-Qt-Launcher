@@ -58,8 +58,11 @@ def show_instance_editor(parent : QWidget) -> None:
     parent.instance_window.show()  
 
 def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
-    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
-    instanceManager.load_instance(file_name[0])
+    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+    try:
+        instanceManager.load_instance(file_name[0])
+    except FileNotFoundError:
+        instanceManager.load_instance(file_name)
 
 def show_about_qt(parent : QWidget) -> None:
     print("Show About Qt popup.")

@@ -1,0 +1,77 @@
+{
+    "$schema" : "https://json-schema.org/draft-07/schema#",
+    "$id" : ".",
+    "title" : "LCE Qt Launcher Instance Extension JSON",
+    "description": "LCE Qt Launcher Instance Config",
+    "type" : "object",
+    "properties": { 
+        "name" : {
+            "description": "Name of the instance",
+            "type" : "string",
+            "default" : "Default"
+        }, 
+        "installation_path" : {
+            "description": "Installation Path of the game files",
+            "type" : "string",
+            "default" : "."
+        },
+        "username" : {
+            "description": "The username of the player for the instance",
+            "type" : "string",
+            "default" : "Steve"
+        },
+        "exe_name" : {
+            "description": "The executable file of the instance",
+            "type" : "string", 
+            "default" : "Minecraft.Client.exe"
+        },
+        "archive_file" : {
+            "description": "The archive filename to download or extract",
+            "type" : "string",
+            "default" : "LCEWindows64.zip"
+        },
+        "url": {
+            "description": "The url/repo of the project",
+            "type" : "string", 
+            "default" : "https://github.com/MCLCE/minecraftconsoles"
+        },
+        "image" : {
+            "description": "Image of the instance to show (right now it is only local, will be updated later)",
+            "type" : "string",
+            "default" : ":/assets/minecraft.png"
+        },
+        "news_feed" : {
+            "description": "The website of the news feed to display in the news tabs",
+            "type" : "string",
+            "default" : "https://github.com/MCLCE/minecraftconsoles/commits"
+        },
+        "instance_source" : {
+            "description": "Instance Source Object", 
+            "examples": [
+                "InstanceSource.GITHUB_RELEASE",
+                "InstanceSource.FORGEJO_RELEASE",
+                "InstanceSource.REMOTE_GIT_SOURCE",
+                "InstanceSource.LOCAL_INSTALLATION",
+                "InstanceSource.LOCAL_SOURCE_CODE"
+            ],
+            "type" : "string",
+            "default" : "InstanceSource.GITHUB_RELEASE"
+        }, 
+        "instance_type" : {
+            "description": "Type of the instance (not implemented/functionnal yet)",
+            "examples": [
+                "InstanceType.CLIENT_VANILLA", 
+                "InstanceType.CLENT_MODDED",
+                "InstanceType.SERVER_VANILLA",
+                "InstanceType.SERVER_MODDED"
+            ],
+            "type" : "string",
+            "default" : "InstanceType.CLIENT_VANILLA"
+        },
+        "version" : {
+            "description": "version/tag of the release",
+            "type" : "string",
+            "default" : "nightly"
+        }
+    }
+}

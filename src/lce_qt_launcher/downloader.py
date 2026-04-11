@@ -41,6 +41,17 @@ class Downloader:
         else:
             print(f"Error : {response.status_code} during the dowloading of the Minecraft LCE Client")
     
+    def save_file_from_internet(img : str, filename : str, file_ext : str):
+        print("downloading img")
+        response = requests.get(img)
+        response.raise_for_status()
+        if response.status_code == SUCCESS_STATUS_CODE:
+            term_service.print_success(f"Downloading of {img} file was success")
+            with open(f"{filename}.{file_ext}", "wb") as f:
+                f.write(response.content)
+        else:
+            print(f"Error while downloading the {img} file")
+
     def extract_instance(self, response, instance) -> ZipFile:
         with ZipFile(BytesIO(response.content)) as archive:
             return archive.extractall(instance.installation_path)

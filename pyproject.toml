@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.4.10a1"
+version = "26.4.11a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -27,6 +27,9 @@ LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 [tool.hatch.build.targets.wheel.hooks.custom]
 path = "hatch_build.py"
 
+[tool.hatch.envs.default.scripts]
+packages = "python packages.py"
+
 [tool.hatch.build]
 artifacts = [
     "src/ui_*.py",
@@ -37,7 +40,8 @@ artifacts = [
 files = [
     "src/lce_qt_launcher/__init__.py",
     "src/lce_qt_launcher/app.py",
-    "src/lce_qt_launcher/build_info.py",
+    "src/lce_qt_launcher/app_context.py",
+    "src/lce_qt_launcher/cmd_args.py",
     "src/lce_qt_launcher/preferences.py",
     "src/lce_qt_launcher/downloader.py",
     "src/lce_qt_launcher/launcher.py",
@@ -50,11 +54,15 @@ files = [
     "src/lce_qt_launcher/features.py",
     "src/lce_qt_launcher/gui/launcher.py",
     "src/lce_qt_launcher/gui/__init__.py",
+    "src/lce_qt_launcher/gui/launcher.py",
+    "src/lce_qt_launcher/gui/license.py",
     "src/lce_qt_launcher/gui/setting_dialog.py",
     "src/lce_qt_launcher/gui/browser_dialog.py",
     "src/lce_qt_launcher/managers/__init__.py",
     "src/lce_qt_launcher/managers/instance.py",
     "src/lce_qt_launcher/managers/system_managers.py",
+    "src/lce_qt_launcher/views/image_class.py",
+    "src/lce_qt_launcher/views/__init__.py",
     "src/system_info.ui",
     "src/instance.ui",
     "src/form.ui",

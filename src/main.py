@@ -4,11 +4,13 @@
 # nuitka-project: --windows-icon-from-ico=assets/app.ico
 # nuitka-project: --windows-product-name=LCE-Qt-Launcher
 # nuitka-project: --include-data-dir=assets=assets
+# nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.4.10"
-# nuitka-project: --file-version="0.26.4.10"
+# nuitka-project: --product-version="0.26.4.11"
+# nuitka-project: --file-version="0.26.4.11"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
+# nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
 from PySide6.QtWidgets import QMessageBox, QFileDialog

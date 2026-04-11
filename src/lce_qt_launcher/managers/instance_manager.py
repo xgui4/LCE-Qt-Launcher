@@ -31,6 +31,8 @@ DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
 DEFAULT_URL = "https://github.com/MCLCE/MinecraftConsoles"
 DEFAULT_INSTANCE_SOURCE = InstanceSource.GITHUB_RELEASE
 DEFAULT_INSTANCE_TYPE = InstanceType.CLIENT_VANILLA
+DEFAULT_IMAGE = ":/assets/minecraft.png",
+DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 DEFAULT_VERSION = "nightly"
 DEFAULT_SKIN_PATH = ""
 DEFAULT_SERVERS = ""
@@ -43,8 +45,10 @@ class Instance:
                  exe_name : str = DEFAULT_EXE_NAME,
                  archive_file : str = DEFAULT_ARCHIVE_FILE,
                  url : str = DEFAULT_URL, 
+                 image : str = DEFAULT_IMAGE,
                  instance_source : InstanceSource = DEFAULT_INSTANCE_SOURCE,
                  instance_type : InstanceType = DEFAULT_INSTANCE_TYPE, 
+                 news_feed : str = DEFAULT_NEWS_FEED,
                  version : str = DEFAULT_VERSION,
                  skin_path : str = DEFAULT_SKIN_PATH,
                  servers : list = DEFAULT_SERVERS
@@ -57,6 +61,8 @@ class Instance:
         self.repo_url: str = url
         self.instance_source: InstanceSource = instance_source
         self.instance_type = instance_type
+        self.image : str = image
+        self.news_feed : str = news_feed
         self.version: str = version
         self.skin_path: str = skin_path
         self.servers: list = servers
@@ -69,7 +75,9 @@ class Instance:
         self.archive_file = inst_dict.get("archive_file", DEFAULT_ARCHIVE_FILE)
         self.url = inst_dict.get("url", DEFAULT_URL)
         self.instance_source = inst_dict.get("instances_source", DEFAULT_INSTANCE_SOURCE)
-        self.instance_type = inst_dict.get("instance_type")
+        self.instance_type = inst_dict.get("instance_type", DEFAULT_INSTANCE_TYPE)
+        self.image = inst_dict.get("image", DEFAULT_IMAGE)
+        self.news_feed = inst_dict.get("image", DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", DEFAULT_VERSION)
         self.skin_path = inst_dict.get("skin_path", DEFAULT_SKIN_PATH)
         self.servers = inst_dict.get("servers", DEFAULT_SERVERS)
@@ -122,8 +130,8 @@ class InstanceManager:
             _ = f.write(json_string)
     
     def load_instance(self, save_file : str) -> None:
-        if not save_file.endswith(self._build_info.instance_extension):
-            save_file = os.path.join(save_file, self._build_info.instance_extension)
+        #if not save_file.endswith(self._build_info.instance_extension):
+        #    save_file = os.path.join(save_file, self._build_info.instance_extension)
         inst_dict : dict = {}
         with open(save_file, 'r') as json_file:
             inst_dict = json.load(json_file)
