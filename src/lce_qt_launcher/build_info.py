@@ -3,15 +3,15 @@ from importlib.metadata import PackageNotFoundError, metadata, version
 from importlib.metadata._meta import PackageMetadata
 
 from lce_qt_launcher.managers.system_manager import SystemManager
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 
 _FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-_FALLBACK_VERSION_NUMBER  = "26.4.10a1"
+_FALLBACK_VERSION_NUMBER  = "26.4.11a1"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
-_VERSION_TYPE = "nighly"
+_VERSION_TYPE = "nightly"
 _INSTANCE_EXTENSION = ".lce_inst"
 
 class BuildInfo:

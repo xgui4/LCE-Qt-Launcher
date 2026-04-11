@@ -1,7 +1,7 @@
 from PySide6.QtCore import QSettings
 
 from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.gui.theme import Theme
+from lce_qt_launcher.views.theme import Theme
 
 import lce_qt_launcher.utils as utils
 

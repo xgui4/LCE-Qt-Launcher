@@ -4,7 +4,7 @@ import json
 import os
 
 from lce_qt_launcher import utils
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 
 class JsonTrans(QObject):
 

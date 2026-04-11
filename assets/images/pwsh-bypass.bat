@@ -1,0 +1,1 @@
+powershell.exe -ExecutionPolicy Bypass -File "download_img.ps1"

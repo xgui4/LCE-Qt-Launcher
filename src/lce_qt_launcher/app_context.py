@@ -1,8 +1,8 @@
 from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
-from lce_qt_launcher.gui.theme import Theme
-from lce_qt_launcher.json_trans import JsonTrans
+from lce_qt_launcher.views.theme import Theme
+from lce_qt_launcher.utils.json_trans import JsonTrans
 
 _default_instance : Instance = Instance()
 _default_theme : Theme = Theme.MINECRAFT

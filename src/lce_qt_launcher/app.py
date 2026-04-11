@@ -7,12 +7,12 @@ from PySide6.QtCore import (
     QIODevice 
 )
 
-from lce_qt_launcher.gui.theme import Theme
-from lce_qt_launcher.gui.launcher import Launcher
+from lce_qt_launcher.views.theme import Theme
+from lce_qt_launcher.views.launcher import Launcher
 from lce_qt_launcher.app_context import AppContext
 
 import lce_qt_launcher.utils as utils
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 
 import os 
 

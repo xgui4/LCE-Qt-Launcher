@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 
 from lce_qt_launcher.build_info import BuildInfo
 
-import lce_qt_launcher.term_service as term_service 
+import lce_qt_launcher.views.term_service as term_service 
 
 if TYPE_CHECKING:
     from lce_qt_launcher.managers.instance_manager import Instance
@@ -18,7 +18,7 @@ import os
 SUCCESS_STATUS_CODE = 200
 
 class Downloader:
-    def __init__(self, build_info: BuildInfo):
+    def __init__(self, build_info: BuildInfo = None):
         self._build_info: BuildInfo = build_info
 
     def download_instance(self, instance : Instance):
@@ -41,6 +41,23 @@ class Downloader:
         else:
             print(f"Error : {response.status_code} during the dowloading of the Minecraft LCE Client")
     
-    def extract_instance(self, response, instance) -> ZipFile:
+    def save_file_from_internet(
+        self,
+        url : str, 
+        filename : str, 
+        file_ext : str,
+        save_location : str = ".", 
+    ):
+        print("downloading img")
+        response = requests.get(url)
+        response.raise_for_status()
+        if response.status_code == SUCCESS_STATUS_CODE:
+            term_service.print_success(f"Downloading of {url} file was success")
+            with open(os.path.join(save_location ,f"{filename}.{file_ext}"), "wb") as f:
+                f.write(response.content)
+        else:
+            print(f"Error while downloading the {url} file")
+
+    def extract_instance(self, response, instance : Instance) -> ZipFile:
         with ZipFile(BytesIO(response.content)) as archive:
             return archive.extractall(instance.installation_path)

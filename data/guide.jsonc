@@ -1,10 +1,13 @@
 {
+    "$schema": "../schemas/lce_qrt_inst_config.json",
     "name" : "default", // Name of the instance 
     "installation_path": ".lce", // Installation Path of the game files
     "username" : "Steve", // Your Username
     "exe_name" : "Minecraft.Client.exe", // The executable name 
     "archive_name" : "LCEWindows64.zip", // The archive to download
     "url" : "https://github.com/MCLCE/MinecraftConsoles", // The ur/repo of the project
+    "image" : ":/assets/minecraft.png", // Image of the instance to show (right now it is only local, will be updated later)
+    "news_feed" : "https://github.com/MCLCE/MinecraftConsoles/commits/main/", // The webiste of the news feed to display in the news tabs
     // InstanceSource.GITHUB_RELEASE : GitHub, 
     // InstanceSource.FORGEJO_RELEASE : Forgejo (like Codeberge), 
     // InstanceSource.REMOTE_GIT_SOURCE = Remote Git  (not implemented yet)
