@@ -13,11 +13,11 @@ from PySide6.QtGui import (
      QPixmap
 ) 
 
-import lce_qt_launcher.term_service as term_service
-import lce_qt_launcher.cli as cli 
+import lce_qt_launcher.views.term_service as term_service
+import lce_qt_launcher.views.cli as cli 
 
-from lce_qt_launcher.gui.browser_dialog import BrowserDialog
-from lce_qt_launcher.gui.setting_dialog import SettingDialog
+from lce_qt_launcher.views.browser_dialog import BrowserDialog
+from lce_qt_launcher.views.setting_dialog import SettingDialog
 from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance

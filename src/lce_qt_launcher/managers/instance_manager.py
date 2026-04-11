@@ -1,7 +1,7 @@
-from lce_qt_launcher.downloader import Downloader
+from lce_qt_launcher.managers.downloader import Downloader
 from lce_qt_launcher.build_info import BuildInfo
 
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 
 from enum import Enum
 from subprocess import TimeoutExpired

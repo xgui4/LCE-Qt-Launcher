@@ -1,7 +1,5 @@
 import os
 
-from lce_qt_launcher.gui.theme import Theme
-
 from pathlib import Path
 
 def get_source_dir() -> str:

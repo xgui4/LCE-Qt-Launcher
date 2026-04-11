@@ -17,9 +17,9 @@ from PySide6.QtCore import (
 
 from lce_qt_launcher.app_context import AppContext
 
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
-import lce_qt_launcher.holyday as holyday
+import lce_qt_launcher.utils.holyday as holyday
 
 import sys
 import platform
@@ -132,7 +132,7 @@ class Launcher(QMainWindow):
         self.about.buildDateLabel.setText(f"Build date : UNKOWN")
         self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
-        from lce_qt_launcher.gui.license_str import license_str
+        from lce_qt_launcher.views.license_str import license_str
         self.about.licenseText.setMarkdown(license_str)
         self.about.aboutQt.clicked.connect(show_aboutQt)
         self.about.closeButton.clicked.connect(self.aboutDialog.close)
@@ -156,10 +156,6 @@ class Launcher(QMainWindow):
         self.ui.progressLabel.setVisible(False)
         self.ui.progressBar.setVisible(False)
         self.ui.progressBar.setEnabled(False)
-
-        self.ui.openInstanceEditor.setEnabled(False)
-
-        self.ui.openInstanceEditor.setText(self.ui.openInstanceEditor.text() + " (Coming Soon)") # Not Finished YET
 
         _ = self.ui.playButton.clicked.connect(launch)
         _ = self.ui.installButton.clicked.connect(install)

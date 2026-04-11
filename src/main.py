@@ -15,10 +15,10 @@
 
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
-from lce_qt_launcher.cmd_arg import CmdArgAction, parse_args, argsDetected
+from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
-from lce_qt_launcher.cli import parse_cmd_arg
+from lce_qt_launcher.views.cli import parse_cmd_arg
 
 import sys
 import os

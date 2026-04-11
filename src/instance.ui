@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>InstancesEditor</class>
- <widget class="QMainWindow" name="InstancesEditor">
+ <widget class="QWidget" name="InstancesEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1164</width>
+    <width>809</width>
     <height>706</height>
    </rect>
   </property>
@@ -17,7 +17,103 @@
    <iconset resource="../res.qrc">
     <normaloff>:/assets/app.ico</normaloff>:/assets/app.ico</iconset>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QMenuBar" name="menuBar">
+     <widget class="QMenu" name="fileMenu">
+      <property name="title">
+       <string>&amp;File</string>
+      </property>
+      <property name="toolTipsVisible">
+       <bool>true</bool>
+      </property>
+      <addaction name="actionAddInstance"/>
+      <addaction name="separator"/>
+      <addaction name="actionLaunchInstance"/>
+      <addaction name="actionKillInstance"/>
+      <addaction name="separator"/>
+      <addaction name="actionEditInstance"/>
+      <addaction name="actionChangeInstGroup"/>
+      <addaction name="actionViewSelectedInstFolder"/>
+      <addaction name="actionExportInstance"/>
+      <addaction name="actionCopyInstance"/>
+      <addaction name="actionDeleteInstance"/>
+      <addaction name="actionCreateInstanceShortcut"/>
+      <addaction name="separator"/>
+      <addaction name="actionSettings"/>
+      <addaction name="actionCloseWindow"/>
+     </widget>
+     <widget class="QMenu" name="editMenu">
+      <property name="title">
+       <string>&amp;Edit</string>
+      </property>
+      <property name="toolTipsVisible">
+       <bool>true</bool>
+      </property>
+      <addaction name="actionUndoTrashInstance"/>
+     </widget>
+     <widget class="QMenu" name="viewMenu">
+      <property name="title">
+       <string>&amp;View</string>
+      </property>
+      <property name="toolTipsVisible">
+       <bool>true</bool>
+      </property>
+      <addaction name="actionChangeTheme"/>
+      <addaction name="separator"/>
+      <addaction name="actionToggleStatusBar"/>
+      <addaction name="actionLockToolbars"/>
+      <addaction name="separator"/>
+     </widget>
+     <widget class="QMenu" name="foldersMenu">
+      <property name="title">
+       <string>F&amp;olders</string>
+      </property>
+      <property name="toolTipsVisible">
+       <bool>true</bool>
+      </property>
+      <addaction name="actionViewLauncherRootFolder"/>
+      <addaction name="separator"/>
+      <addaction name="actionViewInstanceFolder"/>
+      <addaction name="actionViewCentralModsFolder"/>
+      <addaction name="actionViewSkinsFolder"/>
+      <addaction name="separator"/>
+      <addaction name="actionViewIconThemeFolder"/>
+      <addaction name="actionViewWidgetThemeFolder"/>
+      <addaction name="actionViewIconsFolder"/>
+      <addaction name="separator"/>
+      <addaction name="actionViewLogsFolder"/>
+     </widget>
+     <widget class="QMenu" name="helpMenu">
+      <property name="title">
+       <string>&amp;Help</string>
+      </property>
+      <property name="toolTipsVisible">
+       <bool>true</bool>
+      </property>
+      <addaction name="actionReportBug"/>
+      <addaction name="actionViewLog"/>
+      <addaction name="separator"/>
+      <addaction name="actionOpenWiki"/>
+      <addaction name="actionAbout"/>
+     </widget>
+     <addaction name="fileMenu"/>
+     <addaction name="editMenu"/>
+     <addaction name="viewMenu"/>
+     <addaction name="foldersMenu"/>
+     <addaction name="helpMenu"/>
+    </widget>
+   </item>
+  </layout>
   <widget class="QWidget" name="centralWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>2</height>
+    </rect>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
      <number>0</number>
@@ -36,137 +132,15 @@
     </property>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QToolBar" name="instanceToolBar">
-   <property name="windowTitle">
-    <string>Instance Toolbar</string>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::ToolBarArea::LeftToolBarArea|Qt::ToolBarArea::RightToolBarArea</set>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>16</width>
-     <height>16</height>
-    </size>
-   </property>
-   <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <property name="useDefaultAction" stdset="0">
-    <bool>true</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>RightToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionLaunchInstance"/>
-   <addaction name="actionKillInstance"/>
-   <addaction name="separator"/>
-   <addaction name="actionEditInstance"/>
-   <addaction name="actionChangeInstGroup"/>
-   <addaction name="actionViewSelectedInstFolder"/>
-   <addaction name="actionExportInstance"/>
-   <addaction name="actionCopyInstance"/>
-   <addaction name="actionDeleteInstance"/>
-   <addaction name="actionCreateInstanceShortcut"/>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
+  <widget class="QStatusBar" name="statusBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1164</width>
-     <height>29</height>
+     <width>3</width>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="fileMenu">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>true</bool>
-    </property>
-    <addaction name="actionAddInstance"/>
-    <addaction name="separator"/>
-    <addaction name="actionLaunchInstance"/>
-    <addaction name="actionKillInstance"/>
-    <addaction name="separator"/>
-    <addaction name="actionEditInstance"/>
-    <addaction name="actionChangeInstGroup"/>
-    <addaction name="actionViewSelectedInstFolder"/>
-    <addaction name="actionExportInstance"/>
-    <addaction name="actionCopyInstance"/>
-    <addaction name="actionDeleteInstance"/>
-    <addaction name="actionCreateInstanceShortcut"/>
-    <addaction name="separator"/>
-    <addaction name="actionSettings"/>
-    <addaction name="actionCloseWindow"/>
-   </widget>
-   <widget class="QMenu" name="editMenu">
-    <property name="title">
-     <string>&amp;Edit</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>true</bool>
-    </property>
-    <addaction name="actionUndoTrashInstance"/>
-   </widget>
-   <widget class="QMenu" name="viewMenu">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>true</bool>
-    </property>
-    <addaction name="actionChangeTheme"/>
-    <addaction name="separator"/>
-    <addaction name="actionToggleStatusBar"/>
-    <addaction name="actionLockToolbars"/>
-    <addaction name="separator"/>
-   </widget>
-   <widget class="QMenu" name="foldersMenu">
-    <property name="title">
-     <string>F&amp;olders</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>true</bool>
-    </property>
-    <addaction name="actionViewLauncherRootFolder"/>
-    <addaction name="separator"/>
-    <addaction name="actionViewInstanceFolder"/>
-    <addaction name="actionViewCentralModsFolder"/>
-    <addaction name="actionViewSkinsFolder"/>
-    <addaction name="separator"/>
-    <addaction name="actionViewIconThemeFolder"/>
-    <addaction name="actionViewWidgetThemeFolder"/>
-    <addaction name="actionViewIconsFolder"/>
-    <addaction name="separator"/>
-    <addaction name="actionViewLogsFolder"/>
-   </widget>
-   <widget class="QMenu" name="helpMenu">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>true</bool>
-    </property>
-    <addaction name="actionReportBug"/>
-    <addaction name="actionViewLog"/>
-    <addaction name="separator"/>
-    <addaction name="actionOpenWiki"/>
-    <addaction name="actionAbout"/>
-   </widget>
-   <addaction name="fileMenu"/>
-   <addaction name="editMenu"/>
-   <addaction name="viewMenu"/>
-   <addaction name="foldersMenu"/>
-   <addaction name="helpMenu"/>
   </widget>
   <action name="actionMoreNews">
    <property name="icon">

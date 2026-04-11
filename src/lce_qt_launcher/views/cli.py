@@ -1,9 +1,9 @@
 from lce_qt_launcher.managers.instance_manager import InstanceManager
 from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.cmd_arg import CmdArgAction
+from lce_qt_launcher.views.cmd_arg import CmdArgAction
 
 import lce_qt_launcher.features as features
-import lce_qt_launcher.term_service as term_service
+import lce_qt_launcher.views.term_service as term_service
 
 MENU_STR = """
 1. [bold green] Play [/bold green]
