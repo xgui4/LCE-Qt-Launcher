@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ $("uname -s") != "FreeBSD" ]]; then 
+if [[ $(uname -s) != "FreeBSD" ]]; then 
     pyside6-rcc "res.qrc" -o "src/res_rc.py" &&
     pyside6-uic "src/form.ui" -o "src/ui_form.py" &&
     pyside6-uic "src/instance.ui" -o "src/ui_instance.py" &&

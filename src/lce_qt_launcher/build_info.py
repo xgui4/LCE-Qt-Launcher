@@ -50,14 +50,14 @@ class BuildInfo:
                 self.license : str = _FALLBACK_LICENSE 
             
         except PackageNotFoundError:
-            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.with_traceback}")
+            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.with_traceback()}")
             self.version : str = _FALLBACK_VERSION_NUMBER
             self.app_name = _FALLBACK_APP_NAME
             self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 
             self.license_link : str = _FALLBACK_LICENSE_LINK 
             self.license  : str = _FALLBACK_LICENSE 
         except RuntimeError:
-            term_service.print_error(f"Metadata not found! More info : {RuntimeError.with_traceback}")
+            term_service.print_error(f"Metadata not found! More info : {RuntimeError.with_traceback()}")
             self.version : str = _FALLBACK_VERSION_NUMBER
             self.app_name = _FALLBACK_APP_NAME
             self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 

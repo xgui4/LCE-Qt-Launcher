@@ -30,6 +30,7 @@ path = "hatch_build.py"
 
 [tool.hatch.envs.default.scripts]
 packages = "python packages.py"
+run-app = "run.py"
 
 [tool.hatch.build]
 artifacts = [

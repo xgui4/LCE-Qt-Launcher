@@ -1,5 +1,7 @@
 #!/usr/bin/env pwsh
 
+$ErrorActionPreference = 'Stop'
+
 Remove-Item -Path -Recurse dist
 
 Remove-Item -Path "src\res_rc.py"

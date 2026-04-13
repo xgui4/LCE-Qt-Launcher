@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 rm -rf dist/
 
 rm "src/res_rc.py"
