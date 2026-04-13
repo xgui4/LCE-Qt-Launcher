@@ -1,7 +1,8 @@
 # LCE QT Launcher
 
-![LCE-QT-Launcher](assets/images/Launcher.png)
+[French Version](lisezmoi.md)
 
+![LCE-QT-Launcher](assets/images/Launcher.png)
 ![Screnshot of the launcher](.github/screenshots/image.png) 
 
 > [!WARNING]
@@ -14,16 +15,15 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 
 ## Features 
 
-- Command Line interface
+- Command Line interface (CLI)
 - Qt 6 GUI (Native like Interface)
 - Written in Python (No Electron or Rust)
 - Customisable 
 - Free Software (GPLv3)
 - Multiple Instances (Work in progress)
 - localisations (Work in progress)
-<!--
-- Coming laters: 
-- Plugins
+<!-- Coming laters: 
+- Launcher Plugins
 - Skin support
 - Modding Support -->
 - Multiples Defaults Instances : MCLE and Legacy Evolved
@@ -59,13 +59,13 @@ Coming in the next stable release when the program will be more stable
 
 > [!NOTE]
 > This automatic nighly build is currently not-stable and is very experimental and in active developpement
-> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac. For temporaly problem, the Linux automatic Build was disabled as it was overrided the Windows build. It will be re-enabled when fixed
+> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac. Because of a temporaly problem, the Linux automatic Build was disabled as it was overrided the Windows build. It will be re-enabled when fixed
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch
 
 ## Software Requirement 
 
-- [Python 3.10 to Python 3.13](https://www.python.org)
+- [Python 3.11 (For FreeBSD) to Python 3.12 (GNU/Linux, Windows and MacOS)](https://www.python.org)
     - with a virtual env with the required library install (specified in the readme and [`pyproject.toml`](pyproject.toml))
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed 

@@ -34,6 +34,9 @@ class App(QApplication):
         self.widget = Launcher(self.appContext, launcher_ui, sys_diag_ui, instance_editor_ui, setting_ui, about_dialog_ui, self)
         self.widget.show()
 
+        self.set_theme(theme)
+        
+    def set_theme(self, theme : Theme):
         try:
             theme_file : str = theme.value if theme is not None else Theme.MINECRAFT
             file = QFile(theme_file)
@@ -43,7 +46,7 @@ class App(QApplication):
                 self.setStyleSheet(stylesheet)
         except FileNotFoundError:
             print(FileNotFoundError.with_traceback)
-            term_service.print_warning("Theme ({theme}) not found in ressource, searching in the local storage.")
+            term_service.print_warning(f"Theme ({theme}) not found in ressource, searching in the local storage.")
             try: 
                 with open(os.path.join(utils.get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
                     self.setStyleSheet(file.read())

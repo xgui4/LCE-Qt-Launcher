@@ -465,12 +465,13 @@ wheels = [
 
 [[package]]
 name = "lce-qt-launcher"
-version = "26.4.11a1"
+version = "26.4.13a1"
 source = { editable = "." }
 dependencies = [
     { name = "hatch" },
     { name = "nuitka" },
     { name = "patchelf", marker = "sys_platform == 'linux'" },
+    { name = "platformdirs" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "requests" },
     { name = "rich" },
@@ -481,6 +482,7 @@ requires-dist = [
     { name = "hatch", specifier = "==1.16.5" },
     { name = "nuitka", specifier = "==4.0.7" },
     { name = "patchelf", marker = "sys_platform == 'linux'", specifier = "==0.17.2.4" },
+    { name = "platformdirs" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'", specifier = "==6.11.0" },
     { name = "requests", specifier = "==2.33.1" },
     { name = "rich", specifier = "==14.3.3" },

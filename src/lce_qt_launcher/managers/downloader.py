@@ -10,6 +10,13 @@ if TYPE_CHECKING:
     from lce_qt_launcher.build_info import BuildInfo
 
 from zipfile import ZipFile, BadZipFile, LargeZipFile
+
+from PySide6.QtNetwork import (
+    QNetworkAccessManager,
+    QNetworkRequest,
+    QNetworkReply
+) 
+
 from io import BytesIO
 
 import requests
@@ -20,6 +27,7 @@ SUCCESS_STATUS_CODE = 200
 class Downloader:
     def __init__(self, build_info: BuildInfo = None):
         self._build_info: BuildInfo = build_info
+        networkManager = QNetworkAccessManager()
 
     def download_instance(self, instance : Instance):
         print("Go to installation")

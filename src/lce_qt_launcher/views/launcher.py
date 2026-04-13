@@ -132,7 +132,7 @@ class Launcher(QMainWindow):
         self.about.buildDateLabel.setText(f"Build date : UNKOWN")
         self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
-        from lce_qt_launcher.views.license_str import license_str
+        from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
         self.about.aboutQt.clicked.connect(show_aboutQt)
         self.about.closeButton.clicked.connect(self.aboutDialog.close)

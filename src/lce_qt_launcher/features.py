@@ -123,6 +123,3 @@ def display_about(about_str : str):
 def display_version(buildInfo : BuildInfo):
     term_service.print_information(f"{buildInfo.app_name} Version {buildInfo.version}")
     term_service.print_information(f"Qt Version {buildInfo.qt_version}")
-
-def hide_options():
-    pass

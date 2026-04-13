@@ -2,17 +2,20 @@ from PySide6.QtCore import qVersion
 from importlib.metadata import PackageNotFoundError, metadata, version
 from importlib.metadata._meta import PackageMetadata
 
+from platformdirs import PlatformDirs
+
 from lce_qt_launcher.managers.system_manager import SystemManager
 import lce_qt_launcher.views.term_service as term_service
 
-_FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-_FALLBACK_VERSION_NUMBER  = "26.4.11a1"
-_FALLBACK_LICENSE = "GPLv3"
-_FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
-_FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
-
-_VERSION_TYPE = "nightly"
-_INSTANCE_EXTENSION = ".lce_inst"
+from lce_qt_launcher import (
+    _FALLBACK_APP_NAME,
+    _FALLBACK_VERSION_NUMBER,
+    _FALLBACK_GIT_REPO_URL,
+    _FALLBACK_LICENSE,
+    _FALLBACK_LICENSE_LINK,
+    _VERSION_TYPE,
+    _INSTANCE_EXTENSION
+)
 
 class BuildInfo:
     def __init__(self):
@@ -63,6 +66,8 @@ class BuildInfo:
 
         self.qt_version : str = qVersion()
         self.system_manager : SystemManager = SystemManager()
+        self.authors = "Xgui4"
+        self.dirs = PlatformDirs(self.app_name, self.authors, ensure_exists=True);
         
         self.version_type : str = _VERSION_TYPE
         self.instance_extension : str = _INSTANCE_EXTENSION
