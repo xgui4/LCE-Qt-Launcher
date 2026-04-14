@@ -88,7 +88,7 @@ class Launcher(QMainWindow):
             self.instance_name = instanceManager.instance.name
             self.ui.usernameInputBox.setText(instanceManager.instance.username)
             self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.url)
+            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
             pixmap = QPixmap(self.image_label)
             self.ui.instance_img.setPixmap(pixmap)
             self.ui.repo_name_branch.setText(self.instance_name)

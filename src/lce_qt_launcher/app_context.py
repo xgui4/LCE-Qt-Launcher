@@ -1,3 +1,4 @@
+from lce_qt_launcher import Languages
 from lce_qt_launcher.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
@@ -16,6 +17,10 @@ class AppContext():
         self.instanceMan = InstanceManager(instance, self.buildInfo)
         self.theme = theme
         self.translator = JsonTrans(lang)
+        self.accesibleModeEnabled : bool = self.userPref.default_accesibility_mode
+        self.devModeEnabled : bool = self.userPref.default_developper_mode
+        self.showHolydayEnabled : bool = self.userPref.default_show_holyday
+        self.currentLang : str = Languages.FALLBACK.value
 
         self.BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
         self.ICON = ":/assets/launcher_small.png"
@@ -24,9 +29,11 @@ class AppContext():
 
     def updateTheme(self, theme : Theme):
         self.theme = theme
+        self.userPref.set_theme_pref(theme.value)
 
     def updateInstance(self, instnce : Instance):
         self.instanceMan.load_instance(instnce)
 
     def updateLanguage(self, lang : str):
+        self.currentLang = lang
         self.translator.load_lang(lang)

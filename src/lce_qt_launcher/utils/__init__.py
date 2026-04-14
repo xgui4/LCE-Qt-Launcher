@@ -1,6 +1,8 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
+import platformdirs
+
 import os
 
 if TYPE_CHECKING:
@@ -52,10 +54,8 @@ def get_user_app_log_dir(appContext : AppContext) -> str:
     dirs = appContext.buildInfo.dirs
     dirs.user_log_dir()
 
-def get_user_doc_folder(appContext : AppContext) -> str:
-    dirs = appContext.buildInfo.dirs
-    dirs.user_documents_dir()
+def get_user_doc_folder() -> str:
+    platformdirs.user_documents_dir()
 
-def get_user_download_folder(appContext : AppContext) -> str:
-    dirs = appContext.buildInfo.dirs
-    dirs.user_download_dir()
+def get_user_download_folder() -> str:
+    platformdirs.user_downloads_dir()

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.4.13a1"
+version = "26.4.14a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"

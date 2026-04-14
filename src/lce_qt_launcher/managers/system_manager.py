@@ -5,6 +5,8 @@ import os
 import pathlib
 import stat
 
+import lce_qt_launcher.views.term_service as term_service
+
 class OperatingSystemType(StrEnum):
     WINDOWS = "Microsoft Windows",
     MACOS = "MacOS",
@@ -26,19 +28,19 @@ class SystemManager():
             self.type = OperatingSystemType.LINUX 
             self.name = self.type.name
             self.version = platform.version()
-        if (platform.system() == "Darwin") : 
+        elif (platform.system() == "Darwin") : 
             self.type = OperatingSystemType.MACOS 
             self.name = self.type.name
             self.version = platform.mac_ver()
-        if (platform.system() == "Windows") : 
+        elif (platform.system() == "Windows") : 
             self.type = OperatingSystemType.WINDOWS
             self.name = self.type.name
             self.version = platform.win32_ver()
-        if (platform.system() == "FreeBSD"):
+        elif (platform.system() == "FreeBSD"):
             self.type = OperatingSystemType.FREEBSD 
             self.name = self.type.name
             self.version = platform.version()
-        if (platform.system() == "Android") : 
+        elif (platform.system() == "Android") : 
             self.type = OperatingSystemType.ANDROID
             self.name = self.type.name
             self.version = platform.version()
@@ -51,21 +53,19 @@ class SystemManager():
         if platform.system() == "Linux": 
             _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
             os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
-
         if platform.system() == "FreeBSD": 
             _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
             os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
-
         if os.name == "nt":
             os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=2"
 
     def set_file_permission(self, file_abs_path : str) -> str:
-        if self.type in [OperatingSystemType.LINUX, OperatingSystemType.FREEBSD, OperatingSystemType.MACOS]:
-                curr_perm = os.stat(file_abs_path)
-                new_perm = curr_perm.st_mode | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
-                os.chmod(file_abs_path, new_perm)
+        """https://stackoverflow.com/questions/12791997/how-do-you-do-a-simple-chmod-x-from-within-python"""
+        if [os.name == "posix"]:
+            st = os.stat(file_abs_path)
+            os.chmod(file_abs_path, st.st_mode | st.S_IEXEC)
         else:
-            pass
+            term_service.information("No POSIX system detected, skipping file permission management.")
     
     def found_default_save_path(self) -> str:
         return os.path.join(pathlib.Path.home(), "lce-qt-launcher")  

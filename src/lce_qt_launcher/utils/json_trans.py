@@ -6,7 +6,6 @@ from lce_qt_launcher import utils
 import lce_qt_launcher.views.term_service as term_service
 
 class JsonTrans(QObject):
-    # Correction ici : Pas d'annotation de type sur le signal
     languageChanged = Signal()
 
     FALLBACK_LANG = "translations"

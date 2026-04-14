@@ -3,6 +3,10 @@ from lce_qt_launcher.build_info import BuildInfo
 
 import lce_qt_launcher.views.term_service as term_service
 
+from PySide6.QtNetwork import (
+    QNetworkReply
+)
+
 from enum import Enum
 from subprocess import TimeoutExpired
 
@@ -18,19 +22,19 @@ class InstanceSource(Enum):
     LOCAL_SOURCE_CODE = 4
 
 class InstanceType(Enum):
-   CLIENT_VANILLA = 0
-   CLENT_MODDED = 1
-   SERVER_VANILLA = 2
-   SERVER_MODDED = 3
+    CLIENT_VANILLA = 0
+    CLENT_MODDED = 1
+    SERVER_VANILLA = 2
+    SERVER_MODDED = 3
 
-DEFAULT_INSTANCE_NAME = "Default"
+DEFAULT_INST_NAME = "Default"
 DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
 DEFAULT_USERNAME = "Steve"
 DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
-DEFAULT_URL = "https://github.com/MCLCE/MinecraftConsoles"
-DEFAULT_INSTANCE_SOURCE = InstanceSource.GITHUB_RELEASE
-DEFAULT_INSTANCE_TYPE = InstanceType.CLIENT_VANILLA
+DEFAULT_REPO_URL = "https://github.com/MCLCE/MinecraftConsoles"
+DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
+DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
 DEFAULT_IMAGE = ":/assets/minecraft.png",
 DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 DEFAULT_VERSION = "nightly"
@@ -39,15 +43,15 @@ DEFAULT_SERVERS = ""
 
 class Instance:
     def __init__(self, 
-                 name : str = DEFAULT_INSTANCE_NAME, 
+                 name : str = DEFAULT_INST_NAME, 
                  installation_path : str = DEFAULT_INSTALLATION_PATH, 
                  username : str = DEFAULT_USERNAME,
                  exe_name : str = DEFAULT_EXE_NAME,
                  archive_file : str = DEFAULT_ARCHIVE_FILE,
-                 url : str = DEFAULT_URL, 
+                 repo_url : str = DEFAULT_REPO_URL, 
                  image : str = DEFAULT_IMAGE,
-                 instance_source : InstanceSource = DEFAULT_INSTANCE_SOURCE,
-                 instance_type : InstanceType = DEFAULT_INSTANCE_TYPE, 
+                 instance_source : InstanceSource = DEFAULT_INST_SOURCE,
+                 instance_type : InstanceType = DEFAULT_INST_TYPE, 
                  news_feed : str = DEFAULT_NEWS_FEED,
                  version : str = DEFAULT_VERSION,
                  skin_path : str = DEFAULT_SKIN_PATH,
@@ -58,26 +62,26 @@ class Instance:
         self.username: str = username
         self.archive_file: str = archive_file
         self.exe_name: str = exe_name
-        self.repo_url: str = url
+        self.repo_url: str = repo_url
         self.instance_source: InstanceSource = instance_source
-        self.instance_type = instance_type
+        self.instance_type : InstanceType = instance_type
         self.image : str = image
         self.news_feed : str = news_feed
         self.version: str = version
         self.skin_path: str = skin_path
         self.servers: list = servers
 
-    def load_instance_from_dict(self, inst_dict: dict):
-        self.name = inst_dict.get("name", DEFAULT_INSTANCE_NAME)
+    def load_inst_from_dict(self, inst_dict: dict):
+        self.name = inst_dict.get("name", DEFAULT_INST_NAME)
         self.installation_path = inst_dict.get("installation_path",DEFAULT_INSTALLATION_PATH)
         self.username = inst_dict.get("username", DEFAULT_USERNAME)
         self.exe_name = inst_dict.get("exe_name", DEFAULT_EXE_NAME)
         self.archive_file = inst_dict.get("archive_file", DEFAULT_ARCHIVE_FILE)
-        self.url = inst_dict.get("url", DEFAULT_URL)
-        self.instance_source = inst_dict.get("instances_source", DEFAULT_INSTANCE_SOURCE)
-        self.instance_type = inst_dict.get("instance_type", DEFAULT_INSTANCE_TYPE)
+        self.repo_url = inst_dict.get("repo_url", DEFAULT_REPO_URL)
+        self.instance_source = inst_dict.get("instances_source", DEFAULT_INST_SOURCE)
+        self.instance_type = inst_dict.get("instance_type", DEFAULT_INST_TYPE)
         self.image = inst_dict.get("image", DEFAULT_IMAGE)
-        self.news_feed = inst_dict.get("image", DEFAULT_NEWS_FEED)
+        self.news_feed = inst_dict.get("news_feed", DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", DEFAULT_VERSION)
         self.skin_path = inst_dict.get("skin_path", DEFAULT_SKIN_PATH)
         self.servers = inst_dict.get("servers", DEFAULT_SERVERS)
@@ -112,11 +116,14 @@ class InstanceManager:
             return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
             return f"Client closed with code {game_process.returncode}"  
-    def install_instance(self) -> None:
-        if self.instance.instance_source in [InstanceSource.GITHUB_RELEASE, InstanceSource.REMOTE_GIT_SOURCE]:
-            return self._downloader.download_instance(self.instance)
-        else:
-            raise RuntimeWarning("Already Installed")
+    def install_instance(self) -> QNetworkReply:
+        try:
+            if self.instance.instance_source in [InstanceSource.GITHUB_RELEASE, InstanceSource.FORGEJO_RELEASE]:
+                return self._downloader.download_inst_async(self.instance)
+            else:
+                raise RuntimeWarning("Not implemented YET") #TODO : implementing other type
+        except RuntimeError as e:
+            raise e
 
     def save_instance(self, save_file : str):
         try:
@@ -124,8 +131,7 @@ class InstanceManager:
         except TypeError:
             json_string: str = json.dumps(vars(self.instance), default=str)
         if not save_file.endswith(self._build_info.instance_extension):
-            save_file: str = save_file[0] + self._build_info.instance_extension
-        os.makedirs(os.path.dirname(save_file), exist_ok=True)
+            save_file: str = save_file + self._build_info.instance_extension
         with open(save_file, 'w') as f:
             _ = f.write(json_string)
     
@@ -135,4 +141,4 @@ class InstanceManager:
         inst_dict : dict = {}
         with open(save_file, 'r') as json_file:
             inst_dict = json.load(json_file)
-            self.instance.load_instance_from_dict(inst_dict)
+            self.instance.load_inst_from_dict(inst_dict)

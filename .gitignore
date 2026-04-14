@@ -296,6 +296,7 @@ tmp/
 # Minecraft Client
 MinecraftLCEClient/
 .lce**
+.**Legacy
 
 # Output
 output/
@@ -314,3 +315,4 @@ nuitka-crash-report.xml
 
 # Internet Content
 **internet-**
+test.lce_inst

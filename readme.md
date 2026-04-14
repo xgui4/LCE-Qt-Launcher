@@ -59,7 +59,7 @@ Coming in the next stable release when the program will be more stable
 
 > [!NOTE]
 > This automatic nighly build is currently not-stable and is very experimental and in active developpement
-> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac. Because of a temporaly problem, the Linux automatic Build was disabled as it was overrided the Windows build. It will be re-enabled when fixed
+> This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac. 
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch
 

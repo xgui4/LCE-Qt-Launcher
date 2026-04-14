@@ -2,16 +2,11 @@ from PySide6.QtWidgets import(
     QMainWindow, 
     QLabel, 
     QProgressBar, 
-    QVBoxLayout, 
-    QDialog, 
     QMessageBox, 
     QFileDialog, 
     QInputDialog,
-    QWidget 
+    QWidget,
 )
-from PySide6.QtGui import (
-     QPixmap
-) 
 
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.views.cli as cli 
@@ -33,16 +28,29 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
 
         progressLabel : QLabel =  parent.ui.progressLabel 
         progressBar : QProgressBar = parent.ui.progressBar  
+        try:
+            reply = instanceManager.install_instance()
+            _ = progressLabel.setVisible(True) 
+            _ = progressBar.setVisible(True)  
+            _ = progressBar.setEnabled(True)  
+            _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-        _ = progressLabel.setVisible(True) 
-        _ = progressBar.setVisible(True)  
-        _ = progressBar.setEnabled(True)  
-        _ = progressLabel.setText(f"Installation of {instance.name} Progress")  
-        _ = progressBar.setValue(30) 
-        print(instanceManager.install_instance())
-        _ = progressBar.setValue(100) 
+            def update_progress_bar(bytes_received, bytes_total):
+                if bytes_total > 0:
+                    progressBar.setMaximum(bytes_total)
+                    progressBar.setValue(bytes_received)
+                else:
+                    progressBar.setRange(0, 0)  
+            reply.downloadProgress.connect(update_progress_bar)
+
+        except RuntimeError as e:
+            _ = progressLabel.setVisible(True) 
+            _ = progressBar.setVisible(True)  
+            _ = progressBar.setEnabled(True)  
+            _ = progressLabel.setText(f"Downloading {instance.name} Cancelled due to a error.")
+            QMessageBox.critical(parent, "Minecraft LCE Qt Launcher", f"There were a error during the installation \n traceback : {e.with_traceback()}", QMessageBox.StandardButton.Ok)
     else:
-        _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher", "Installation Cancelled", QMessageBox.StandardButton.Ok)
+        _ = QMessageBox.information(parent, "Minecraft LCE Qt Launcher", "Installation Cancelled", QMessageBox.StandardButton.Ok)
 
 def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str) -> None:
     term_service.print_information(starting_game_msg_str)

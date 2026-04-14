@@ -38,7 +38,7 @@ class App(QApplication):
         
     def set_theme(self, theme : Theme):
         try:
-            theme_file : str = theme.value if theme is not None else Theme.MINECRAFT
+            theme_file : str = theme if theme is not None else Theme.MINECRAFT
             file = QFile(theme_file)
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
                 content = file.readAll()

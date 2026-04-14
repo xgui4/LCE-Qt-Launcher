@@ -1,13 +1,13 @@
 {
     "$schema": "../../schemas/lce_qrt_inst_config.json",
-    "name": "LCE-Hub neoLegacy",
+    "name": "pieeebot neoLegacy",
     "instance_type": "InstanceType.CLIENT_VANILLA",
     "instance_source": "InstanceSource.GITHUB_RELEASE",
     "image": ":/assets/lce-hub-ico.png",
-    "archive_file": "LCEWindows64.zip",
-    "exe_name": "Minecraft.Client.exe",
-    "news_feed": "https://github.com/LCE-Hub/neoLegacy/commits/main/",
+    "archive_file": "neoLegacyWindows64.zip",
+    "exe_name": "neoLegacyWindows64/Minecraft.Client.exe",
+    "news_feed": "https://github.com/pieeebot/neoLegacy/commits/main/",
     "installation_path": ".neoLegacy",
-    "url": "https://github.com/LCE-Hub/neoLegacy",
-    "version": "nightly"
+    "repo_url": "https://github.com/pieeebot/neoLegacy",
+    "version": "Nightly"
 }

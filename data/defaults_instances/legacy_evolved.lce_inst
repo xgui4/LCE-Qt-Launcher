@@ -1,11 +1,11 @@
 {
     "$schema" : "../../schemas/lce_qrt_inst_config.json",
-    "name" : "Legacy Evolved",
+    "name" : "Legacy Evolved (Superspeeded by neoLegacy)",
     "installation_path": ".lce-evolved", 
     "username" : "Steve",
     "exe_name" : "Minecraft.Client.exe",
     "archive_name" : "LCEWindows64.zip",
-    "url" : "https://codeberg.org/piebot/LegacyEvolved",
+    "repo_url" : "https://codeberg.org/piebot/LegacyEvolved",
     "news_feed" : "https://codeberg.org/piebot/LegacyEvolved",
     "image" : ":/assets/lce-evolved-ico.png",
     "instance_source": "InstanceSource.FORGEJO_RELEASE", 
