@@ -12,7 +12,7 @@ from PySide6.QtGui import (
 )
 from PySide6.QtCore import ( 
     Qt,
-    qVersion, 
+    qVersion
 )
 
 from lce_qt_launcher.app_context import AppContext
@@ -137,9 +137,9 @@ class Launcher(QMainWindow):
         self.about.aboutQt.clicked.connect(show_aboutQt)
         self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
-        window_title: str = translator.translate(key="App Title")
+        window_title: str = translator.translate(appContext.buildInfo.app_name)
 
-        self.instance_window = QMainWindow()
+        self.instance_window = QDialog()
         self.instance_editor = instance_ui_editor()
         self.instance_editor.setupUi(self.instance_window)
         self.instance_window.setWindowTitle(window_title)
@@ -159,9 +159,9 @@ class Launcher(QMainWindow):
 
         _ = self.ui.playButton.clicked.connect(launch)
         _ = self.ui.installButton.clicked.connect(install)
-        _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.settingButton.clicked.connect(show_setting_dialog)
         _ = self.ui.savetInstanceButton.clicked.connect(save_instance)
+        _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.openInstanceEditor.clicked.connect(show_instance_editor)
 
         _ = self.ui.actionSetting.triggered.connect(show_setting_dialog)

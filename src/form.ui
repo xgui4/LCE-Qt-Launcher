@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1302</width>
-    <height>858</height>
+    <height>866</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -637,7 +637,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -660,6 +660,8 @@
     <addaction name="actionSystem_Information"/>
     <addaction name="actionAbout_Minecraft"/>
     <addaction name="actionMore_Minecraft_LCE_Projects"/>
+    <addaction name="actionViews_Logs"/>
+    <addaction name="actionReport_a_Bugs_or_Sugess_a_feature"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="enabled">
@@ -969,6 +971,27 @@
    </property>
    <property name="text">
     <string>Setting</string>
+   </property>
+  </action>
+  <action name="actionView_LCE_Qt_Launcher">
+   <property name="text">
+    <string>View LCE-Qt-Launcher Wiki</string>
+   </property>
+  </action>
+  <action name="actionViews_Logs">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
+   <property name="text">
+    <string>Views Logs</string>
+   </property>
+  </action>
+  <action name="actionReport_a_Bugs_or_Sugess_a_feature">
+   <property name="icon">
+    <iconset theme="emblem-favorite"/>
+   </property>
+   <property name="text">
+    <string>Report a Bugs or Sugess a feature </string>
    </property>
   </action>
  </widget>
