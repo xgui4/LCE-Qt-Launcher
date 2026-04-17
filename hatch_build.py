@@ -10,7 +10,7 @@ class CustomBuildHook(BuildHookInterface):  # pyright: ignore[reportMissingTypeA
         if os.name == "posix":
             _ = subprocess.run("./scripts/clean.sh", check=True)
         if os.name == "nt":
-            _ = subprocess.run("clean.cmd", check=True, shell=True)
+            _ = subprocess.run("scripts\\clean.cmd", check=True, shell=True)
         return super().clean(versions)
 
     @override
@@ -19,6 +19,6 @@ class CustomBuildHook(BuildHookInterface):  # pyright: ignore[reportMissingTypeA
             _ = subprocess.run("./scripts/prepare.sh", check=True)
             _ = subprocess.run("./scripts/build.sh", check=True)
         if os.name == "nt":
-            _ = subprocess.run("prepare.cmd", check=True)
-            _ = subprocess.run("build.cmd", check=True, shell=True)
+            _ = subprocess.run("scripts\\prepare.cmd", check=True, shell=True)
+            _ = subprocess.run("scripts\\build.cmd", check=True, shell=True)
         return super().initialize(version, build_data)
