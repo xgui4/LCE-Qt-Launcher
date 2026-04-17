@@ -2,8 +2,7 @@ from PySide6.QtWidgets import (
     QApplication, 
     QMainWindow, 
     QLabel, 
-    QDialog, 
-    QWidget
+    QDialog
 )
 from PySide6.QtGui import ( 
     QPalette, 
@@ -11,7 +10,6 @@ from PySide6.QtGui import (
     QBrush
 )
 from PySide6.QtCore import ( 
-    Qt,
     qVersion
 )
 

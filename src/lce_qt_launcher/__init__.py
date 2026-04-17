@@ -1,7 +1,7 @@
 from enum import StrEnum
 
 _FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-_FALLBACK_VERSION_NUMBER  = "26.4.15a1"
+_FALLBACK_VERSION_NUMBER  = "26.4.16a1"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -648,7 +648,7 @@ the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
         <one line to give the program's name and a brief idea of what it does.>
-        Copyright (C) <year>  <name of author>
+        Copyright (C) 2026 Xgui4
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -669,7 +669,7 @@ mail.
 If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-        <program>  Copyright (C) <year>  <name of author>
+        LCE Qt Launcher Copyright (C) 2026  Xgui4
         This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
         This is free software, and you are welcome to redistribute it
         under certain conditions; type `show c' for details.
