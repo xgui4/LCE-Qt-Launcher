@@ -112,8 +112,8 @@ def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInf
     file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
     instanceManager.save_instance(file_name)
 
-def launch_cli_interface(instance_man : InstanceManager):
-    cli.launch_cli(instance_man)
+def launch_cli_interface(instance_man : InstanceManager, buildInfo : BuildInfo, argv : list):
+    cli.launch_cli(instance_man, buildInfo, argv)
 
 def generate_user_config(userPref : UserPref):
     userPref.generate_default_config()

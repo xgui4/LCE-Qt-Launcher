@@ -5,6 +5,8 @@ from lce_qt_launcher.app_context import AppContext
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 
+import sys
+
 class CmdArgAction(Enum):
     GEN_CONFIG = 0
     PRINT_VERSION = 1
@@ -69,7 +71,7 @@ def launch_cmd_action(action : CmdArgAction, appContext : AppContext):
     elif action == CmdArgAction.PRINT_VERSION: 
         features.display_version(appContext.buildInfo)
     elif action == CmdArgAction.CLI_VERSION:
-        features.launch_cli_interface(appContext.instanceManager)
+        features.launch_cli_interface(appContext.instanceMan, appContext.buildInfo, sys.argv)
     elif action == CmdArgAction.CLI_VERSION:
         term_service.print_warning("Not Implemented Yet!")
     else:
