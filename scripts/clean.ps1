@@ -2,7 +2,7 @@
 
 $ErrorActionPreference = 'Stop'
 
-Remove-Item -Path -Recurse dist
+Remove-Item -Path "dist" -Recurse 
 
 Remove-Item -Path "src\res_rc.py"
 Remove-Item -Path "src\ui_system_info.py"
