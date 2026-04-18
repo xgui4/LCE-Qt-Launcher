@@ -1,0 +1,49 @@
+# Maintainer: Xgui4
+pkgname=lce-qt-launcher-nightly
+pkgver=nightly
+pkgrel=1
+pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
+arch=('any')
+url="https://github.com/xgui4/LCE-Qt-Launcher"
+license=('GPL3')
+depends=(
+    'python' 
+    'pyside6' 
+    'python-requests' 
+    'python-platformdirs'
+) 
+makedepends=(
+    'git'     
+    'bash' 
+    'curl'             
+    'python-build' 
+    'python-installer' 
+    'python-hatchling' 
+    'python-wheel'
+    'qt6-tools'
+)
+optdepends=(
+    'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
+    'steam: Allow for Steam integration'
+)
+provides=("${pkgname%-nightly}")
+conflicts=("${pkgname%-nightly}")
+source=("${pkgname}::git+${url}.git#branch=nightly")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$pkgname"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$pkgname"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "$pkgname"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+    install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dm644 README.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+}

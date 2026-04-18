@@ -94,14 +94,15 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 
 ### Unsupported OS
 
-- Other *BSD system
-- Android since Minecraft LCE is currently quite laggy and buggy on Android
-- MacOS since I cannot test it legally, but should work with POISX compatibility but it is not officially supported. 
+- Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.
+- Minecraft LCE on Android is currently quite laggy and buggy 
+- macOS: LCE Qt Launcher does not officially support MacOS and is not tested during PRs, but POISX compatibility should allow its use.
 
 ## Thank to 
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) for certain UI elements and ui files 
-- [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) for the port of the game
+- [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) for the port of the game for PC
+- [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) for backporting updates for the PC port
 
 ## Code of Respect 
 
