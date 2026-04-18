@@ -318,3 +318,4 @@ nuitka-crash-report.xml
 
 # test files
 test.lce_inst
+default.lce_inst
