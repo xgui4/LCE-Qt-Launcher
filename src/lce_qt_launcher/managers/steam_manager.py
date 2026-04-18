@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-    Xgui4 Python Proton Manager
+    Xgui4 Python Steam Manager
     Copyright (C) 2026 Xgui4
 
     This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 def main():
     print(
     """
-    Xgui4 Python Proton Manager Copyright (C) 2026  Xgui4
+    Xgui4 Python Steam Manager Copyright (C) 2026  Xgui4
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
