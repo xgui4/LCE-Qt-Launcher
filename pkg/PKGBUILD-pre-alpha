@@ -46,6 +46,8 @@ build() {
 package() {
     cd "$pkgname"
     /usr/bin/python -m installer --destdir="$pkgdir" dist/*.whl
+    install -Dm644 "data" "opt/lce_qt_launcher/data"
+    install -Dm644 "assets" "opt/lce_qt_launcher/assets"
     install -Dm644 "pkg/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop.desktop"
     install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
