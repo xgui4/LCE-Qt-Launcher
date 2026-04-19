@@ -23,14 +23,7 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel.sources]
 "src/lce_qt_launcher" = "lce_qt_launcher"
-
-"src/main.py" = "lce_qt_launcher/main.py"
-"src/ui_form.py" = "lce_qt_launcher/ui_form.py"
-"src/ui_instance.py" = "lce_qt_launcher/ui_instance.py"
-"src/ui_system_info.py" = "lce_qt_launcher/ui_system_info.py"
-"src/ui_settingDialog.py" = "lce_qt_launcher/ui_settingDialog.py"
-"src/ui_about.py" = "lce_qt_launcher/ui_about.py"
-"src/res_rc.py" = "lce_qt_launcher/res_rc.py"
+"src" = "lce_qt_launcher"
 
 [project.scripts]
 lce-qt-launcher = "lce_qt_launcher.main:main"
@@ -47,6 +40,12 @@ packages = "python packages.py"
 run-app = "python run.py"
 
 [tool.hatch.build]
+artifacts = [
+    "src/ui_*.py",
+    "src/res_rc.py",
+]
+
+[tool.hatch.build.targets.wheel]
 artifacts = [
     "src/ui_*.py",
     "src/res_rc.py",

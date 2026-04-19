@@ -11,6 +11,7 @@ depends=(
     'pyside6' 
     'python-requests' 
     'python-platformdirs'
+    'python-rich'
 ) 
 makedepends=(
     'git'     
