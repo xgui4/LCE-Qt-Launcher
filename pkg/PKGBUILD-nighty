@@ -44,6 +44,6 @@ build() {
 package() {
     cd "$pkgname"
     python -m installer --destdir="$pkgdir" dist/*.whl
-    install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
-    install -Dm644 README.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
 }

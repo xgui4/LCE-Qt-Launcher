@@ -325,3 +325,4 @@ default.lce_inst
 pkg/src/*
 pkg/pkg/*
 pkg/lce-qt-launcher-*/
+pkg/lce-qt-launcher-**-**-any.pkg.tar.zst

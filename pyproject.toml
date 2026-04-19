@@ -21,11 +21,11 @@ dependencies = [
     "patchelf==0.17.2.4; sys_platform == 'linux'",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
+[tool.hatch.build.targets.wheel.sources]
+"src" = "lce_launcher_core"
 
 [project.scripts]
-lce-qt-launcher = "main:main"
+lce-qt-launcher = "lce_launcher_core.main:main"
 
 [project.urls]
 Repository = "https://github.com/xgui4/LCE-QT-Launcher"

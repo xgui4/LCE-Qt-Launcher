@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-pre-alpha
-pkgver=r127.2f3063b
+pkgver=r128.ef2616e
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
 arch=('any')
@@ -44,6 +44,6 @@ build() {
 package() {
     cd "$pkgname"
     python -m installer --destdir="$pkgdir" dist/*.whl
-    install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
-    install -Dm644 README.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
 }
