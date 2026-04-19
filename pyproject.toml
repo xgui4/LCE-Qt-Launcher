@@ -21,10 +21,6 @@ dependencies = [
     "patchelf==0.17.2.4; sys_platform == 'linux'",
 ]
 
-[tool.hatch.build.targets.wheel.sources]
-"src/lce_qt_launcher" = "lce_qt_launcher"
-"src" = "lce_qt_launcher"
-
 [project.scripts]
 lce-qt-launcher = "lce_qt_launcher.main:main"
 
