@@ -37,18 +37,18 @@ jobs:
           
       - name: Build with Nuitka
         run: |
-          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/legacy-qt-launcher/main.py
+          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/lce-qt-launcher/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-         Compress-Archive -Path dist/legacy-qt-launcher.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
+         Compress-Archive -Path dist/lce-qt-launcher.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
         run: |
-          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/legacy-qt-launcher.dist .
+          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/lce-qt-launcher.dist .
 
       - name: Upload Nightly
         uses: andelf/nightly-release@main
