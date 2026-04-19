@@ -38,11 +38,11 @@ from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
 
-from lce_qt_launcher.ui_form import Ui_launcher
-from lce_qt_launcher.ui_instance import Ui_InstancesEditor
-from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
-from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
-from lce_qt_launcher.ui_about import Ui_AboutDialog
+from ui_form import Ui_launcher
+from ui_instance import Ui_InstancesEditor
+from ui_system_info import Ui_sys_info_dialog
+from ui_settingDialog import Ui_settingDialog
+from ui_about import Ui_AboutDialog
 
 import sys
 import os
