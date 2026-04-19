@@ -37,14 +37,14 @@ run-app = "python run.py"
 
 [tool.hatch.build]
 artifacts = [
-    "src/ui_*.py",
-    "src/res_rc.py",
+    "src/lce_qt_launcher/ui_*.py",
+    "src/lce_qt_launcherres_rc.py",
 ]
 
 [tool.hatch.build.targets.wheel]
 artifacts = [
-    "src/ui_*.py",
-    "src/res_rc.py",
+    "src/lce_qt_launcher/ui_*.py",
+    "src/lce_qt_launcher/res_rc.py",
 ]
 
 [tool.pyside6-project]
