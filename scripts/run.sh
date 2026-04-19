@@ -5,4 +5,4 @@ set -e
 # shellcheck source=/dev/null
 source .venv/bin/activate
 
-src/legacy-qt-launcher/main.py
+src/legacy_qt_launcher/main.py
