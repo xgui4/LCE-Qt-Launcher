@@ -1,0 +1,9 @@
+[Desktop Entry]
+
+Type=Application
+Version=1
+Name=LCE QT Launcher
+Comment=This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.
+Exec=lce-qt-launcher
+Icon=lce-qt-launcher
+Categories=Python;Minecraft;Game;Utils;Qt

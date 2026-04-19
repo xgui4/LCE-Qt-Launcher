@@ -22,13 +22,21 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/lce_qt_launcher"]
 
 [tool.hatch.build.targets.wheel.sources]
-"src" = "lce_launcher_core"
+"src/lce_qt_launcher" = "lce_qt_launcher"
+
+"src/main.py" = "main.py"
+"src/ui_form.py" = "ui_form.py"
+"src/ui_instance.py" = "ui_instance.py"
+"src/ui_system_info.py" = "ui_system_info.py"
+"src/ui_settingDialog.py" = "ui_settingDialog.py"
+"src/ui_about.py" = "ui_about.py"
+"src/res_rc.py" = "res_rc.py"
 
 [project.scripts]
-lce-qt-launcher = "lce_launcher_core.main:main"
+lce-qt-launcher = "main:main"
 
 [project.urls]
 Repository = "https://github.com/xgui4/LCE-QT-Launcher"
