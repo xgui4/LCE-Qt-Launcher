@@ -38,7 +38,7 @@ run-app = "python run.py"
 [tool.hatch.build]
 artifacts = [
     "src/lce_qt_launcher/ui_*.py",
-    "src/lce_qt_launcherres_rc.py",
+    "src/lce_qt_launcher/res_rc.py",
 ]
 
 [tool.hatch.build.targets.wheel]
