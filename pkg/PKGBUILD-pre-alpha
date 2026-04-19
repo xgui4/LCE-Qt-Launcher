@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-pre-alpha
-pkgver=r126.3c42cc0
+pkgver=r127.2f3063b
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
 arch=('any')
