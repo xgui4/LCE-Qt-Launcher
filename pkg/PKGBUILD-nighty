@@ -48,6 +48,7 @@ package() {
     /usr/bin/python -m installer --destdir="$pkgdir" dist/*.whl
     install -d "$pkgdir/opt/lce_qt_launcher"
     cp -r data assets "$pkgdir"
+    cp ../data/lce_qt_launcher.ini "$pkgdir/etc/lce_qt_launcher.ini"
     install -Dm644 "pkg/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
     install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
