@@ -27,35 +27,35 @@ class InstanceType(Enum):
     SERVER_VANILLA = 2
     SERVER_MODDED = 3
 
-DEFAULT_INST_NAME = "Default"
-DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
-DEFAULT_USERNAME = "Steve"
-DEFAULT_EXE_NAME = "Minecraft.Client.exe"
-DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
-DEFAULT_REPO_URL = "https://github.com/MCLCE/MinecraftConsoles"
-DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
-DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
-DEFAULT_IMAGE = ":/assets/minecraft.png",
-DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
-DEFAULT_VERSION = "nightly"
-DEFAULT_SKIN_PATH = ""
-DEFAULT_SERVERS = ""
+_DEFAULT_INST_NAME = "Default"
+_DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
+_DEFAULT_USERNAME = "Steve"
+_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
+_DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
+_DEFAULT_REPO_URL = "https://github.com/MCLCE/MinecraftConsoles"
+_DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
+_DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
+_DEFAULT_IMAGE = ":/assets/minecraft.png",
+_DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
+_DEFAULT_VERSION = "nightly"
+_DEFAULT_SKIN_PATH = ""
+_DEFAULT_SERVERS = ""
 
 class Instance:
     def __init__(self, 
-                 name : str = DEFAULT_INST_NAME, 
-                 installation_path : str = DEFAULT_INSTALLATION_PATH, 
-                 username : str = DEFAULT_USERNAME,
-                 exe_name : str = DEFAULT_EXE_NAME,
-                 archive_file : str = DEFAULT_ARCHIVE_FILE,
-                 repo_url : str = DEFAULT_REPO_URL, 
-                 image : str = DEFAULT_IMAGE,
-                 instance_source : InstanceSource = DEFAULT_INST_SOURCE,
-                 instance_type : InstanceType = DEFAULT_INST_TYPE, 
-                 news_feed : str = DEFAULT_NEWS_FEED,
-                 version : str = DEFAULT_VERSION,
-                 skin_path : str = DEFAULT_SKIN_PATH,
-                 servers : list = DEFAULT_SERVERS
+                 name : str = _DEFAULT_INST_NAME, 
+                 installation_path : str = _DEFAULT_INSTALLATION_PATH, 
+                 username : str = _DEFAULT_USERNAME,
+                 exe_name : str = _DEFAULT_EXE_NAME,
+                 archive_file : str = _DEFAULT_ARCHIVE_FILE,
+                 repo_url : str = _DEFAULT_REPO_URL, 
+                 image : str = _DEFAULT_IMAGE,
+                 instance_source : InstanceSource = _DEFAULT_INST_SOURCE,
+                 instance_type : InstanceType = _DEFAULT_INST_TYPE, 
+                 news_feed : str = _DEFAULT_NEWS_FEED,
+                 version : str = _DEFAULT_VERSION,
+                 skin_path : str = _DEFAULT_SKIN_PATH,
+                 servers : list = _DEFAULT_SERVERS
                 ):
         self.name: str = name
         self.installation_path: str = installation_path
@@ -72,19 +72,19 @@ class Instance:
         self.servers: list = servers
 
     def load_inst_from_dict(self, inst_dict: dict):
-        self.name = inst_dict.get("name", DEFAULT_INST_NAME)
-        self.installation_path = inst_dict.get("installation_path",DEFAULT_INSTALLATION_PATH)
-        self.username = inst_dict.get("username", DEFAULT_USERNAME)
-        self.exe_name = inst_dict.get("exe_name", DEFAULT_EXE_NAME)
-        self.archive_file = inst_dict.get("archive_file", DEFAULT_ARCHIVE_FILE)
-        self.repo_url = inst_dict.get("repo_url", DEFAULT_REPO_URL)
-        self.instance_source = inst_dict.get("instances_source", DEFAULT_INST_SOURCE)
-        self.instance_type = inst_dict.get("instance_type", DEFAULT_INST_TYPE)
-        self.image = inst_dict.get("image", DEFAULT_IMAGE)
-        self.news_feed = inst_dict.get("news_feed", DEFAULT_NEWS_FEED)
-        self.version = inst_dict.get("version", DEFAULT_VERSION)
-        self.skin_path = inst_dict.get("skin_path", DEFAULT_SKIN_PATH)
-        self.servers = inst_dict.get("servers", DEFAULT_SERVERS)
+        self.name = inst_dict.get("name", _DEFAULT_INST_NAME)
+        self.installation_path = inst_dict.get("installation_path",_DEFAULT_INSTALLATION_PATH)
+        self.username = inst_dict.get("username", _DEFAULT_USERNAME)
+        self.exe_name = inst_dict.get("exe_name", _DEFAULT_EXE_NAME)
+        self.archive_file = inst_dict.get("archive_file", _DEFAULT_ARCHIVE_FILE)
+        self.repo_url = inst_dict.get("repo_url", _DEFAULT_REPO_URL)
+        self.instance_source = inst_dict.get("instances_source", _DEFAULT_INST_SOURCE)
+        self.instance_type = inst_dict.get("instance_type", _DEFAULT_INST_TYPE)
+        self.image = inst_dict.get("image", _DEFAULT_IMAGE)
+        self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
+        self.version = inst_dict.get("version", _DEFAULT_VERSION)
+        self.skin_path = inst_dict.get("skin_path", _DEFAULT_SKIN_PATH)
+        self.servers = inst_dict.get("servers", _DEFAULT_SERVERS)
 
     def get_download_url(self) -> str:
         download_release_url = "/releases/download/"
@@ -136,8 +136,6 @@ class InstanceManager:
             _ = f.write(json_string)
     
     def load_instance(self, save_file : str) -> None:
-        #if not save_file.endswith(self._build_info.instance_extension):
-        #    save_file = os.path.join(save_file, self._build_info.instance_extension)
         inst_dict : dict = {}
         with open(save_file, 'r') as json_file:
             inst_dict = json.load(json_file)

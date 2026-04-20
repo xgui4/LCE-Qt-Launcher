@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.4.18a1"
+version = "26.4.20a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -59,12 +59,12 @@ files = [
     "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/setting_dialog.py",
     "src/lce_qt_launcher/views/browser_dialog.py",
-    "src/lce_qt_launcher/views/preferences.py",
     "src/lce_qt_launcher/views/term_service.py",
     "src/lce_qt_launcher/views/cli.py",
     "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/theme.py",
     "src/lce_qt_launcher/views/launcher.py",
+    "src/lce_qt_launcher/views/app_data.py",
     "src/lce_qt_launcher/managers/__init__.py",
     "src/lce_qt_launcher/managers/instance.py",
     "src/lce_qt_launcher/managers/system_managers.py",
@@ -72,6 +72,7 @@ files = [
     "src/lce_qt_launcher/managers/proton_managers.py",
     "src/lce_qt_launcher/models/__init__.py",
     "src/lce_qt_launcher/models/image_class.py",
+    "src/lce_qt_launcher/models/preferences.py",
     "src/lce_qt_launcher/utils/__init__.py",
     "src/lce_qt_launcher/utils/json_trans.py",
     "src/lce_qt_launcher/utils/holyday.py",

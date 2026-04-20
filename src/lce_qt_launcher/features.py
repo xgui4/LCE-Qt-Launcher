@@ -13,7 +13,7 @@ import lce_qt_launcher.views.cli as cli
 
 from lce_qt_launcher.views.browser_dialog import BrowserDialog
 from lce_qt_launcher.views.setting_dialog import SettingDialog
-from lce_qt_launcher.preferences import UserPref
+from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 
@@ -66,7 +66,10 @@ def show_instance_editor(parent : QWidget) -> None:
     parent.instance_window.show()  
 
 def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
-    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to load", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")
+    file_name = QFileDialog.getOpenFileName(
+        parent, "Load Instance File", 
+        buildInfo.system_manager.found_default_save_path, 
+        f"{buildInfo.app_name} Instance (*.{buildInfo.instance_extension})")
     try:
         instanceManager.load_instance(file_name[0])
     except FileNotFoundError:
@@ -109,7 +112,11 @@ def show_webbrowser(parent : QWidget, url : str, buildInfo : BuildInfo):
     _ = BrowserDialog(parent, url, buildInfo)
 
 def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo):
-    file_name: str = QFileDialog.getSaveFileName(parent, "Set the instance save file path to saved", f"{buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{buildInfo.instance_extension}))")[0]
+    file_name: str = QFileDialog.getSaveFileName(
+        parent, 
+        "Save Instance option to a file", 
+        buildInfo.system_manager.found_default_save_path, 
+        f"{buildInfo.app_name} Instance File (*.{buildInfo.instance_extension})")[0]
     instanceManager.save_instance(file_name)
 
 def launch_cli_interface(instance_man : InstanceManager, buildInfo : BuildInfo, argv : list):

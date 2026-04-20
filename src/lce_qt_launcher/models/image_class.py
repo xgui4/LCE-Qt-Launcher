@@ -4,6 +4,8 @@ from enum import Enum
 
 from lce_qt_launcher.managers.downloader import Downloader 
 
+import os
+
 class SourceType(Enum):
     LOCAL = 0
     QT_RESSOURCE = 1
@@ -17,17 +19,17 @@ class Image(QObject):
         super().__init__(parent)
         self.location = location
         self.filename = filename
-        self.img_type = img_type
         self.source = source
 
         if source == SourceType.INTERNET:
             self.downloader = Downloader()
+            self.setup_image()
 
-    def get_path(self):
-        pass
+    def get_image_path(self):
+        return os.path.join(self.location, self.filename)
 
     def setup_image(self):
         if self.source == SourceType.INTERNET:
-            Downloader().save_file_from_internet(self.location, self.filename, self.img_type)
+            Downloader().save_file_from_internet(self.location, self.filename)
         else:
             pass

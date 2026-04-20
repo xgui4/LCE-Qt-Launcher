@@ -100,7 +100,6 @@ class Downloader(QObject):
         self,
         url : str, 
         filename : str, 
-        file_ext : str,
         save_location : str = ".", 
     ):
         print("downloading img")
@@ -108,7 +107,7 @@ class Downloader(QObject):
         response.raise_for_status()
         if response.status_code == SUCCESS_STATUS_CODE:
             term_service.print_success(f"Downloading of {url} file was success")
-            with open(os.path.join(save_location ,f"{filename}.{file_ext}"), "wb") as f:
+            with open(os.path.join(save_location , filename), "wb") as f:
                 f.write(response.content)
         else:
             print(f"Error while downloading the {url} file")
