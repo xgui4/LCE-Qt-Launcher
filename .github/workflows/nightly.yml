@@ -43,12 +43,12 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-         Compress-Archive -Path dist/lce-qt-launcher.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
+         Compress-Archive -Path dist/main.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
         run: |
-          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/lce-qt-launcher.dist .
+          tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/main.dist .
 
       - name: Upload Nightly
         uses: andelf/nightly-release@main
