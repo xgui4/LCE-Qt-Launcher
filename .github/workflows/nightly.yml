@@ -37,13 +37,13 @@ jobs:
           
       - name: Build with Nuitka
         run: |
-          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/lce-qt-launcher/main.py
+          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/lce_qt_launcher/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-         Compress-Archive -Path dist/main.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
+         Compress-Archive -Path dist/main.dist/* -DestinationPath LCE-Qt_Launche_-Windows.zip
 
       - name: Package Linux build
         if: matrix.os == 'ubuntu-latest'
