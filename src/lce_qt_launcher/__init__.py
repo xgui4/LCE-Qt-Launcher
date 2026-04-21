@@ -1,7 +1,7 @@
 from enum import StrEnum
 
 _FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-_FALLBACK_VERSION_NUMBER  = "26.4.16a1"
+_FALLBACK_VERSION_NUMBER  = "26.4.20a1"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -12,7 +12,7 @@ _INSTANCE_EXTENSION = ".lce_inst"
 class Languages(StrEnum): 
     FALLBACK = "translations.json"
     ENGLISH = "en",
-    FRENCH = "fr",
+    FRENCH = "fr"
 
 license_str = """
 # GNU GENERAL PUBLIC LICENSE
@@ -647,7 +647,7 @@ attach them to the start of each source file to most effectively state
 the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
-        <one line to give the program's name and a brief idea of what it does.>
+        This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.
         Copyright (C) 2026 Xgui4
 
         This program is free software: you can redistribute it and/or modify

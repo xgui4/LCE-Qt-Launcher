@@ -7,11 +7,29 @@
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.4.16"
-# nuitka-project: --file-version="0.26.4.16"
+# nuitka-project: --product-version="0.26.4.20"
+# nuitka-project: --file-version="0.26.4.20"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
+
+"""
+    LCE Qt Launcher Manager
+    Copyright (C) 2026 Xgui4
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
@@ -20,16 +38,16 @@ from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
 
-from ui_form import Ui_launcher
-from ui_instance import Ui_InstancesEditor
-from ui_system_info import Ui_sys_info_dialog
-from ui_settingDialog import Ui_settingDialog
-from ui_about import Ui_AboutDialog
+from lce_qt_launcher.ui_form import Ui_launcher
+from lce_qt_launcher.ui_instance import Ui_InstancesEditor
+from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
+from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
+from lce_qt_launcher.ui_about import Ui_AboutDialog
 
 import sys
 import os
 
-if __name__ == "__main__":
+def main():
     appContext = AppContext()
 
     sys_man = appContext.buildInfo.system_manager
@@ -71,3 +89,6 @@ if __name__ == "__main__":
         _ = app.setStyle("Fusion")
         app.aboutToQuit.connect(about_to_quit_event)
         sys.exit(app.exec())
+
+if __name__ == "__main__":
+    main()

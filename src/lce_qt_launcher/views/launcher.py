@@ -25,19 +25,17 @@ import platform
 class Launcher(QMainWindow):
     def __init__(self, 
                  appContext : AppContext, 
-                 launcher_ui : object, 
-                 sys_dialog_ui: object,
-                 instance_ui_editor: object, 
-                 setting_ui : object,
+                 ui_launcher : object, 
+                 ui_sys_dialog: object,
+                 ui_instance_editor: object, 
+                 ui_setting : object,
                  ui_about_dialog : object,
                  app : QApplication, 
                  parent=None) -> None:
         super().__init__(parent)
 
         translator = appContext.translator
-
         instanceManager = appContext.instanceMan
-
         buildInfo = appContext.buildInfo
 
         self.image_label = instanceManager.instance.image
@@ -93,7 +91,7 @@ class Launcher(QMainWindow):
             self.ui.newsEngineView.setUrl(self.news_feed)
 
         def show_setting_dialog() -> None:
-            features.show_setting(self, setting_ui)
+            features.show_setting(self, ui_setting)
 
         def show_instance_editor() -> None:
             features.show_instance_editor(self)
@@ -107,7 +105,7 @@ class Launcher(QMainWindow):
         else:
             term_service.print_error("Cannot set the background")
 
-        self.ui = launcher_ui()
+        self.ui = ui_launcher()
 
         self.ui.setupUi(self)
         
@@ -115,12 +113,12 @@ class Launcher(QMainWindow):
         self.aboutDialog = QDialog()
 
         self.sysinfo_dialog = QDialog() 
-        self.dialog_ui = sys_dialog_ui()
+        self.dialog_ui = ui_sys_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
         self.about.setupUi(self.aboutDialog)
 
-        # app_icon = QPixmap(":/assets/launcher.png");
-        # self.about.icon.setPixmap(app_icon)
+        app_icon = QPixmap(":/assets/launcher.png");
+        self.about.icon.setPixmap(app_icon)
         self.about.title.setText(appContext.buildInfo.app_name)
         self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
@@ -138,7 +136,7 @@ class Launcher(QMainWindow):
         window_title: str = translator.translate(appContext.buildInfo.app_name)
 
         self.instance_window = QDialog()
-        self.instance_editor = instance_ui_editor()
+        self.instance_editor = ui_instance_editor()
         self.instance_editor.setupUi(self.instance_window)
         self.instance_window.setWindowTitle(window_title)
 

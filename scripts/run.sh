@@ -5,4 +5,4 @@ set -e
 # shellcheck source=/dev/null
 source .venv/bin/activate
 
-src/main.py
+src/lce_qt_launcher/main.py

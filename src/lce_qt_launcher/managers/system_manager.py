@@ -59,13 +59,16 @@ class SystemManager():
         if os.name == "nt":
             os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=2"
 
-    def set_file_permission(self, file_abs_path : str) -> str:
-        """https://stackoverflow.com/questions/12791997/how-do-you-do-a-simple-chmod-x-from-within-python"""
-        if [os.name == "posix"]:
+    def set_file_permission(self, file_abs_path: str) -> str:
+        """Makes the file executable on POSIX systems."""
+        if os.name == "posix":
             st = os.stat(file_abs_path)
-            os.chmod(file_abs_path, st.st_mode | st.S_IEXEC)
+            os.chmod(file_abs_path, st.st_mode | stat.S_IEXEC)
+            return "Permissions updated."
         else:
+            # term_service doit être défini dans votre contexte
             term_service.information("No POSIX system detected, skipping file permission management.")
+            return "Non POSIX System."
     
     def found_default_save_path(self) -> str:
         return os.path.join(pathlib.Path.home(), "lce-qt-launcher")  

@@ -37,7 +37,7 @@ jobs:
           
       - name: Build with Nuitka
         run: |
-          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/main.py
+          hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/lce-qt-launcher/main.py
 
       - name: Package Windows build
         if: matrix.os == 'windows-latest'

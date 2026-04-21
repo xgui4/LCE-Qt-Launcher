@@ -16,7 +16,7 @@ class UserPref (QSettings):
     def __init__(self, build_info : BuildInfo):
         super().__init__(QSettings.NativeFormat, QSettings.UserScope, "Xgui4", build_info.app_name)
         self.default_theme : Theme = Theme.MINECRAFT
-        self.default_instance_path : str = utils.get_source_dir()
+        self.default_instance_path : str = "~/.local/share/lce_qt_launcher/default"
         self.default_language : str  = "en"
         self.default_show_holyday : bool = True
         self.default_accesibility_mode : bool = False

@@ -1,5 +1,5 @@
 from lce_qt_launcher import Languages
-from lce_qt_launcher.preferences import UserPref
+from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 from lce_qt_launcher.views.theme import Theme
@@ -21,7 +21,7 @@ class AppContext():
         self.devModeEnabled : bool = self.userPref.default_developper_mode
         self.showHolydayEnabled : bool = self.userPref.default_show_holyday
         self.currentLang : str = Languages.FALLBACK.value
-
+        
         self.BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
         self.ICON = ":/assets/launcher_small.png"
         self.MINECRAFT_WEBSITE = "https://minecraft.net"

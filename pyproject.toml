@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "26.4.16a1"
+version = "26.4.20a1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nighly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -21,6 +21,9 @@ dependencies = [
     "patchelf==0.17.2.4; sys_platform == 'linux'",
 ]
 
+[project.scripts]
+lce-qt-launcher = "lce_qt_launcher.main:main"
+
 [project.urls]
 Repository = "https://github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
@@ -30,12 +33,18 @@ path = "hatch_build.py"
 
 [tool.hatch.envs.default.scripts]
 packages = "python packages.py"
-run-app = "run.py"
+run-app = "python run.py"
 
 [tool.hatch.build]
 artifacts = [
-    "src/ui_*.py",
-    "src/res_rc.py",
+    "src/lce_qt_launcher/ui_*.py",
+    "src/lce_qt_launcher/res_rc.py",
+]
+
+[tool.hatch.build.targets.wheel]
+artifacts = [
+    "src/lce_qt_launcher/ui_*.py",
+    "src/lce_qt_launcher/res_rc.py",
 ]
 
 [tool.pyside6-project]
@@ -50,18 +59,20 @@ files = [
     "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/setting_dialog.py",
     "src/lce_qt_launcher/views/browser_dialog.py",
-    "src/lce_qt_launcher/views/preferences.py",
     "src/lce_qt_launcher/views/term_service.py",
     "src/lce_qt_launcher/views/cli.py",
     "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/theme.py",
     "src/lce_qt_launcher/views/launcher.py",
+    "src/lce_qt_launcher/views/app_data.py",
     "src/lce_qt_launcher/managers/__init__.py",
     "src/lce_qt_launcher/managers/instance.py",
     "src/lce_qt_launcher/managers/system_managers.py",
-    "src/lce_qt_launcher/managers/__init__.py",
+    "src/lce_qt_launcher/managers/steam_managers.py",
+    "src/lce_qt_launcher/managers/proton_managers.py",
     "src/lce_qt_launcher/models/__init__.py",
     "src/lce_qt_launcher/models/image_class.py",
+    "src/lce_qt_launcher/models/preferences.py",
     "src/lce_qt_launcher/utils/__init__.py",
     "src/lce_qt_launcher/utils/json_trans.py",
     "src/lce_qt_launcher/utils/holyday.py",

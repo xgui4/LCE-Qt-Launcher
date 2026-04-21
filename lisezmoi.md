@@ -94,14 +94,15 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 
 ### Systèmes d'exploitation non pris en charge
 
-- Autres systèmes *BSD
-- Android : Minecraft LCE présente actuellement des ralentissements et des bugs importants sur Android.
-- macOS : les tests ne sont pas autorisés, mais la compatibilité POISX devrait permettre de l'utiliser. Cependant, ce système n'est pas officiellement pris en charge.
+- Autres systèmes *BSD, car Minecraft LCE n'est pas pris en charge sur ceux-ci et Wine n'est pas disponible.
+- Android : Minecraft LCE a actuellement des ralentissements et des bugs importants sur Android.
+- macOS : LCE Qt Launcher ne supporte pas officialiement MacOS et n'est pas tester lors des PR, mais la compatibilité POISX devrait permettre de l'utiliser. 
 
 ## Remerciements
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) pour certains éléments et fichiers d'interface utilisateur
-- [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) pour le portage du jeu
+- [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) pour le portage du jeu pour PC
+- [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour le backportage des mise a jours pour le pc port 
 
 ## Code de conduite
 
