@@ -2,6 +2,6 @@ import os
 import subprocess
 
 if os.name == "posix":
-    subprocess.run("./scripts/run.sh", check=True)
+    _ = subprocess.run("./scripts/run.sh", check=True)
 if os.name == "nt":
-    subprocess.run("scripts/run.cmd", check=True, shell=True)
+    _ = subprocess.run("scripts\\run.cmd", check=True, shell=True)
