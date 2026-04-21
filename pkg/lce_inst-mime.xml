@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-lce-inst">
+    <comment>LCE Qt Launcher Inst Save File</comment>
+    <glob pattern="*.lce_inst"/>
+  </mime-type>
+</mime-info>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.xgui4.lce_qt_launcher.metainfo.xml</id>
+  
+  <name>lce_qt_launcher</name>
+  <summary> This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.</summary>
+  <metadata_license>GPLv3</metadata_license>
+  <project_license>GPLv3</project_license>
+  
+  <description>
+    <tbd>
+  </description>
+
+  <url>https://github.com/xgui4/LCE-Qt-Launcher</url>
+  
+  <launchable type="desktop-id">github.io.xgui4.lce_qt_launcher.desktop</launchable>
+</component>
