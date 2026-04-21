@@ -13,7 +13,16 @@ from PySide6.QtCore import (
     qVersion
 )
 
+from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.app_context import AppContext
+from lce_qt_launcher.managers.instance_manager import InstanceManager
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.ui_about import Ui_AboutDialog
+from lce_qt_launcher.ui_instance import Ui_InstancesEditor
+from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
+from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
+from lce_qt_launcher.utils.json_trans import JsonTrans
+from lce_qt_launcher.ui_form import Ui_launcher
 
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
@@ -25,38 +34,33 @@ import platform
 class Launcher(QMainWindow):
     def __init__(self, 
                  appContext : AppContext, 
-                 ui_launcher : object, 
-                 ui_sys_dialog: object,
-                 ui_instance_editor: object, 
-                 ui_setting : object,
-                 ui_about_dialog : object,
                  app : QApplication, 
                  parent=None) -> None:
         super().__init__(parent)
 
-        translator = appContext.translator
-        instanceManager = appContext.instanceMan
-        buildInfo = appContext.buildInfo
+        translator: JsonTrans = appContext.translator
+        instanceManager: InstanceManager = appContext.instanceMan
+        buildInfo: BuildInfo = appContext.buildInfo
 
-        self.image_label = instanceManager.instance.image
-        self.news_feed = instanceManager.instance.news_feed
-        self.instance_name = instanceManager.instance.name
+        self.image_label: str = instanceManager.instance.image
+        self.news_feed: str = instanceManager.instance.news_feed
+        self.instance_name: str = instanceManager.instance.name
 
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
-        def gen_inst_from_form():
+        def gen_inst_from_form() -> None:
             instanceManager.instance = features.new_instance_from_form(self)
 
-        def confirm_changes_button():
+        def confirm_changes_button() -> None:
             gen_inst_from_form()
 
-        def update_page():
+        def update_page() -> None:
             features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
 
-        def launch():
+        def launch() -> None:
             features.launch_game(instanceManager, STARTING_GAME_MSG)
 
-        def install():
+        def install() -> None:
             features.install_game(self, instanceManager.instance, instanceManager)
 
         def show_aboutQt() -> None:
@@ -91,7 +95,7 @@ class Launcher(QMainWindow):
             self.ui.newsEngineView.setUrl(self.news_feed)
 
         def show_setting_dialog() -> None:
-            features.show_setting(self, ui_setting)
+            features.show_setting(self, Ui_settingDialog())
 
         def show_instance_editor() -> None:
             features.show_instance_editor(self)
@@ -105,15 +109,15 @@ class Launcher(QMainWindow):
         else:
             term_service.print_error("Cannot set the background")
 
-        self.ui = ui_launcher()
+        self.ui: Ui_launcher = Ui_launcher()
 
         self.ui.setupUi(self)
         
-        self.about = ui_about_dialog()
-        self.aboutDialog = QDialog()
+        self.about: Ui_AboutDialog = Ui_AboutDialog()
+        self.aboutDialog: QDialog = QDialog()
 
-        self.sysinfo_dialog = QDialog() 
-        self.dialog_ui = ui_sys_dialog()
+        self.sysinfo_dialog: QDialog = QDialog() 
+        self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
         self.about.setupUi(self.aboutDialog)
 
@@ -130,17 +134,17 @@ class Launcher(QMainWindow):
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
         from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
-        self.about.aboutQt.clicked.connect(show_aboutQt)
-        self.about.closeButton.clicked.connect(self.aboutDialog.close)
+        _ = self.about.aboutQt.clicked.connect(show_aboutQt)
+        _ = self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
         window_title: str = translator.translate(appContext.buildInfo.app_name)
 
-        self.instance_window = QDialog()
-        self.instance_editor = ui_instance_editor()
+        self.instance_window: QDialog = QDialog()
+        self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
         self.instance_editor.setupUi(self.instance_window)
         self.instance_window.setWindowTitle(window_title)
 
-        systemManager = buildInfo.system_manager
+        systemManager: SystemManager = buildInfo.system_manager
 
         self.dialog_ui.appVersion.setText(f"{buildInfo.app_name} Version {buildInfo.version_type} {buildInfo.version}")
         self.dialog_ui.qVersionLabel.setText(f"Qt Version {qVersion()}")
@@ -173,7 +177,7 @@ class Launcher(QMainWindow):
         _ = self.ui.actionSave.triggered.connect(save_instance)
         _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
 
-        self.versionlabel = QLabel(f"Version {buildInfo.version}")
+        self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
-        holyday_label = QLabel(holyday.get_holyday())
+        holyday_label: QLabel = QLabel(holyday.get_holyday())
         self.ui.statusbar.addWidget(holyday_label)

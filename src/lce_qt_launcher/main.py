@@ -7,8 +7,8 @@
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.4.20"
-# nuitka-project: --file-version="0.26.4.20"
+# nuitka-project: --product-version="0.26.4.21"
+# nuitka-project: --file-version="0.26.4.21"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
@@ -38,12 +38,6 @@ from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
 
-from lce_qt_launcher.ui_form import Ui_launcher
-from lce_qt_launcher.ui_instance import Ui_InstancesEditor
-from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
-from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
-from lce_qt_launcher.ui_about import Ui_AboutDialog
-
 import sys
 import os
 
@@ -63,7 +57,7 @@ def main():
         accessible_mode = userPref.get_accesible_mode()
 
         appContext.updateLanguage(user_language)
-        appContext.updateTheme(user_theme)
+        # appContext.updateTheme(user_theme) # TODO : convert str to Theme Enum
     except:
         term_service.print_error("They were a error while loading the system theme or user preference.")
 
@@ -85,9 +79,9 @@ def main():
     else:
         os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
-        app = App(appContext.theme, Ui_launcher, Ui_sys_info_dialog, Ui_InstancesEditor, Ui_settingDialog, Ui_AboutDialog, appContext, sys.argv)
+        app = App(appContext.theme, appContext, sys.argv)
         _ = app.setStyle("Fusion")
-        app.aboutToQuit.connect(about_to_quit_event)
+        _ = app.aboutToQuit.connect(about_to_quit_event)
         sys.exit(app.exec())
 
 if __name__ == "__main__":

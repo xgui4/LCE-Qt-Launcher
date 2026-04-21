@@ -3,9 +3,11 @@ from PySide6.QtWidgets import (
     QMessageBox, 
 )
 from PySide6.QtCore import ( 
+    QByteArray,
     QFile, 
     QIODevice 
 )
+
 
 from lce_qt_launcher.views.theme import Theme
 from lce_qt_launcher.views.launcher import Launcher
@@ -19,19 +21,14 @@ import os
 class App(QApplication):
     def __init__(self,
                 theme :  Theme, 
-                launcher_ui : object,
-                sys_diag_ui : object,
-                instance_editor_ui : object,
-                setting_ui : object,
-                about_dialog_ui : object,
                 appContext : AppContext,
-                argv : list ):
+                argv : list[str] ) -> None:
         super().__init__(argv)        
-        self.appContext = appContext
+        self.appContext: AppContext = appContext
 
         _ = self.setStyle("Fusion")
 
-        self.widget = Launcher(self.appContext, launcher_ui, sys_diag_ui, instance_editor_ui, setting_ui, about_dialog_ui, self)
+        self.widget: Launcher = Launcher(self.appContext, self)
         self.widget.show()
 
         self.set_theme(theme)
@@ -41,8 +38,8 @@ class App(QApplication):
             theme_file : str = theme if theme is not None else Theme.MINECRAFT
             file = QFile(theme_file)
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
-                content = file.readAll()
-                stylesheet = str(content, encoding='utf-8')  # pyright: ignore[reportArgumentType]
+                content: QByteArray = file.readAll()
+                stylesheet: str = str(content, encoding='utf-8')  
                 self.setStyleSheet(stylesheet)
         except FileNotFoundError:
             print(FileNotFoundError.with_traceback)

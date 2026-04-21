@@ -8,17 +8,22 @@ from lce_qt_launcher.managers.system_manager import SystemManager
 import lce_qt_launcher.views.term_service as term_service
 
 from lce_qt_launcher import (
-    _FALLBACK_APP_NAME,
-    _FALLBACK_VERSION_NUMBER,
-    _FALLBACK_GIT_REPO_URL,
-    _FALLBACK_LICENSE,
-    _FALLBACK_LICENSE_LINK,
-    _VERSION_TYPE,
-    _INSTANCE_EXTENSION
+    FALLBACK_APP_NAME,
+    FALLBACK_VERSION_NUMBER,
+    FALLBACK_GIT_REPO_URL,
+    FALLBACK_LICENSE,
+    FALLBACK_LICENSE_LINK,
+    VERSION_TYPE,
+    INSTANCE_EXTENSION
 )
 
 class BuildInfo:
-    def __init__(self):
+    def __init__(self) -> None:
+        self.version : str = FALLBACK_VERSION_NUMBER
+        self.app_name: str = FALLBACK_APP_NAME
+        self.git_repo_url: str = FALLBACK_GIT_REPO_URL 
+        self.license_link: str = FALLBACK_LICENSE_LINK 
+        self.license : str = FALLBACK_LICENSE 
         try:
             app_metadata: PackageMetadata = metadata("LCE-Qt-Launcher")
 
@@ -29,45 +34,24 @@ class BuildInfo:
             license_metadata: str = app_metadata["License"]
 
             if version_metadata:
-                self.version : str  = version_metadata
-            else:
-                self.version : str = _FALLBACK_VERSION_NUMBER
+                self.version = version_metadata
             if app_name_metadata:
-                self.app_name: str = app_name_metadata
-            else:
-                self.app_name = _FALLBACK_APP_NAME
+                self.app_name = app_name_metadata
             if repo_url_metadata:
-                self.git_repo_url: str = repo_url_metadata
-            else:
-                self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 
+                self.git_repo_url = repo_url_metadata
             if license_url_metadata:
-                self.license_link: str = license_url_metadata
-            else:
-                self.license_link : str = _FALLBACK_LICENSE_LINK 
+                self.license_link = license_url_metadata
             if license_metadata:
-                self.license: str = license_metadata
-            else:
-                self.license : str = _FALLBACK_LICENSE 
+                self.license = license_metadata
             
         except PackageNotFoundError:
-            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.with_traceback()}")
-            self.version : str = _FALLBACK_VERSION_NUMBER
-            self.app_name = _FALLBACK_APP_NAME
-            self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 
-            self.license_link : str = _FALLBACK_LICENSE_LINK 
-            self.license  : str = _FALLBACK_LICENSE 
+            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.msg}")
         except RuntimeError:
-            term_service.print_error(f"Metadata not found! More info : {RuntimeError.with_traceback()}")
-            self.version : str = _FALLBACK_VERSION_NUMBER
-            self.app_name = _FALLBACK_APP_NAME
-            self.git_repo_url : str = _FALLBACK_GIT_REPO_URL 
-            self.license_link : str = _FALLBACK_LICENSE_LINK 
-            self.license  : str = _FALLBACK_LICENSE 
+            term_service.print_error(f"Metadata not found! More info : {RuntimeError.args}")
 
         self.qt_version : str = qVersion()
         self.system_manager : SystemManager = SystemManager()
-        self.authors = "Xgui4"
-        self.dirs = PlatformDirs(self.app_name, self.authors, ensure_exists=True);
-        
-        self.version_type : str = _VERSION_TYPE
-        self.instance_extension : str = _INSTANCE_EXTENSION
+        self.authors : str = "Xgui4"
+        self.dirs: PlatformDirs = PlatformDirs(self.app_name, self.authors, ensure_exists=True);
+        self.version_type : str = VERSION_TYPE
+        self.instance_extension : str = INSTANCE_EXTENSION

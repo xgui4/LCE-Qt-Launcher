@@ -21,11 +21,63 @@ class InstanceSource(Enum):
     LOCAL_INSTALLATION = 3
     LOCAL_SOURCE_CODE = 4
 
+def from_int_to_InstanceSource(value : int)-> InstanceSource:
+    match value:
+        case 0:
+            return InstanceSource.GITHUB_RELEASE
+        case 1:
+            return InstanceSource.FORGEJO_RELEASE
+        case 2:
+            return InstanceSource.REMOTE_GIT_SOURCE 
+        case 3:
+            return InstanceSource.LOCAL_INSTALLATION
+        case 4:
+            return InstanceSource.LOCAL_SOURCE_CODE
+        case _: raise RuntimeError(f"{value} is an Incorrect InstanceSource Type")
+
+def from_str_to_InstanceSource(string : str)-> InstanceSource:
+    match string:
+        case "InstanceSource.GITHUB_RELEASE":
+            return InstanceSource.GITHUB_RELEASE
+        case "InstanceSource.FORGEJO_RELEASE":
+            return InstanceSource.FORGEJO_RELEASE
+        case "InstanceSource.REMOTE_GIT_SOURCE ":
+            return InstanceSource.REMOTE_GIT_SOURCE 
+        case "InstanceSource.LOCAL_INSTALLATION":
+            return InstanceSource.LOCAL_INSTALLATION
+        case "InstanceSource.LOCAL_SOURCE_CODE":
+            return InstanceSource.LOCAL_SOURCE_CODE
+        case _: raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
+
 class InstanceType(Enum):
     CLIENT_VANILLA = 0
     CLENT_MODDED = 1
     SERVER_VANILLA = 2
     SERVER_MODDED = 3
+
+def from_int_to_InstanceType(value : int)-> InstanceType:
+    match value:
+        case 0:
+            return InstanceType.CLIENT_VANILLA
+        case 1:
+            return InstanceType.CLENT_MODDED
+        case 2:
+            return InstanceType.SERVER_VANILLA
+        case 3:
+            return InstanceType.SERVER_MODDED
+        case _: raise RuntimeError(f"{value} is an Incorrect InstanceType Type")
+
+def from_str_to_InstanceType(string : str)-> InstanceType:
+    match string:
+        case "InstanceType.CLIENT_VANILLA":
+            return InstanceType.CLIENT_VANILLA
+        case "InstanceType.CLENT_MODDED":
+            return InstanceType.CLENT_MODDED
+        case "InstanceType.SERVER_VANILLA":
+            return InstanceType.SERVER_VANILLA
+        case "InstanceType.SERVER_MODDED":
+            return InstanceType.SERVER_MODDED
+        case _: raise RuntimeError(f"{string} is an Incorrect Instance Type")
 
 _DEFAULT_INST_NAME = "Default"
 _DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
@@ -35,11 +87,13 @@ _DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
 _DEFAULT_REPO_URL = "https://github.com/MCLCE/MinecraftConsoles"
 _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
-_DEFAULT_IMAGE = ":/assets/minecraft.png",
+_DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
+_DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
+_DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 _DEFAULT_VERSION = "nightly"
 _DEFAULT_SKIN_PATH = ""
-_DEFAULT_SERVERS = ""
+_DEFAULT_SERVERS: list[str] = []
 
 class Instance:
     def __init__(self, 
@@ -55,8 +109,8 @@ class Instance:
                  news_feed : str = _DEFAULT_NEWS_FEED,
                  version : str = _DEFAULT_VERSION,
                  skin_path : str = _DEFAULT_SKIN_PATH,
-                 servers : list = _DEFAULT_SERVERS
-                ):
+                 servers : list[str] = _DEFAULT_SERVERS
+                ) -> None:
         self.name: str = name
         self.installation_path: str = installation_path
         self.username: str = username
@@ -69,22 +123,22 @@ class Instance:
         self.news_feed : str = news_feed
         self.version: str = version
         self.skin_path: str = skin_path
-        self.servers: list = servers
+        self.servers: list[str] = servers
 
-    def load_inst_from_dict(self, inst_dict: dict):
+    def load_inst_from_dict(self, inst_dict: dict[str, str]) -> None:
         self.name = inst_dict.get("name", _DEFAULT_INST_NAME)
         self.installation_path = inst_dict.get("installation_path",_DEFAULT_INSTALLATION_PATH)
         self.username = inst_dict.get("username", _DEFAULT_USERNAME)
         self.exe_name = inst_dict.get("exe_name", _DEFAULT_EXE_NAME)
         self.archive_file = inst_dict.get("archive_file", _DEFAULT_ARCHIVE_FILE)
         self.repo_url = inst_dict.get("repo_url", _DEFAULT_REPO_URL)
-        self.instance_source = inst_dict.get("instances_source", _DEFAULT_INST_SOURCE)
-        self.instance_type = inst_dict.get("instance_type", _DEFAULT_INST_TYPE)
+        self.instance_source = from_str_to_InstanceSource(inst_dict.get("instances_source", _DEFAULT_INST_SOURCE_STRING))
+        self.instance_type = from_str_to_InstanceType(inst_dict.get("instance_type", _DEFAULT_INST_TYPE_STRING))
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", _DEFAULT_VERSION)
-        self.skin_path = inst_dict.get("skin_path", _DEFAULT_SKIN_PATH)
-        self.servers = inst_dict.get("servers", _DEFAULT_SERVERS)
+        # self.skin_path = inst_dict.get("skin_path", _DEFAULT_SKIN_PATH)
+        # self.servers = inst_dict.get("servers", _DEFAULT_SERVERS)
 
     def get_download_url(self) -> str:
         download_release_url = "/releases/download/"
@@ -125,18 +179,22 @@ class InstanceManager:
         except RuntimeError as e:
             raise e
 
-    def save_instance(self, save_file : str):
+    def save_instance(self, save_file : str) -> None: 
+        json_string : str = ""
         try:
-            json_string: str = json.dumps(vars(self.instance))
-        except TypeError:
-            json_string: str = json.dumps(vars(self.instance), default=str)
+            json_string = json.dumps(vars(self.instance), indent=4,)
+        except:
+            json_string = json.dumps(obj=vars(self.instance), indent=4, default=str)
         if not save_file.endswith(self._build_info.instance_extension):
             save_file: str = save_file + self._build_info.instance_extension
-        with open(save_file, 'w') as f:
+        with open(file=save_file, mode='w') as f:
             _ = f.write(json_string)
     
     def load_instance(self, save_file : str) -> None:
-        inst_dict : dict = {}
-        with open(save_file, 'r') as json_file:
-            inst_dict = json.load(json_file)
+        with open(file=save_file, mode='r') as json_file:
+            json_data = json.load(json_file)   
+            #if json_data == dict[str, str]:
+            inst_dict : dict[str, str] = json_data  
+            #else:
+            #    raise RuntimeError("Invalid Dictionary")
             self.instance.load_inst_from_dict(inst_dict)

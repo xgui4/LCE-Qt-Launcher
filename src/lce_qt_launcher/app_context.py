@@ -1,3 +1,9 @@
+from __future__ import annotations 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from lce_qt_launcher.managers.system_manager import SystemManager
+
 from lce_qt_launcher import Languages
 from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
@@ -10,30 +16,30 @@ _default_theme : Theme = Theme.MINECRAFT
 _default_language : str = "en"
 
 class AppContext():
-    def __init__(self, theme = _default_theme, instance = _default_instance , lang : str = _default_language):
-        self.buildInfo = BuildInfo()
-        self.sys_man = self.buildInfo.system_manager
-        self.userPref = UserPref(self.buildInfo)
-        self.instanceMan = InstanceManager(instance, self.buildInfo)
-        self.theme = theme
-        self.translator = JsonTrans(lang)
+    def __init__(self, theme : Theme = _default_theme, instance : Instance = _default_instance , lang : str = _default_language) -> None:
+        self.buildInfo: BuildInfo = BuildInfo()
+        self.sys_man: SystemManager = self.buildInfo.system_manager
+        self.userPref: UserPref = UserPref(self.buildInfo)
+        self.instanceMan: InstanceManager = InstanceManager(instance, self.buildInfo)
+        self.theme: Theme = theme
+        self.translator: JsonTrans = JsonTrans(lang)
         self.accesibleModeEnabled : bool = self.userPref.default_accesibility_mode
         self.devModeEnabled : bool = self.userPref.default_developper_mode
         self.showHolydayEnabled : bool = self.userPref.default_show_holyday
         self.currentLang : str = Languages.FALLBACK.value
         
-        self.BACKGROUND_PIXMAP_IMG = ":/assets/background.png"
-        self.ICON = ":/assets/launcher_small.png"
-        self.MINECRAFT_WEBSITE = "https://minecraft.net"
-        self.MINECRAFT_LCE_WEBSITE = "https://minecraftlegacy.com/"
+        self.BACKGROUND_PIXMAP_IMG : str = ":/assets/background.png"
+        self.ICON : str = ":/assets/launcher_small.png"
+        self.MINECRAFT_WEBSITE : str = "https://minecraft.net"
+        self.MINECRAFT_LCE_WEBSITE : str = "https://minecraftlegacy.com/"
 
-    def updateTheme(self, theme : Theme):
+    def updateTheme(self, theme : Theme) -> None:
         self.theme = theme
         self.userPref.set_theme_pref(theme.value)
 
-    def updateInstance(self, instnce : Instance):
-        self.instanceMan.load_instance(instnce)
+    def updateInstance(self, instance_file_path : str) -> None:
+        self.instanceMan.load_instance(instance_file_path)
 
-    def updateLanguage(self, lang : str):
+    def updateLanguage(self, lang : str) -> None:
         self.currentLang = lang
         self.translator.load_lang(lang)

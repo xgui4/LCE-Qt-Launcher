@@ -37,24 +37,24 @@ class CmdArg(StrEnum):
     HELP_CMD_ARG = "--help"
     HELP_CMD_ARG_SHORT = "-h"
 
-def parse_args(argv : list) -> CmdArgAction:
-    if (len(argv) > 1):
-        if argv[1] in (CmdArg.GEN_CONFIG_CMD_ARG , CmdArg.GEN_CONFIG_CMD_ARG_SHORT):
+def parse_args(argv : list[str]) -> CmdArgAction:
+    match argv: 
+        case CmdArg.GEN_CONFIG_CMD_ARG | CmdArg.GEN_CONFIG_CMD_ARG_SHORT:
             return CmdArgAction.GEN_CONFIG
-        elif argv[1] in (CmdArg.VERSION_CMD_ARG, CmdArg.VERSION_CMD_ARG_SHORT):
+        case CmdArg.VERSION_CMD_ARG | CmdArg.VERSION_CMD_ARG_SHORT:
             return CmdArgAction.PRINT_VERSION
-        elif argv[1] in (CmdArg.LICENSE_CMD_ARG, CmdArg.LICENSE_CMD_ARG_SHORT):
+        case CmdArg.LICENSE_CMD_ARG | CmdArg.LICENSE_CMD_ARG_SHORT:
             return CmdArgAction.PRINT_LICENSE
-        elif argv[1] in (CmdArg.ABOUT_CMD_ARG, CmdArg.ABOUT_CMD_ARG_SHORT):
+        case CmdArg.ABOUT_CMD_ARG | CmdArg.ABOUT_CMD_ARG_SHORT:
             return CmdArgAction.PRINT_ABOUT_INFO
-        elif argv[1] in (CmdArg.HELP_CMD_ARG, CmdArg.HELP_CMD_ARG_SHORT):
+        case CmdArg.HELP_CMD_ARG, CmdArg.HELP_CMD_ARG_SHORT:
             return CmdArgAction.PRINT_HELP
-        elif argv[1] in (CmdArg.CLI_VERSION_CMD_ARG, CmdArg.CLI_VERSION_CMD_ARG_SHORT):
+        case CmdArg.CLI_VERSION_CMD_ARG, CmdArg.CLI_VERSION_CMD_ARG_SHORT:
             return CmdArgAction.CLI_VERSION
-        elif argv[1] in (CmdArg.GUI_ARGS_CMD_ARG, CmdArg.GUI_ARGS_CMD_ARG_SHORT):
+        case CmdArg.GUI_ARGS_CMD_ARG | CmdArg.GUI_ARGS_CMD_ARG_SHORT:
             return CmdArgAction.GUI_ARGUMENTS
-    else : 
-        return CmdArgAction.NO_ARGS
+        case _:
+            return CmdArgAction.NO_ARGS
     
 FALLBACK_ABOUT_MESSAGE = "This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and GNU/Linux support in mind."
 FALLBACK_HELP_MESSAGE = "-h or --help to get this help \n -v or --version to get the app version \n -L or --license to get the license information \n -a or --about to get information about the app \n -cl or --cli to launch the cli version \n -g or --gen-config to generate or update the app config"
