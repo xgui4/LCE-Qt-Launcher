@@ -1,5 +1,10 @@
-from lce_qt_launcher.app_context import AppContext
-from lce_qt_launcher.managers.downloader import Downloader
+#TODO : Make Instance mode indpendant
+from __future__ import annotations 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from lce_qt_launcher.app_context import AppContext
+
 from lce_qt_launcher.build_info import BuildInfo
 
 import lce_qt_launcher.views.term_service as term_service
@@ -224,6 +229,7 @@ class InstanceManager:
     """
     def __init__(self, instance : Instance, build_info : BuildInfo, appContext : AppContext):
         self.instance: Instance = instance
+        from lce_qt_launcher.managers.downloader import Downloader
         self._downloader: Downloader = Downloader(appContext)
         self._build_info: BuildInfo = build_info
     def play(self) -> str:

@@ -2,10 +2,10 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from lce_qt_launcher.managers.system_manager import SystemManager
     from lce_qt_launcher.models.app_data import AppData
 
 from lce_qt_launcher import Languages
+from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
@@ -17,7 +17,7 @@ _default_theme : Theme = Theme.MINECRAFT
 _default_language : str = "en"
 
 class AppContext():
-    """_summary_ The App Main Controller
+    """_summary_ The App Main Context
     """
     def __init__(self, 
                 appData: AppData,
