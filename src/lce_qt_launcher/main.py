@@ -31,8 +31,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+from lce_qt_launcher.managers.system_manager import SystemManager
+
+
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
+from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
 from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected, launch_cmd_action
 from lce_qt_launcher.app_context import AppContext
@@ -41,10 +45,14 @@ from lce_qt_launcher.app import App
 import sys
 import os
 
-def main():
-    appContext = AppContext()
+def main() -> None:
+    """_summary_ Main Function
+    """
 
-    sys_man = appContext.buildInfo.system_manager
+    appData : AppData = AppData()
+    appContext: AppContext = AppContext(appData)
+
+    sys_man: SystemManager = appContext.sys_man
     try:
         sys_man.adapt_qt_system_theme()
 
@@ -70,7 +78,7 @@ def main():
         if anwser == QMessageBox.StandardButton.Yes:
             file_name: str = QFileDialog.getSaveFileName(
                 None, save_filedialog_title,
-                  f"{appContext.buildInfo.system_manager.found_default_save_path }(\"LCE Instance Save File\" (*{appContext.buildInfo.instance_extension}))")[0]
+                  f"{appContext.sys_man.found_default_save_path()}(\"LCE Instance Save File\" (*{appContext.buildInfo.instance_extension}))")[0]
             appContext.instanceMan.save_instance(file_name)
 
     action : CmdArgAction = parse_args(sys.argv)

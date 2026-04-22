@@ -106,10 +106,12 @@ class Launcher(QMainWindow):
         def save_instance() -> None:
             """_summary_ Save the instance on a file on disk
             """
+            features.save_instance(self, instanceManager, appContext, buildInfo)
 
         def load_instance() -> None:
             """_summary_ Open the Load Save File Dialog 
             """
+            features.load_instance(self, instanceManager, appContext, buildInfo)
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
@@ -173,7 +175,7 @@ class Launcher(QMainWindow):
         self.instance_editor.setupUi(self.instance_window)
         self.instance_window.setWindowTitle(window_title)
 
-        systemManager: SystemManager = buildInfo.system_manager
+        systemManager: SystemManager = appContext.sys_man
 
         self.dialog_ui.appVersion.setText(f"{buildInfo.app_name} Version {buildInfo.version_type} {buildInfo.version}")
         self.dialog_ui.qVersionLabel.setText(f"Qt Version {qVersion()}")

@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from lce_qt_launcher.managers.system_manager import SystemManager
+    from lce_qt_launcher.models.app_data import AppData
 
 from lce_qt_launcher import Languages
 from lce_qt_launcher.models.preferences import UserPref
@@ -16,13 +17,19 @@ _default_theme : Theme = Theme.MINECRAFT
 _default_language : str = "en"
 
 class AppContext():
-    def __init__(self, theme : Theme = _default_theme, instance : Instance = _default_instance , lang : str = _default_language) -> None:
+    """_summary_ The App Main Controller
+    """
+    def __init__(self, 
+                appData: AppData,
+                theme : Theme = _default_theme, 
+                instance : Instance = _default_instance, 
+                lang : str = _default_language) -> None:
         self.buildInfo: BuildInfo = BuildInfo()
-        self.sys_man: SystemManager = self.buildInfo.system_manager
+        self.sys_man: SystemManager = SystemManager()
         self.userPref: UserPref = UserPref(self.buildInfo)
-        self.instanceMan: InstanceManager = InstanceManager(instance, self.buildInfo)
+        self.instanceMan: InstanceManager = InstanceManager(instance, self.buildInfo, self)
         self.theme: Theme = theme
-        self.translator: JsonTrans = JsonTrans(lang)
+        self.translator: JsonTrans = JsonTrans(appData, lang)
         self.accesibleModeEnabled : bool = self.userPref.default_accesibility_mode
         self.devModeEnabled : bool = self.userPref.default_developper_mode
         self.showHolydayEnabled : bool = self.userPref.default_show_holyday

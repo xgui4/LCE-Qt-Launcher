@@ -2,7 +2,7 @@ from PySide6.QtCore import QObject, Signal
 
 from enum import Enum
 
-from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.downloader import Downloader 
 
 import os
@@ -26,15 +26,14 @@ class Image(QObject):
                 filename : str, 
                 img_type : str, 
                 source : SourceType,
-                buildInfo : BuildInfo,
-                parent = None) -> None:
-        super().__init__(parent)
+                appContext : AppContext) -> None:
+        super().__init__(None)
         self.location: str = location
         self.filename: str = filename
         self.source: SourceType = source
 
         if source == SourceType.INTERNET:
-            self.downloader: Downloader = Downloader(buildInfo)
+            self.downloader: Downloader = Downloader(appContext)
             self.setup_image()
 
     def get_image_path(self) -> str:

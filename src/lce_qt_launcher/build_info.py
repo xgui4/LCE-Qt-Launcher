@@ -1,24 +1,19 @@
-from PySide6.QtCore import qVersion
 from importlib.metadata import PackageNotFoundError, metadata, version
 from importlib.metadata._meta import PackageMetadata
 
-from platformdirs import PlatformDirs
-
-from lce_qt_launcher.managers.system_manager import SystemManager
-import lce_qt_launcher.views.term_service as term_service
+from PySide6.QtCore import qVersion
 
 from lce_qt_launcher import (
     AUTHORS,
     FALLBACK_APP_NAME,
-    FALLBACK_VERSION_NUMBER,
     FALLBACK_GIT_REPO_URL,
     FALLBACK_LICENSE,
     FALLBACK_LICENSE_LINK,
     FALLBACK_VERSION_NUMBER,
     INSTANCE_EXTENSION,
     VERSION_TYPE,
-    INSTANCE_EXTENSION
 )
+import lce_qt_launcher.views.term_service as term_service
 
 class BuildInfo:
     """Application Information and Metadata Information"""
@@ -54,8 +49,6 @@ class BuildInfo:
             term_service.print_error(f"Metadata not found! More info : {RuntimeError.args}")
 
         self.qt_version : str = qVersion()
-        self.system_manager : SystemManager = SystemManager()
-        self.authors : str = "Xgui4"
-        self.dirs: PlatformDirs = PlatformDirs(self.app_name, self.authors, ensure_exists=True);
+        self.authors : str = AUTHORS
         self.version_type : str = VERSION_TYPE
         self.instance_extension : str = INSTANCE_EXTENSION

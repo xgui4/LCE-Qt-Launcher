@@ -2,7 +2,7 @@ from PySide6.QtCore import QObject, Signal
 import json
 import os
 
-from lce_qt_launcher import utils
+import lce_qt_launcher.models.app_data as AppData
 import lce_qt_launcher.views.term_service as term_service
 
 class JsonTrans(QObject):
@@ -13,10 +13,11 @@ class JsonTrans(QObject):
     """
     languageChanged: Signal = Signal()
 
-    def __init__(self, lang_code : str = "translations") -> None:
+    def __init__(self, appData : AppData.AppData, lang_code : str = "translations") -> None:
         super().__init__()
         self.json_data: dict[str, str] = {}
         self._current_lang: str = lang_code
+        self.appDataManager : AppData.AppData = appData
         self.load_lang(lang_code=self._current_lang)
 
     def load_lang(self, lang_code: str) -> None:

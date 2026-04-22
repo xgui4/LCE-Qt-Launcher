@@ -1,22 +1,13 @@
-from PySide6.QtWidgets import ( 
-    QApplication, 
-    QMessageBox, 
-)
-from PySide6.QtCore import ( 
-    QByteArray,
-    QFile, 
-    QIODevice 
-)
+import os
 
+from PySide6.QtCore import QByteArray, QFile, QIODevice
+from PySide6.QtWidgets import QApplication, QMessageBox
 
-from lce_qt_launcher.views.theme import Theme
-from lce_qt_launcher.views.launcher import Launcher
 from lce_qt_launcher.app_context import AppContext
-
-import lce_qt_launcher.utils as utils
+from lce_qt_launcher.models.app_data import AppData
+from lce_qt_launcher.views.launcher import Launcher
+from lce_qt_launcher.views.theme import Theme
 import lce_qt_launcher.views.term_service as term_service
-
-import os 
 
 class App(QApplication):
     """QApplication Main Instance"""
@@ -26,6 +17,7 @@ class App(QApplication):
                 argv : list[str] ) -> None:
         super().__init__(argv)        
         self.appContext: AppContext = appContext
+        self.appData: AppData = AppData()
 
         _ = self.setStyle("Fusion")
 
@@ -49,7 +41,7 @@ class App(QApplication):
             print(FileNotFoundError.with_traceback)
             term_service.print_warning(f"Theme ({theme}) not found in ressource, searching in the local storage.")
             try: 
-                with open(os.path.join(utils.get_assets_dir(), "styles", "minecraft.qss"), "r") as file:
+                with open(os.path.join(self.appData.assetsDirs, "styles", "minecraft.qss"), "r") as file:
                     self.setStyleSheet(file.read())
             except FileNotFoundError:
                 _ = QMessageBox.warning(None,"Error", f"{theme} file not found. Reverting to default theme")

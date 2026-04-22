@@ -3,9 +3,9 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from lce_qt_launcher.managers.instance_manager import Instance
-    from lce_qt_launcher.build_info import BuildInfo
     from requests.models import Response
 
+from lce_qt_launcher.app_context import AppContext
 import lce_qt_launcher.views.term_service as term_service 
 
 from lce_qt_launcher.managers.system_manager import SystemManager
@@ -42,8 +42,8 @@ class Downloader(QObject):
     """
     def __init__(self, appContext : AppContext) -> None:
         super().__init__()
-        self._buildInfo: BuildInfo = build_info
         self.manager: QNetworkAccessManager = QNetworkAccessManager()
+        self.appContext : AppContext = appContext
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
         """ _summary_ Download and install the selected Instance 
@@ -68,7 +68,7 @@ class Downloader(QObject):
                 term_service.print_success(f"Installation of {instance.name} was a success")
                 if os.name == "posix":
                     exe_path = os.path.join(instance.installation_path, instance.exe_name)
-                    _ = self._buildInfo.system_manager.set_file_permission(exe_path)
+                    _ = self.appContext.sys_man.set_file_permission(exe_path)
             except BadZipFile as e: 
                 error_msg : str = f"Extraction Error : {e}"
                 term_service.print_error(error_msg)
@@ -80,7 +80,7 @@ class Downloader(QObject):
             else:
                 if os.name == "posix":
                     exe_abs_path: str = os.path.join(instance.installation_path, instance.exe_name)
-                    system: SystemManager = self._buildInfo.system_manager
+                    system: SystemManager = self.appContext.sys_man
                     _ = system.set_file_permission(exe_abs_path)
 
         _ = reply.finished.connect(_when_finished)

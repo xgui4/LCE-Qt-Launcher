@@ -2,26 +2,25 @@
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
 from PySide6.QtNetwork import QNetworkReply
-
-from PySide6.QtWidgets import(
-    QMainWindow, 
-    QLabel, 
-    QProgressBar, 
-    QMessageBox, 
-    QFileDialog, 
+from PySide6.QtWidgets import (
+    QFileDialog,
     QInputDialog,
+    QLabel,
+    QMainWindow,
+    QMessageBox,
+    QProgressBar,
     QWidget,
 )
 
+from lce_qt_launcher.app_context import AppContext
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
+from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
-import lce_qt_launcher.views.term_service as term_service
-import lce_qt_launcher.views.cli as cli 
-
 from lce_qt_launcher.views.browser_dialog import BrowserDialog
 from lce_qt_launcher.views.setting_dialog import SettingDialog
-from lce_qt_launcher.models.preferences import UserPref
-from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
+import lce_qt_launcher.views.cli as cli
+import lce_qt_launcher.views.term_service as term_service
 
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager) -> None:
     """Features : Install the game instance selected
@@ -82,14 +81,13 @@ def show_instance_editor(parent : QWidget) -> None:
     """Features : Open the Instance Editor"""
     parent.instance_window.show()  
 
-def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
+def load_instance(parent : QWidget, instanceManager : InstanceManager, appContext: AppContext, buildInfo : BuildInfo) -> None:  
     """Features : Load the Selected Instance"""
-    file_name = QFileDialog.getOpenFileName(
+    file_name: tuple[str, str] = QFileDialog.getOpenFileName(
         parent, "Load Instance File", 
-        buildInfo.system_manager.found_default_save_path(), 
+        appContext.sys_man.found_default_save_path(), 
         f"{buildInfo.app_name} Instance (*{buildInfo.instance_extension})")
     instanceManager.load_instance(file_name[0])
-
 
 def show_about_qt(parent : QWidget) -> None:
     """Features : Load the Selected Instance"""
@@ -106,9 +104,7 @@ def new_instance_from_form(mainWindow : QMainWindow) -> Instance:
     server_ip_str: str = form.serverIPInputBox.text() 
     server_name_str : str = form.serverNameInputBox.text()   
     repo_url_str: str = form.repoURLInputBox.text()
-
     instance_name: str = QInputDialog.getText(mainWindow, "Name your instance", "Set the name of the instance")[0]
-
     newInstance = Instance()
 
     if instance_name:
@@ -127,11 +123,11 @@ def new_instance_from_form(mainWindow : QMainWindow) -> Instance:
 def show_webbrowser(parent : QWidget, url : str, buildInfo : BuildInfo):
     _ = BrowserDialog(parent, url, buildInfo)
 
-def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo):
+def save_instance(parent :  QWidget, instanceManager : InstanceManager, appContext: AppContext, buildInfo : BuildInfo) -> None:
     file_name: str = QFileDialog.getSaveFileName(
         parent, 
         "Save Instance option to a file", 
-        buildInfo.system_manager.found_default_save_path(), 
+        appContext.sys_man.found_default_save_path(), 
         f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})")[0]
     instanceManager.save_instance(file_name)
 

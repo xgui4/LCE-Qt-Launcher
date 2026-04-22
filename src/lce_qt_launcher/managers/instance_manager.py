@@ -1,3 +1,4 @@
+from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.downloader import Downloader
 from lce_qt_launcher.build_info import BuildInfo
 
@@ -221,8 +222,9 @@ class Instance:
 class InstanceManager:
     """_summary_ The Manager for Instances objects
     """
+    def __init__(self, instance : Instance, build_info : BuildInfo, appContext : AppContext):
         self.instance: Instance = instance
-        self._downloader: Downloader = Downloader(build_info)
+        self._downloader: Downloader = Downloader(appContext)
         self._build_info: BuildInfo = build_info
     def play(self) -> str:
         """_summary_ Launch an Instance
