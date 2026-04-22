@@ -19,6 +19,7 @@ import lce_qt_launcher.views.term_service as term_service
 import os 
 
 class App(QApplication):
+    """QApplication Main Instance"""
     def __init__(self,
                 theme :  Theme, 
                 appContext : AppContext,
@@ -33,13 +34,16 @@ class App(QApplication):
 
         self.set_theme(theme)
         
-    def set_theme(self, theme : Theme):
+    def set_theme(self, theme : Theme) -> None:
+        """#Set Application Theme using a pretermined theme
+        #TODO To Upgrade!
+        """
         try:
-            theme_file : str = theme if theme is not None else Theme.MINECRAFT
+            theme_file : str = theme
             file = QFile(theme_file)
             if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
                 content: QByteArray = file.readAll()
-                stylesheet: str = str(content, encoding='utf-8')  
+                stylesheet: str = str(content, encoding='utf-8')    # pyright: ignore[reportArgumentType]
                 self.setStyleSheet(stylesheet)
         except FileNotFoundError:
             print(FileNotFoundError.with_traceback)

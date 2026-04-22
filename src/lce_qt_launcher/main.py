@@ -7,8 +7,8 @@
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="0.26.4.21"
-# nuitka-project: --file-version="0.26.4.21"
+# nuitka-project: --product-version="1.0.0.1"
+# nuitka-project: --file-version="1.0.0.1"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"

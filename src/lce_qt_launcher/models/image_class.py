@@ -1,4 +1,4 @@
-from PySide6.QtCore import QObject , Property, Signal
+from PySide6.QtCore import QObject, Signal
 
 from enum import Enum
 
@@ -13,6 +13,11 @@ class SourceType(Enum):
     INTERNET = 2
 
 class Image(QObject):
+    """_summary_ An Image Entity
+
+    Args:
+        QObject (_type_): _description_ Inherit From QObject
+    """
 
     changed: Signal = Signal()
     
@@ -33,9 +38,16 @@ class Image(QObject):
             self.setup_image()
 
     def get_image_path(self) -> str:
+        """_summary_ Get the image full path
+
+        Returns:
+            str: _description_ the full path in str
+        """
         return os.path.join(self.location, self.filename)
 
     def setup_image(self) -> None:
+        """_summary_ Setup an image like downloading the image if online 
+        """
         if self.source == SourceType.INTERNET:
             self.downloader.save_file_from_internet(self.location, self.filename)
         else:

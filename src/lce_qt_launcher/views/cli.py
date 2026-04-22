@@ -4,7 +4,15 @@ from lce_qt_launcher.managers.instance_manager import InstanceManager
 from lce_qt_launcher.build_info import BuildInfo
 import lce_qt_launcher.views.term_service as term_service
 
-def launch_cli(instance_man : InstanceManager, build_info : BuildInfo):    
+def launch_cli(instance_man : InstanceManager, build_info : BuildInfo) -> None:  
+    """
+    _summary_ : launch the cli interface 
+
+    Args: 
+        instance_man : the instancer Manager object 
+        buildInfo (FIXME : unused) : an BuildInfo class
+    """
+    
     MENU_STR = """
 1. [bold green] Play [/bold green]
 2. [bold green] Install [/bold green]

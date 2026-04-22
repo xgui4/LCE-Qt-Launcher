@@ -24,6 +24,12 @@ from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
 
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager) -> None:
+    """Features : Install the game instance selected
+    #TODO : Separe the GUI with the logic of the model
+    # ARGS:
+    - parent : The QWidget parent
+    - instance : The selected Instance
+    - instanceManager : The instance manager to use"""
     button_reply = QMessageBox.question(parent, 'Confirm Installation', 
                                     "Do you really want to re-install the game? " +
                                     "This version does not support update a installation yet," +
@@ -41,37 +47,43 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
             _ = progressBar.setEnabled(True)  
             _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-            def update_progress_bar(bytes_received, bytes_total):
+            #TODO - VERIFY THIS
+            def update_progress_bar(bytes_received, bytes_total) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
                 if bytes_total > 0:
-                    _ = progressBar.setMaximum(bytes_total)
-                    _ = progressBar.setValue(bytes_received)
+                    _ = progressBar.setMaximum(bytes_total)  # pyright: ignore[reportUnknownArgumentType]
+                    _ = progressBar.setValue(bytes_received)  # pyright: ignore[reportUnknownArgumentType]
                 else:
                     _ = progressBar.setRange(0, 0)  
-            _ = reply.downloadProgress.connect(update_progress_bar)
+            _ = reply.downloadProgress.connect(update_progress_bar)  # pyright: ignore[reportUnknownArgumentType]
 
         except RuntimeError as e:
             _ = progressLabel.setVisible(True) 
             _ = progressBar.setVisible(True)  
             _ = progressBar.setEnabled(True)  
             _ = progressLabel.setText(f"Downloading {instance.name} Cancelled due to a error.")
-            _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher", f"There were a error during the installation \n traceback : {e.with_traceback()}", QMessageBox.StandardButton.Ok)
+            _ = QMessageBox.critical(parent, "Minecraft LCE Qt Launcher", f"There were a error during the installation \n traceback : {e.args}", QMessageBox.StandardButton.Ok)
     else:
         _ = QMessageBox.information(parent, "Minecraft LCE Qt Launcher", "Installation Cancelled", QMessageBox.StandardButton.Ok)
 
 def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str) -> None:
+    """Features : Launch the game instance selected"""
     term_service.print_information(starting_game_msg_str)
     print(instanceManager.play())
 
 def show_setting(parent : QWidget, setting_ui : Ui_settingDialog)  -> None:
+    """Features : Open the Setting Pages"""
     _ = SettingDialog(parent, setting_ui)
 
 def show_system_info(parent : QWidget) -> None:
+    """Features : Open the System Info Pages"""
     parent.sysinfo_dialog.show()  
 
 def show_instance_editor(parent : QWidget) -> None:
+    """Features : Open the Instance Editor"""
     parent.instance_window.show()  
 
 def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo : BuildInfo) -> None:  
+    """Features : Load the Selected Instance"""
     file_name = QFileDialog.getOpenFileName(
         parent, "Load Instance File", 
         buildInfo.system_manager.found_default_save_path(), 
@@ -80,6 +92,7 @@ def load_instance(parent : QWidget, instanceManager : InstanceManager, buildInfo
 
 
 def show_about_qt(parent : QWidget) -> None:
+    """Features : Load the Selected Instance"""
     print("Show About Qt popup.")
     QMessageBox.aboutQt(parent, "About Qt")
 
@@ -87,8 +100,7 @@ def show_about_app(parent : QWidget) -> None:
     parent.aboutDialog.show()
 
 def new_instance_from_form(mainWindow : QMainWindow) -> Instance:
-    form = mainWindow.ui  
-
+    form:QMainWindow = mainWindow.ui  
     username_str :str = form.usernameInputBox.text()  
     path_str : str = form.pathInputBox.text() 
     server_ip_str: str = form.serverIPInputBox.text() 
@@ -123,8 +135,8 @@ def save_instance(parent :  QWidget, instanceManager : InstanceManager, buildInf
         f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})")[0]
     instanceManager.save_instance(file_name)
 
-def launch_cli_interface(instance_man : InstanceManager, buildInfo : BuildInfo, argv : list):
-    cli.launch_cli(instance_man, buildInfo, argv)
+def launch_cli_interface(instance_man : InstanceManager, buildInfo : BuildInfo) -> None:
+    cli.launch_cli(instance_man, buildInfo)
 
 def generate_user_config(userPref : UserPref) -> None:
     userPref.generate_default_config()

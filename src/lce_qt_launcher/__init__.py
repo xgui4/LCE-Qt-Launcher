@@ -1,15 +1,19 @@
 from enum import StrEnum
 
-FALLBACK_APP_NAME = "Minecraft LCE QT Launcher"
-FALLBACK_VERSION_NUMBER  = "26.4.21a1"
+FALLBACK_APP_NAME = "LCE Qt Launcher"
+FALLBACK_VERSION_NUMBER  = "0.0.1b0"
 FALLBACK_LICENSE = "GPLv3"
 FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
 VERSION_TYPE = "nightly"
 INSTANCE_EXTENSION = ".lce_inst"
+AUTHORS = "Xgui4"
 
 class Languages(StrEnum): 
+    """
+    _summary_ : "Language Codes for JsonTrans"
+    """
     FALLBACK = "translations.json"
     ENGLISH = "en"
     FRENCH = "fr"

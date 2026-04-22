@@ -8,16 +8,20 @@ from lce_qt_launcher.managers.system_manager import SystemManager
 import lce_qt_launcher.views.term_service as term_service
 
 from lce_qt_launcher import (
+    AUTHORS,
     FALLBACK_APP_NAME,
     FALLBACK_VERSION_NUMBER,
     FALLBACK_GIT_REPO_URL,
     FALLBACK_LICENSE,
     FALLBACK_LICENSE_LINK,
+    FALLBACK_VERSION_NUMBER,
+    INSTANCE_EXTENSION,
     VERSION_TYPE,
     INSTANCE_EXTENSION
 )
 
 class BuildInfo:
+    """Application Information and Metadata Information"""
     def __init__(self) -> None:
         self.version : str = FALLBACK_VERSION_NUMBER
         self.app_name: str = FALLBACK_APP_NAME

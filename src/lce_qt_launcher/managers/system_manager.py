@@ -16,6 +16,8 @@ class OperatingSystemType(StrEnum):
     UNKNOWN = "Unknown"
 
 class SystemManager():
+    """_summary_ Multiples Utilises to interact with the system
+    """
     def __init__(self) -> None:
         self.type : OperatingSystemType = OperatingSystemType.UNKNOWN
         self.name : str = "Unknown"
@@ -23,7 +25,9 @@ class SystemManager():
         
         self.determine_os_info()
 
-    def determine_os_info(self) -> None:
+    def determine_os_info(self) -> None: 
+        """_summary_ Assert the OS and its Info 
+        """
         if (platform.system() == "Linux") : 
             self.type = OperatingSystemType.LINUX 
             self.name = self.type.name
@@ -58,7 +62,12 @@ class SystemManager():
             os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
     def set_file_permission(self, file_abs_path: str) -> str:
-        """Makes the file executable on POSIX systems."""
+        """
+        _summary_ Makes the file executable on POSIX systems. Do Nothing on NT (Windows)
+        
+        Args:
+            file_abs_path : str = "The absolute file path to change the permissions"
+        """
         if os.name == "posix":
             st = os.stat(file_abs_path)
             os.chmod(file_abs_path, st.st_mode | stat.S_IEXEC)
@@ -68,4 +77,9 @@ class SystemManager():
             return "Non POSIX System."
     
     def found_default_save_path(self) -> str:
+        """ 
+        ! DEPRECIATED
+
+        FIXME - REMOVE THIS FUNCTION AND REPLACE IT WITH OTHERS
+        """
         return os.path.join(pathlib.Path.home(), "lce-qt-launcher")  

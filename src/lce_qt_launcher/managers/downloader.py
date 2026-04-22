@@ -35,13 +35,22 @@ START_DOWNLOAD_REQUEST_MSG_STR = "Starting Download Request"
 SUCCESS_STATUS_CODE = 200
 
 class Downloader(QObject):
-    def __init__(self, build_info: BuildInfo) -> None:
+    """_summary_ Downloader Manager to download stuff from the internet
+
+    Args:
+        QObject (_type_): _description_ Inherit from the QObject
+    """
+    def __init__(self, appContext : AppContext) -> None:
         super().__init__()
         self._buildInfo: BuildInfo = build_info
         self.manager: QNetworkAccessManager = QNetworkAccessManager()
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
-        """#TODO  : make it better and less dependant of instance"""
+        """ _summary_ Download and install the selected Instance 
+
+        Args:
+            instance : The selected instance to install or Update
+        #TODO  : make it better and less dependant of instance"""
         print(START_DOWNLOAD_REQUEST_MSG_STR)
         url: QUrl = QUrl(instance.get_download_url())
         request: QNetworkRequest = QNetworkRequest(url)
@@ -83,7 +92,15 @@ class Downloader(QObject):
         filename : str, 
         save_location : str = ".", 
     ) -> None:
-        """#TODO : Make Async"""
+        """
+        _summary_ : download a file from the internet and than save it in a specified location 
+
+        Args:
+            url : the url to download the file
+            filename : the filename to save the file inot (with extension)
+            save_location (optional) : the specified location , default into "." 
+        #TODO - Make Async
+        """
         print("downloading img")
         response: Response = requests.get(url)
         response.raise_for_status()
@@ -95,5 +112,12 @@ class Downloader(QObject):
             print(f"Error while downloading the {url} file")
         
     def extract_inst_async(self, data : ZipFile, instance : Instance) -> None:
-        """#TODO Make Async"""
+        """
+        _summary_ : extract the zipfile of the downloaded instance
+
+        Args:
+            data : the zip file itself
+            instance : the specified instance 
+        #TODO Make Async
+        """
         data.extractall(instance.installation_path)

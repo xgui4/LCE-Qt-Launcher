@@ -26,17 +26,21 @@ from lce_qt_launcher.ui_form import Ui_launcher
 
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
-import lce_qt_launcher.utils.holyday as holyday
+import lce_qt_launcher.utils.holiday as holiday
 
 import sys
 import platform
 
 class Launcher(QMainWindow):
+    """_summary_ The Main Window / Launcher of the QApplcation
+
+    Args:
+        QMainWindow (_type_): _description_ The inheite type of Launcher
+    """
     def __init__(self, 
                  appContext : AppContext, 
-                 app : QApplication, 
-                 parent=None) -> None:
-        super().__init__(parent)
+                 app : QApplication) -> None:
+        super().__init__(None)
 
         translator: JsonTrans = appContext.translator
         instanceManager: InstanceManager = appContext.instanceMan
@@ -49,40 +53,63 @@ class Launcher(QMainWindow):
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
         def gen_inst_from_form() -> None:
+            """
+            _sumarry_ Generate An Instance From the Form
+            """
             instanceManager.instance = features.new_instance_from_form(self)
 
         def confirm_changes_button() -> None:
+            """_summary_ Generate An Instance From the Form for confirming the changes
+            """
             gen_inst_from_form()
 
         def update_page() -> None:
+            """_summary_ "Show the Update Page in a QWebEngine Popup
+            """
             features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
 
         def launch() -> None:
+            """_summary_ Launch the Game
+            """
             features.launch_game(instanceManager, STARTING_GAME_MSG)
 
         def install() -> None:
+            """_summary_ Install the Game
+            """
             features.install_game(self, instanceManager.instance, instanceManager)
 
         def show_aboutQt() -> None:
+            """_summary_ Show the About Qt Dialog
+            """
             features.show_about_qt(self)
 
         def show_about() -> None:
+            """_summary_ Show About App dialog 
+            """ 
             features.show_about_app(self)
 
         def show_system_information() -> None:
+            """_summary_ Show the system info dialog
+            """
             features.show_system_info(self)
 
         def show_about_minecraft() -> None:
+            """_summary_ Open an QWebEngine at the Minecraft Website 
+            """
             features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE, buildInfo)
 
         def show_more_lce_projects() -> None:
+            """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)
+            """
             features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE, buildInfo)
 
         def save_instance() -> None:
-            features.save_instance(self, instanceManager, buildInfo)
+            """_summary_ Save the instance on a file on disk
+            """
 
         def load_instance() -> None:
-            features.load_instance(self, instanceManager, buildInfo)
+            """_summary_ Open the Load Save File Dialog 
+            """
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
@@ -95,6 +122,8 @@ class Launcher(QMainWindow):
             self.ui.newsEngineView.setUrl(self.news_feed)
 
         def show_setting_dialog() -> None:
+            """_summary_ Show the setting Dialog
+            """
             features.show_setting(self, Ui_settingDialog())
 
         def show_instance_editor() -> None:
@@ -102,7 +131,7 @@ class Launcher(QMainWindow):
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
-            palette = self.palette()
+            palette: QPalette = self.palette()
             palette.setBrush(QPalette.ColorRole.Window, QBrush(background_pixmap))
             self.setPalette(palette)
             self.setAutoFillBackground(True)
@@ -117,7 +146,7 @@ class Launcher(QMainWindow):
         self.aboutDialog: QDialog = QDialog()
 
         self.sysinfo_dialog: QDialog = QDialog() 
-        self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
+        self.dialog_ui = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
         self.about.setupUi(self.aboutDialog)
 
@@ -179,5 +208,5 @@ class Launcher(QMainWindow):
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
-        holyday_label: QLabel = QLabel(holyday.get_holyday())
+        holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)

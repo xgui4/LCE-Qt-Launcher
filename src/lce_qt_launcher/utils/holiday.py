@@ -43,10 +43,15 @@ f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
 f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆"
 }
 
-NO_HOLYDAY = ""
+NO_HOLIDAY = ""
 
-def get_holyday() -> str:
-    today = datetime.now()
-    month_key = str(today.month) 
-    day_key = f"{month_key}-{today.day}"
-    return HOLIDAYS.get(day_key, HOLIDAYS.get(month_key, NO_HOLYDAY))
+def get_holiday() -> str:
+    """_summary_ Check for a holday and then return it or empty str if there is no holiday 
+
+    Returns:
+        str: _description_ The current holiday or an empty str
+    """
+    today: datetime = datetime.now()
+    month_key: str = str(today.month) 
+    day_key: str = f"{month_key}-{today.day}"
+    return HOLIDAYS.get(day_key, HOLIDAYS.get(month_key, NO_HOLIDAY))
