@@ -6,7 +6,7 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
     if command -v  pyside6-rcc  &> /dev/null; then
         pyside6-rcc res.qrc -o src/lce_qt_launcher/res_rc.py
         
-        UICS=("form" "system_info" "instance" "settingDialog")
+        UICS=("form" "system_info" "instance" "settingDialog" "about")
         
         for ui in "${UICS[@]}"; do
             OUT="src/lce_qt_launcher/ui_${ui}.py"
@@ -15,7 +15,7 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
     else
         /usr/lib/qt6/rcc -g python res.qrc -o src/lce_qt_launcher/res_rc.py
         
-        UICS=("form" "system_info" "instance" "settingDialog")
+        UICS=("form" "system_info" "instance" "settingDialog" "about")
         
         for ui in "${UICS[@]}"; do
             OUT="src/lce_qt_launcher/ui_${ui}.py"
