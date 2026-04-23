@@ -26,10 +26,15 @@ modules:
       - install -D main.py /app/bin/lce-qt-launcher
       - chmod +x /app/bin/lce-qt-launcher
       - install -D packages/io.github.xgui4.lce_qt_launcher.desktop /app/share/applications/io.github.xgui4.lce_qt_launcher.desktop
+      - install -D assets/io.github.xgui4.lce_qt_launcher.png /app/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
+      - install -D "$pkgdir/opt/lce_qt_launcher"
+      - install -D data/* /app/share/io.github.lce_qt_launcher/data
+      - install -D assets/* /app/share/io.github.lce_qt_launcher/assets
+      - install -D data/lce_qt_launcher.ini "/app/etc/lce_qt_launcher.ini
     sources:
       - type: file
         path: main.py
       - type: file
         path: io.github.xgui4.lce_qt_launcher.desktop
       - type: file
-        path: icon.png
+        path: app.ico
