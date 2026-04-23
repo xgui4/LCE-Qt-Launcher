@@ -322,7 +322,7 @@ default.lce_inst
 
 # pacman
 
-pkg/src/*
-pkg/pkg/*
-pkg/lce-qt-launcher-*/
-pkg/lce-qt-launcher-**-**-any.pkg.tar.zst
+pkg/**/src/
+pkg/**/pkg
+pkg/**/lce-qt-launcher-*/
+pkg/**/lce-qt-launcher-**-**-any.pkg.tar.zst
