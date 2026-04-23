@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Beta Build)"
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
-license=('GPL3')
+license=('GPL-3.0-or-later')
 depends=(
     'python' 
     'pyside6' 
@@ -29,9 +29,9 @@ optdepends=(
     'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
 
-provides=("${pkgname%-dev}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%}")
-source=("${pkgname}::git+${url}.git#branch=pre-alpha")
+provides=("${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+source=("${pkgname}::git+${url}.git#branch=beta")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -55,4 +55,5 @@ package() {
     install -Dm644 "packages/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
     install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml"
 }

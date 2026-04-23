@@ -28,8 +28,8 @@ optdepends=(
     'steam: Allow for Steam integration'
     'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
-provides=("${pkgname%-dev}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%}")
+provides=("${pkgname%-stable}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%}")
 source=("${pkgname}::git+${url}.git#branch=master")
 backup=("etc/lce-qt-launcher")
 
