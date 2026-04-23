@@ -1,0 +1,35 @@
+app-id: io.github.xgui4.lce_qt_launcher
+runtime: org.kde.Platform
+runtime-version: '6.8'
+base: io.qt.PySide.BaseApp
+sdk: org.kde.Sdk
+
+name: LCE Qt Launcher
+command: lce_qt_launcher
+summary: My First GTK App
+description: |
+    This is a custom Minecraft LCE Launcher written in 
+    Python and Qt with Freedom and with GNU/Linux support in mind.
+
+finish-args:
+  - --device=dri
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=home 
+
+modules:
+  - name: lce_qt_launcher
+    buildsystem: simple
+    build-commands:
+      - install -D main.py /app/bin/lce-qt-launcher
+      - chmod +x /app/bin/lce-qt-launcher
+      - install -D packages/io.github.xgui4.lce_qt_launcher.desktop /app/share/applications/io.github.xgui4.lce_qt_launcher.desktop
+    sources:
+      - type: file
+        path: main.py
+      - type: file
+        path: io.github.xgui4.lce_qt_launcher.desktop
+      - type: file
+        path: icon.png

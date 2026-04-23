@@ -13,5 +13,5 @@
 
   <url>https://github.com/xgui4/LCE-Qt-Launcher</url>
   
-  <launchable type="desktop-id">github.io.xgui4.lce_qt_launcher.desktop</launchable>
+  <launchable type="desktop-id">io.github.xgui4.lce_qt_launcher.desktop</launchable>
 </component>

@@ -1,0 +1,31 @@
+name: Build and Publish Stable Version
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build_windows_installer:
+    name: Build the Inno Setup Installer
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile .ISS to .EXE Installer
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        with:
+          path: pkg/windows/setup.iss
+          options: /O+
+  build_arch_installer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate package
+        uses: heyhusen/archlinux-package-action@v3.0.0
+        with:
+          flags: '-p PKGBUILD.'
+          namcap: false
+          srcinfo: true

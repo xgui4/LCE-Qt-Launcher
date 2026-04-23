@@ -1,11 +1,11 @@
 # Maintainer: Xgui4
-pkgname=lce-qt-launcher-nightly
-pkgver=r149.804311b
+pkgname=lce-qt-launcher
+pkgver=0.0.1
 pkgrel=1
-pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
+pkgdesc="A custom Minecraft LCE Launcher written with PySide6 (Python) with GNU/Linux support in mind. (Master/Stable Branch)"
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
-license=('GPL3')
+license=('GPL-3.0-or-later')
 depends=(
     'python' 
     'pyside6' 
@@ -28,15 +28,10 @@ optdepends=(
     'steam: Allow for Steam integration'
     'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
-provides=("${pkgname%-nightly}")
-conflicts=("${pkgname%-nightly}")
-source=("${pkgname}::git+${url}.git#branch=nightly")
-sha256sums=('SKIP')
-
-pkgver() {
-    cd "$pkgname"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
+provides=("${pkgname%-dev}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%}")
+source=("${pkgname}::git+${url}.git#branch=master")
+backup=("etc/lce-qt-launcher")
 
 build() {
     cd "$pkgname"
@@ -50,7 +45,8 @@ package() {
     install -d "$pkgdir/opt/lce_qt_launcher"
     cp -r data assets "$pkgdir"
     install -Dm644 data/lce_qt_launcher.ini "$pkgdir/etc/lce_qt_launcher.ini"
-    install -Dm644 "pkg/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
+    install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/io.github.xgui4.lce_qt_launcher.desktop"
     install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml"
 }

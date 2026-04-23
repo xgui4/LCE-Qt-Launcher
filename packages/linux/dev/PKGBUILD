@@ -1,8 +1,8 @@
 # Maintainer: Xgui4
-pkgname=lce-qt-launcher-pre-alpha
+pkgname=lce-qt-launcher-beta
 pkgver=r143.71ecfaf
 pkgrel=1
-pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
+pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Beta Build)"
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
 license=('GPL3')
@@ -28,14 +28,16 @@ optdepends=(
     'steam: Allow for Steam integration'
     'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
-provides=("${pkgname%-pre-alpha}")
-conflicts=("${pkgname%-pre-alpha}")
+
+provides=("${pkgname%-dev}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%}")
 source=("${pkgname}::git+${url}.git#branch=pre-alpha")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd "$pkgname"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$pkgname"
+  # cutting off 'foo-' prefix that presents in the git tag
+  git describe --long --abbrev=7 | sed 's/^foo-//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
@@ -50,7 +52,7 @@ package() {
     install -d "$pkgdir/opt/lce_qt_launcher"
     cp -r data assets "$pkgdir"
     install -Dm644 data/lce_qt_launcher.ini "$pkgdir/etc/lce_qt_launcher.ini"
-    install -Dm644 "pkg/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
+    install -Dm644 "packages/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
     install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
 }
