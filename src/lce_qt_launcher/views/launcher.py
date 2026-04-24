@@ -106,7 +106,7 @@ class Launcher(QMainWindow):
         def save_instance() -> None:
             """_summary_ Save the instance on a file on disk
             """
-            features.save_instance(self, instanceManager, appContext, buildInfo)
+            features.save_instance_to_file(self, instanceManager, appContext, buildInfo)
 
         def load_instance() -> None:
             """_summary_ Open the Load Save File Dialog 
@@ -151,9 +151,8 @@ class Launcher(QMainWindow):
         self.dialog_ui = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
         self.about.setupUi(self.aboutDialog)
+        self.aboutDialog.setWindowTitle(appContext.buildInfo.app_name)
 
-        app_icon = QPixmap(":/assets/launcher.png");
-        self.about.icon.setPixmap(app_icon)
         self.about.title.setText(appContext.buildInfo.app_name)
         self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
@@ -168,12 +167,10 @@ class Launcher(QMainWindow):
         _ = self.about.aboutQt.clicked.connect(show_aboutQt)
         _ = self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
-        window_title: str = translator.translate(appContext.buildInfo.app_name)
-
         self.instance_window: QDialog = QDialog()
         self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
         self.instance_editor.setupUi(self.instance_window)
-        self.instance_window.setWindowTitle(window_title)
+        self.instance_window.setWindowTitle(appContext.buildInfo.app_name)
 
         systemManager: SystemManager = appContext.sys_man
 

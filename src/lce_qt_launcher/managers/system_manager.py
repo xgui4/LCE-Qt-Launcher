@@ -1,3 +1,6 @@
+from PySide6.QtCore import QUrl
+from PySide6.QtGui import QDesktopServices
+
 from enum import StrEnum
 
 import platform
@@ -75,6 +78,11 @@ class SystemManager():
         else:
             term_service.print_information("No POSIX system detected, skipping file permission management.")
             return "Non POSIX System."
+        
+    def open_url_with_system(self, url_str : str) -> None:
+        url = QUrl(url_str)
+        service = QDesktopServices()
+        service.openUrl(url)
     
     def found_default_save_path(self) -> str:
         """ 

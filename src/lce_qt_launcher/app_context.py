@@ -41,12 +41,35 @@ class AppContext():
         self.MINECRAFT_LCE_WEBSITE : str = "https://minecraftlegacy.com/"
 
     def updateTheme(self, theme : Theme) -> None:
+        """_summary_ Update the theme
+
+        Args:
+            theme (Theme): _description_ the theme (enum) to update
+        """
         self.theme = theme
         self.userPref.set_theme_pref(theme.value)
 
-    def updateInstance(self, instance_file_path : str) -> None:
-        self.instanceMan.load_instance(instance_file_path)
+    def updateInstanceWithFile(self, instance_file_path : str) -> None:
+        """_summary_  TODO : WAS BROKEN, to be fixed. 
+
+        Args:
+            instance_file_path (str): _description_
+        """
+        pass
+
+    def updateInstance(self, instance : Instance) -> None:
+        """_summary_ #TODO : TBW
+
+        Args:
+            instance (Instance): _description_
+        """
+        self.instanceMan.instance = instance
 
     def updateLanguage(self, lang : str) -> None:
+        """_summary_  update the language 
+
+        Args:
+            lang (str): _description_
+        """
         self.currentLang = lang
         self.translator.load_lang(lang)

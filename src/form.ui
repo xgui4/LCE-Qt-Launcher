@@ -389,7 +389,7 @@
            <item row="11" column="0" colspan="3">
             <widget class="QPushButton" name="openInstanceEditor">
              <property name="enabled">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="text">
               <string>Open Instances Editor</string>
@@ -637,7 +637,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -665,7 +665,7 @@
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Edit</string>
@@ -676,7 +676,7 @@
    </widget>
    <widget class="QMenu" name="menuFolders">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Folders</string>
@@ -690,7 +690,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>View</string>
@@ -775,6 +775,9 @@
    </property>
   </action>
   <action name="actionDefault">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Default</string>
    </property>
@@ -948,7 +951,7 @@
     <bool>true</bool>
    </property>
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>News</string>

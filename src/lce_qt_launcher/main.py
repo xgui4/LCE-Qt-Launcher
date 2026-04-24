@@ -33,7 +33,6 @@
 
 from lce_qt_launcher.managers.system_manager import SystemManager
 
-
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
 from lce_qt_launcher.models.app_data import AppData
