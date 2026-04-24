@@ -1,7 +1,11 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
   <mime-type type="application/x-lce-inst">
-    <comment>LCE Qt Launcher Inst Save File</comment>
+    <comment>LCE Qt Launcher Instance Save File</comment>
+      <magic priority="50">
+        <match type="string" value="https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/master/schemas/lce_qrt_inst_config.json" offset="0:256"/>
+      </magic>
     <glob pattern="*.lce_inst"/>
   </mime-type>
+  <generic-icon name="io.github.xgui4.lce_qt_launcher">
 </mime-info>

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.1b0"
+version = "0.0.1b1"
 description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Beta Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -25,7 +25,7 @@ dependencies = [
 lce-qt-launcher = "lce_qt_launcher.main:main"
 
 [project.urls]
-Repository = "https://github.com/xgui4/LCE-QT-Launcher"
+Repository = "https://:github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 
 [tool.hatch.build.targets.wheel.hooks.custom]

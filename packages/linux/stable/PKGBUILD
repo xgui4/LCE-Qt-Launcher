@@ -46,6 +46,7 @@ package() {
     cp -r data assets "$pkgdir"
     install -Dm644 "data/lce_qt_launcher.ini" "$pkgdir/etc/lce_qt_launcher.ini"
     install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/io.github.xgui4.lce_qt_launcher.desktop"
+    install -Dm644 "packages/lce_inst-mime.xml" "$pkgdir/usr/share/mime/packages/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml"
     install -Dm644 "license.md" -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dm644 "readme.md" "code-of-conduct.md" -t "$pkgdir/usr/share/doc/$pkgname/"
     install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml"
