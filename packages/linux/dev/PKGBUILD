@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-beta
-pkgver=r143.71ecfaf
+pkgver=nightly.r11.ge11e58b
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Beta Build)"
 arch=('any')
@@ -51,10 +51,10 @@ package() {
     /usr/bin/python -m installer --destdir="$pkgdir" dist/*.whl
     install -d "$pkgdir/opt/lce_qt_launcher"
     cp -r data assets "$pkgdir"
-    install -Dm644 data/lce_qt_launcher.ini "$pkgdir/etc/lce_qt_launcher.ini"
-    install -Dm644 "packages/github.io.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/github.io.xgui4.lce_qt_launcher.desktop"
-    install -Dm644 license.md -t "$pkgdir/usr/share/licenses/$pkgname/"
-    install -Dm644 readme.md code-of-conduct.md -t "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 "data/lce_qt_launcher.ini" "$pkgdir/etc/lce_qt_launcher.ini"
+    install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.desktop" "$pkgdir/usr/share/applications/io.github.xgui4.lce_qt_launcher.desktop"
+    install -Dm644 "license.md" -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dm644 "readme.md" "code-of-conduct.md" -t "$pkgdir/usr/share/doc/$pkgname/"
     install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml"
-    install -Dm644 assets/io.github.xgui4.lce_qt_launcher.png /usr/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
+    install -Dm644 "assets/io.github.xgui4.lce_qt_launcher.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png"
 }
