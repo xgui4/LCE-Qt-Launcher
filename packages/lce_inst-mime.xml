@@ -7,5 +7,5 @@
       </magic>
     <glob pattern="*.lce_inst"/>
   </mime-type>
-  <generic-icon name="io.github.xgui4.lce_qt_launcher">
+  <generic-icon name="io.github.xgui4.lce_qt_launcher"/>
 </mime-info>
