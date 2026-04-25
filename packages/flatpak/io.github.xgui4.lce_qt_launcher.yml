@@ -37,4 +37,4 @@ modules:
       - type: file
         path: io.github.xgui4.lce_qt_launcher.desktop
       - type: file
-        path: app.ico
+        path: io.github.xgui4.lce_qt_launcher.png

@@ -9,7 +9,7 @@ permissions:
   contents: write
  
 jobs:
-  # --- JOB 1 : COMPILATION NUITKA (WIN/LINUX) ---
+  # --- JOB 1 : NUITKA COMPILATION (Windows/Linux) ---
   build:
     name: Build Nuitka Binaries
     strategy:
@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install . nuitka zstandard
+          pip install . zstandard
       - name: Build with Nuitka
         run: hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=dist src/lce_qt_launcher/main.py
       
@@ -47,7 +47,7 @@ jobs:
             *.zip
             *.tar.gz
 
-  # --- JOB 2 : INSTALLATEUR WINDOWS ---
+  # --- JOB 2 : Building Windows Installer ---
   build_windows_installer:
     name: Build Inno Setup
     runs-on: windows-latest
@@ -63,9 +63,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: installer-windows
-          path: packages/windows/*.exe # Vérifie que l'exe sort bien ici
+          path: packages/windows/*.exe 
 
-  # --- JOB 3 : PAQUET ARCH LINUX ---
+  # --- JOB 3 : Making Arch Linux Packages ---
   build_arch_installer:
     name: Build Arch Package
     runs-on: ubuntu-latest
@@ -82,12 +82,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: installer-arch
-          path: ./*.pkg.tar.zst # Arch utilise souvent .zst maintenant au lieu de .gz
+          path: ./*.pkg.tar.zst
 
-  # --- JOB 4 : RELEASE FINALE ---
+  # --- JOB 4 : Publish the Nightly Release ---
   release:
     name: Create Nightly Release
-    needs: [build, build_windows_installer, build_arch_installer] # Attend TOUT le monde
+    needs: [build, build_windows_installer, build_arch_installer]
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts

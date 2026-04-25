@@ -1,14 +1,27 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -e
 
-rm -rf dist/
+echo "Removing the Nuitka compilation folder"
+rm -rf "dist"
+echo "Removing the Nuitka compilation folder finished"
 
-rm "src/lce_qt_launcher/res_rc.py"
-rm "src/lce_qt_launcher/ui_system_info.py"
-rm "src/lce_qt_launcher/ui_form.py"
-rm "src/lce_qt_launcher/ui_instance.py"
-rm "src/lce_qt_launcher/ui_settingDialog.py" 
-rm "src/lce_qt_launcher/ui_about.py"
+echo "Removing the compilated Qt UI and Qt Ressource files"
 
-rm -rf "*/__pycache__"
+QT_RESSOURCE="res_rc" 
+QT_UI_ARRAY=("system_info" "form" "instance" "settingDialog" "about")
+
+echo "Removing the compilated Qt Ressource file"
+rm "src/lce_qt_launcher/$QT_RESSOURCE.py"
+echo "Removing the compilated Qt Ressource file finished"
+
+for QT_UI in "${QT_UI_ARRAY[@]}"
+do
+    echo "Removing the compilated ui_$QT_UI.py Qt UI file"
+    rm "src/lce_qt_launcher/ui_$QT_UI.py"
+    echo "Removing the compilated ui_$QT_UI.py Qt UI file finished"
+done
+
+echo "Removing every pycaches filed"
+find .  -n '__pycache__' -print0 | xargs rm -rf 
+echo "Removing every pycaches done"
