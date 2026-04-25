@@ -6,6 +6,6 @@
         <match type="string" value="https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/master/schemas/lce_qrt_inst_config.json" offset="0:256"/>
       </magic>
     <glob pattern="*.lce_inst"/>
+    <generic-icon name="application-lce_inst"/>
   </mime-type>
-  <generic-icon name="application-lce_inst"/>
 </mime-info>
