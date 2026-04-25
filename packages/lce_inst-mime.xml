@@ -7,5 +7,5 @@
       </magic>
     <glob pattern="*.lce_inst"/>
   </mime-type>
-  <generic-icon name=application-lce_inst/>
+  <generic-icon name="application-lce_inst"/>
 </mime-info>
