@@ -13,6 +13,12 @@ from PySide6.QtCore import (
     qVersion
 )
 
+import sys
+import platform
+import json
+
+from pathlib import Path
+
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.instance_manager import InstanceManager
@@ -27,9 +33,6 @@ from lce_qt_launcher.ui_form import Ui_launcher
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
-
-import sys
-import platform
 
 class Launcher(QMainWindow):
     """_summary_ The Main Window / Launcher of the QApplcation
@@ -49,7 +52,7 @@ class Launcher(QMainWindow):
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
-
+        
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
         def gen_inst_from_form() -> None:
@@ -121,7 +124,7 @@ class Launcher(QMainWindow):
             pixmap = QPixmap(self.image_label)
             self.ui.instance_img.setPixmap(pixmap)
             self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)
+            self.ui.newsEngineView.setUrl(self.news_feed) 
 
         def show_setting_dialog() -> None:
             """_summary_ Show the setting Dialog
@@ -139,10 +142,47 @@ class Launcher(QMainWindow):
             self.setAutoFillBackground(True)
         else:
             term_service.print_error("Cannot set the background")
-
+            
         self.ui: Ui_launcher = Ui_launcher()
 
         self.ui.setupUi(self)
+        
+        arguments: list[str] =  QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
+        
+        if len(arguments) > 1:
+            file_arg: str = arguments[1]
+            
+            try:
+                path = Path(file_arg)
+                if path.is_file():
+                    with path.open("r", encoding="utf-8") as instance:
+                        inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
+                        instanceManager.instance.load_inst_from_dict(inst_dict)
+                        instanceManager.instance.display()
+                        self.image_label = instanceManager.instance.image
+                        self.news_feed = instanceManager.instance.news_feed
+                        self.instance_name = instanceManager.instance.name
+                        self.ui.usernameInputBox.setText(instanceManager.instance.username)
+                        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+                        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
+                        pixmap = QPixmap(self.image_label)
+                        self.ui.instance_img.setPixmap(pixmap)
+                        self.ui.repo_name_branch.setText(self.instance_name)
+                        self.ui.newsEngineView.setUrl(self.news_feed) 
+                else:
+                    term_service.print_information("No file argument given or file not found. Loading default instance.")
+            except json.JSONDecodeError as err:
+                term_service.print_error(f"Invalid or corrupted Save File (JSON syntax) : {err.msg} at line {err.lineno}") 
+            except (ValueError, TypeError) as err:
+                term_service.print_error(f"Data structure error in Save File : {err}") 
+            except PermissionError:
+                term_service.print_error("System Error : Permission denied when reading the file.") 
+            except RecursionError:
+                term_service.print_error("System Error : The JSON structure is too deep to be processed.")
+            except Exception as err:
+                term_service.print_error(f"An unexpected error occurred : {err}")
+        else:
+            term_service.print_information("No argument given, start with default instance.")
         
         self.about: Ui_AboutDialog = Ui_AboutDialog()
         self.aboutDialog: QDialog = QDialog()
@@ -158,8 +198,6 @@ class Launcher(QMainWindow):
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.commitLabel.setText(f"Commit : UNKOWMN")
-        self.about.buildDateLabel.setText(f"Build date : UNKOWN")
         self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
         from lce_qt_launcher import license_str

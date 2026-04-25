@@ -2,15 +2,10 @@ from enum import StrEnum, Enum
 
 from lce_qt_launcher.app_context import AppContext
 
-import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 
 class CmdArgAction(Enum): 
-    """_summary_ The CMD flags Actions
-
-    Args:
-        Enum (_type_): _description_
-    """
+    """_summary_ The CMD flags Actions"""
     GEN_CONFIG = 0
     PRINT_VERSION = 1
     PRINT_LICENSE = 2
@@ -18,7 +13,6 @@ class CmdArgAction(Enum):
     PRINT_HELP = 4
     CLI_VERSION = 5
     NO_ARGS = 6
-    GUI_ARGUMENTS = 7
 
 def argsDetected(action :CmdArgAction) -> bool:
     """Return True if there is a Args detected, Else Return False"""
@@ -34,8 +28,6 @@ class CmdArg(StrEnum):
     LICENSE_CMD_ARG_SHORT = "-L"
     ABOUT_CMD_ARG = "--about"
     ABOUT_CMD_ARG_SHORT = "-a"
-    GUI_ARGS_CMD_ARG = "--gui"
-    GUI_ARGS_CMD_ARG_SHORT = "-g"
     CLI_VERSION_CMD_ARG = "--cli"
     CLI_VERSION_CMD_ARG_SHORT = "-cl"
     HELP_CMD_ARG = "--help"
@@ -63,8 +55,6 @@ def parse_args(argv : list[str]) -> CmdArgAction:
             return CmdArgAction.PRINT_HELP
         case CmdArg.CLI_VERSION_CMD_ARG, CmdArg.CLI_VERSION_CMD_ARG_SHORT:
             return CmdArgAction.CLI_VERSION
-        case CmdArg.GUI_ARGS_CMD_ARG | CmdArg.GUI_ARGS_CMD_ARG_SHORT:
-            return CmdArgAction.GUI_ARGUMENTS
         case _:
             return CmdArgAction.NO_ARGS
     
@@ -91,4 +81,4 @@ def launch_cmd_action(action : CmdArgAction, appContext : AppContext) -> None:
     elif action == CmdArgAction.CLI_VERSION:
         features.launch_cli_interface(appContext.instanceMan)
     else:
-        term_service.print_information("Not Implemented Yet!")
+        pass

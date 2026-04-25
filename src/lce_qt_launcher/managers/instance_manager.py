@@ -222,11 +222,26 @@ class Instance:
         if self.instance_source == InstanceSource.LOCAL_INSTALLATION:
             raise RuntimeError("Error ! Local Installation does not have a download URL")
         else:
-            raise RuntimeError("Not implemented yet!")        
+            raise RuntimeError("Not implemented yet!")
+        
+    def display(self) -> None:
+        print(f"Name : {self.name}")     
+        print(f"=============================")    
+        print(f"installation path : {self.installation_path}")
+        print(f"username : {self.username}")
+        print(f"executable name : {self.exe_name}")
+        print(f"archive file : {self.archive_file}")
+        print(f"repo url : {self.repo_url}")
+        print(f"image : {self.image}")
+        print(f"instance source : {self.instance_source.value}")
+        print(f"instance type : {self.instance_source.value}")
+        print(f"news_feed : {self.news_feed}")
+        print(f"version : {self.version}")
+        print(f"skin : {self.skin_path}")
+        print(f"servers : {self.servers}")
 
 class InstanceManager:
-    """_summary_ The Manager for Instances objects
-    """
+    """_summary_ The Manager for Instances objects"""
     def __init__(self, instance : Instance, build_info : BuildInfo, appContext : AppContext):
         self.instance: Instance = instance
         from lce_qt_launcher.managers.downloader import Downloader

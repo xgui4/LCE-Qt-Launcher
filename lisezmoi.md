@@ -59,7 +59,7 @@ Disponible dans la prochaine version stable, lorsque le programme sera plus stab
 
 > [!NOTE]
 > Les versions quotidiennes automatiques sont actuellement instable, très expérimentale et en développement actif.
-> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la compilation nocturne en raison des restrictions d'Apple et du fait que je ne possède pas de Mac. En raison d'un problème temporaire, la compilation automatique Linux a été désactivée car elle remplaçait la compilation Windows. Cette fonctionnalité sera réactivée une fois le problème résolu.
+> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la compilation nocturne en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
 
 Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions de développement quotidiennes automatiques (Nighly Build), générées automatiquement via GitHub Actions lors de modifications apportées à la branche `nighly`.
 
@@ -70,8 +70,8 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Police Monocraft](https://github.com/IdreesInc/Monocraft) installée
 - Pour un système de type UNIX
-    - Un serveur d'affichage ou un compositeur (sauf sur macOS où un serveur propriétaire est utilisé)
-    - Bash (Généralement préinstallé sous Linux, mais souvent requis sous *BSD et macOS)
+  - Un serveur d'affichage ou un compositeur (sauf sur macOS où un serveur propriétaire est utilisé)
+  - Bash (Généralement préinstallé sous Linux, mais souvent requis sous *BSD et macOS)
 
 ## Bibliothèques et outils Python utilisés
 
@@ -96,13 +96,13 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 
 - Autres systèmes *BSD, car Minecraft LCE n'est pas pris en charge sur ceux-ci et Wine n'est pas disponible.
 - Android : Minecraft LCE a actuellement des ralentissements et des bugs importants sur Android.
-- macOS : LCE Qt Launcher ne supporte pas officialiement MacOS et n'est pas tester lors des PR, mais la compatibilité POISX devrait permettre de l'utiliser. 
+- macOS : LCE Qt Launcher ne supporte pas officialiement MacOS et n'est pas tester lors des PR, mais la compatibilité POISX devrait permettre de l'utiliser.
 
 ## Remerciements
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) pour certains éléments et fichiers d'interface utilisateur
 - [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) pour le portage du jeu pour PC
-- [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour le backportage des mise a jours pour le pc port 
+- [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour le backportage des mise a jours pour le pc port
 
 ## Code de conduite
 
