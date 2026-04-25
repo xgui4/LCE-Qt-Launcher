@@ -1,8 +1,6 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
-from lce_qt_launcher.views import term_service
-
 if TYPE_CHECKING:
     from lce_qt_launcher.models.app_data import AppData
 
