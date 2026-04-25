@@ -1,10 +1,9 @@
 from sys import argv
 
 from lce_qt_launcher.managers.instance_manager import InstanceManager
-from lce_qt_launcher.build_info import BuildInfo
 import lce_qt_launcher.views.term_service as term_service
 
-def launch_cli(instance_man : InstanceManager, build_info : BuildInfo) -> None:  
+def launch_cli(instance_man : InstanceManager) -> None:  
     """
     _summary_ : launch the cli interface 
 

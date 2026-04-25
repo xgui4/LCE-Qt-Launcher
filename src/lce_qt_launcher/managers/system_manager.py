@@ -19,8 +19,7 @@ class OperatingSystemType(StrEnum):
     UNKNOWN = "Unknown"
 
 class SystemManager():
-    """_summary_ Multiples Utilises to interact with the system
-    """
+    """_summary_ Multiples Utilises to interact with the system """
     def __init__(self) -> None:
         self.type : OperatingSystemType = OperatingSystemType.UNKNOWN
         self.name : str = "Unknown"
@@ -29,8 +28,7 @@ class SystemManager():
         self.determine_os_info()
 
     def determine_os_info(self) -> None: 
-        """_summary_ Assert the OS and its Info 
-        """
+        """_summary_ Assert the OS and its Info """
         if (platform.system() == "Linux") : 
             self.type = OperatingSystemType.LINUX 
             self.name = self.type.name
@@ -57,6 +55,7 @@ class SystemManager():
             self.version = platform.version()
     
     def adapt_qt_system_theme(self) -> None:
+        """_summary_ Set the Qt Theme to the System on GNU/Linux and FreeBSD"""
         if platform.system() == "Linux": 
             _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
             os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
@@ -80,13 +79,18 @@ class SystemManager():
             return "Non POSIX System."
         
     def open_url_with_system(self, url_str : str) -> None:
+        """_summary_ Open a URL/file with the system
+
+        Args:
+            url_str (str): _description_ the url of the file
+        """
         url = QUrl(url_str)
         service = QDesktopServices()
-        service.openUrl(url)
+        _ = service.openUrl(url)
     
     def found_default_save_path(self) -> str:
         """ 
-        ! DEPRECIATED
+        #! DEPRECIATED
 
         FIXME - REMOVE THIS FUNCTION AND REPLACE IT WITH OTHERS
         """

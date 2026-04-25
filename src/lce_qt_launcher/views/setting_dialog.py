@@ -8,5 +8,5 @@ class SettingDialog(QDialog):
         super().__init__()
         self.setting_dialog: QDialog = QDialog(parent) 
         self.ui_setting: Ui_settingDialog =  ui_setting 
-        self.ui_setting.setupUi(self.setting_dialog)
+        self.ui_setting.setupUi(self.setting_dialog)  # pyright: ignore[reportUnknownMemberType]
         self.setting_dialog.show()

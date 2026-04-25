@@ -8,7 +8,7 @@ from lce_qt_launcher.views.theme import Theme
 _THEME_OPTION : str = "customisation/theme"
 _INSTANCE_PATH_OPTION : str = "preferences/default_path"
 _LANGUAGE_OPTION : str = "preferences/languages"
-_SHOW_HOLYDAY_OPTION : str = "views/show_hoyday_enabled"
+_SHOW_HOLIDAY_OPTION : str = "views/show_hoyday_enabled"
 _DEVELOPPER_MODE_OPTION  : str = "developper/dev_mode_enabled"
 _ACCESIBLE_MODE_OPTION  : str = "accesibility/accesibility_mode_enabled"
 
@@ -23,7 +23,7 @@ class UserPref (QSettings):
         self.default_theme : Theme = Theme.MINECRAFT
         self.default_instance_path : str = "~/.local/share/lce_qt_launcher/default"
         self.default_language : str  = "en"
-        self.default_show_holyday : bool = True
+        self.default_show_holiday : bool = True
         self.default_accesibility_mode : bool = False
         self.default_developper_mode : bool = False
 
@@ -64,18 +64,18 @@ class UserPref (QSettings):
         """
         return str(self.value(_INSTANCE_PATH_OPTION, self.default_instance_path, type=str))
     
-    def set_show_holyday(self, show_holyday_bool : bool) -> None:
-        """_summary_  Show Holyday Toggle Setter
+    def set_show_holiday(self, show_holiday_bool : bool) -> None:
+        """_summary_  Show Holiday Toggle Setter
         """
-        super().setValue(_SHOW_HOLYDAY_OPTION, show_holyday_bool)
+        super().setValue(_SHOW_HOLIDAY_OPTION, show_holiday_bool)
         super().sync()
-    def get_show_holyday(self) -> str:
-        """_summary_ Show Holyday Toggle Getter
+    def get_show_holiday(self) -> str:
+        """_summary_ Show Holiday Toggle Getter
 
         Returns:
             str: _description_ show holyday preference
         """
-        return str(self.value(_SHOW_HOLYDAY_OPTION, self.default_show_holyday, type=str))
+        return str(self.value(_SHOW_HOLIDAY_OPTION, self.default_show_holiday, type=str))
 
     def set_accesible_mode(self, accesbility_mode_bool : bool) -> None:
         """_summary_ Accessiblty Mode Sette 
@@ -115,7 +115,7 @@ class UserPref (QSettings):
         self.set_theme_pref(self.default_theme)
         self.set_language_pref(self.default_language)
         self.set_instance_path_pref(self.default_instance_path)
-        self.set_show_holyday(self.default_show_holyday)
+        self.set_show_holiday(self.default_show_holiday)
         self.set_accesible_mode(self.default_accesibility_mode)
         self.set_accesible_mode(self.default_developper_mode)
         super().sync()

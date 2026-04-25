@@ -89,6 +89,6 @@ def launch_cmd_action(action : CmdArgAction, appContext : AppContext) -> None:
     elif action == CmdArgAction.PRINT_VERSION: 
         features.display_version(appContext.buildInfo)
     elif action == CmdArgAction.CLI_VERSION:
-        features.launch_cli_interface(appContext.instanceMan, appContext.buildInfo)
+        features.launch_cli_interface(appContext.instanceMan)
     else:
         term_service.print_information("Not Implemented Yet!")

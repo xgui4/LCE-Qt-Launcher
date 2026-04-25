@@ -1,6 +1,8 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
+from lce_qt_launcher.views import term_service
+
 if TYPE_CHECKING:
     from lce_qt_launcher.models.app_data import AppData
 
@@ -32,7 +34,7 @@ class AppContext():
         self.translator: JsonTrans = JsonTrans(appData, lang)
         self.accesibleModeEnabled : bool = self.userPref.default_accesibility_mode
         self.devModeEnabled : bool = self.userPref.default_developper_mode
-        self.showHolydayEnabled : bool = self.userPref.default_show_holyday
+        self.showHolidayEnabled : bool = self.userPref.default_show_holiday
         self.currentLang : str = Languages.FALLBACK.value
         
         self.BACKGROUND_PIXMAP_IMG : str = ":/assets/background.png"
@@ -48,14 +50,6 @@ class AppContext():
         """
         self.theme = theme
         self.userPref.set_theme_pref(theme.value)
-
-    def updateInstanceWithFile(self, instance_file_path : str) -> None:
-        """_summary_  TODO : WAS BROKEN, to be fixed. 
-
-        Args:
-            instance_file_path (str): _description_
-        """
-        pass
 
     def updateInstance(self, instance : Instance) -> None:
         """_summary_ #TODO : TBW
@@ -73,3 +67,36 @@ class AppContext():
         """
         self.currentLang = lang
         self.translator.load_lang(lang)
+        
+    def updateShowHolidayStatus(self, request : str)  -> None:
+        """_summary_ Update the show holiday status via boolean string "request"
+
+        Args:
+            request (str): _description_ the boolean string request to update the show holiday option. 
+        """
+        if request == "true":
+            self.showHolidayEnabled = True
+        else:
+            self.showHolidayEnabled = False
+            
+    def updateSetDevMoodeStatus(self, request : str)  -> None:
+        """_summary_ Update the dev mode status via boolean string "request"
+
+        Args:
+            request (str): _description_ the boolean string request to update the developper mode option. 
+        """
+        if request == "true":
+            self.devModeEnabled = True
+        else:
+            self.devModeEnabled = False
+            
+    def updateSetAccesbilityMoodeStatus(self, request : str)  -> None:
+        """_summary_ Update the dev mode status via boolean string "request"
+
+        Args:
+            request (str): _description_ the boolean string request to update the developper mode option. 
+        """
+        if request == "true":
+            self.accesibleModeEnabled = True
+        else:
+            self.accesibleModeEnabled = False

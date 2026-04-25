@@ -25,7 +25,7 @@ dependencies = [
 lce-qt-launcher = "lce_qt_launcher.main:main"
 
 [project.urls]
-Repository = "https://:github.com/xgui4/LCE-QT-Launcher"
+Repository = "https://github.com/xgui4/LCE-QT-Launcher"
 LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 
 [tool.hatch.build.targets.wheel.hooks.custom]
@@ -34,6 +34,9 @@ path = "hatch_build.py"
 [tool.hatch.envs.default.scripts]
 packages = "python packages.py"
 run-app = "python run.py"
+
+[tool.pyright]
+reportImportCycles="hint"
 
 [tool.hatch.build]
 artifacts = [

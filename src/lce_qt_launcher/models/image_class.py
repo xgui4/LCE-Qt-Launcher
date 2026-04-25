@@ -8,6 +8,11 @@ from lce_qt_launcher.managers.downloader import Downloader
 import os
 
 class SourceType(Enum):
+    """_summary_ The type of source of a image 
+
+    Args:
+        Enum (_type_): _description_ : inherited from Enum
+    """
     LOCAL = 0
     QT_RESSOURCE = 1
     INTERNET = 2
@@ -24,7 +29,6 @@ class Image(QObject):
     def __init__(self, 
                 location : str, 
                 filename : str, 
-                img_type : str, 
                 source : SourceType,
                 appContext : AppContext) -> None:
         super().__init__(None)

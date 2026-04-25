@@ -170,14 +170,14 @@ def save_instance_to_file(parent :  QWidget, instanceManager : InstanceManager, 
         f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})")[0]
     instanceManager.save_instance(file_name)
 
-def launch_cli_interface(instance_man : InstanceManager, buildInfo : BuildInfo) -> None:
+def launch_cli_interface(instance_man : InstanceManager) -> None:
     """_summary_ Launch the cli version of the app
 
     Args:
         instance_man (InstanceManager): _description_ : The instance manager to use
         buildInfo (BuildInfo): _description_ : The The Build info for the app info
     """
-    cli.launch_cli(instance_man, buildInfo)
+    cli.launch_cli(instance_man)
 
 def generate_user_config(userPref : UserPref) -> None:
     """_summary_ Generate the default config

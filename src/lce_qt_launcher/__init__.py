@@ -1,7 +1,7 @@
 from enum import StrEnum
 
 FALLBACK_APP_NAME = "LCE Qt Launcher"
-FALLBACK_VERSION_NUMBER  = "0.0.1b0"
+FALLBACK_VERSION_NUMBER  = "0.0.1b1"
 FALLBACK_LICENSE = "GPLv3"
 FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -11,9 +11,7 @@ INSTANCE_EXTENSION = ".lce_inst"
 AUTHORS = "Xgui4"
 
 class Languages(StrEnum): 
-    """
-    _summary_ : "Language Codes for JsonTrans"
-    """
+    """ _summary_ : "Language Codes for JsonTrans """
     FALLBACK = "translations.json"
     ENGLISH = "en"
     FRENCH = "fr"

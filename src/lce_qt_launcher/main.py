@@ -7,8 +7,8 @@
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
 # nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="1.0.0.1"
-# nuitka-project: --file-version="1.0.0.1"
+# nuitka-project: --product-version="1.0.0.11"
+# nuitka-project: --file-version="1.0.0.11"
 # nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
@@ -31,8 +31,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from lce_qt_launcher.managers.system_manager import SystemManager
-
 from PySide6.QtWidgets import (
     QMessageBox, 
     QFileDialog
@@ -43,6 +41,9 @@ from lce_qt_launcher.views import term_service
 from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected, launch_cmd_action
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
+from lce_qt_launcher.managers.system_manager import SystemManager
+from lce_qt_launcher.views.theme import Theme
+import lce_qt_launcher.views.theme as theme
 
 import sys
 import os
@@ -60,21 +61,29 @@ def main() -> None:
 
         userPref = appContext.userPref
 
-        user_language = userPref.get_language_pref()
-        user_theme = userPref.get_theme_pref()
-        show_holyday = userPref.get_show_holyday()
-        developer_mode = userPref.get_developper_mode()
-        accessible_mode = userPref.get_accesible_mode()
+        user_language: str = userPref.get_language_pref()
+        user_theme: str = userPref.get_theme_pref()
+        show_holiday: str = userPref.get_show_holiday()
+        developer_mode: str = userPref.get_developper_mode()
+        accessible_mode: str = userPref.get_accesible_mode()
+         
+        try: 
+            selected_theme: Theme = theme.from_str_to_theme(user_theme)
+            appContext.updateTheme(selected_theme)
+            appContext.updateShowHolidayStatus(show_holiday)
+            appContext.updateSetDevMoodeStatus(developer_mode)
+            appContext.updateSetAccesbilityMoodeStatus(accessible_mode)
+        except RuntimeError as err:
+            term_service.print_error(str(err))
 
         appContext.updateLanguage(user_language)
-        # appContext.updateTheme(user_theme) # TODO : convert str to Theme Enum
     except:
         term_service.print_error("They were a error while loading the system theme or user preference.")
 
-    def about_to_quit_event():
-        instance_manager_label = appContext.translator.translate("instance_manager_label")
-        save_instance_msg_box_label = appContext.translator.translate("save_instance_msg_box_label")         
-        save_filedialog_title = appContext.translator.translate("save_filedialog_title")
+    def about_to_quit_event() -> None:
+        instance_manager_label: str = appContext.translator.translate("instance_manager_label")
+        save_instance_msg_box_label: str = appContext.translator.translate("save_instance_msg_box_label")         
+        save_filedialog_title: str = appContext.translator.translate("save_filedialog_title")
         question_options = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         anwser = QMessageBox.question(None, instance_manager_label, save_instance_msg_box_label, question_options)
         if anwser == QMessageBox.StandardButton.Yes:

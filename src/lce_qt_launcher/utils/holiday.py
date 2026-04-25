@@ -2,6 +2,7 @@ from datetime import datetime
 from enum import Enum
 
 class MONTH(Enum):
+    """_summary_ The 12 Month as Enum (Start from 1 and go to 12) d"""
     JANUARY = 1
     FEBRURAY = 2
     MARCH = 3
@@ -15,7 +16,7 @@ class MONTH(Enum):
     NOVEMBER = 11
     DECEMBER = 12
 
-HOLIDAYS = {
+HOLIDAYS: dict[str, str] = {
     f"{MONTH.JANUARY.value}-1": "Happy New Years Day! 🎇",
     f"{MONTH.FEBRURAY.value}-14": "Happy Valentine Day! 💘",
     f"{MONTH.APRIL.value}-1": "April Fool Day 🐟",
@@ -29,7 +30,7 @@ HOLIDAYS = {
     f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆"
 }
 
-HOLIDAYS_FRENCH = {
+HOLIDAYS_FRENCH: dict[str, str] = {
 f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
 f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
 f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",

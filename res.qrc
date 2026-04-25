@@ -18,7 +18,7 @@
         <file alias="4jcraft-ico.png">assets/images/internet-4jcraft-ico.png</file>
         <file alias="lce-evolved-ico.png">assets/images/internet-lce-evolved-ico.png</file>
         <file alias="lce-hub-ico.png">assets/images/internet-lce-hub-ico.png</file>
-        <file alias="chest.png">assets/images/chest.webp</file>
+        <file alias="chest.png">assets/images/chest.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>
