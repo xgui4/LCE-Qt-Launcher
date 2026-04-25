@@ -2,7 +2,7 @@ name: Build and Publish Stable Version
 
 on:
   push:
-    branches: ["master"]
+    tag: ["v0.0.1b"]
 
 jobs:
   build_windows_installer:
