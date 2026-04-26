@@ -16,6 +16,7 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
             OUT="src/lce_qt_launcher/ui_${ui}.py"
             pyside6-uic -g python "src/${ui}.ui" -o "$OUT"
             echo "Compilation of ${ui}.ui to $OUT finished"
+            sed -i "s/^import $QT_RESSOURCE/from . import res_rc/g" "$OUT"
         done
     else
         echo "Starting Compilaton of Qt Ressource"
@@ -27,7 +28,6 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
             OUT="src/lce_qt_launcher/ui_${ui}.py"
             /usr/lib/qt6/uic -g python "src/${ui}.ui" -o "$OUT"
             echo "Compilation of ${ui}.ui to $OUT finished"
-            
             sed -i "s/^import $QT_RESSOURCE/from . import res_rc/g" "$OUT"
         done
     fi
@@ -41,5 +41,6 @@ else
         OUT="src/lce_qt_launcher/ui_${ui}.py"
         /usr/local/pyside6/uic -g python "src/${ui}.ui" -o "$OUT"
         echo "Compilation of ${ui}.ui to $OUT finished"
+        sed -i "s/^import $QT_RESSOURCE/from . import res_rc/g" "$OUT"
     done
 fi
