@@ -87,7 +87,7 @@ jobs:
   # --- JOB 4 : Publish the Nightly Release ---
   release:
     name: Create Nightly Release
-    needs: [build, build_windows_installer, build_arch_installer]
+    # needs: [build, build_windows_installer, build_arch_installer]
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
