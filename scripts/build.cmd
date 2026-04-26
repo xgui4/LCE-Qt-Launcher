@@ -2,7 +2,7 @@
 
 echo "Starting Compilaton of Qt Ressource"
 pyside6-rcc "res.qrc" -o "src\lce_qt_launcher\res_rc.py" || exit /b 1
-echo "Compilation of 'res.rc' was a success"
+echo "done"
 
 setlocal enabledelayedexpansion
 
@@ -22,7 +22,7 @@ for /L %%i in (0,1,4) do (
         echo Error compiling !filename!.ui
         exit /b 1
     )
-    echo "Compilation of !filename!.ui to 'src\lce_qt_launcher\ui_!filename!.py' finished"
+    echo "done"
 )
 
 echo "Compilation of all Qt ui files finished"
