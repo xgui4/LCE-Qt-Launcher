@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 ; Non-commercial use only
 
-#define MyAppName "LCE Qt Launcher (Nightly)"
-#define MyAppVersion "nightly"
+#define MyAppName "LCE Qt Launcher (Nightly Preview Inno Setup 7 Installer)"
+#define MyAppVersion "2026.4.26"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -33,7 +33,7 @@ InfoAfterFile=..\..\readme.md
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=nightly-build-x64
+OutputBaseFilename=LCE-Qt-Launcher-Windows-Nigthly-Inno7-Preview-Setup
 SetupIconFile=..\..\assets\setup.ico
 SolidCompression=yes
 WizardStyle=modern dark polar

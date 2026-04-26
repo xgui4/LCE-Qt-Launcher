@@ -23,5 +23,5 @@ do
 done
 
 echo "Removing every pycaches filed"
-find .  -n '__pycache__' -print0 | xargs rm -rf 
+find . -name '__pycache__' -print0 | xargs -0 rm -rf
 echo "done"
