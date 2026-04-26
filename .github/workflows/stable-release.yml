@@ -2,7 +2,8 @@ name: Build and Publish Stable Version
 
 on:
   push:
-    tag: ["v0.0.1b"]
+    tags: 
+      - v0.0.1b
 
 jobs:
   build_windows_installer:
@@ -15,7 +16,7 @@ jobs:
       - name: Compile .ISS to .EXE Installer
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
-          path: packages/windows/windows-setup.iss
+          path: packages\windows\windows-setup.iss
           options: '/O+ /F"LCE_Qt_Launcher_Windows_Setup"'
   build_arch_installer:
     runs-on: ubuntu-latest
@@ -26,6 +27,6 @@ jobs:
       - name: Validate package
         uses: heyhusen/archlinux-package-action@v3.0.0
         with:
-          flags: '-p packages/linux/stable/PKGBUILD'
+          flags: '-p ../packages/linux/stable/PKGBUILD'
           namcap: true
           srcinfo: true

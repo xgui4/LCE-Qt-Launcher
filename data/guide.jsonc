@@ -1,5 +1,5 @@
 {
-    "$schema" : "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/master/schemas/lce_qrt_inst_config.json",
+    "$schema" : "../schemas/x-application-lce_inst_config.json",
     "name" : "default", // Name of the instance 
     "installation_path": ".lce", // Installation Path of the game files
     "username" : "Steve", // Your Username
@@ -14,6 +14,10 @@
     // InstanceSource.LOCAL_INSTALLATION = Local Installation (not implemented yet)
     // InstanceSource.LOCAL_SOURCE_CODE = Local Source Code (not implemented yet)
     "instance_source" : "InstanceSource.GITHUB_RELEASE", 
+    // InstanceType.CLIENT_VANILLA = #TODO To implement and write documentation
+    // InstanceType.CLENT_MODDED = #TODO To implement and write documentation
+    // InstanceType.SERVER_VANILLA = #TODO To implement and write documentation
+    // InstanceType.SERVER_MODDED = #TODO  To implement and write documentation
     "instance_type": "InstanceType.CLIENT_VANILLA", // Type of the instance (not implemented/functionnal yet)
-    "version" : "nightly" // version/tag of the release
+    "version" : "nightly" // version/tag of the release of rhe instance to download
 }

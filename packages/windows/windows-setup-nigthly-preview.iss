@@ -37,7 +37,7 @@ OutputBaseFilename=nightly-build-x64
 SetupIconFile=..\..\assets\setup.ico
 SolidCompression=yes
 WizardStyle=modern dark polar
-ArchitecturesAllowed=x64compatible
+SetupArchitecture=x64
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
