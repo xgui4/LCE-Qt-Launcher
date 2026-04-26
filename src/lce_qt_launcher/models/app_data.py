@@ -24,6 +24,7 @@ class AppData(QObject):
         self.instsList : list[Instance] = []
         self.sourceDir : str = self._get_source_dir()
         self.projectRootDir : str = self._get_project_root_dir()
+        self.appConfigDir : str = self._get_app_config_dir()
         self.localesDir : str = self._get_locales_dir()
         self.assetsDirs : str = self._get_assets_dir()
         self.appDataDirs: tuple[str, str]  = ( self._get_user_app_data_dir(), self._get_site_app_data_dir() )
@@ -126,3 +127,12 @@ class AppData(QObject):
         """
         dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
         return dirs.user_log_dir
+    
+    def _get_app_config_dir(self) -> str:
+        """_summary_ TODO : docstring
+
+        Returns:
+            str: _description_
+        """
+        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        return dirs.user_config_dir

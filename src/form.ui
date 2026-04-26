@@ -637,7 +637,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -683,7 +683,7 @@
     </property>
     <addaction name="actionLogs"/>
     <addaction name="actionConfiguration"/>
-    <addaction name="actionThemese"/>
+    <addaction name="actionThemes"/>
     <addaction name="actionSkins"/>
     <addaction name="actionInstances"/>
     <addaction name="actionApp_Root"/>
@@ -873,7 +873,7 @@
     <string>Configuration</string>
    </property>
   </action>
-  <action name="actionThemese">
+  <action name="actionThemes">
    <property name="text">
     <string>Themes</string>
    </property>
@@ -888,7 +888,7 @@
   </action>
   <action name="actionInstances">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Instances</string>
@@ -982,6 +982,9 @@
    </property>
   </action>
   <action name="actionViews_Logs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset theme="help-about"/>
    </property>
@@ -990,11 +993,14 @@
    </property>
   </action>
   <action name="actionReport_a_Bugs_or_Sugess_a_feature">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset theme="emblem-favorite"/>
    </property>
    <property name="text">
-    <string>Report a Bugs or Sugess a feature </string>
+    <string>Report a Bugs or Suggest a feature </string>
    </property>
   </action>
  </widget>

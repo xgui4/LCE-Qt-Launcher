@@ -16,6 +16,7 @@ from PySide6.QtCore import (
 import sys
 import platform
 import json
+import webbrowser
 
 from pathlib import Path
 
@@ -23,6 +24,7 @@ from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.instance_manager import InstanceManager
 from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.ui_about import Ui_AboutDialog
 from lce_qt_launcher.ui_instance import Ui_InstancesEditor
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
@@ -42,7 +44,9 @@ class Launcher(QMainWindow):
     """
     def __init__(self, 
                  appContext : AppContext, 
-                 app : QApplication) -> None:
+                 appData : AppData, 
+                 app : QApplication,
+                ) -> None:
         super().__init__(None)
 
         translator: JsonTrans = appContext.translator
@@ -242,6 +246,15 @@ class Launcher(QMainWindow):
         _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(show_more_lce_projects)
         _ = self.ui.actionSave.triggered.connect(save_instance)
         _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
+
+        openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
+        _= self.ui.actionApp_Root.triggered.connect(openAppRoot)
+
+        openAppConfig = lambda : systemManager.open_url_with_system(appData.appConfigDir);
+        _= self.ui.actionApp_Root.triggered.connect(openAppConfig)
+
+        open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
+        _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)

@@ -21,7 +21,7 @@ class App(QApplication):
 
         _ = self.setStyle("Fusion")
 
-        self.widget: Launcher = Launcher(self.appContext, self)
+        self.widget: Launcher = Launcher(self.appContext, self.appData, self)
         self.widget.show()
 
         self.set_theme(theme)
