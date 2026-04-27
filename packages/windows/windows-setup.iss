@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher"
-#define MyAppVersion "1.0.0.1" ; Next Beta Version (And the first)
+#define MyAppVersion "1.0.0.1"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -22,7 +22,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\ LCE-Qt-Launcher
+DefaultDirName={autopf}\{#MyAppName}
 DisableDirPage=yes
 UninstallDisplayIcon={app}\{#MyAppExeName}
 ; "ArchitecturesAllowed=x64compatible" specifies that Setup cannot run
@@ -41,7 +41,7 @@ InfoAfterFile=..\..\lisezmoi.md
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=.
-OutputBaseFilename=lce-qt-launcher-windows-setup
+OutputBaseFilename=LCE-Qt-Launcher-Windows-Setup
 SetupIconFile=..\..\assets\setup.ico
 SolidCompression=yes
 WizardStyle=modern dark polar

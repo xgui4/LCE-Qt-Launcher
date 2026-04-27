@@ -74,7 +74,6 @@ jobs:
       - name: Validate and Build package
         uses: heyhusen/archlinux-package-action@v3.0.0
         with:
-          flags: '-p packages/linux/nigthly/PKGBUILD'
           namcap: true
           srcinfo: true
       

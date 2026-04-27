@@ -1,0 +1,1 @@
+the nix package is at the root of the package for technical reason, since this is how a nix package are usally places
