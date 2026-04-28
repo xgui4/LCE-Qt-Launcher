@@ -31,8 +31,14 @@ pkgs.python3Packages.buildPythonApplication rec {
     patchShebangs scripts/
     chmod +x scripts/*.sh
     substituteInPlace scripts/build.sh \
-      --replace-fail "/usr/lib/qt6/rcc" "rcc" \
-      --replace-fail "/usr/lib/qt6/uic" "uic"
+      --replace-fail "/usr/lib/qt6/rcc" "${pkgs.qt6.qtbase}/libexec/rcc" \
+      --replace-fail "/usr/lib/qt6/uic" "${pkgs.qt6.qtbase}/libexec/uic"
+
+    # Remove the build-time dependencies Nix doesn't need 
+    # (this prevents Hatchling from complaining they are missing)
+    sed -i '/"hatch<=/d' pyproject.toml
+    sed -i '/"Nuitka<=/d' pyproject.toml
+    sed -i '/"patchelf<=/d' pyproject.toml
   '';
 
   # Manual installation of non-Python assets (Desktop files, icons, etc.)
@@ -55,6 +61,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     install -Dm644 "readme.md" "code-of-conduct.md" -t "$out/share/doc/${pname}/"
   '';
 
+  dontCheckRuntimeDeps = true;
   dontWrapQtApps = true;
   preFixup = ''
     makeWrapperArgs+=("''${qtWrapperArgs[@]}")
