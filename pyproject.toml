@@ -1,9 +1,6 @@
 [build-system]
 requires = [
     "hatchling", 
-    "hatch<=1.16.5",
-    "Nuitka<=4.0.7",
-    "patchelf<=0.17.2.4; sys_platform == 'linux'",
     "PySide6; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'"
 ]
 build-backend = "hatchling.build"
@@ -22,6 +19,9 @@ dependencies = [
     "requests>=2.33.1",
     "platformdirs",
     "rich>=14.3.3",
+    "hatch<=1.16.5",
+    "Nuitka<=4.0.7",
+    "patchelf<=0.17.2.4; sys_platform == 'linux'",
 ]
 
 [project.scripts]
