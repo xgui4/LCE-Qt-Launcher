@@ -14,10 +14,10 @@
         <file alias="button-disabled.png">assets/images/button-disabled.png</file>
         <file alias="gear.gif">assets/images/gear.gif</file>
         <file alias="news.png">assets/images/news.png</file>
-        <file alias="mclce-ico.png">assets/images/internet-mclce-ico.png</file>
-        <file alias="4jcraft-ico.png">assets/images/internet-4jcraft-ico.png</file>
-        <file alias="lce-evolved-ico.png">assets/images/internet-lce-evolved-ico.png</file>
-        <file alias="lce-hub-ico.png">assets/images/internet-lce-hub-ico.png</file>
+        <file alias="mclce-ico.png">assets/images/mclce-ico.png</file>
+        <file alias="4jcraft-ico.png">assets/images/4jcraft-ico.png</file>
+        <file alias="lce-evolved-ico.png">assets/images/lce-evolved-ico.png</file>
+        <file alias="lce-hub-ico.png">assets/images/lce-hub-ico.png</file>
         <file alias="chest.png">assets/images/chest.png</file>
     </qresource>
     <qresource prefix="/styles">
