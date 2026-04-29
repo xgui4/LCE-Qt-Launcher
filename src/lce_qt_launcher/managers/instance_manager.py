@@ -254,7 +254,8 @@ class InstanceManager:
             str: _description_ error message or status and exit codes
         """
         try:
-            game_process = subprocess.run(os.path.join(self.instance.installation_path, self.instance.exe_name))
+            client_path : str = os.path.join(self.instance.installation_path, self.instance.exe_name)
+            game_process = subprocess.run([client_path, "-name", self.instance.username])
         except TimeoutExpired as err: 
             term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
             return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
