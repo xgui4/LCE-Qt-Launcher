@@ -16,9 +16,7 @@ class CustomBuildHook(BuildHookInterface):  # pyright: ignore[reportMissingTypeA
     @override
     def initialize(self, version, build_data) -> None:  # pyright: ignore[reportMissingParameterType]
         if os.name == "posix":
-            _ = subprocess.run("./scripts/prepare.sh", check=True)
             _ = subprocess.run("./scripts/build.sh", check=True)
         if os.name == "nt":
-            _ = subprocess.run("scripts\\prepare.cmd", check=True, shell=True)
             _ = subprocess.run("scripts\\build.cmd", check=True, shell=True)
         return super().initialize(version, build_data)

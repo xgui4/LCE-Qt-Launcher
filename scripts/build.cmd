@@ -18,7 +18,7 @@ for /L %%i in (0,1,4) do (
     set "filename=!ui[%%i]!"
 
     echo "Compiling !filename!.ui Qt UI file"
-    pyside6-uic "!filename!.ui" -o "src\lce_qt_launcher\ui_!filename!.py" || (
+    pyside6-uic "src/!filename!.ui" -o "src\lce_qt_launcher\ui_!filename!.py" || (
         echo Error compiling !filename!.ui
         exit /b 1
     )
