@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1
+Name=LCE QT Launcher
+GenericName=Minecraft LCE Launcher
+Comment=A custom Minecraft LCE Launcher written with Pytho using PySide6 (Qt6 for Python)
+Exec=lce-qt-launcher %f
+Icon=io.github.xgui4.lce_qt_launcher.png
+Terminal=true
+MimeType=application/x-lce_inst
+Keywords=Minecraft;Games;LCE;Python;Qt;Legacy;Console;Edition
+Categories=Python;Minecraft;Game;Utils;Qt
+
+[Desktop Action Generate_Config]
+Exec=lce-qt-launcher -g
+Name=Generate Config

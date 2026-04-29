@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1302</width>
-    <height>858</height>
+    <height>910</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -389,7 +389,7 @@
            <item row="11" column="0" colspan="3">
             <widget class="QPushButton" name="openInstanceEditor">
              <property name="enabled">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="text">
               <string>Open Instances Editor</string>
@@ -407,6 +407,9 @@
            </item>
            <item row="12" column="0" colspan="3">
             <widget class="QPushButton" name="settingButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Setting</string>
              </property>
@@ -637,7 +640,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -660,10 +663,12 @@
     <addaction name="actionSystem_Information"/>
     <addaction name="actionAbout_Minecraft"/>
     <addaction name="actionMore_Minecraft_LCE_Projects"/>
+    <addaction name="actionViews_Logs"/>
+    <addaction name="actionReport_a_Bugs_or_Sugess_a_feature"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Edit</string>
@@ -674,21 +679,21 @@
    </widget>
    <widget class="QMenu" name="menuFolders">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Folders</string>
     </property>
     <addaction name="actionLogs"/>
     <addaction name="actionConfiguration"/>
-    <addaction name="actionThemese"/>
+    <addaction name="actionThemes"/>
     <addaction name="actionSkins"/>
     <addaction name="actionInstances"/>
     <addaction name="actionApp_Root"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>View</string>
@@ -773,6 +778,9 @@
    </property>
   </action>
   <action name="actionDefault">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Default</string>
    </property>
@@ -868,7 +876,7 @@
     <string>Configuration</string>
    </property>
   </action>
-  <action name="actionThemese">
+  <action name="actionThemes">
    <property name="text">
     <string>Themes</string>
    </property>
@@ -883,7 +891,7 @@
   </action>
   <action name="actionInstances">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Instances</string>
@@ -923,6 +931,9 @@
    </property>
   </action>
   <action name="actionSetting">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset theme="preferences-system"/>
    </property>
@@ -946,7 +957,7 @@
     <bool>true</bool>
    </property>
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>News</string>
@@ -957,18 +968,48 @@
     <bool>false</bool>
    </property>
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Setting</string>
    </property>
   </action>
   <action name="actionSetting_3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset theme="preferences-system"/>
    </property>
    <property name="text">
     <string>Setting</string>
+   </property>
+  </action>
+  <action name="actionView_LCE_Qt_Launcher">
+   <property name="text">
+    <string>View LCE-Qt-Launcher Wiki</string>
+   </property>
+  </action>
+  <action name="actionViews_Logs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
+   <property name="text">
+    <string>Views Logs</string>
+   </property>
+  </action>
+  <action name="actionReport_a_Bugs_or_Sugess_a_feature">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="emblem-favorite"/>
+   </property>
+   <property name="text">
+    <string>Report a Bugs or Suggest a feature </string>
    </property>
   </action>
  </widget>

@@ -296,6 +296,7 @@ tmp/
 # Minecraft Client
 MinecraftLCEClient/
 .lce**
+.**Legacy
 
 # Output
 output/
@@ -314,3 +315,18 @@ nuitka-crash-report.xml
 
 # Internet Content
 **internet-**
+
+# test files
+test.lce_inst
+default.lce_inst
+
+# pacman
+
+packages/**/src/
+packages/**/pkg
+packages/**/lce-qt-launcher-*/
+packages/**/lce-qt-launcher-**-**-any.pkg.tar.zst
+
+#Nix 
+
+result

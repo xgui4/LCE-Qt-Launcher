@@ -2,6 +2,6 @@ import os
 import subprocess
 
 if os.name == "posix":
-    subprocess.run("./packages.sh", check=True)
+    _ = subprocess.run("./scripts/packages.sh", check=True)
 if os.name == "nt":
-    subprocess.run("packages.bat", check=True, shell=True)
+    _ = subprocess.run("scripts\\packages.cmd", check=True, shell=True)

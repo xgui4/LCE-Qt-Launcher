@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>809</width>
-    <height>706</height>
+    <width>645</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <normaloff>:/assets/app.ico</normaloff>:/assets/app.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="0" column="0" colspan="2">
     <widget class="QMenuBar" name="menuBar">
      <widget class="QMenu" name="fileMenu">
       <property name="title">
@@ -27,23 +27,20 @@
       <property name="toolTipsVisible">
        <bool>true</bool>
       </property>
-      <addaction name="actionAddInstance"/>
-      <addaction name="separator"/>
-      <addaction name="actionLaunchInstance"/>
-      <addaction name="actionKillInstance"/>
-      <addaction name="separator"/>
       <addaction name="actionEditInstance"/>
       <addaction name="actionChangeInstGroup"/>
       <addaction name="actionViewSelectedInstFolder"/>
       <addaction name="actionExportInstance"/>
       <addaction name="actionCopyInstance"/>
       <addaction name="actionDeleteInstance"/>
-      <addaction name="actionCreateInstanceShortcut"/>
       <addaction name="separator"/>
       <addaction name="actionSettings"/>
       <addaction name="actionCloseWindow"/>
      </widget>
      <widget class="QMenu" name="editMenu">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="title">
        <string>&amp;Edit</string>
       </property>
@@ -53,17 +50,15 @@
       <addaction name="actionUndoTrashInstance"/>
      </widget>
      <widget class="QMenu" name="viewMenu">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="title">
        <string>&amp;View</string>
       </property>
       <property name="toolTipsVisible">
        <bool>true</bool>
       </property>
-      <addaction name="actionChangeTheme"/>
-      <addaction name="separator"/>
-      <addaction name="actionToggleStatusBar"/>
-      <addaction name="actionLockToolbars"/>
-      <addaction name="separator"/>
      </widget>
      <widget class="QMenu" name="foldersMenu">
       <property name="title">
@@ -73,15 +68,8 @@
        <bool>true</bool>
       </property>
       <addaction name="actionViewLauncherRootFolder"/>
-      <addaction name="separator"/>
       <addaction name="actionViewInstanceFolder"/>
-      <addaction name="actionViewCentralModsFolder"/>
       <addaction name="actionViewSkinsFolder"/>
-      <addaction name="separator"/>
-      <addaction name="actionViewIconThemeFolder"/>
-      <addaction name="actionViewWidgetThemeFolder"/>
-      <addaction name="actionViewIconsFolder"/>
-      <addaction name="separator"/>
       <addaction name="actionViewLogsFolder"/>
      </widget>
      <widget class="QMenu" name="helpMenu">
@@ -94,7 +82,6 @@
       <addaction name="actionReportBug"/>
       <addaction name="actionViewLog"/>
       <addaction name="separator"/>
-      <addaction name="actionOpenWiki"/>
       <addaction name="actionAbout"/>
      </widget>
      <addaction name="fileMenu"/>
@@ -104,44 +91,192 @@
      <addaction name="helpMenu"/>
     </widget>
    </item>
+   <item row="1" column="1">
+    <widget class="QWidget" name="ModifyInstance" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>1</horstretch>
+       <verstretch>1</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QFrame" name="mdoifyInstanceFrame_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="modifyInstancSectionLabel_2">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Modify Instance</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="usernameInputBoxLabel_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Username</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="usernameInputBox_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="pathInputBoxLabel_2">
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Installation Path</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="pathInputBox_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="repoURKLabel_2">
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Repo URL</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="repoURLInputBox_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="serverIPInputBoxLabel_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Server IP (Coming Soon)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="serverIPInputBox_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="serverNameInputBoxLabel_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Server Name (Coming Soon)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="serverNameInputBox_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="confirmChangesButton_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Confirm Changes</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="savetInstanceButton_2">
+           <property name="text">
+            <string>Save Instances Config</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
-  <widget class="QWidget" name="centralWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>2</width>
-     <height>2</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
-   </layout>
-  </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>3</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
   <action name="actionMoreNews">
    <property name="icon">
     <iconset theme="news"/>
@@ -204,7 +339,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="settings"/>
+    <iconset theme="preferences-system"/>
    </property>
    <property name="text">
     <string>Setti&amp;ngs...</string>
@@ -284,7 +419,7 @@
   </action>
   <action name="actionEditInstance">
    <property name="icon">
-    <iconset theme="settings"/>
+    <iconset theme="applications-accessories"/>
    </property>
    <property name="text">
     <string>&amp;Edit...</string>
@@ -298,7 +433,7 @@
   </action>
   <action name="actionViewSelectedInstFolder">
    <property name="icon">
-    <iconset theme="viewfolder"/>
+    <iconset theme="folder"/>
    </property>
    <property name="text">
     <string>&amp;Folder</string>
@@ -323,7 +458,7 @@
   </action>
   <action name="actionCopyInstance">
    <property name="icon">
-    <iconset theme="copy"/>
+    <iconset theme="edit-copy"/>
    </property>
    <property name="text">
     <string>Cop&amp;y...</string>
@@ -337,7 +472,7 @@
   </action>
   <action name="actionExportInstance">
    <property name="icon">
-    <iconset theme="export"/>
+    <iconset theme="document-send"/>
    </property>
    <property name="text">
     <string>E&amp;xport...</string>
@@ -389,7 +524,7 @@
   </action>
   <action name="actionCloseWindow">
    <property name="icon">
-    <iconset theme="status-bad"/>
+    <iconset theme="window-close"/>
    </property>
    <property name="text">
     <string>Close &amp;Window</string>
@@ -474,7 +609,7 @@
   </action>
   <action name="actionReportBug">
    <property name="icon">
-    <iconset theme="bug"/>
+    <iconset theme="emblem-favorite"/>
    </property>
    <property name="text">
     <string>Report a Bug or Suggest a Feature</string>
@@ -485,7 +620,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="about"/>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>&amp;About LCE Qt Launcher</string>
@@ -499,7 +634,7 @@
   </action>
   <action name="actionViewLog">
    <property name="icon">
-    <iconset theme="log"/>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>View logs</string>

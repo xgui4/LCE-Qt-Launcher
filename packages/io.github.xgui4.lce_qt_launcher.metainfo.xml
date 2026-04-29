@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.xgui4.lce_qt_launcher.metainfo.xml</id>
+  
+  <name>lce_qt_launcher</name>
+  <summary> This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.</summary>
+  <metadata_license>GPLv3</metadata_license>
+  <project_license>GPLv3</project_license>
+  
+  <description>
+    <h2 id="about">About</h2>
+    <p>This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.</p>
+    <h2 id="features">Features</h2>
+    <ul>
+      <li>Command Line interface (CLI)</li>
+      <li>Qt 6 GUI (Native like Interface)</li>
+      <li>Written in Python (No Electron or Rust)</li>
+      <li>Customisable </li>
+      <li>Free Software (GPLv3)</li>  
+      <li>Multiple Instances (Work in progress)</li>
+      <li>localisations (Work in progress)</li>
+      <li>Multiples Defaults Instances : MCLE and Legacy Evolved</li>
+      <li>in-app news</li>
+      <li>Minecraft Theme pre-configured</li>
+    </ul>
+    <h2 id="long-term-goal">Long Term Goal</h2>
+    <ul>
+    <li>Accessibility </li>
+    <li>GNU/Linux compatibility</li>
+    <li>Windows support</li>
+    <li>Experimental FreeBSD support </li>
+    <li>Focus on being the main hub for Minecraft LCE on GNU/Linux </li>
+    </ul>
+  </description>
+
+  <url>https://github.com/xgui4/LCE-Qt-Launcher</url>
+  
+  <launchable type="desktop-id">io.github.xgui4.lce_qt_launcher.desktop</launchable>
+</component>

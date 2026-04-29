@@ -2,8 +2,7 @@ from PySide6.QtWidgets import (
     QApplication, 
     QMainWindow, 
     QLabel, 
-    QDialog, 
-    QWidget
+    QDialog
 )
 from PySide6.QtGui import ( 
     QPalette, 
@@ -11,140 +10,211 @@ from PySide6.QtGui import (
     QBrush
 )
 from PySide6.QtCore import ( 
-    Qt,
-    qVersion, 
+    qVersion
 )
-
-from lce_qt_launcher.app_context import AppContext
-
-import lce_qt_launcher.views.term_service as term_service
-import lce_qt_launcher.features as features
-import lce_qt_launcher.utils.holyday as holyday
 
 import sys
 import platform
+import json
+import webbrowser
+
+from pathlib import Path
+
+from lce_qt_launcher.managers.system_manager import SystemManager
+from lce_qt_launcher.app_context import AppContext
+from lce_qt_launcher.managers.instance_manager import InstanceManager
+from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.models.app_data import AppData
+from lce_qt_launcher.ui_about import Ui_AboutDialog
+from lce_qt_launcher.ui_instance import Ui_InstancesEditor
+from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
+from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
+from lce_qt_launcher.utils.json_trans import JsonTrans
+from lce_qt_launcher.ui_form import Ui_launcher
+
+import lce_qt_launcher.views.term_service as term_service
+import lce_qt_launcher.features as features
+import lce_qt_launcher.utils.holiday as holiday
 
 class Launcher(QMainWindow):
+    """_summary_ The Main Window / Launcher of the QApplcation
+
+    Args:
+        QMainWindow (_type_): _description_ The inheite type of Launcher
+    """
     def __init__(self, 
                  appContext : AppContext, 
-                 launcher_ui : object, 
-                 sys_dialog_ui: object,
-                 instance_ui_editor: object, 
-                 setting_ui : object,
-                 ui_about_dialog : object,
-                 app : QApplication, 
-                 parent=None) -> None:
-        super().__init__(parent)
+                 appData : AppData, 
+                 app : QApplication,
+                ) -> None:
+        super().__init__(None)
 
-        translator = appContext.translator
+        translator: JsonTrans = appContext.translator
+        instanceManager: InstanceManager = appContext.instanceMan
+        buildInfo: BuildInfo = appContext.buildInfo
 
-        instanceManager = appContext.instanceMan
-
-        buildInfo = appContext.buildInfo
-
-        self.image_label = instanceManager.instance.image
-        self.news_feed = instanceManager.instance.news_feed
-        self.instance_name = instanceManager.instance.name
-
+        self.image_label: str = instanceManager.instance.image
+        self.news_feed: str = instanceManager.instance.news_feed
+        self.instance_name: str = instanceManager.instance.name
+        
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
-        def gen_inst_from_form():
+        def gen_inst_from_form() -> None:
+            """
+            _sumarry_ Generate An Instance From the Form
+            """
             instanceManager.instance = features.new_instance_from_form(self)
 
-        def confirm_changes_button():
+        def confirm_changes_button() -> None:
+            """_summary_ Generate An Instance From the Form for confirming the changes
+            """
             gen_inst_from_form()
 
-        def update_page():
+        def update_page() -> None:
+            """_summary_ "Show the Update Page in a QWebEngine Popup
+            """
             features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
 
-        def launch():
+        def launch() -> None:
+            """_summary_ Launch the Game
+            """
             features.launch_game(instanceManager, STARTING_GAME_MSG)
 
-        def install():
+        def install() -> None:
+            """_summary_ Install the Game
+            """
             features.install_game(self, instanceManager.instance, instanceManager)
 
         def show_aboutQt() -> None:
+            """_summary_ Show the About Qt Dialog
+            """
             features.show_about_qt(self)
 
         def show_about() -> None:
+            """_summary_ Show About App dialog 
+            """ 
             features.show_about_app(self)
 
         def show_system_information() -> None:
+            """_summary_ Show the system info dialog
+            """
             features.show_system_info(self)
 
         def show_about_minecraft() -> None:
+            """_summary_ Open an QWebEngine at the Minecraft Website 
+            """
             features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE, buildInfo)
 
         def show_more_lce_projects() -> None:
+            """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)
+            """
             features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE, buildInfo)
 
         def save_instance() -> None:
-            features.save_instance(self, instanceManager, buildInfo)
+            """_summary_ Save the instance on a file on disk
+            """
+            features.save_instance_to_file(self, instanceManager, appContext, buildInfo)
 
         def load_instance() -> None:
-            features.load_instance(self, instanceManager, buildInfo)
+            """_summary_ Open the Load Save File Dialog 
+            """
+            features.load_instance(self, instanceManager, appContext, buildInfo)
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
             self.ui.usernameInputBox.setText(instanceManager.instance.username)
             self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.url)
+            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
             pixmap = QPixmap(self.image_label)
             self.ui.instance_img.setPixmap(pixmap)
             self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)
+            self.ui.newsEngineView.setUrl(self.news_feed) 
 
         def show_setting_dialog() -> None:
-            features.show_setting(self, setting_ui)
+            """_summary_ Show the setting Dialog
+            """
+            features.show_setting(self, Ui_settingDialog())
 
         def show_instance_editor() -> None:
             features.show_instance_editor(self)
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
-            palette = self.palette()
+            palette: QPalette = self.palette()
             palette.setBrush(QPalette.ColorRole.Window, QBrush(background_pixmap))
             self.setPalette(palette)
             self.setAutoFillBackground(True)
         else:
             term_service.print_error("Cannot set the background")
-
-        self.ui = launcher_ui()
+            
+        self.ui: Ui_launcher = Ui_launcher()
 
         self.ui.setupUi(self)
         
-        self.about = ui_about_dialog()
-        self.aboutDialog = QDialog()
+        arguments: list[str] =  QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
+        
+        if len(arguments) > 1:
+            file_arg: str = arguments[1]
+            
+            try:
+                path = Path(file_arg)
+                if path.is_file():
+                    with path.open("r", encoding="utf-8") as instance:
+                        inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
+                        instanceManager.instance.load_inst_from_dict(inst_dict)
+                        instanceManager.instance.display()
+                        self.image_label = instanceManager.instance.image
+                        self.news_feed = instanceManager.instance.news_feed
+                        self.instance_name = instanceManager.instance.name
+                        self.ui.usernameInputBox.setText(instanceManager.instance.username)
+                        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+                        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
+                        pixmap = QPixmap(self.image_label)
+                        self.ui.instance_img.setPixmap(pixmap)
+                        self.ui.repo_name_branch.setText(self.instance_name)
+                        self.ui.newsEngineView.setUrl(self.news_feed) 
+                else:
+                    term_service.print_information("No file argument given or file not found. Loading default instance.")
+            except json.JSONDecodeError as err:
+                term_service.print_error(f"Invalid or corrupted Save File (JSON syntax) : {err.msg} at line {err.lineno}") 
+            except (ValueError, TypeError) as err:
+                term_service.print_error(f"Data structure error in Save File : {err}") 
+            except PermissionError:
+                term_service.print_error("System Error : Permission denied when reading the file.") 
+            except RecursionError:
+                term_service.print_error("System Error : The JSON structure is too deep to be processed.")
+            except Exception as err:
+                term_service.print_error(f"An unexpected error occurred : {err}")
+        else:
+            term_service.print_information("No argument given, start with default instance.")
+        
+        self.about: Ui_AboutDialog = Ui_AboutDialog()
+        self.aboutDialog: QDialog = QDialog()
 
-        self.sysinfo_dialog = QDialog() 
-        self.dialog_ui = sys_dialog_ui()
+        self.sysinfo_dialog: QDialog = QDialog() 
+        self.dialog_ui = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
         self.about.setupUi(self.aboutDialog)
+        self.aboutDialog.setWindowTitle(appContext.buildInfo.app_name)
 
-        # app_icon = QPixmap(":/assets/launcher.png");
-        # self.about.icon.setPixmap(app_icon)
         self.about.title.setText(appContext.buildInfo.app_name)
         self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.commitLabel.setText(f"Commit : UNKOWMN")
-        self.about.buildDateLabel.setText(f"Build date : UNKOWN")
         self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
-        from lce_qt_launcher.views.license_str import license_str
+        from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
-        self.about.aboutQt.clicked.connect(show_aboutQt)
-        self.about.closeButton.clicked.connect(self.aboutDialog.close)
+        _ = self.about.aboutQt.clicked.connect(show_aboutQt)
+        _ = self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
-        window_title: str = translator.translate(key="App Title")
-
-        self.instance_window = QMainWindow()
-        self.instance_editor = instance_ui_editor()
+        self.instance_window: QDialog = QDialog()
+        self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
         self.instance_editor.setupUi(self.instance_window)
-        self.instance_window.setWindowTitle(window_title)
+        self.instance_window.setWindowTitle(appContext.buildInfo.app_name)
 
-        systemManager = buildInfo.system_manager
+        systemManager: SystemManager = appContext.sys_man
 
         self.dialog_ui.appVersion.setText(f"{buildInfo.app_name} Version {buildInfo.version_type} {buildInfo.version}")
         self.dialog_ui.qVersionLabel.setText(f"Qt Version {qVersion()}")
@@ -159,9 +229,9 @@ class Launcher(QMainWindow):
 
         _ = self.ui.playButton.clicked.connect(launch)
         _ = self.ui.installButton.clicked.connect(install)
-        _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.settingButton.clicked.connect(show_setting_dialog)
         _ = self.ui.savetInstanceButton.clicked.connect(save_instance)
+        _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
         _ = self.ui.openInstanceEditor.clicked.connect(show_instance_editor)
 
         _ = self.ui.actionSetting.triggered.connect(show_setting_dialog)
@@ -177,7 +247,16 @@ class Launcher(QMainWindow):
         _ = self.ui.actionSave.triggered.connect(save_instance)
         _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
 
-        self.versionlabel = QLabel(f"Version {buildInfo.version}")
+        openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
+        _= self.ui.actionApp_Root.triggered.connect(openAppRoot)
+
+        openAppConfig = lambda : systemManager.open_url_with_system(appData.appConfigDir);
+        _= self.ui.actionApp_Root.triggered.connect(openAppConfig)
+
+        open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
+        _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
+
+        self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
-        holyday_label = QLabel(holyday.get_holyday())
+        holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)

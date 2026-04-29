@@ -1,8 +1,12 @@
-from PySide6.QtWidgets  import QDialog, QVBoxLayout, QLabel
+from PySide6.QtWidgets  import QDialog, QWidget
+
+from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
 
 class SettingDialog(QDialog):
-    def __init__(self, parent, setting_ui):
-        self.setting_dialog = QDialog(parent) 
-        self.setting_ui = setting_ui()
-        self.setting_ui.setupUi(self.setting_dialog)
+    """_summary_ The Setting Dialog"""
+    def __init__(self, parent : QWidget, ui_setting : Ui_settingDialog) -> None:
+        super().__init__()
+        self.setting_dialog: QDialog = QDialog(parent) 
+        self.ui_setting: Ui_settingDialog =  ui_setting 
+        self.ui_setting.setupUi(self.setting_dialog)  # pyright: ignore[reportUnknownMemberType]
         self.setting_dialog.show()

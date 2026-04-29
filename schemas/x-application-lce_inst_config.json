@@ -13,7 +13,12 @@
         "installation_path" : {
             "description": "Installation Path of the game files",
             "type" : "string",
-            "default" : "."
+            "default" : ".",
+            "examples": [
+                "~/.lce",
+                "$HOME/Documents/lce-qt-launcher",
+                "~/Documents/lce-qt-launcher"
+            ]
         },
         "username" : {
             "description": "The username of the player for the instance",
@@ -23,17 +28,27 @@
         "exe_name" : {
             "description": "The executable file of the instance",
             "type" : "string", 
-            "default" : "Minecraft.Client.exe"
+            "default" : "Minecraft.Client.exe",
+            "examples": [
+                "Minecraft.Server.exe"
+            ]
         },
         "archive_file" : {
             "description": "The archive filename to download or extract",
             "type" : "string",
-            "default" : "LCEWindows64.zip"
+            "default" : "LCEWindows64.zip",
+            "examples": [
+                "LCEWindows64-Linux"
+            ]
         },
-        "url": {
+        "repo_url": {
             "description": "The url/repo of the project",
             "type" : "string", 
-            "default" : "https://github.com/MCLCE/minecraftconsoles"
+            "default" : "https://github.com/MCLCE/minecraftconsoles",
+            "examples": [
+                "https://codeberg.org/piebot/LegacyEvolved",
+                "https://github.com/LCE-Hub/neoLegacy"
+            ]
         },
         "image" : {
             "description": "Image of the instance to show (right now it is only local, will be updated later)",
@@ -71,7 +86,11 @@
         "version" : {
             "description": "version/tag of the release",
             "type" : "string",
-            "default" : "nightly"
+            "default" : "nightly",
+            "examples": [
+                "nightly-dedicated-server",
+                "Nightly"
+            ]
         }
     }
 }
