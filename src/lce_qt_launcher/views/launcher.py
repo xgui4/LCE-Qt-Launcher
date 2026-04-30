@@ -247,6 +247,14 @@ class Launcher(QMainWindow):
         _ = self.ui.actionSave.triggered.connect(save_instance)
         _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
 
+        open_workshop = lambda : features.show_webbrowser(self, "https://lce-hub.github.io/piston/", buildInfo); 
+
+        _ = self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
+
+        open_legacymods = lambda : features.show_webbrowser(self, "https://legacymods.org/", buildInfo); 
+
+        _ = self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
+
         openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
         _= self.ui.actionApp_Root.triggered.connect(openAppRoot)
 

@@ -705,10 +705,18 @@
     <addaction name="actionNews"/>
     <addaction name="actionSetting_2"/>
    </widget>
+   <widget class="QMenu" name="menuMarketplace">
+    <property name="title">
+     <string>Marketplace</string>
+    </property>
+    <addaction name="actionLCE_Hub_Workshop"/>
+    <addaction name="actionLegacyMods_Coming_Soon"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuFolders"/>
+   <addaction name="menuMarketplace"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionQuit">
@@ -1013,6 +1021,16 @@
    </property>
    <property name="text">
     <string>Report a Bugs or Suggest a feature </string>
+   </property>
+  </action>
+  <action name="actionLCE_Hub_Workshop">
+   <property name="text">
+    <string>LCE-Hub Workshop</string>
+   </property>
+  </action>
+  <action name="actionLegacyMods_Coming_Soon">
+   <property name="text">
+    <string>LegacyMods (Coming Soon)</string>
    </property>
   </action>
  </widget>
