@@ -14,8 +14,10 @@ from PySide6.QtWidgets import (
 
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher.managers import import_managers
 from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
 from lce_qt_launcher.managers.system_manager import SystemManager
+from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
 from lce_qt_launcher.views.browser_dialog import BrowserDialog
@@ -82,13 +84,14 @@ def show_instance_editor(parent : QWidget) -> None:
     """Features : Open the Instance Editor"""
     parent.instance_window.show()  
 
-def load_instance(parent : QWidget, instanceManager : InstanceManager, appContext: AppContext, buildInfo : BuildInfo) -> None:  
+def load_instance(parent : QWidget, instanceManager : InstanceManager, appContext: AppContext, buildInfo : BuildInfo, appData : AppData) -> None:  
     """Features : Load the Selected Instance"""
     file_name: tuple[str, str] = QFileDialog.getOpenFileName(
         parent, "Load Instance File", 
         appContext.sys_man.found_default_save_path(), 
         f"{buildInfo.app_name} Instance (*{buildInfo.instance_extension})")
     instanceManager.load_instance(file_name[0])
+    import_managers.import_inst_file_to_app_data(file_name[0], appData)
 
 def show_about_qt(parent : QWidget) -> None:
     """Features : Load the Selected Instance"""

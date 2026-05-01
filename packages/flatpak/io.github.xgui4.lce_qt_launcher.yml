@@ -6,7 +6,7 @@ sdk: org.kde.Sdk
 
 name: LCE Qt Launcher
 command: lce_qt_launcher
-summary: My First GTK App
+summary: An Minecraft Legacy Console Launcher For GNU/Linux
 description: |
     This is a custom Minecraft LCE Launcher written in 
     Python and Qt with Freedom and with GNU/Linux support in mind.

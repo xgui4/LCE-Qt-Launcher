@@ -9,6 +9,8 @@ from pathlib import Path
 import json
 import os
 
+from lce_qt_launcher.views import term_service
+
 def _is_compiled() -> bool:
     return "__compiled__" in globals()
 
@@ -37,7 +39,15 @@ class AppData(QObject):
         #TODO : docstring
         """
         defaults_insts_dir : Path = Path(os.path.join(self.appDataDirs[0], "instances"))
+        print(defaults_insts_dir)
         if not defaults_insts_dir.exists():
+            term_service.print_information(f"{defaults_insts_dir} did not exist. Trying to recreate it.")
+            try:
+                os.makedirs(defaults_insts_dir)
+            except OSError:
+                term_service.print_error("An OS error have occured : {OSError}")
+            except RuntimeError:
+                term_service.print_error("An une error have occured : {RuntineError}")
             return
         instancesLists : list[Instance] = []
         for file_path in defaults_insts_dir.iterdir():
@@ -49,7 +59,9 @@ class AppData(QObject):
                         new_inst.load_inst_from_dict(context_dict)
                         instancesLists.append(new_inst)
                 except (json.JSONDecodeError, OSError, ValueError):
-                    continue
+                    term_service.print_error(f"Cannot decode JSON {OSError} {ValueError} {json.JSONDecodeError}")
+                else:
+                    term_service.print_information(f"{file_path} was not a file.")
         self.instsList = instancesLists
 
     def _get_source_dir(self) -> str:
@@ -98,7 +110,7 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_data_dir
 
     def _get_site_app_data_dir(self) -> str:
@@ -107,7 +119,7 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.site_data_dir
 
     def _get_app_cache_dir(self) -> str:
@@ -116,7 +128,7 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_cache_dir
 
     def _get_app_log_dir(self) -> str:
@@ -125,7 +137,7 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_log_dir
     
     def _get_app_config_dir(self) -> str:
@@ -134,5 +146,5 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        dirs: PlatformDirs = PlatformDirs("Xgui4", "LCE-Qt-Launcher")
+        dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_config_dir

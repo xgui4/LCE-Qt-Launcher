@@ -2,15 +2,17 @@ from PySide6.QtWidgets import (
     QApplication, 
     QMainWindow, 
     QLabel, 
-    QDialog
+    QDialog,
+    QListWidgetItem
 )
 from PySide6.QtGui import ( 
     QPalette, 
-    QPixmap, 
+    QPixmap,
     QBrush
 )
 from PySide6.QtCore import ( 
-    qVersion
+    qVersion,
+    Qt
 )
 
 import sys
@@ -22,7 +24,7 @@ from pathlib import Path
 
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.app_context import AppContext
-from lce_qt_launcher.managers.instance_manager import InstanceManager
+from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.ui_about import Ui_AboutDialog
@@ -118,7 +120,7 @@ class Launcher(QMainWindow):
         def load_instance() -> None:
             """_summary_ Open the Load Save File Dialog 
             """
-            features.load_instance(self, instanceManager, appContext, buildInfo)
+            features.load_instance(self, instanceManager, appContext, buildInfo, appData)
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
@@ -128,7 +130,7 @@ class Launcher(QMainWindow):
             pixmap = QPixmap(self.image_label)
             self.ui.instance_img.setPixmap(pixmap)
             self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed) 
+            self.ui.newsEngineView.setUrl(self.news_feed)             
 
         def show_setting_dialog() -> None:
             """_summary_ Show the setting Dialog
@@ -247,6 +249,14 @@ class Launcher(QMainWindow):
         _ = self.ui.actionSave.triggered.connect(save_instance)
         _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
 
+        open_workshop = lambda : features.show_webbrowser(self, "https://lce-hub.github.io/piston/", buildInfo); 
+
+        _ = self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
+
+        open_legacymods = lambda : features.show_webbrowser(self, "https://legacymods.org/", buildInfo); 
+
+        _ = self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
+
         openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
         _= self.ui.actionApp_Root.triggered.connect(openAppRoot)
 
@@ -255,6 +265,16 @@ class Launcher(QMainWindow):
 
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
+
+        instances : list[Instance] = list()
+
+        for inst in appData.instsList:
+            instances.append(inst)
+            item =  QListWidgetItem()
+            item.setText(inst.name)
+            item.setIcon(QPixmap(inst.image))
+            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
+            self.ui.listWidget.addItem(item)
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
