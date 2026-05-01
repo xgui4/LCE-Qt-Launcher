@@ -1,0 +1,14 @@
+{
+    "$schema" : "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/nightly/schemas/x-application-lce_inst_config.json",
+    "name": "360Revived",
+    "installation_path": ".lce-360Revived", 
+    "username": "Steve", 
+    "archive_file": "LCEWindows64.zip", 
+    "exe_name": "Minecraft.Client.exe", 
+    "repo_url": "https://github.com/BluTac10/360Revived", 
+    "image" : ":/assets/minecraft.png",
+    "news_feed" : "https://github.com/BluTac10/360Revived/commits/main/",
+    "instance_source": "InstanceSource.GITHUB_RELEASE", 
+    "instance_type": "InstanceType.CLIENT_VANILLA", 
+    "version": "nightly"
+}

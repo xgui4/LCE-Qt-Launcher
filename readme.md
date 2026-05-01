@@ -32,6 +32,9 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
     - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (previously smartcmd/MinecraftConsoles)
     - LegacyEvolved (will be removed soon as was replaced with NeoLegacy)
     - [NeoLegacy](https://github.com/pieeebot/neoLegacy/)
+    - [360Revived](https://github.com/BluTac10/360Revived)
+    - [LCE-Revelations](https://github.com/itsRevela/LCE-Revelations)
+    - [HellishEnds](https://github.com/deadvoxelx/HellishEnds)
 - Marketplaces :
   - [LCE Hub Emeralds Launcher Workshop](https://github.com/LCE-Hub/piston)
   - [LegacyMods (coming soon)](https://legacymods.org/)
@@ -126,21 +129,21 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 ## Compatible Operating System
 
 ### Golden Support
-
+    Platform Tested Regurlaly and with completed implemation/patch
 - Windows 10 and later
 - GNU/Linux
 
 ### Experimental Support
-
+    Plattform tested with work in progress implemation
 - NixOS
 
-### Future Supported Platform
-
+### Partly Supported Platform
+    Platform not tested yet, but with implementation
 - FreeBSD (While it may worked, it is not tested for it yet and might not worked at all)
 - Flatpak (While it may worked, it is not tested for it yet and might not worked at all)
 
 ### Unsupported OS
-
+    These platform are not tested and may work or not at all
 - Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.
 - Minecraft LCE on Android is currently quite laggy and buggy
 - macOS: LCE Qt Launcher does not officially support MacOS and is not tested during PRs, but POISX compatibility should allow its use.

@@ -19,6 +19,7 @@
         <file alias="lce-evolved-ico.png">assets/images/lce-evolved-ico.png</file>
         <file alias="lce-hub-ico.png">assets/images/lce-hub-ico.png</file>
         <file alias="chest.png">assets/images/chest.png</file>
+        <file alias="piston.png">assets/images/piston.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>
@@ -34,5 +35,8 @@
         <file alias="fallback.json">assets/languages/translations.json</file>
         <file alias="fr.json">assets/languages/fr.json</file>
         <file alias="en.json">assets/languages/en.json</file>
+    </qresource>
+    <qresource prefix="/ui">
+        <file alias="instances.qml">src/instances.qml</file>
     </qresource>
 </RCC>

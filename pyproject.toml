@@ -76,6 +76,7 @@ files = [
     "src/lce_qt_launcher/managers/system_managers.py",
     "src/lce_qt_launcher/managers/steam_managers.py",
     "src/lce_qt_launcher/managers/proton_managers.py",
+    "src/lce_qt_launcher/managers/mod_managers.py",
     "src/lce_qt_launcher/models/__init__.py",
     "src/lce_qt_launcher/models/image_class.py",
     "src/lce_qt_launcher/models/preferences.py",

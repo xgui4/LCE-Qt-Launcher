@@ -128,21 +128,21 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 ## Systèmes d'exploitation compatibles
 
 ### Compatibilité officielle
-
+    Plateformes testées régulièrement et avec implémentation/correctif finalisé
 - Windows 10 et versions ultérieures
 - GNU/Linux
 
 ### Compatibilité expérimentale
-
+    Plateforme testée avec implémentation en cours de developement
 - NixOS
 
-### Plateformes prises en charge prochainement 
-
+### Plateformes prises en charge partiellement 
+    Plateformes non testées, mais avec implémentation
 - FreeBSD (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
 - Flatpak (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
 
 ### Systèmes d'exploitation non pris en charge
-
+    Ces plateformes n'ont pas été testées et leur fonctionnement n'est pas garantis :
 - Autres systèmes *BSD, car Minecraft LCE n'est pas pris en charge sur ces systèmes et Wine n'est pas disponible.
 - Minecraft LCE sur Android est actuellement assez lent et bogué.
 - macOS : LCE Qt Launcher ne prend pas officiellement en charge macOS et n'est pas testé lors des contributions, mais la compatibilité POISX devrait permettre son utilisation.

@@ -146,7 +146,6 @@ _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 _DEFAULT_VERSION = "nightly"
-_DEFAULT_SKIN_PATH = ""
 _DEFAULT_SERVERS: list[str] = []
 
 class Instance:
@@ -164,7 +163,6 @@ class Instance:
                  instance_type : InstanceType = _DEFAULT_INST_TYPE, 
                  news_feed : str = _DEFAULT_NEWS_FEED,
                  version : str = _DEFAULT_VERSION,
-                 skin_path : str = _DEFAULT_SKIN_PATH,
                  servers : list[str] = _DEFAULT_SERVERS
                 ) -> None:
         self.name: str = name
@@ -178,7 +176,6 @@ class Instance:
         self.image : str = image
         self.news_feed : str = news_feed
         self.version: str = version
-        self.skin_path: str = skin_path
         self.servers: list[str] = servers
 
     def load_inst_from_dict(self, inst_dict: dict[str, str]) -> None:
@@ -198,7 +195,6 @@ class Instance:
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", _DEFAULT_VERSION)
-        # self.skin_path = inst_dict.get("skin_path", _DEFAULT_SKIN_PATH)
         # self.servers = inst_dict.get("servers", _DEFAULT_SERVERS)
 
     def get_download_url(self) -> str:
@@ -237,8 +233,7 @@ class Instance:
         print(f"instance type : {self.instance_source.value}")
         print(f"news_feed : {self.news_feed}")
         print(f"version : {self.version}")
-        print(f"skin : {self.skin_path}")
-        print(f"servers : {self.servers}")
+        # print(f"servers : {self.servers}")
 
 class InstanceManager:
     """_summary_ The Manager for Instances objects"""
@@ -308,8 +303,5 @@ class InstanceManager:
         """
         with open(file=save_file, mode='r') as json_file:
             json_data = json.load(json_file)     # pyright: ignore[reportAny]
-            #if json_data == dict[str, str]:
             inst_dict : dict[str, str] = json_data    # pyright: ignore[reportAny]
-            #else:
-            #    raise RuntimeError("Invalid Dictionary")
             self.instance.load_inst_from_dict(inst_dict)
