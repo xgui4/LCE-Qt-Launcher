@@ -58,7 +58,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -429,25 +429,15 @@
          <normaloff>:/assets/chest.png</normaloff>:/assets/chest.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>Instances</string>
+        <string>Instances Lists</string>
        </attribute>
        <layout class="QVBoxLayout" name="InstancesListTabMasterLayout">
         <item>
-         <widget class="QQuickWidget" name="quickWidget">
+         <widget class="QWidget" name="defaulInstancesListWidget" native="true">
           <property name="enabled">
            <bool>false</bool>
           </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="resizeMode">
-           <enum>QQuickWidget::ResizeMode::SizeRootObjectToView</enum>
-          </property>
-          <property name="source">
-           <url>
-            <string>qrc:/ui/instances.qml</string>
-           </url>
-          </property>
+          <layout class="QHBoxLayout" name="defaultInstancesListLayout"/>
          </widget>
         </item>
        </layout>
@@ -462,9 +452,9 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="marketplacesFrameGrid">
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <layout class="QHBoxLayout" name="marketplaceFrameRow">
             <item>
              <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
               <property name="url">
@@ -910,11 +900,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QQuickWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">QtQuickWidgets/QQuickWidget</header>
-  </customwidget>
   <customwidget>
    <class>QWebEngineView</class>
    <extends>QWidget</extends>

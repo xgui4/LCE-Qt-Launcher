@@ -20,6 +20,8 @@ import subprocess
 import json
 import os
 
+SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/beta/schemas/x-application-lce_inst.json"
+
 class InstanceSource(Enum):
     """_summary_ The 4 Type of Instances (2 functional, the othes coming soon)
     """
@@ -146,7 +148,6 @@ _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 _DEFAULT_VERSION = "nightly"
-_DEFAULT_SERVERS: list[str] = []
 
 class Instance:
     """_summary_ An config and inform an instance of Minecraft LCE Installed or to install
@@ -163,7 +164,6 @@ class Instance:
                  instance_type : InstanceType = _DEFAULT_INST_TYPE, 
                  news_feed : str = _DEFAULT_NEWS_FEED,
                  version : str = _DEFAULT_VERSION,
-                 servers : list[str] = _DEFAULT_SERVERS
                 ) -> None:
         self.name: str = name
         self.installation_path: str = installation_path
@@ -176,7 +176,6 @@ class Instance:
         self.image : str = image
         self.news_feed : str = news_feed
         self.version: str = version
-        self.servers: list[str] = servers
 
     def load_inst_from_dict(self, inst_dict: dict[str, str]) -> None:
         """_summary_ Load A JSON to a empty Instance Object to import it
@@ -195,8 +194,6 @@ class Instance:
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", _DEFAULT_VERSION)
-        # self.servers = inst_dict.get("servers", _DEFAULT_SERVERS)
-
     def get_download_url(self) -> str:
         """_summary_ Get the download URL of a Instance
 
@@ -219,6 +216,23 @@ class Instance:
             raise RuntimeError("Error ! Local Installation does not have a download URL")
         else:
             raise RuntimeError("Not implemented yet!")
+        
+    def to_dict(self) -> dict[str, str]:
+        dict_to_return : dict[str, str ] = {
+            "$schema" : SCHEME_VERSION,
+            "name" : self.name,
+            "installation_path" : self.installation_path,
+            "username" : self.username,
+            "exe_name" : self.exe_name,
+            "archive_file" : self.archive_file,
+            "repo_url" : self.repo_url,
+            "instance_source" : self.instance_source.name,
+            "instance_type" : self.instance_type.name,
+            "image" : self.image,
+            "news_feed" : self.news_feed,
+            "version" : self.version
+        }
+        return dict_to_return
         
     def display(self) -> None:
         print(f"Name : {self.name}")     
@@ -283,14 +297,15 @@ class InstanceManager:
         Args:
             save_file (str): _description_ specified save file and location
         """
+        full_save_file = save_file
         json_string : str = ""
         try:
             json_string = json.dumps(vars(self.instance), indent=4,)
         except:
             json_string = json.dumps(obj=vars(self.instance), indent=4, default=str)
         if not save_file.endswith(self._build_info.instance_extension):
-            save_file: str = save_file + self._build_info.instance_extension
-        with open(file=save_file, mode='w') as f:
+            full_save_file: str = save_file + self._build_info.instance_extension
+        with open(file=full_save_file, mode='w') as f:
             _ = f.write(json_string)
     
     def load_instance(self, save_file : str) -> None:

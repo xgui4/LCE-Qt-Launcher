@@ -264,6 +264,8 @@ class Launcher(QMainWindow):
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
+        self.ui.InstancesListTabMasterLayout
+
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
         holyday_label: QLabel = QLabel(holiday.get_holiday())
