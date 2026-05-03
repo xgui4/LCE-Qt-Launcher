@@ -23,7 +23,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     pyside-uic
     pyside-rcc
-    monocraft
+    monocraft 
     qt6.qtbase
     qt6.qtwayland
     libGL
