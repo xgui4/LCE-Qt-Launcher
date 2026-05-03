@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
+ 
 def main():
     print(
     """
@@ -25,6 +25,7 @@ def main():
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
     """)
+
 
 if __name__ == "__main__":
     main()

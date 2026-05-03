@@ -6,7 +6,7 @@
     "archive_file": "LCEWindows64.zip", 
     "exe_name": "Minecraft.Client.exe", 
     "repo_url": "https://github.com/MCLCE/MinecraftConsoles", 
-    "image" : ":/assets/minecraft.png",
+    "image" : ":/assets/mclce-ico.png",
     "news_feed" : "https://github.com/MCLCE/MinecraftConsoles/commits/main/",
     "instance_source": "InstanceSource.GITHUB_RELEASE", 
     "instance_type": "InstanceType.CLIENT_VANILLA", 

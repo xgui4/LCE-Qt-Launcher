@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/nightly/schemas/x-application-lce_inst_config.json",
+    "name": "aRockefeler Aether Mod", 
+    "installation_path": ".lce-aether", 
+    "archive_file": "Release", 
+    "username": "Steve", 
+    "image": ":/aether.png",    
+    "exe_name": "Minecraft.Client.exe", 
+    "url": "https://github.com/Frcoxd/aether-papu",
+    "repo_url": "https://github.com/Frcoxd/aether-papu",
+    "news_feed": "https://github.com/LCE-Hub/LCE-Workshop/tree/main/.00versions/test",
+    "instance_source": "InstanceSource.GITHUB_RELEASE", 
+    "instance_type": "InstanceType.CLIENT_VANILLA", 
+    "version": "Aether"
+}
