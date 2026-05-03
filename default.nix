@@ -2,7 +2,7 @@
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "lce-qt-launcher";
-  version = "2026.5.1";
+  version = "2026.5.2";
   format = "pyproject";
 
   src = ./.;
@@ -18,6 +18,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     pkgs.bash
     pkgs.coreutils
     pkgs.gnused
+    pkgs.monocraft
   ];
 
   propagatedBuildInputs = with pkgs.python3Packages; [
