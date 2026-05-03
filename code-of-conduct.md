@@ -15,31 +15,36 @@
 
 ## Inclusivity and Professionalism
 
-## You are welcome here
+## Focus
+
+This project is about software and [Free Software](https://www.gnu.org/philosophy/free-sw.html)
+
+Contributions should focus on code, quality, and collaboration.
+
+## Inclusion
+
+### You are welcome here
 
 This mean you are to welcome to contribute and be a part of the community regardless
 of your identity, sex/gender, ethnicity, religion, disability, neurodivergence, background,
 or personal beliefs or political view.
 
-## Focus
-
-This project is about software and [FLOSS](https://www.gnu.org/philosophy/free-sw.html) (Free/Libre and Open Source Software)
-
-Contributions should focus on code, quality, and collaboration.
-
 ## Unacceptable Behaviour
 
-Harassment, bullying, intimidation, discrimination including ableism, homophobia (and heterophobia), sexism (of both male or female) and others, or violent speech will not be tolerated.
+Harassment, bullying, intimidation, discrimination including ableism, homophobia (and heterophobia), sexism (of both male or female) and others, or violent speech are not tolerated and punishable.
 
-Disruptive or disrespectful behavior may result in removal from the project.
+Disruptive or disrespectful behavior may result in removal from the project and its community.
 
 ## Enforcement
 
 We have no enforcement team (nor do we want one).
+
 You can create a issue on the project's issue tracker.
 
 **Let's makes software togethers !**
 
 The Code of Respect is inspired by the [No Code of Conduct](https://nocodeofconduct.com)
 
-## Last Changes: 16 November 2025
+## Last Changes: 3 Mai 2026
+
+### [Latest Version](https://github.com/xgui4/code-of-respect)
