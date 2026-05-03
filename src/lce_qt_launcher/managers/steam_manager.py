@@ -16,6 +16,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+import subprocess
+
+def add_instance_to_steam(instance_exe_path : str, instance_name : str, icon : str):
+    subprocess.run(["steam-shortcuts-cli", "add", instance_name, instance_exe_path, f"--icon=\"{icon}\"", "--tags=\"Sandbox,Minecraft\""])
+    pass
  
 def main():
     print(
