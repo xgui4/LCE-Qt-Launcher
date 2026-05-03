@@ -13,7 +13,7 @@
 
 This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.
 
-## Why LCE Qt Launcher ? 
+## Why LCE Qt Launcher ?
 
 - Made in Python with Qt 6 : bloat free and integrate with GNU/Linux Plasma 6/Qt 6 Theme
 - Customisation with Themes and laters modules/plugins
@@ -53,13 +53,12 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 
 ## How to run
 
-### VSCode 
+### VSCode
 
 > [!NOTE]
-> In Windows where you need to replace `/` with `\`
-
+> In Windows you might need to replace `/` with `\`
 > [!WARNING]
->  This method is not recommed nore tested for NixOS, go to the NixOS Section, for the step for this particular OS.
+> This method is not recommed nore tested for NixOS, go to the NixOS Section, for the step for this particular OS.
 
 1. Create a Python Virtual Env via a tool like UV (if not already done)
 2. Set VSCode to that Python Virtual Env
@@ -78,25 +77,29 @@ coming soon
 
 ## How to build
 
-### Portable Nuitka Build 
+### Portable Nuitka Build
 
 0. Create a Python Virtual Env via a tool like UV (if not already done)
 1. Run `hatch run packages`
 
-### Arch Linux 
+### Arch Linux
 
-1. Go the [`packages/linux` directory](packages/linux) 
+1. Go the [`packages/linux` directory](packages/linux)
 2. Choose a channel dev, nigthly or stable (go to the directory)
 3. Run `makepkg -si` or `makepkg -s` (for no install) in one of these directory
 
 ### Nix Package
 
 #### Nix Flake (Not tested yet/Work in progress)
+
   Run `nix build`
+
 #### Nixpkg
+
   Run `nix-build default.nix`
 
 ### Flatpak and Windows Installers
+
 - Guide Coming Later
 
 ## Nigthly Build
@@ -129,21 +132,29 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 ## Compatible Operating System
 
 ### Golden Support
+
     Platform Tested Regurlaly and with completed implemation/patch
+
 - Windows 10 and later
 - GNU/Linux
 
 ### Experimental Support
+
     Plattform tested with work in progress implemation
+
 - NixOS
 
 ### Partly Supported Platform
+
     Platform not tested yet, but with implementation
+
 - FreeBSD (While it may worked, it is not tested for it yet and might not worked at all)
 - Flatpak (While it may worked, it is not tested for it yet and might not worked at all)
 
 ### Unsupported OS
+
     These platform are not tested and may work or not at all
+
 - Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.
 - Minecraft LCE on Android is currently quite laggy and buggy
 - macOS: LCE Qt Launcher does not officially support MacOS and is not tested during PRs, but POISX compatibility should allow its use.
