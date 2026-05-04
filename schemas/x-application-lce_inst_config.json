@@ -92,6 +92,13 @@
                 "Nightly",
                 "v1.0.0b"
             ]
+        },
+        "steam_link" : {
+            "description": "Steam id command of the instance",
+            "type" : "string",
+            "examples" : [
+                "steam://rungameid/{number}"
+            ]
         }
     }
 }

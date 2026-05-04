@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from PySide6.QtWidgets import ( 
     QApplication,
@@ -278,6 +279,9 @@ class Launcher(QMainWindow):
         _ = self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
         _ = self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         _ = self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
+
+        loadSteam = lambda : subprocess.run(["steam", instanceManager.instance.steam_link])
+        _ = self.ui.playOnSteamButton.clicked.connect(loadSteam)
 
         openAppInstancesData = lambda : systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
         _ = self.ui.actionInstances.triggered.connect(openAppInstancesData)

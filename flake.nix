@@ -18,7 +18,7 @@
         python = pkgs.python310;
 
         nativeBuildInputs = with pkgs; [
-          python
+         python
          python3Packages.pyside6
          python3Packages.shiboken6
          python3Packages.requests

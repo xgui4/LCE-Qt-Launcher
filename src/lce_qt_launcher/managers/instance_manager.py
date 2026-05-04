@@ -166,6 +166,7 @@ class Instance(QObject):
                  instance_type : InstanceType = _DEFAULT_INST_TYPE, 
                  news_feed : str = _DEFAULT_NEWS_FEED,
                  version : str = _DEFAULT_VERSION,
+                 steam_link : str = "N/A"
                 ) -> None:
         super().__init__(parent = None, objectName="Instance")
         self.name: str = name
@@ -179,6 +180,7 @@ class Instance(QObject):
         self.image : str = image
         self.news_feed : str = news_feed
         self.version: str = version
+        self.steam_link : str = steam_link
 
     def load_inst_from_dict(self, inst_dict: dict[str, str]) -> None:
         """_summary_ Load A JSON to a empty Instance Object to import it
@@ -197,6 +199,7 @@ class Instance(QObject):
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", _DEFAULT_VERSION)
+        self.steam_link = inst_dict.get("steam_link", "N/A")
     def get_download_url(self) -> str:
         """_summary_ Get the download URL of a Instance
 
@@ -233,7 +236,8 @@ class Instance(QObject):
             "instance_type" : self.instance_type.name,
             "image" : self.image,
             "news_feed" : self.news_feed,
-            "version" : self.version
+            "version" : self.version,
+            "steam_link": self.version
         }
         return dict_to_return
         
@@ -250,6 +254,7 @@ class Instance(QObject):
         print(f"instance type : {self.instance_source.value}")
         print(f"news_feed : {self.news_feed}")
         print(f"version : {self.version}")
+        print(f"steam link : {self.steam_link}")
         # print(f"servers : {self.servers}")
 
 class InstanceManager:
