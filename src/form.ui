@@ -58,7 +58,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -105,32 +105,31 @@
            </size>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="3" column="0">
-            <widget class="QLabel" name="instance_img">
-             <property name="minimumSize">
-              <size>
-               <width>182</width>
-               <height>71</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>182</width>
-               <height>16777215</height>
-              </size>
-             </property>
+           <item row="12" column="0" colspan="3">
+            <widget class="QPushButton" name="installButton">
              <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
+              <string>Install</string>
              </property>
             </widget>
            </item>
-           <item row="8" column="0" colspan="3">
+           <item row="11" column="0" colspan="3">
+            <widget class="QPushButton" name="playButton">
+             <property name="text">
+              <string>Play</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0" colspan="3">
+            <widget class="QPushButton" name="settingButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Setting</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0" colspan="3">
             <widget class="QProgressBar" name="progressBar">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -152,37 +151,16 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="progressLabel">
+           <item row="3" column="1">
+            <widget class="QLabel" name="repo_name_branch">
              <property name="font">
               <font>
+               <pointsize>14</pointsize>
                <bold>true</bold>
               </font>
              </property>
              <property name="text">
-              <string>Progress</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QLabel" name="title">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
-             </property>
-             <property name="scaledContents">
-              <bool>false</bool>
-             </property>
-             <property name="indent">
-              <number>0</number>
+              <string>Default (MCLCE)  - Vanilla Client</string>
              </property>
             </widget>
            </item>
@@ -359,34 +337,7 @@
              </layout>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="repo_name_branch">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Default (MCLCE)  - Vanilla Client</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0" colspan="3">
-            <widget class="QPushButton" name="playButton">
-             <property name="text">
-              <string>Play</string>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="0" colspan="3">
-            <widget class="QPushButton" name="installButton">
-             <property name="text">
-              <string>Install</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0" colspan="3">
+           <item row="13" column="0" colspan="3">
             <widget class="QPushButton" name="openInstanceEditor">
              <property name="enabled">
               <bool>false</bool>
@@ -405,13 +356,72 @@
              </property>
             </widget>
            </item>
-           <item row="12" column="0" colspan="3">
-            <widget class="QPushButton" name="settingButton">
-             <property name="enabled">
-              <bool>false</bool>
+           <item row="3" column="0">
+            <widget class="QLabel" name="instance_img">
+             <property name="minimumSize">
+              <size>
+               <width>182</width>
+               <height>71</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>182</width>
+               <height>16777215</height>
+              </size>
              </property>
              <property name="text">
-              <string>Setting</string>
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="progressLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Progress</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="title">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>false</bool>
+             </property>
+             <property name="indent">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0" colspan="3">
+            <widget class="QPushButton" name="playOnSteamButton">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Play On Steam</string>
              </property>
             </widget>
            </item>

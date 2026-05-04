@@ -89,7 +89,8 @@
             "default" : "nightly",
             "examples": [
                 "nightly-dedicated-server",
-                "Nightly"
+                "Nightly",
+                "v1.0.0b"
             ]
         }
     }

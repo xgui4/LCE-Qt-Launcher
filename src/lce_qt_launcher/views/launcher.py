@@ -38,11 +38,11 @@ import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
 
-class Launcher(QMainWindow):
-    """_summary_ The Main Window / Launcher of the QApplcation
+class playButtonCommander(QMainWindow):
+    """_summary_ The Main Window / playButtonCommander of the QApplcation
 
     Args:
-        QMainWindow (_type_): _description_ The inheite type of Launcher
+        QMainWindow (_type_): _description_ The inheite type of playButtonCommander
     """
     def __init__(self, 
                  appContext : AppContext, 
@@ -58,66 +58,69 @@ class Launcher(QMainWindow):
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
-        
+
+        self.instances : list[Instance] = list()
+
+        for inst in appData.instsList:
+            self.instances.append(inst)
+            item =  QListWidgetItem()
+            item.setText(inst.name)
+            item.setIcon(QPixmap(inst.image))
+            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
+            self.ui.listWidget.addItem(item)
+
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
-        def gen_inst_from_form() -> None:
+        def generateInstanceFromForm() -> None:
             """
             _sumarry_ Generate An Instance From the Form
             """
             instanceManager.instance = features.new_instance_from_form(self)
 
-        def confirm_changes_button() -> None:
+        def confirmChangesButtonCommand() -> None:
             """_summary_ Generate An Instance From the Form for confirming the changes
             """
-            gen_inst_from_form()
+            generateInstanceFromForm()
 
-        def update_page() -> None:
-            """_summary_ "Show the Update Page in a QWebEngine Popup
-            """
-            features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
-
-        def launch() -> None:
-            """_summary_ Launch the Game
+        def playButtonCommand() -> None:
+            """_summary_ playButtonCommand the Game
             """
             features.launch_game(instanceManager, STARTING_GAME_MSG)
 
-        def install() -> None:
+        def installButtonCommand() -> None:
             """_summary_ Install the Game
             """
             features.install_game(self, instanceManager.instance, instanceManager)
 
-        def show_aboutQt() -> None:
-            """_summary_ Show the About Qt Dialog
+        def showSettingDialogCommand() -> None:
+            """_summary_ Show the setting Dialog
             """
-            features.show_about_qt(self)
+            features.show_setting(self, Ui_settingDialog())
 
-        def show_about() -> None:
-            """_summary_ Show About App dialog 
-            """ 
-            features.show_about_app(self)
-
-        def show_system_information() -> None:
-            """_summary_ Show the system info dialog
-            """
-            features.show_system_info(self)
-
-        def show_about_minecraft() -> None:
-            """_summary_ Open an QWebEngine at the Minecraft Website 
-            """
-            features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE, buildInfo)
-
-        def show_more_lce_projects() -> None:
-            """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)
-            """
-            features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE, buildInfo)
-
-        def save_instance() -> None:
+        def saveInstanceButtonCommand() -> None:
             """_summary_ Save the instance on a file on disk
             """
             features.save_instance_to_file(self, instanceManager, appContext, buildInfo)
 
-        def load_instance() -> None:
+        def showInstanceEditorButtonCommand() -> None:
+            features.show_instance_editor(self)
+
+        def showAboutMinecraftActionCommand() -> None:
+            """_summary_ Open an QWebEngine at the Minecraft Website 
+            """
+            features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE, buildInfo)
+
+        def showMoreLCEProjectsActionCommand() -> None:
+            """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)
+            """
+            features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE, buildInfo)      
+
+        def updateActionCommand() -> None:
+            """_summary_ "Show the Update Page in a QWebEngine Popup
+            """
+            features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
+        
+        def loadInstanceActionCommand() -> None:
             """_summary_ Open the Load Save File Dialog 
             """
             features.load_instance(self, instanceManager, appContext, buildInfo, appData)
@@ -130,15 +133,22 @@ class Launcher(QMainWindow):
             pixmap = QPixmap(self.image_label)
             self.ui.instance_img.setPixmap(pixmap)
             self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)             
+            self.ui.newsEngineView.setUrl(self.news_feed)       
 
-        def show_setting_dialog() -> None:
-            """_summary_ Show the setting Dialog
+        def showSystemInformationActionCommand() -> None:
+            """_summary_ Show the system info dialog
             """
-            features.show_setting(self, Ui_settingDialog())
+            features.show_system_info(self)
 
-        def show_instance_editor() -> None:
-            features.show_instance_editor(self)
+        def showAboutQtActionCommand() -> None:
+            """_summary_ Show the About Qt Dialog
+            """
+            features.show_about_qt(self)
+
+        def showAboutActionCommand() -> None:
+            """_summary_ Show About App dialog 
+            """ 
+            features.show_about_app(self)
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
@@ -208,7 +218,7 @@ class Launcher(QMainWindow):
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
         from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
-        _ = self.about.aboutQt.clicked.connect(show_aboutQt)
+        _ = self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
         _ = self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
         self.instance_window: QDialog = QDialog()
@@ -229,32 +239,30 @@ class Launcher(QMainWindow):
         self.ui.progressBar.setVisible(False)
         self.ui.progressBar.setEnabled(False)
 
-        _ = self.ui.playButton.clicked.connect(launch)
-        _ = self.ui.installButton.clicked.connect(install)
-        _ = self.ui.settingButton.clicked.connect(show_setting_dialog)
-        _ = self.ui.savetInstanceButton.clicked.connect(save_instance)
-        _ = self.ui.confirmChangesButton.clicked.connect(confirm_changes_button)
-        _ = self.ui.openInstanceEditor.clicked.connect(show_instance_editor)
+        _ = self.ui.playButton.clicked.connect(playButtonCommand)
+        _ = self.ui.installButton.clicked.connect(installButtonCommand)
+        _ = self.ui.settingButton.clicked.connect(showSettingDialogCommand)
+        _ = self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
+        _ = self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
+        _ = self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
 
-        _ = self.ui.actionSetting.triggered.connect(show_setting_dialog)
-        _ = self.ui.actionSetting_2.triggered.connect(show_setting_dialog)
-        _ = self.ui.actionSetting_3.triggered.connect(show_setting_dialog)
+        _ = self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
+        _ = self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
+        _ = self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
         _ = self.ui.actionQuit.triggered.connect(app.quit)
-        _ = self.ui.actionUpdate.triggered.connect(update_page)
-        _ = self.ui.actionSystem_Information.triggered.connect(show_system_information)
-        _ = self.ui.actionAbout.triggered.connect(show_about)
-        _ = self.ui.actionAbout_QT.triggered.connect(show_aboutQt)
-        _ = self.ui.actionAbout_Minecraft.triggered.connect(show_about_minecraft)
-        _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(show_more_lce_projects)
-        _ = self.ui.actionSave.triggered.connect(save_instance)
-        _ = self.ui.actionImport_Instance.triggered.connect(load_instance)
+        _ = self.ui.actionUpdate.triggered.connect(updateActionCommand)
+        _ = self.ui.actionSystem_Information.triggered.connect(showSystemInformationActionCommand)
+        _ = self.ui.actionAbout.triggered.connect(showAboutActionCommand)
+        _ = self.ui.actionAbout_QT.triggered.connect(showAboutQtActionCommand)
+        _ = self.ui.actionAbout_Minecraft.triggered.connect(showAboutMinecraftActionCommand)
+        _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
+        _ = self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
+        _ = self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
 
         open_workshop = lambda : features.show_webbrowser(self, "https://lce-hub.github.io/piston/", buildInfo); 
-
         _ = self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
 
         open_legacymods = lambda : features.show_webbrowser(self, "https://legacymods.org/", buildInfo); 
-
         _ = self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
 
         openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
@@ -266,15 +274,6 @@ class Launcher(QMainWindow):
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
-        instances : list[Instance] = list()
-
-        for inst in appData.instsList:
-            instances.append(inst)
-            item =  QListWidgetItem()
-            item.setText(inst.name)
-            item.setIcon(QPixmap(inst.image))
-            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
-            self.ui.listWidget.addItem(item)
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
