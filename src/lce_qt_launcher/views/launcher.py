@@ -1,5 +1,8 @@
+import os
+
 from PySide6.QtWidgets import ( 
-    QApplication, 
+    QApplication,
+    QFileDialog, 
     QMainWindow, 
     QLabel, 
     QDialog,
@@ -27,6 +30,7 @@ from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.models.app_data import AppData
+from lce_qt_launcher.views.content_installer_dialog import ContentInstallerView
 from lce_qt_launcher.ui_about import Ui_AboutDialog
 from lce_qt_launcher.ui_instance import Ui_InstancesEditor
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
@@ -38,7 +42,7 @@ import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
 
-class playButtonCommander(QMainWindow):
+class Launcher(QMainWindow):
     """_summary_ The Main Window / playButtonCommander of the QApplcation
 
     Args:
@@ -60,14 +64,6 @@ class playButtonCommander(QMainWindow):
         self.instance_name: str = instanceManager.instance.name
 
         self.instances : list[Instance] = list()
-
-        for inst in appData.instsList:
-            self.instances.append(inst)
-            item =  QListWidgetItem()
-            item.setText(inst.name)
-            item.setIcon(QPixmap(inst.image))
-            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
-            self.ui.listWidget.addItem(item)
 
         STARTING_GAME_MSG = translator.translate("start_game_msg")
 
@@ -102,6 +98,15 @@ class playButtonCommander(QMainWindow):
             """
             features.save_instance_to_file(self, instanceManager, appContext, buildInfo)
 
+        def changeInstanceIconButtonCommand() -> None:
+            file_name: str = QFileDialog.getOpenFileName(
+                self, 
+                "Select the image file for the instance", 
+                appContext.sys_man.found_default_save_path(), 
+                f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})")[0]
+            instanceManager.instance.image = file_name
+            self.ui.instance_img.setPixmap(QPixmap(file_name))
+
         def showInstanceEditorButtonCommand() -> None:
             features.show_instance_editor(self)
 
@@ -124,6 +129,7 @@ class playButtonCommander(QMainWindow):
             """_summary_ Open the Load Save File Dialog 
             """
             features.load_instance(self, instanceManager, appContext, buildInfo, appData)
+            self.ui.instanceNameLabel.setText(instanceManager.instance.name)
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
@@ -150,6 +156,9 @@ class playButtonCommander(QMainWindow):
             """ 
             features.show_about_app(self)
 
+        def installContentActionCommand() -> None:
+            ContentInstallerView()
+
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
             palette: QPalette = self.palette()
@@ -164,6 +173,14 @@ class playButtonCommander(QMainWindow):
         self.ui.setupUi(self)
         
         arguments: list[str] =  QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
+
+        for inst in appData.instsList:
+            self.instances.append(inst)
+            item =  QListWidgetItem()
+            item.setText(inst.name)
+            item.setIcon(QPixmap(inst.image))
+            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
+            self.ui.listWidget.addItem(item)
         
         if len(arguments) > 1:
             file_arg: str = arguments[1]
@@ -175,6 +192,7 @@ class playButtonCommander(QMainWindow):
                         inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
                         instanceManager.instance.load_inst_from_dict(inst_dict)
                         instanceManager.instance.display()
+                        self.ui.instanceNameLabel.setText(instanceManager.instance.name)
                         self.image_label = instanceManager.instance.image
                         self.news_feed = instanceManager.instance.news_feed
                         self.instance_name = instanceManager.instance.name
@@ -245,6 +263,7 @@ class playButtonCommander(QMainWindow):
         _ = self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
         _ = self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
         _ = self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
+        _ = self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
 
         _ = self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
         _ = self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
@@ -258,6 +277,10 @@ class playButtonCommander(QMainWindow):
         _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
         _ = self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
         _ = self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
+        _ = self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
+
+        openAppInstancesData = lambda : systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
+        _ = self.ui.actionInstances.triggered.connect(openAppInstancesData)
 
         open_workshop = lambda : features.show_webbrowser(self, "https://lce-hub.github.io/piston/", buildInfo); 
         _ = self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
@@ -273,7 +296,6 @@ class playButtonCommander(QMainWindow):
 
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
-
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)

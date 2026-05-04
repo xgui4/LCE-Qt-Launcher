@@ -49,7 +49,7 @@ def install_game(parent : QWidget, instance : Instance, instanceManager : Instan
             _ = progressBar.setEnabled(True)  
             _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-            #TODO - VERIFY THIS
+            #TODO - Verify this methodd
             def update_progress_bar(bytes_received, bytes_total) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
                 if bytes_total > 0:
                     _ = progressBar.setMaximum(bytes_total)  # pyright: ignore[reportUnknownArgumentType]
