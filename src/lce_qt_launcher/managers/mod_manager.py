@@ -110,7 +110,7 @@ def main():
             if user_input == "3":
                 contentTypeEnum = ContentType.MOD
             else:
-                raise RuntimeError("Not impleted Yet") 
+                exit("Operation Canceled")
             
         if (contentType == "DLC"):
             contentTypeEnum = ContentType.DLC
@@ -149,7 +149,7 @@ def main():
         if user_input == "3":
             contentTypeEnum = ContentType.MOD
         else:
-            raise RuntimeError("Not impleted Yet") 
+            exit("Operation Canceled")
         
         instance_path = input("Enter the Instance path.")
 
