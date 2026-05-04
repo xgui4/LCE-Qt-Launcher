@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-    Xgui4 Python Steam Manager
+    LCE Instances Steam Manager
     Copyright (C) 2026 Xgui4
 
     This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ import subprocess
 import sys
 
 LEGAL_TEXT = """
-    Xgui4 Python Steam Manager Copyright (C) 2026  Xgui4
+    LCE Instances Steam Manager Copyright (C) 2026  Xgui4
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
@@ -30,13 +30,15 @@ LEGAL_TEXT = """
 
 def add_instance_to_steam(instance_exe_path : str, instance_name : str, icon : str):
     try:
-        subprocess.run(["steam-shortcuts-cli", "add", instance_name, instance_exe_path, f"--icon=\"{icon}\"", "--tags=\"Sandbox,Minecraft\""])
+        # subprocess.run(["steam-shortcuts-cli", "add", instance_name, instance_exe_path, f"--icon=\"{icon}\"", "--tags=\"Sandbox,Minecraft\""])
+        
+        pass
     except RuntimeError as err:
         print(f"Error while adding program to steam : {err}")
  
 def main():
     parser = argparse.ArgumentParser(
-        prog="Xgui4 Steam Manager",
+        prog="LCE Instances Steam Manager",
         description="Add LCE instance to Steam"
     )
 
