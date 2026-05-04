@@ -34,6 +34,21 @@ class ContentType(StrEnum):
     NONE = "0"
     CUSTOM_SKIN = "-1" # Temporaly placeholder DO NOT USE,
 
+def from_str_to_enum(string : str) -> ContentType:
+    match string:
+        case "DLC":
+            return ContentType.DLC
+        case "World":
+            return ContentType.WORLD
+        case "Mod":
+            return ContentType.MOD
+        case "None" :
+            return ContentType.NONE
+        case "Skin":
+            return ContentType.CUSTOM_SKIN
+        case _ :
+            raise RuntimeError("Invalid Argument")
+
 LEGAL_TEXT = """
     LCE Mods Managers    Copyright (C) 2026  Xgui4
 

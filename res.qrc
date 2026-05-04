@@ -21,6 +21,7 @@
         <file alias="chest.png">assets/images/chest.png</file>
         <file alias="piston.png">assets/images/piston.png</file>
         <file alias="aether.png">assets/images/aether.png</file>
+        <file alias="jigsaw-ico.png">assets/images/jigsaw-ico.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>

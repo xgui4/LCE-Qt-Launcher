@@ -3,7 +3,7 @@
 set -e
 
 QT_RESSOURCE="res.qrc"
-UI_FILES=("form" "system_info" "instance" "settingDialog" "about")
+UI_FILES=("form" "system_info" "instance" "settingDialog" "about" "contentInstaller")
 
 if [[ $(uname -s) != "FreeBSD" ]]; then 
     if command -v  pyside6-rcc  &> /dev/null; then
