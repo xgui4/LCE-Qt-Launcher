@@ -16,6 +16,22 @@ class MONTH(Enum):
     NOVEMBER = 11
     DECEMBER = 12
 
+def monthEnumToStr(enum : MONTH) -> str : 
+    match enum:
+        case 1 : return "January",
+        case 2 : return "February",
+        case 3 : return "March",
+        case 4 : return "April",
+        case 5 : return "May", 
+        case 6 : return "June",
+        case 7 : return "July",
+        case 8 : return "August",
+        case 9 : return "September",
+        case 10 : return "October",
+        case 11 : return "November",
+        case 12 : return "December",
+        case _  : return ""
+
 HOLIDAYS: dict[str, str] = {
     f"{MONTH.JANUARY.value}-1": "Happy New Years Day! 🎇",
     f"{MONTH.FEBRURAY.value}-14": "Happy Valentine Day! 💘",
@@ -45,6 +61,12 @@ f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆"
 }
 
 NO_HOLIDAY = ""
+
+def get_holidays_list() -> str:
+    holidays_str : str = ""
+    for key, value in HOLIDAYS.items():
+        holidays_str = f"{key} - {value}"
+    return holidays_str
 
 def get_holiday() -> str:
     """_summary_ Check for a holday and then return it or empty str if there is no holiday 

@@ -13,6 +13,8 @@ from PySide6.QtNetwork import (
     QNetworkReply
 )
 
+from PySide6.QtCore import QObject
+
 from enum import Enum
 from subprocess import TimeoutExpired
 
@@ -149,7 +151,7 @@ _DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
 _DEFAULT_VERSION = "nightly"
 
-class Instance:
+class Instance(QObject):
     """_summary_ An config and inform an instance of Minecraft LCE Installed or to install
     """
     def __init__(self, 
@@ -165,6 +167,7 @@ class Instance:
                  news_feed : str = _DEFAULT_NEWS_FEED,
                  version : str = _DEFAULT_VERSION,
                 ) -> None:
+        super().__init__(parent = None, objectName="Instance")
         self.name: str = name
         self.installation_path: str = installation_path
         self.username: str = username

@@ -91,7 +91,10 @@ def load_instance(parent : QWidget, instanceManager : InstanceManager, appContex
         appContext.sys_man.found_default_save_path(), 
         f"{buildInfo.app_name} Instance (*{buildInfo.instance_extension})")
     instanceManager.load_instance(file_name[0])
-    import_managers.import_inst_file_to_app_data(file_name[0], appData)
+    try:
+        import_managers.import_inst_file_to_app_data(file_name[0], appData)
+    except FileExistsError:
+        term_service.print_information("Instance already in data folder. Skipping making symlink. ")
 
 def show_about_qt(parent : QWidget) -> None:
     """Features : Load the Selected Instance"""

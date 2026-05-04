@@ -11,5 +11,17 @@
     "instance_manager_label" : "Gestionnaire d'instances",
     "save_instance_msg_box_label" : "Voulez-vous enregistrer l'instance dans un fichier ?",
     "start_game_msg" : "Démarrage du jeux",
-    "save_filedialog_title" : "Définir le chemin du fichier de sauvegarde de l'instance"
+    "save_filedialog_title" : "Définir le chemin du fichier de sauvegarde de l'instance",
+
+    "1-1": "Bonne année ! 🎇",
+    "2-14": "Bonne Saint-Valentin ! 💘",
+    "3-1": "Poisson d'avril 🐟",
+    "3-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
+    "3": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
+    "4-4": "Journée Star Wars 🌟",
+    "4-17": "Anniversaire de Minecraft 🎂",
+    "10-31": "Halloween 🎃",
+    "12-24": "Veille de Noël 🎄",
+    "12-25": "Noël 🎅",
+    "12-31": "Veille du Nouvel An 🎆"
 }  
