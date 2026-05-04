@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-git
-pkgver=r149.804311b
+pkgver=nightly
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Nigthly/Git Build)"
 arch=('any')
@@ -37,7 +37,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "$pkgname"
   # cutting off 'foo-' prefix that presents in the git tag
-  git describe --long --abbrev=7 | sed 's/^foo-//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --long --tags | sed 's/^foo-//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {

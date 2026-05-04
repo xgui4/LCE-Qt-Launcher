@@ -54,13 +54,12 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 
 > [!NOTE]
 > Sous Windows, remplacez `/` par `\`.
-
 > [!WARNING]
 > Cette méthode n'est ni recommandée ni testée pour NixOS. Consultez la section NixOS pour la procédure spécifique à ce système d'exploitation.
 
 1. Créez un environnement virtuel Python à l'aide d'un outil comme UV (si ce n'est pas déjà fait).
 2. Configurez VS Code pour utiliser cet environnement virtuel Python.
-3. Exécutez « PySide : Sync Virtual Env and Launch ». 
+3. Exécutez « PySide : Sync Virtual Env and Launch ».
 4. Exécutez l'application via le mode débogage de VS Code ou directement le fichier [`src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py).
 
 ### NixOS
@@ -89,9 +88,11 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 ### Paquet Nix
 
 #### Nix Flake (Non testé/En cours de développement)
+
 Exécutez `nix build`
 
 #### Nixpkg
+
 Exécutez `nix-build default.nix`
 
 ### Installateurs Flatpak et Windows
@@ -128,26 +129,34 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 ## Systèmes d'exploitation compatibles
 
 ### Compatibilité officielle
+
     Plateformes testées régulièrement et avec implémentation/correctif finalisé
+
 - Windows 10 et versions ultérieures
 - GNU/Linux
 
 ### Compatibilité expérimentale
+
     Plateforme testée avec implémentation en cours de developement
+
 - NixOS
 
-### Plateformes prises en charge partiellement 
+### Plateformes prises en charge partiellement
+
     Plateformes non testées, mais avec implémentation
+
 - FreeBSD (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
 - Flatpak (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
 
 ### Systèmes d'exploitation non pris en charge
+
     Ces plateformes n'ont pas été testées et leur fonctionnement n'est pas garantis :
+
 - Autres systèmes *BSD, car Minecraft LCE n'est pas pris en charge sur ces systèmes et Wine n'est pas disponible.
 - Minecraft LCE sur Android est actuellement assez lent et bogué.
 - macOS : LCE Qt Launcher ne prend pas officiellement en charge macOS et n'est pas testé lors des contributions, mais la compatibilité POISX devrait permettre son utilisation.
 
-### Remerciements particuliers à :
+### Remerciements particuliers à
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) pour certains éléments et fichiers d'interface utilisateur
 - [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles)
