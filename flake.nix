@@ -15,7 +15,7 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        python = pkgs.python310;
+        python = pkgs.python314;
 
         nativeBuildInputs = with pkgs; [
          python
