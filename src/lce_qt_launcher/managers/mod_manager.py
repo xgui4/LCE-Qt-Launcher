@@ -80,7 +80,6 @@ def install_content(instance_path : str,  contentType : ContentType, archive_fil
     try:
         zipFile = ZipFile(archive_file)
         content_path : str = os.path.join(instance_path, contentType.value)
-        os.makedirs(content_path, exist_ok=True)
         extract_zip(zipFile, content_path)
     except BadZipFile as e:
         print(f"Could not extract content to destination, zipfile was bad. More Info : {e}")
