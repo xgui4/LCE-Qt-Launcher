@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1302</width>
-    <height>923</height>
+    <height>1006</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,6 +107,9 @@
           <layout class="QGridLayout" name="gridLayout">
            <item row="12" column="0" colspan="3">
             <widget class="QPushButton" name="playOnSteamButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -343,18 +346,25 @@
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="instanceNameLabel">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="font">
                     <font>
                      <bold>true</bold>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Instance Name</string>
+                    <string>Instance Name (Broken)</string>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="0" colspan="2">
-                  <widget class="QLineEdit" name="lineEdit"/>
+                  <widget class="QLineEdit" name="lineEdit">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -558,7 +568,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
