@@ -21,7 +21,7 @@ import os
 import argparse
 
 from enum import StrEnum
-from zipfile import ZipFile
+from zipfile import ZipFile, BadZipFile
 
 DLC_LOCATION = os.path.join("Windows64Media", "DLC")
 WORLD_LOCATION = os.path.join("Windows64", "GameHDD")
@@ -35,6 +35,7 @@ class ContentType(StrEnum):
     CUSTOM_SKIN = "-1" # Temporaly placeholder DO NOT USE,
 
 def from_str_to_enum(string : str) -> ContentType:
+    print(string)
     match string:
         case "DLC":
             return ContentType.DLC
@@ -76,11 +77,21 @@ def install_content(instance_path : str,  contentType : ContentType, archive_fil
         contentType (ContentType): _description_ 
         archive_file (str): _description_ 
     """
-    zipFile = ZipFile(archive_file)
-
-    content_path : str = os.path.join(instance_path, contentType.value)
-
-    extract_zip(zipFile, content_path)
+    try:
+        zipFile = ZipFile(archive_file)
+        content_path : str = os.path.join(instance_path, contentType.value)
+        os.makedirs(content_path, exist_ok=True)
+        extract_zip(zipFile, content_path)
+    except BadZipFile as e:
+        print(f"Could not extract content to destination, zipfile was bad. More Info : {e}")
+    except FileNotFoundError as e:
+        print(f"Could not extract content to destination, archive do not exist. More Info : {e.filename} : {e}")
+    except FileExistsError as e:
+        print(f"Could not extract content to destination, file(s) already exist. More Info : {e.filename} : {e}")
+    except RuntimeError as e:
+        print(f"An unexpected error occured. More info {e.args}")
+    else:
+        print(f"Successully extracted the {contentType.name} ({archive_file}) at instance : {instance_path}")
 
 def main():     
     parser = argparse.ArgumentParser(

@@ -219,12 +219,13 @@ class Launcher(QMainWindow):
         else:
             term_service.print_information("No argument given, start with default instance.")
         
-        self.about: Ui_AboutDialog = Ui_AboutDialog()
-        self.aboutDialog: QDialog = QDialog()
-
         self.sysinfo_dialog: QDialog = QDialog() 
         self.dialog_ui = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
+
+        self.about: Ui_AboutDialog = Ui_AboutDialog()
+        self.aboutDialog: QDialog = QDialog()
+
         self.about.setupUi(self.aboutDialog)
         self.aboutDialog.setWindowTitle(appContext.buildInfo.app_name)
 

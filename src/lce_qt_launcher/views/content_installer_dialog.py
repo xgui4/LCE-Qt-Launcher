@@ -3,7 +3,6 @@ from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
 
 from lce_qt_launcher.managers import mod_manager
-from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.ui_contentInstaller import Ui_Dialog
 from lce_qt_launcher.views import term_service
 
@@ -25,18 +24,16 @@ class ContentInstallerView(QDialog):
         self.contentTypeStr = ""
 
         self.contentToInstallPath = self.ui_dialog.contentToInstallInputBox.text()
-        self.contentTypeStr = self.ui_dialog.contentTypeListBoxlabel.selectedText()
+        self.contentTypeStr = self.ui_dialog.contentTypeComboBox.currentText()
         self.instancePath = self.ui_dialog.instamcePathInputPath.text()
 
-        try: 
-            self.contentType = mod_manager.from_str_to_enum(self.contentTypeStr)
-        except RuntimeError:
-            term_service.print_information("Canno get Content Type.")
-
         def installContentCommand():
-            mod_manager.install_content(self.instancePath, self.contentType, self.contentToInstallPath)
+            self.contentToInstallPath = self.ui_dialog.contentToInstallInputBox.text()
+            self.contentTypeStr = self.ui_dialog.contentTypeComboBox.currentText()
+            self.instancePath = self.ui_dialog.instamcePathInputPath.text()
+            mod_manager.install_content(self.instancePath, mod_manager.from_str_to_enum(self.contentTypeStr), self.contentToInstallPath)
 
-        self.ui_dialog.contentToInstallInputBoxExploreButton.pressed.connect(installContentCommand)
+        self.ui_dialog.mainButtonBox.clicked.connect(installContentCommand)
 
         self.dialog.show()
 
