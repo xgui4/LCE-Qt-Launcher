@@ -15,15 +15,16 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        python = pkgs.python310;
+        python = pkgs.python314;
 
         nativeBuildInputs = with pkgs; [
-          python
+         python
          python3Packages.pyside6
          python3Packages.shiboken6
          python3Packages.requests
          python3Packages.platformdirs
          python3Packages.rich
+         python3Packages.vdf
          qt6.wrapQtAppsHook
          python3Packages.shiboken6
          qt6.wrapQtAppsHook
@@ -42,7 +43,7 @@
 
         packages.default = python.pkgs.buildPythonApplication {
           pname = "lce_qt_launcher";
-          version = "0.0.2.0";
+          version = "0.2026.5.6";
           format = "hatchling";
           license = pkgs.lib.licenses.gpl3plus;
 

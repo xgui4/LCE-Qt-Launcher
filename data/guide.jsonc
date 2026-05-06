@@ -19,5 +19,6 @@
     // InstanceType.SERVER_VANILLA = #TODO To implement and write documentation
     // InstanceType.SERVER_MODDED = #TODO  To implement and write documentation
     "instance_type": "InstanceType.CLIENT_VANILLA", // Type of the instance (not implemented/functionnal yet)
-    "version" : "nightly" // version/tag of the release of rhe instance to download
+    "version" : "nightly",  // version/tag of the release of rhe instance to download
+    "steam_link" :  "steam://rungameid/{number}" 
 }

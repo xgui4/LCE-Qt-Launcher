@@ -39,7 +39,6 @@ class AppData(QObject):
         #TODO : docstring
         """
         defaults_insts_dir : Path = Path(os.path.join(self.appDataDirs[0], "instances"))
-        print(defaults_insts_dir)
         if not defaults_insts_dir.exists():
             term_service.print_information(f"{defaults_insts_dir} did not exist. Trying to recreate it.")
             try:

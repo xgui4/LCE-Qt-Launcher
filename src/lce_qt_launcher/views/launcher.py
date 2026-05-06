@@ -6,7 +6,9 @@ from PySide6.QtWidgets import (
     QMainWindow, 
     QLabel, 
     QDialog,
-    QListWidgetItem
+    QListWidgetItem,
+    QInputDialog,
+    QMessageBox
 )
 from PySide6.QtGui import ( 
     QPalette, 
@@ -22,6 +24,8 @@ import sys
 import platform
 import json
 import webbrowser
+import os
+import subprocess
 
 from pathlib import Path
 
@@ -37,12 +41,13 @@ from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
 from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
 from lce_qt_launcher.utils.json_trans import JsonTrans
 from lce_qt_launcher.ui_form import Ui_launcher
+from lce_qt_launcher.managers.steam_manager import add_instance_to_steam
 
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
 
-class Launcher(QMainWindow):
+class LauncherView(QMainWindow):
     """_summary_ The Main Window / playButtonCommander of the QApplcation
 
     Args:
@@ -62,7 +67,6 @@ class Launcher(QMainWindow):
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
-
         self.instances : list[Instance] = list()
 
         STARTING_GAME_MSG = translator.translate("start_game_msg")
@@ -157,6 +161,8 @@ class Launcher(QMainWindow):
             features.show_about_app(self)
 
         def installContentActionCommand() -> None:
+            """_summary_ Open the Content Installer Window
+            """
             ContentInstallerView()
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
@@ -169,7 +175,6 @@ class Launcher(QMainWindow):
             term_service.print_error("Cannot set the background")
             
         self.ui: Ui_launcher = Ui_launcher()
-
         self.ui.setupUi(self)
         
         arguments: list[str] =  QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
@@ -184,7 +189,6 @@ class Launcher(QMainWindow):
         
         if len(arguments) > 1:
             file_arg: str = arguments[1]
-            
             try:
                 path = Path(file_arg)
                 if path.is_file():
@@ -218,12 +222,13 @@ class Launcher(QMainWindow):
         else:
             term_service.print_information("No argument given, start with default instance.")
         
-        self.about: Ui_AboutDialog = Ui_AboutDialog()
-        self.aboutDialog: QDialog = QDialog()
-
         self.sysinfo_dialog: QDialog = QDialog() 
         self.dialog_ui = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
+
+        self.about: Ui_AboutDialog = Ui_AboutDialog()
+        self.aboutDialog: QDialog = QDialog()
+
         self.about.setupUi(self.aboutDialog)
         self.aboutDialog.setWindowTitle(appContext.buildInfo.app_name)
 
@@ -279,6 +284,9 @@ class Launcher(QMainWindow):
         _ = self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         _ = self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
 
+        loadSteam = lambda : subprocess.run(["steam", instanceManager.instance.steam_link])
+        _ = self.ui.playOnSteamButton.clicked.connect(loadSteam)
+
         openAppInstancesData = lambda : systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
         _ = self.ui.actionInstances.triggered.connect(openAppInstancesData)
 
@@ -296,6 +304,20 @@ class Launcher(QMainWindow):
 
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
+
+        def addSteamLinkIntegrationButtonCommand():
+            steamIntegrationDialog = QInputDialog(self)
+            value = steamIntegrationDialog.getText(self, "Add Steam Integration", "steamid")
+            if value[1] == True:
+                self.ui.steamLinkValue.setText(value[0])
+                question = QMessageBox()
+                answer = question.question(self, "Add Instance to Steam Non-Steam Game Shortcuts ?", "Add ")
+                if answer == QMessageBox.StandardButton.Yes:
+                    full_extention_path = os.path.join(instanceManager.instance.installation_path, instanceManager.instance.exe_name)
+                    add_instance_to_steam(full_extention_path, instanceManager.instance.name, instanceManager.instance.image)
+                instanceManager.instance.steam_link = value[0]
+
+        _ = self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
