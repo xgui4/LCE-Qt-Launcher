@@ -42,7 +42,7 @@
 
         packages.default = python.pkgs.buildPythonApplication {
           pname = "lce_qt_launcher";
-          version = "0.2026.5.5";
+          version = "0.2026.5.6";
           format = "hatchling";
           license = pkgs.lib.licenses.gpl3plus;
 
