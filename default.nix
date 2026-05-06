@@ -25,6 +25,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     pyside6
     requests
     platformdirs
+    vdf
     rich
   ];
 

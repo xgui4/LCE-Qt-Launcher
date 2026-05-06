@@ -475,6 +475,7 @@ dependencies = [
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "requests" },
     { name = "rich" },
+    { name = "vdf" },
 ]
 
 [package.metadata]
@@ -486,6 +487,7 @@ requires-dist = [
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'", specifier = ">=6.11.0" },
     { name = "requests", specifier = ">=2.33.1" },
     { name = "rich", specifier = ">=14.3.3" },
+    { name = "vdf" },
 ]
 
 [[package]]
@@ -863,6 +865,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/05/e8/3771956dc1c94b8484789bb8070d91872080d0af99332b8bdec7218c2bfd/uv-0.11.8-py3-none-win32.whl", hash = "sha256:e71c1dd23cbb480f3952c3a95b4fd00f96bd618e2a94583fc9388c500af3070d", size = 22823583, upload-time = "2026-04-27T13:15:33.674Z" },
     { url = "https://files.pythonhosted.org/packages/f9/9b/a91a9c60dcae0e1e3da06377d38f32118a523697d461fe41bc9f117ecf59/uv-0.11.8-py3-none-win_amd64.whl", hash = "sha256:306c624c68d95dd7ea3647675323d72c1abc25f91c3e92ae4cd6f0f11b508726", size = 25407438, upload-time = "2026-04-27T13:15:28.957Z" },
     { url = "https://files.pythonhosted.org/packages/61/5d/defa29fe617e6f07d4e514089e9d36fd9f44ede869e597e39ff7d69f6917/uv-0.11.8-py3-none-win_arm64.whl", hash = "sha256:a9853456696d579f206135c9dda7227a6ed8311b8a9a0b9b2008c4ae81950efe", size = 23914243, upload-time = "2026-04-27T13:15:07.717Z" },
+]
+
+[[package]]
+name = "vdf"
+version = "3.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/7f/74192f47d67c8bf3c47bf0d8487b3457614c2c98d58b6617721d217f3f79/vdf-3.4.tar.gz", hash = "sha256:fd5419f41e07a1009e5ffd027c7dcbe43d1f7e8ef453aeaa90d9d04b807de2af", size = 11132, upload-time = "2021-05-22T09:26:05.252Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/96/60/6456b687cf55cf60020dcd01f9bc51561c3cc84f05fd8e0feb71ce60f894/vdf-3.4-py2.py3-none-any.whl", hash = "sha256:68c1a125cc49e343d535af2dd25074e9cb0908c6607f073947c4a04bbe234534", size = 10357, upload-time = "2021-05-22T09:26:03.948Z" },
 ]
 
 [[package]]

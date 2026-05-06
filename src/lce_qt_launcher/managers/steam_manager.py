@@ -17,8 +17,13 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+from PySide6.QtWidgets import ( 
+    QMessageBox
+)
+
 import argparse
-import subprocess
+# import subprocess
+# import os
 import sys
 
 LEGAL_TEXT = """
@@ -29,10 +34,15 @@ LEGAL_TEXT = """
     """
 
 def add_instance_to_steam(instance_exe_path : str, instance_name : str, icon : str):
+    """#TODO _summary_ 
+
+    #TODO Args:
+        instance_exe_path (str): _description_
+        instance_name (str): _description_
+        icon (str): _description_
+    """
     try:
-        # subprocess.run(["steam-shortcuts-cli", "add", instance_name, instance_exe_path, f"--icon=\"{icon}\"", "--tags=\"Sandbox,Minecraft\""])
-        
-        pass
+        QMessageBox.critical(None, "Critical Error", "Not Implemented Yet")
     except RuntimeError as err:
         print(f"Error while adding program to steam : {err}")
  
@@ -60,10 +70,8 @@ def main():
 
         if parsed_cmd_args[0].intance_exe_path == "None":
             instance_exe_path = input("Enter the instance of path of the exe to add on steam")
-
         if parsed_cmd_args[0].intance_name == "None":
             instance_name = input("Enter the name of instance to add on steam")
-        
         if parsed_cmd_args[0].icon == "None":
             icon = input("Enter the path of the icon of the instance to add on steam")
 

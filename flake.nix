@@ -24,6 +24,7 @@
          python3Packages.requests
          python3Packages.platformdirs
          python3Packages.rich
+         python3Packages.vdf
          qt6.wrapQtAppsHook
          python3Packages.shiboken6
          qt6.wrapQtAppsHook

@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QApplication, QMessageBox
 
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.models.app_data import AppData
-from lce_qt_launcher.views.launcher import Launcher
+from lce_qt_launcher.views.launcher import LauncherView
 from lce_qt_launcher.views.theme import Theme
 import lce_qt_launcher.views.term_service as term_service
 
@@ -21,7 +21,7 @@ class App(QApplication):
 
         _ = self.setStyle("Fusion")
 
-        self.widget: Launcher = Launcher(self.appContext, self.appData, self)
+        self.widget: LauncherView = LauncherView(self.appContext, self.appData, self)
         self.widget.show()
 
         self.set_theme(theme)

@@ -1,9 +1,7 @@
-from PySide6.QtWidgets  import QDialog, QHBoxLayout, QWidget
-from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtCore import QUrl
+from PySide6.QtWidgets  import QDialog
 
 from lce_qt_launcher.managers import mod_manager
-from lce_qt_launcher.ui_contentInstaller import Ui_Dialog
+from lce_qt_launcher.ui_contentInstaller import Ui_contentInstallerDialog
 from lce_qt_launcher.views import term_service
 
 
@@ -15,7 +13,7 @@ class ContentInstallerView(QDialog):
     """
     def __init__(self) -> None:
         super().__init__()
-        self.ui_dialog: Ui_Dialog = Ui_Dialog()
+        self.ui_dialog: Ui_contentInstallerDialog = Ui_contentInstallerDialog()
         self.dialog: QDialog = QDialog()
         self.ui_dialog.setupUi(self.dialog)
 

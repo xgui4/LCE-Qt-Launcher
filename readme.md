@@ -165,6 +165,7 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 - [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) for the port of the game for PC
 - [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) for backporting updates for the PC port
 - [LCE Hub](https://github.com/LCE-Hub) for the Marketplace/Workshop
+- [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
 
 ## Code of Respect
 

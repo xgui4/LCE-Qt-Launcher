@@ -21,7 +21,8 @@ dependencies = [
     "rich>=14.3.3",
     "hatch<=1.16.5",
     "Nuitka<=4.0.7",
-    "patchelf<=0.17.2.4; sys_platform == 'linux'"
+    "patchelf<=0.17.2.4; sys_platform == 'linux'",
+    "vdf<=3.4"
 ]
 
 [project.scripts]
