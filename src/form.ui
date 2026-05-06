@@ -144,20 +144,32 @@
                <height>71</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>182</width>
-               <height>16777215</height>
-              </size>
+             <property name="text">
+              <string>Play On Steam</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0" colspan="3">
+            <widget class="QPushButton" name="installButton">
+             <property name="text">
+              <string>Install</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="0" colspan="3">
+            <widget class="QPushButton" name="playButton">
+             <property name="text">
+              <string>Play</string>
+             </property>
+            </widget>
+           </item>
+           <item row="16" column="0" colspan="3">
+            <widget class="QPushButton" name="settingButton">
+             <property name="enabled">
+              <bool>false</bool>
              </property>
              <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
+              <string>Setting</string>
              </property>
             </widget>
            </item>
