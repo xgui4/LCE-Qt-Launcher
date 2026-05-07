@@ -105,60 +105,18 @@
            </size>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="9" column="0">
-            <widget class="QLabel" name="progressLabel">
+           <item row="4" column="2">
+            <widget class="QLabel" name="steamLinkLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="font">
               <font>
                <bold>true</bold>
               </font>
              </property>
              <property name="text">
-              <string>Progress</string>
-             </property>
-            </widget>
-           </item>
-           <item row="15" column="0" colspan="3">
-            <widget class="QPushButton" name="openInstanceEditor">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Open Instances Editor</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="instance_img">
-             <property name="minimumSize">
-              <size>
-               <width>182</width>
-               <height>71</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="14" column="0" colspan="3">
-            <widget class="QPushButton" name="installButton">
-             <property name="text">
-              <string>Install</string>
+              <string>Steam Link :</string>
              </property>
             </widget>
            </item>
@@ -166,71 +124,6 @@
             <widget class="QPushButton" name="playButton">
              <property name="text">
               <string>Play</string>
-             </property>
-            </widget>
-           </item>
-           <item row="16" column="0" colspan="3">
-            <widget class="QPushButton" name="settingButton">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Setting</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0" colspan="3">
-            <widget class="QProgressBar" name="progressBar">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="accessibleName">
-              <string>Installation Progress Bar</string>
-             </property>
-             <property name="accessibleDescription">
-              <string>The percentage of the installation</string>
-             </property>
-             <property name="accessibleIdentifier">
-              <string>install progress bar</string>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="repo_name_branch">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Default (MCLCE)  - Vanilla Client</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="changeInstanceIconButton">
-             <property name="text">
-              <string>Change Instance Icon</string>
-             </property>
-             <property name="icon">
-              <iconset theme="insert-image"/>
-             </property>
-            </widget>
-           </item>
-           <item row="16" column="0" colspan="3">
-            <widget class="QPushButton" name="settingButton">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Setting</string>
              </property>
             </widget>
            </item>
@@ -247,25 +140,26 @@
              </property>
             </widget>
            </item>
-           <item row="13" column="0" colspan="3">
-            <widget class="QPushButton" name="playButton">
+           <item row="4" column="0">
+            <widget class="QPushButton" name="changeInstanceIconButton">
              <property name="text">
-              <string>Play</string>
+              <string>Change Instance Icon</string>
+             </property>
+             <property name="icon">
+              <iconset theme="insert-image"/>
              </property>
             </widget>
            </item>
-           <item row="4" column="2">
-            <widget class="QLabel" name="steamLinkLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
+           <item row="3" column="1">
+            <widget class="QLabel" name="repo_name_branch">
              <property name="font">
               <font>
+               <pointsize>14</pointsize>
                <bold>true</bold>
               </font>
              </property>
              <property name="text">
-              <string>Steam Link :</string>
+              <string>Default (MCLCE)  - Vanilla Client</string>
              </property>
             </widget>
            </item>
@@ -279,10 +173,15 @@
              </property>
             </widget>
            </item>
-           <item row="14" column="0" colspan="3">
-            <widget class="QPushButton" name="installButton">
+           <item row="9" column="0">
+            <widget class="QLabel" name="progressLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
-              <string>Install</string>
+              <string>Progress</string>
              </property>
             </widget>
            </item>
@@ -491,6 +390,45 @@
              </layout>
             </widget>
            </item>
+           <item row="14" column="0" colspan="3">
+            <widget class="QPushButton" name="installButton">
+             <property name="text">
+              <string>Install</string>
+             </property>
+            </widget>
+           </item>
+           <item row="16" column="0" colspan="3">
+            <widget class="QPushButton" name="settingButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Setting</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0" colspan="3">
+            <widget class="QProgressBar" name="progressBar">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="accessibleName">
+              <string>Installation Progress Bar</string>
+             </property>
+             <property name="accessibleDescription">
+              <string>The percentage of the installation</string>
+             </property>
+             <property name="accessibleIdentifier">
+              <string>install progress bar</string>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" colspan="2">
             <widget class="QLabel" name="title">
              <property name="maximumSize">
@@ -510,6 +448,44 @@
              </property>
              <property name="indent">
               <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="instance_img">
+             <property name="minimumSize">
+              <size>
+               <width>182</width>
+               <height>71</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="0" colspan="3">
+            <widget class="QPushButton" name="openInstanceEditor">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Open Instances Editor</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
