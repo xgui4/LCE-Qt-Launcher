@@ -45,6 +45,12 @@
         <verstretch>2</verstretch>
        </sizepolicy>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="focusPolicy">
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
@@ -53,6 +59,9 @@
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::TabPosition::North</enum>
       </property>
       <property name="tabShape">
        <enum>QTabWidget::TabShape::Rounded</enum>
@@ -521,7 +530,7 @@
          <normaloff>:/assets/chest.png</normaloff>:/assets/chest.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>Instances Lists</string>
+        <string>Instances</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
@@ -565,7 +574,7 @@
          <normaloff>:/assets/piston.png</normaloff>:/assets/piston.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>Marketplaces</string>
+        <string>Workshop</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
@@ -573,8 +582,8 @@
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="marketplaceFrameRow">
             <item>
-             <widget class="QWebEngineView" name="marketplacesWebsiteEngine" native="true">
-              <property name="url" stdset="0">
+             <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
+              <property name="url">
                <url>
                 <string>https://lce-hub.github.io/piston/</string>
                </url>
@@ -597,8 +606,8 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QWebEngineView" name="newsEngineView" native="true">
-          <property name="url" stdset="0">
+         <widget class="QWebEngineView" name="newsEngineView">
+          <property name="url">
            <url>
             <string>https://github.com/MCLCE/MinecraftConsoles/commits</string>
            </url>
@@ -618,7 +627,7 @@
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

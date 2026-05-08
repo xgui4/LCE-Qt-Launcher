@@ -18,7 +18,6 @@ pkgs.python3Packages.buildPythonApplication rec {
     pkgs.bash
     pkgs.coreutils
     pkgs.gnused
-    pkgs.monocraft
   ];
 
   propagatedBuildInputs = with pkgs.python3Packages; [

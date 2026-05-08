@@ -33,9 +33,13 @@
 
 from PySide6.QtWidgets import (
     QMessageBox, 
-    QFileDialog,
-    QFontDatabase
+    QFileDialog
 ) 
+
+from PySide6.QtGui import (
+    QFontDatabase
+)
+
 
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
