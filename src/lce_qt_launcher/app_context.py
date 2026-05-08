@@ -9,11 +9,11 @@ from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.models.preferences import UserPref
 from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers.instance_manager import InstanceManager, Instance
-from lce_qt_launcher.views.theme import Theme
+from lce_qt_launcher.models.theme import StrTheme
 from lce_qt_launcher.utils.json_trans import JsonTrans
 
 _default_instance : Instance = Instance()
-_default_theme : Theme = Theme.MINECRAFT
+_default_theme : StrTheme = StrTheme.MINECRAFT
 _default_language : str = "en"
 
 class AppContext():
@@ -21,14 +21,14 @@ class AppContext():
     """
     def __init__(self, 
                 appData: AppData,
-                theme : Theme = _default_theme, 
+                theme : StrTheme = _default_theme, 
                 instance : Instance = _default_instance, 
                 lang : str = _default_language) -> None:
         self.buildInfo: BuildInfo = BuildInfo()
         self.sys_man: SystemManager = SystemManager()
         self.userPref: UserPref = UserPref(self.buildInfo)
         self.instanceMan: InstanceManager = InstanceManager(instance, self.buildInfo, self)
-        self.theme: Theme = theme
+        self.theme: StrTheme = theme
         self.translator: JsonTrans = JsonTrans(appData, lang)
         self.accesibleModeEnabled : bool = self.userPref.default_accesibility_mode
         self.devModeEnabled : bool = self.userPref.default_developper_mode
@@ -40,7 +40,7 @@ class AppContext():
         self.MINECRAFT_WEBSITE : str = "https://minecraft.net"
         self.MINECRAFT_LCE_WEBSITE : str = "https://minecraftlegacy.com/"
 
-    def updateTheme(self, theme : Theme) -> None:
+    def updateTheme(self, theme : StrTheme) -> None:
         """_summary_ Update the theme
 
         Args:

@@ -47,8 +47,8 @@ from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
 from lce_qt_launcher.managers.system_manager import SystemManager
-from lce_qt_launcher.views.theme import Theme
-import lce_qt_launcher.views.theme as theme
+from lce_qt_launcher.models.theme import StrTheme
+import lce_qt_launcher.models.theme as theme
 
 import sys
 import os
@@ -74,7 +74,7 @@ def main() -> None:
         accessible_mode: str = userPref.get_accesible_mode()
          
         try: 
-            selected_theme: Theme = theme.from_str_to_theme(user_theme)
+            selected_theme: StrTheme = theme.from_str_to_strTheme(user_theme)
             appContext.updateTheme(selected_theme)
             appContext.updateShowHolidayStatus(show_holiday)
             appContext.updateSetDevMoodeStatus(developer_mode)

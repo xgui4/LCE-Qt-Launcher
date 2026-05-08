@@ -25,8 +25,9 @@ makedepends=(
     'qt6-tools'
 )
 optdepends=(
-    'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
+    'wine: Allow to launch non-Linux-native Minecraft LCE ports'
     'steam: Allow for Steam integration'
+    'steamtinkerlaunch: For better Stream integration on Linux'
 )
 
 provides=("${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")

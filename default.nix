@@ -18,6 +18,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     pkgs.bash
     pkgs.coreutils
     pkgs.gnused
+    pkgs.steamtinkerlaunch
   ];
 
   propagatedBuildInputs = with pkgs.python3Packages; [
