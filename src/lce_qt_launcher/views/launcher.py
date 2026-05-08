@@ -48,10 +48,10 @@ import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
 
 class LauncherView(QMainWindow):
-    """_summary_ The Main Window / playButtonCommander of the QApplcation
+    """_summary_ The Main Window / launcher of the QApplcation
 
     Args:
-        QMainWindow (_type_): _description_ The inheite type of playButtonCommander
+        QMainWindow (_type_): _description_ The inheite type of Launcher
     """
     def __init__(self, 
                  appContext : AppContext, 
@@ -241,8 +241,8 @@ class LauncherView(QMainWindow):
         self.about.platformLabel.setText(f"Platform : {platform.release()}")
         from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
-        _ = self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
-        _ = self.about.closeButton.clicked.connect(self.aboutDialog.close)
+        self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
+        self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
         self.instance_window: QDialog = QDialog()
         self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
@@ -262,48 +262,48 @@ class LauncherView(QMainWindow):
         self.ui.progressBar.setVisible(False)
         self.ui.progressBar.setEnabled(False)
 
-        _ = self.ui.playButton.clicked.connect(playButtonCommand)
-        _ = self.ui.installButton.clicked.connect(installButtonCommand)
-        _ = self.ui.settingButton.clicked.connect(showSettingDialogCommand)
-        _ = self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
-        _ = self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
-        _ = self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
-        _ = self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
+        self.ui.playButton.clicked.connect(playButtonCommand)
+        self.ui.installButton.clicked.connect(installButtonCommand)
+        self.ui.settingButton.clicked.connect(showSettingDialogCommand)
+        self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
+        self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
+        self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
+        self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
 
-        _ = self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
-        _ = self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
-        _ = self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
-        _ = self.ui.actionQuit.triggered.connect(app.quit)
-        _ = self.ui.actionUpdate.triggered.connect(updateActionCommand)
-        _ = self.ui.actionSystem_Information.triggered.connect(showSystemInformationActionCommand)
-        _ = self.ui.actionAbout.triggered.connect(showAboutActionCommand)
-        _ = self.ui.actionAbout_QT.triggered.connect(showAboutQtActionCommand)
-        _ = self.ui.actionAbout_Minecraft.triggered.connect(showAboutMinecraftActionCommand)
-        _ = self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
-        _ = self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
-        _ = self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
-        _ = self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
+        self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
+        self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
+        self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
+        self.ui.actionQuit.triggered.connect(app.quit)
+        self.ui.actionUpdate.triggered.connect(updateActionCommand)
+        self.ui.actionSystem_Information.triggered.connect(showSystemInformationActionCommand)
+        self.ui.actionAbout.triggered.connect(showAboutActionCommand)
+        self.ui.actionAbout_QT.triggered.connect(showAboutQtActionCommand)
+        self.ui.actionAbout_Minecraft.triggered.connect(showAboutMinecraftActionCommand)
+        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
+        self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
+        self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
+        self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
 
         loadSteam = lambda : subprocess.run(["steam", instanceManager.instance.steam_link])
-        _ = self.ui.playOnSteamButton.clicked.connect(loadSteam)
+        self.ui.playOnSteamButton.clicked.connect(loadSteam)
 
         openAppInstancesData = lambda : systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
-        _ = self.ui.actionInstances.triggered.connect(openAppInstancesData)
+        self.ui.actionInstances.triggered.connect(openAppInstancesData)
 
         open_workshop = lambda : features.show_webbrowser(self, "https://lce-hub.github.io/piston/", buildInfo); 
-        _ = self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
+        self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
 
         open_legacymods = lambda : features.show_webbrowser(self, "https://legacymods.org/", buildInfo); 
-        _ = self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
+        self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
 
         openAppRoot = lambda : systemManager.open_url_with_system(appData.projectRootDir);
-        _= self.ui.actionApp_Root.triggered.connect(openAppRoot)
+        self.ui.actionApp_Root.triggered.connect(openAppRoot)
 
         openAppConfig = lambda : systemManager.open_url_with_system(appData.appConfigDir);
-        _= self.ui.actionApp_Root.triggered.connect(openAppConfig)
+        self.ui.actionApp_Root.triggered.connect(openAppConfig)
 
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
-        _ = self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
+        self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
         def addSteamLinkIntegrationButtonCommand():
             steamIntegrationDialog = QInputDialog(self)
@@ -317,7 +317,7 @@ class LauncherView(QMainWindow):
                     add_instance_to_steam(full_extention_path, instanceManager.instance.name, instanceManager.instance.image)
                 instanceManager.instance.steam_link = value[0]
 
-        _ = self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
+        self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
