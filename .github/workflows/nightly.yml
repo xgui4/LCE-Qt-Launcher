@@ -18,8 +18,8 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
         with:
           python-version: "3.12"
           cache: 'pip'
@@ -40,7 +40,7 @@ jobs:
         run: tar -czf LCE-Qt-Launcher-Linux.tar.gz -C dist/main.dist .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: binaries-${{ matrix.os }}
           path: |
@@ -52,15 +52,15 @@ jobs:
     name: Build Inno Setup
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
       - name: Compile .ISS
-        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
         with:
           path: packages\windows\windows-setup-nigthly.iss
           options: '/O+ /F"LCE_Qt_Launcher_Windows_Nigthly_Setup"'
       
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: installer-windows
           path: packages\windows\Output\*.exe 
@@ -70,18 +70,20 @@ jobs:
     name: Build Arch Package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
       - name: Validate and Build package
         uses: heyhusen/archlinux-package-action@v3.0.0
         with:
           namcap: true
+          updpkgsums : true
+          path : "packages/linux/nightly"
           srcinfo: true
       
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
-          name: installer-arch
-          path: "*.pkg.*.*"
+          name: packages-arch
+          path: "packages/linux/nightly/****.pkg.tar.zst"
 
   # --- JOB 4 : Publish the Nightly Release ---
   release:
@@ -90,7 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8.0.1
         with:
           path: ./artifacts
           merge-multiple: true

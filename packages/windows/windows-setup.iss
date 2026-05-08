@@ -7,7 +7,8 @@
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
-#define MyAppAssocName "LCE Qt Launcher Instance Save File"
+#define MyAppAssocName "LCE Qt Launcher instance save file"
+#define MyAppAssocNameFr "Fichier de sauvegarde d'instance LCE Qt Launcher"
 #define MyAppAssocExt ".lce_inst"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
