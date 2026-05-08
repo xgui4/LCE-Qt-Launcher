@@ -42,4 +42,7 @@
         <file alias="fr.json">assets/languages/fr.json</file>
         <file alias="en.json">assets/languages/en.json</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file alias="miracode.ttf">assets/fonts/Miracode.ttf</file>
+    </qresource>
 </RCC>

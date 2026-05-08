@@ -1,6 +1,6 @@
 # LCE QT Launcher
 
-[French Version](lisezmoi.md) (Not updated yet)
+[French Version](lisezmoi.md)
 
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Screnshot of the launcher](.github/screenshots/image.png)
@@ -148,8 +148,8 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 
     Platform not tested yet, but with implementation
 
-- FreeBSD (While it may worked, it is not tested for it yet and might not worked at all)
-- Flatpak (While it may worked, it is not tested for it yet and might not worked at all)
+- FreeBSD
+- Flatpak
 
 ### Unsupported OS
 
@@ -166,6 +166,7 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 - [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) for backporting updates for the PC port
 - [LCE Hub](https://github.com/LCE-Hub) for the Marketplace/Workshop
 - [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
+- [Miracode Font](https://github.com/IdreesInc/Miracode)
 
 ## Code of Respect
 

@@ -33,7 +33,8 @@
 
 from PySide6.QtWidgets import (
     QMessageBox, 
-    QFileDialog
+    QFileDialog,
+    QFontDatabase
 ) 
 
 from lce_qt_launcher.models.app_data import AppData
@@ -56,6 +57,7 @@ def main() -> None:
     appContext: AppContext = AppContext(appData)
 
     sys_man: SystemManager = appContext.sys_man
+
     try:
         sys_man.adapt_qt_system_theme()
 
@@ -101,6 +103,16 @@ def main() -> None:
         app = App(appContext.theme, appContext, sys.argv)
         _ = app.setStyle("Fusion")
         _ = app.aboutToQuit.connect(about_to_quit_event)
+
+        font_id = QFontDatabase.addApplicationFont(":/fonts/miracode.ttf")
+
+        if font_id == -1:
+            print("Error: Font could not be loaded.")
+        else:
+            # 2. Get the font family name (the name defined inside the file)
+            family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            app.setFont(family)
+
         sys.exit(app.exec())
 
 if __name__ == "__main__":

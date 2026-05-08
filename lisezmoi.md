@@ -145,8 +145,8 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 
     Plateformes non testées, mais avec implémentation
 
-- FreeBSD (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
-- Flatpak (Bien que cela puisse fonctionner, cela n'a pas encore été testé et le fonctionnement n'est pas garanti)
+- FreeBSD
+- Flatpak
 
 ### Systèmes d'exploitation non pris en charge
 
