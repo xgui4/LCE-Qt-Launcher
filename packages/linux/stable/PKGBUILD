@@ -1,7 +1,7 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher
 pkgver=0.0.2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A custom Minecraft LCE Launcher written with PySide6 (Python) with GNU/Linux support in mind. (Master/Stable Branch)"
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
@@ -27,7 +27,6 @@ makedepends=(
 optdepends=(
     'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
     'steam: Allow for Steam integration'
-    'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
 provides=("${pkgname%-stable}" "${pkgname%}")
 conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%}")

@@ -30,7 +30,6 @@
     </qresource>
     <qresource prefix="/instances">
         <file alias="default.lce_inst">data/defaults_instances/default.lce_inst</file>
-        <file alias="legact_evolved.lce_inst">data/defaults_instances/legacy_evolved.lce_inst</file>
         <file alias="neoLegacy.lce_inst">data/defaults_instances/neoLegacy.lce_inst</file>
         <file alias="hellishends.lce_inst">data/defaults_instances/hellishends.lce_inst</file>
         <file alias="360Revived.lce_inst">data/defaults_instances/360Revived.lce_inst</file>
@@ -41,5 +40,8 @@
         <file alias="fallback.json">assets/languages/translations.json</file>
         <file alias="fr.json">assets/languages/fr.json</file>
         <file alias="en.json">assets/languages/en.json</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file alias="miracode.ttf">assets/fonts/Miracode.ttf</file>
     </qresource>
 </RCC>

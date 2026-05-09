@@ -36,14 +36,19 @@ from PySide6.QtWidgets import (
     QFileDialog
 ) 
 
+from PySide6.QtGui import (
+    QFontDatabase
+)
+
+
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
 from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected, launch_cmd_action
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.app import App
 from lce_qt_launcher.managers.system_manager import SystemManager
-from lce_qt_launcher.views.theme import Theme
-import lce_qt_launcher.views.theme as theme
+from lce_qt_launcher.models.theme import StrTheme
+import lce_qt_launcher.models.theme as theme
 
 import sys
 import os
@@ -56,6 +61,7 @@ def main() -> None:
     appContext: AppContext = AppContext(appData)
 
     sys_man: SystemManager = appContext.sys_man
+
     try:
         sys_man.adapt_qt_system_theme()
 
@@ -68,7 +74,7 @@ def main() -> None:
         accessible_mode: str = userPref.get_accesible_mode()
          
         try: 
-            selected_theme: Theme = theme.from_str_to_theme(user_theme)
+            selected_theme: StrTheme = theme.from_str_to_strTheme(user_theme)
             appContext.updateTheme(selected_theme)
             appContext.updateShowHolidayStatus(show_holiday)
             appContext.updateSetDevMoodeStatus(developer_mode)
@@ -101,6 +107,16 @@ def main() -> None:
         app = App(appContext.theme, appContext, sys.argv)
         _ = app.setStyle("Fusion")
         _ = app.aboutToQuit.connect(about_to_quit_event)
+
+        font_id = QFontDatabase.addApplicationFont(":/fonts/miracode.ttf")
+
+        if font_id == -1:
+            print("Error: Font could not be loaded.")
+        else:
+            # 2. Get the font family name (the name defined inside the file)
+            family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            app.setFont(family)
+
         sys.exit(app.exec())
 
 if __name__ == "__main__":

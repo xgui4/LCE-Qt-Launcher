@@ -3,7 +3,7 @@
 from PySide6.QtCore import QSettings
 
 from lce_qt_launcher.build_info import BuildInfo
-from lce_qt_launcher.views.theme import Theme
+from lce_qt_launcher.models.theme import StrTheme
 
 _THEME_OPTION : str = "customisation/theme"
 _INSTANCE_PATH_OPTION : str = "preferences/default_path"
@@ -20,7 +20,7 @@ class UserPref (QSettings):
     """
     def __init__(self, build_info : BuildInfo) -> None:
         super().__init__(QSettings.Format.IniFormat, QSettings.Scope.UserScope, "Xgui4", build_info.app_name) 
-        self.default_theme : Theme = Theme.MINECRAFT
+        self.default_theme : StrTheme = StrTheme.MINECRAFT
         self.default_instance_path : str = "~/.local/share/lce_qt_launcher/default"
         self.default_language : str  = "en"
         self.default_show_holiday : bool = True

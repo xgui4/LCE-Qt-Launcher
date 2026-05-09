@@ -2,7 +2,7 @@
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "lce-qt-launcher";
-  version = "0.2026.5.7";
+  version = "0.2026.5.8";
   format = "pyproject";
 
   src = ./.;
@@ -18,7 +18,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     pkgs.bash
     pkgs.coreutils
     pkgs.gnused
-    pkgs.monocraft
+    pkgs.steamtinkerlaunch
   ];
 
   propagatedBuildInputs = with pkgs.python3Packages; [

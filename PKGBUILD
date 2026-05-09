@@ -27,7 +27,6 @@ makedepends=(
 optdepends=(
     'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
     'steam: Allow for Steam integration'
-    'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
 )
 
 provides=("${pkgname%-git}" "${pkgname%-nightly}" "${pkgname%}")

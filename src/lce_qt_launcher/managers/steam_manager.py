@@ -22,8 +22,9 @@ from PySide6.QtWidgets import (
 )
 
 import argparse
-# import subprocess
-# import os
+import subprocess
+import platform
+import os
 import sys
 
 LEGAL_TEXT = """
@@ -33,7 +34,7 @@ LEGAL_TEXT = """
     under certain conditions; type `show c' for details.
     """
 
-def add_instance_to_steam(instance_exe_path : str, instance_name : str, icon : str):
+def add_instance_to_steam(abs_instance_exe_path : str, instance_name : str, icon : str):
     """#TODO _summary_ 
 
     #TODO Args:
@@ -42,7 +43,24 @@ def add_instance_to_steam(instance_exe_path : str, instance_name : str, icon : s
         icon (str): _description_
     """
     try:
-        QMessageBox.critical(None, "Critical Error", "Not Implemented Yet")
+        try:
+            QMessageBox.warning(None, "Warning", "For this operation, it is recommended to close steam. ") 
+        except RuntimeError:
+            input("Warning : For this operation, it is recommended to close steam.")
+        QMessageBox.warning(None, "Warning", "For this operation, it is recommended to close steam. ")
+        if platform.uname().system == "Linux":
+            subprocess.run(["steamtinkerlaunch", "ansg", 
+                            f"-an=\"Minecraft LCE ({instance_name}\"",
+                            f"-ep=\"{abs_instance_exe_path}\"",
+                            f"-ip={icon}"])
+            try:
+                QMessageBox.warning(None, "Warning", "This function is in work in progress and the id is not saved in the launcher. \n" \
+                "Until this is added, a manual intervention is needed to found the id and put in the save file. ")
+            except RuntimeError: 
+                print("Warning : This function is in work in progress and the id is not saved in the launcher. \n" \
+                "Until this is added, a manual intervention is needed to found the id and put in the save file. ")
+        else :
+            QMessageBox.critical(None, "Critical Error", "Not Implemented Yet!")
     except RuntimeError as err:
         print(f"Error while adding program to steam : {err}")
  

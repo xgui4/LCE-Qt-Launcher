@@ -1,11 +1,14 @@
-* {
-    font-family : "Monocraft";
-}
+/* 
+DISABLED DUE TO A ISSUE 
+{
+  font-family : Miracode;
+} */
 
 QLabel:disabled {
     color : gray; 
     opacity : 100;
 }
+
 
 QPushButton {
     border-image : url(":/assets/button.png"); 
