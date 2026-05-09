@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1268</width>
-    <height>967</height>
+    <width>1044</width>
+    <height>1044</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Monocraft</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Minecraft LCE QT Launcher</string>
@@ -31,9 +36,9 @@
     </sizepolicy>
    </property>
    <property name="contextMenuPolicy">
-    <enum>Qt::ContextMenuPolicy::ActionsContextMenu</enum>
+    <enum>Qt::ActionsContextMenu</enum>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="centralGridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="instancesListWidget">
       <property name="enabled">
@@ -52,19 +57,19 @@
        </size>
       </property>
       <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="tabPosition">
-       <enum>QTabWidget::TabPosition::North</enum>
+       <enum>QTabWidget::North</enum>
       </property>
       <property name="tabShape">
-       <enum>QTabWidget::TabShape::Rounded</enum>
+       <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -92,9 +97,9 @@
        <attribute name="title">
         <string>Launcher</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="launcherMasterLayout">
         <item>
-         <widget class="QGroupBox" name="verticalGroupBox">
+         <widget class="QGroupBox" name="launcherVerticalGroupBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>1</horstretch>
@@ -113,71 +118,7 @@
             <height>1</height>
            </size>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="4" column="2">
-            <widget class="QLabel" name="steamLinkLabel">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="font">
-              <font>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Steam Link :</string>
-             </property>
-            </widget>
-           </item>
-           <item row="13" column="0" colspan="3">
-            <widget class="QPushButton" name="playButton">
-             <property name="text">
-              <string>Play</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-start"/>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="0" colspan="3">
-            <widget class="QPushButton" name="playOnSteamButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Play On Steam</string>
-             </property>
-             <property name="icon">
-              <iconset theme="computer"/>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="changeInstanceIconButton">
-             <property name="text">
-              <string>Change Instance Icon</string>
-             </property>
-             <property name="icon">
-              <iconset theme="insert-image"/>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="repo_name_branch">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Default (MCLCE)  - Vanilla Client</string>
-             </property>
-            </widget>
-           </item>
+          <layout class="QGridLayout" name="launcherGridLayout">
            <item row="4" column="1">
             <widget class="QPushButton" name="addSteamLinkIntegration">
              <property name="enabled">
@@ -195,6 +136,8 @@
             <widget class="QLabel" name="progressLabel">
              <property name="font">
               <font>
+               <family>Monocraft</family>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -203,27 +146,109 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="2">
-            <widget class="QLabel" name="steamLinkValue">
+           <item row="17" column="0" colspan="3">
+            <widget class="QPushButton" name="settingButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Setting</string>
+             </property>
+             <property name="icon">
+              <iconset theme="preferences-system"/>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2" colspan="2">
+            <widget class="QLabel" name="title">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>false</bool>
+             </property>
+             <property name="indent">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="1">
+            <widget class="QPushButton" name="playOnSteamButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Play On Steam</string>
+             </property>
+             <property name="icon">
+              <iconset theme="computer"/>
+             </property>
+            </widget>
+           </item>
+           <item row="16" column="0" colspan="3">
+            <widget class="QPushButton" name="openInstanceEditor">
              <property name="enabled">
               <bool>false</bool>
              </property>
              <property name="text">
-              <string/>
+              <string>Open Instances Editor</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0">
+            <widget class="QPushButton" name="playButton">
+             <property name="text">
+              <string>Play</string>
+             </property>
+             <property name="icon">
+              <iconset theme="media-playback-start"/>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="2">
+            <widget class="QPushButton" name="installButton">
+             <property name="text">
+              <string>Update</string>
+             </property>
+             <property name="icon">
+              <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
              </property>
             </widget>
            </item>
            <item row="5" column="0" rowspan="4" colspan="3">
             <widget class="QWidget" name="ModifyInstance" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <layout class="QHBoxLayout" name="modifyInstanceLayout">
               <item>
                <widget class="QFrame" name="mdoifyInstanceFrame">
-                <layout class="QFormLayout" name="formLayout">
+                <layout class="QFormLayout" name="modifyInstancesFormLayout">
                  <item row="2" column="0">
                   <widget class="QLabel" name="modifyInstancSectionLabel">
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -242,6 +267,8 @@
                    </property>
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -264,6 +291,8 @@
                   <widget class="QLabel" name="pathInputBoxLabel">
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -286,6 +315,8 @@
                   <widget class="QLabel" name="repoURKLabel">
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -311,6 +342,8 @@
                    </property>
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -339,6 +372,8 @@
                    </property>
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -393,6 +428,8 @@
                    </property>
                    <property name="font">
                     <font>
+                     <family>Monocraft</family>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -414,26 +451,28 @@
              </layout>
             </widget>
            </item>
-           <item row="14" column="0" colspan="3">
-            <widget class="QPushButton" name="installButton">
-             <property name="text">
-              <string>Update</string>
+           <item row="3" column="1">
+            <widget class="QLabel" name="repo_name_branch">
+             <property name="font">
+              <font>
+               <family>Monocraft</family>
+               <pointsize>14</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
              </property>
-             <property name="icon">
-              <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+             <property name="text">
+              <string>Default (MCLCE)  - Vanilla Client</string>
              </property>
             </widget>
            </item>
-           <item row="16" column="0" colspan="3">
-            <widget class="QPushButton" name="settingButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
+           <item row="4" column="0">
+            <widget class="QPushButton" name="changeInstanceIconButton">
              <property name="text">
-              <string>Setting</string>
+              <string>Change Instance Icon</string>
              </property>
              <property name="icon">
-              <iconset theme="preferences-system"/>
+              <iconset theme="insert-image"/>
              </property>
             </widget>
            </item>
@@ -451,33 +490,38 @@
              <property name="accessibleDescription">
               <string>The percentage of the installation</string>
              </property>
-             <property name="accessibleIdentifier">
-              <string>install progress bar</string>
-             </property>
              <property name="value">
               <number>0</number>
              </property>
+             <property name="accessibleIdentifier" stdset="0">
+              <string>install progress bar</string>
+             </property>
             </widget>
            </item>
-           <item row="3" column="2" colspan="2">
-            <widget class="QLabel" name="title">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
+           <item row="4" column="2">
+            <widget class="QLabel" name="steamLinkLabel">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="font">
+              <font>
+               <family>Monocraft</family>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Steam Link :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLabel" name="steamLinkValue">
+             <property name="enabled">
+              <bool>false</bool>
              </property>
              <property name="text">
               <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
-             </property>
-             <property name="scaledContents">
-              <bool>false</bool>
-             </property>
-             <property name="indent">
-              <number>0</number>
              </property>
             </widget>
            </item>
@@ -496,26 +540,7 @@
               <pixmap resource="../res.qrc">:/assets/minecraft.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="15" column="0" colspan="3">
-            <widget class="QPushButton" name="openInstanceEditor">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Open Instances Editor</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -532,20 +557,22 @@
        <attribute name="title">
         <string>Instances</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QHBoxLayout" name="instancesMasterListLayout">
         <item>
          <layout class="QVBoxLayout" name="InstancesListLayout">
           <item>
            <widget class="QListWidget" name="listWidget">
             <property name="font">
              <font>
+              <family>Monocraft</family>
               <pointsize>24</pointsize>
+              <weight>75</weight>
               <bold>true</bold>
               <underline>false</underline>
              </font>
             </property>
             <property name="frameShape">
-             <enum>QFrame::Shape::NoFrame</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="iconSize">
              <size>
@@ -554,13 +581,10 @@
              </size>
             </property>
             <property name="resizeMode">
-             <enum>QListView::ResizeMode::Fixed</enum>
+             <enum>QListView::Fixed</enum>
             </property>
             <property name="itemAlignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-            <property name="supportedDragActions">
-             <set>Qt::DropAction::ActionMask</set>
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -576,14 +600,14 @@
        <attribute name="title">
         <string>Workshop</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <layout class="QHBoxLayout" name="marketplaceLayout">
         <item>
          <layout class="QGridLayout" name="marketplacesFrameGrid">
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="marketplaceFrameRow">
             <item>
-             <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
-              <property name="url">
+             <widget class="QWebEngineView" name="marketplacesWebsiteEngine" native="true">
+              <property name="url" stdset="0">
                <url>
                 <string>https://lce-hub.github.io/piston/</string>
                </url>
@@ -604,10 +628,10 @@
        <attribute name="title">
         <string>News</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
+       <layout class="QGridLayout" name="newsTabLayout">
         <item row="0" column="0">
-         <widget class="QWebEngineView" name="newsEngineView">
-          <property name="url">
+         <widget class="QWebEngineView" name="newsEngineView" native="true">
+          <property name="url" stdset="0">
            <url>
             <string>https://github.com/MCLCE/MinecraftConsoles/commits</string>
            </url>
@@ -626,7 +650,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1268</width>
+     <width>1044</width>
      <height>22</height>
     </rect>
    </property>
@@ -634,12 +658,35 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionQuit"/>
-    <addaction name="actionUpdate"/>
+    <widget class="QMenu" name="menuCreate_New_Instance">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Create New Instance</string>
+     </property>
+     <addaction name="actionCreateWithTemplate"/>
+     <addaction name="actionCreateWithNoTemplate"/>
+    </widget>
+    <widget class="QMenu" name="menuLoad_Instances">
+     <property name="title">
+      <string>Load Default Instance</string>
+     </property>
+     <addaction name="actionLoadDefaultInstance"/>
+     <addaction name="actionLoadNeoLegacyInstance"/>
+     <addaction name="actionLoadRevelationsInstance"/>
+     <addaction name="actionLoad360RevivedInstance"/>
+     <addaction name="actionLoadHellishEndsInstance"/>
+     <addaction name="actionLoadPortable_MCLEInstance"/>
+     <addaction name="actionLoadAetherInstance"/>
+    </widget>
     <addaction name="actionSave"/>
     <addaction name="actionImport_Instance"/>
-    <addaction name="actionCreate_New_Instance"/>
+    <addaction name="menuLoad_Instances"/>
+    <addaction name="menuCreate_New_Instance"/>
     <addaction name="actionSetting"/>
+    <addaction name="actionUpdate"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -716,7 +763,7 @@
     <string>Quit the app</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::QuitRole</enum>
+    <enum>QAction::QuitRole</enum>
    </property>
   </action>
   <action name="actionUpdate">
@@ -730,7 +777,7 @@
     <string>Update The App</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+    <enum>QAction::ApplicationSpecificRole</enum>
    </property>
   </action>
   <action name="actionAbout">
@@ -741,7 +788,7 @@
     <string>About LCE Qt Launcher</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::AboutRole</enum>
+    <enum>QAction::AboutRole</enum>
    </property>
   </action>
   <action name="actionAbout_QT">
@@ -752,7 +799,7 @@
     <string>About Qt</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::AboutQtRole</enum>
+    <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
   <action name="actionSystem_Information">
@@ -763,7 +810,7 @@
     <string>System Information</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+    <enum>QAction::ApplicationSpecificRole</enum>
    </property>
   </action>
   <action name="actionComing_soon">
@@ -844,20 +891,6 @@
    </property>
    <property name="text">
     <string>See Instance Options</string>
-   </property>
-  </action>
-  <action name="actionCreate_New_Instance">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::ListAdd"/>
-   </property>
-   <property name="text">
-    <string>Create New Instance</string>
    </property>
   </action>
   <action name="actionLogs">
@@ -1038,6 +1071,57 @@
     <string>Install Content</string>
    </property>
   </action>
+  <action name="actionCreateWithTemplate">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default Templates</string>
+   </property>
+  </action>
+  <action name="actionCreateWithNoTemplate">
+   <property name="text">
+    <string>No Templates</string>
+   </property>
+  </action>
+  <action name="actionLoadDefaultInstance">
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionLoadNeoLegacyInstance">
+   <property name="text">
+    <string>NeoLegacy</string>
+   </property>
+  </action>
+  <action name="actionLoadRevelationsInstance">
+   <property name="text">
+    <string>Revelations</string>
+   </property>
+  </action>
+  <action name="actionLoad360RevivedInstance">
+   <property name="text">
+    <string>360Revived</string>
+   </property>
+  </action>
+  <action name="actionLoadHellishEndsInstance">
+   <property name="text">
+    <string>HellishEnds</string>
+   </property>
+  </action>
+  <action name="actionLoadPortable_MCLEInstance">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Portable MCLE</string>
+   </property>
+  </action>
+  <action name="actionLoadAetherInstance">
+   <property name="text">
+    <string>Aether</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1048,6 +1132,7 @@
  </customwidgets>
  <resources>
   <include location="../res.qrc"/>
+  <include location="../../../.designer/res.qrc"/>
  </resources>
  <connections/>
 </ui>

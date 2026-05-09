@@ -25,6 +25,8 @@ from lce_qt_launcher.views.setting_dialog import SettingDialog
 import lce_qt_launcher.views.cli as cli
 import lce_qt_launcher.views.term_service as term_service
 
+import os
+
 def install_game(parent : QWidget, instance : Instance, instanceManager : InstanceManager) -> None:
     """Features : Install the game instance selected
     #TODO : Separe the GUI with the logic of the model
@@ -84,7 +86,11 @@ def show_instance_editor(parent : QWidget) -> None:
     """Features : Open the Instance Editor"""
     parent.instance_window.show()  
 
-def load_instance(parent : QWidget, instanceManager : InstanceManager, appContext: AppContext, buildInfo : BuildInfo, appData : AppData) -> None:  
+def load_instance_from_file(parent : QWidget, 
+                            instanceManager : InstanceManager, 
+                            appContext: AppContext, 
+                            buildInfo : BuildInfo, 
+                            appData : AppData) -> None:  
     """Features : Load the Selected Instance"""
     file_name: tuple[str, str] = QFileDialog.getOpenFileName(
         parent, "Load Instance File", 
@@ -95,6 +101,10 @@ def load_instance(parent : QWidget, instanceManager : InstanceManager, appContex
         import_managers.import_inst_file_to_app_data(file_name[0], appData)
     except FileExistsError:
         term_service.print_information("Instance already in data folder. Skipping making symlink. ")
+
+def load_instance_from_instance(instanceManager : InstanceManager, instance : Instance) -> None:  
+    """Features : Load the Selected Instance"""
+    instanceManager.instance = instance
 
 def show_about_qt(parent : QWidget) -> None:
     """Features : Load the Selected Instance"""
