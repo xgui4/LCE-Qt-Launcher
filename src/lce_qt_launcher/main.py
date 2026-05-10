@@ -39,7 +39,6 @@ from PySide6.QtGui import (
     QFontDatabase
 )
 
-
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
 from lce_qt_launcher.views.cmd_arg import CmdArgAction, parse_args, argsDetected, launch_cmd_action
