@@ -1,35 +1,41 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.python3Packages.buildPythonApplication rec {
+let
+  myPython = pkgs.python3.withPackages (ps: with ps; [
+    pyside6
+    requests
+    shiboken6
+    platformdirs
+    rich
+  ]);
+
+  # Create standalone wrapper scripts
+  pyside-uic = pkgs.writeShellScriptBin "pyside6-uic" ''
+    exec ${pkgs.qt6.qtbase}/libexec/uic -g python "$@"
+  '';
+  
+  pyside-rcc = pkgs.writeShellScriptBin "pyside6-rcc" ''
+    exec ${pkgs.qt6.qtbase}/libexec/rcc -g python "$@"
+  '';
+
+in
+pkgs.mkShell {
   pname = "lce-qt-launcher";
   version = "0.2026.5.9";
   format = "pyproject";
 
   src = ./.;
-
-  nativeBuildInputs = [
-    pkgs.python3Packages.hatchling
-    pkgs.python3Packages.pyside6
-    pkgs.python3Packages.shiboken6 
-    pkgs.qt6.wrapQtAppsHook
-    pkgs.qt6.qtbase
-    pkgs.qt6.qtbase.dev
-    pkgs.qt6.qttools
-    pkgs.bash
-    pkgs.coreutils
-    pkgs.gnused
-    pkgs.steamtinkerlaunch
+  
+  buildInputs = with pkgs; [
+    pyside-uic
+    pyside-rcc
+    monocraft 
+    qt6.qtbase
+    qt6.qtwayland
+    libGL
   ];
 
-  propagatedBuildInputs = with pkgs.python3Packages; [
-    pyside6
-    requests
-    platformdirs
-    vdf
-    rich
-  ];
-
-  postPatch = ''
+   postPatch = ''
     patchShebangs scripts/
     chmod +x scripts/*.sh
     substituteInPlace scripts/build.sh \
@@ -69,10 +75,22 @@ pkgs.python3Packages.buildPythonApplication rec {
     makeWrapperArgs+=("''${qtWrapperArgs[@]}")
   '';
 
-  meta = with pkgs.lib; {
-    description = "A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind.";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
-    mainProgram = "lce-qt-launcher";
-  };
+  shellHook = ''
+    # Ensure our wrapped Python and tools are first in PATH
+    export PATH="${myPython}/bin:${pyside-uic}/bin:${pyside-rcc}/bin:$PATH"
+    
+    # Reset PYTHONPATH to only include your source
+    export PYTHONPATH="$(pwd)/src"
+
+    # Tell UV which Python to use
+    export UV_PYTHON="${myPython}/bin/python3"
+    
+    # NixOS Graphics & Qt Fixes
+    export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [ pkgs.libGL pkgs.stdenv.cc.cc ]}:$LD_LIBRARY_PATH"
+    export QT_PLUGIN_PATH="${pkgs.qt6.qtbase}/${pkgs.qt6.qtbase.qtPluginPrefix}"
+    export QT_QPA_PLATFORM_PLUGIN_PATH="${pkgs.qt6.qtbase}/lib/qt-6/plugins/platforms"
+
+    echo "Environment Reset: Python is $(which python3)"
+    echo "pyside6-uic is now $(which pyside6-uic) and outputs Python code."
+  '';
 }

@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher (Nightly)"
-#define MyAppVersion "2026.5.8"
+#define MyAppVersion "2026.5.9"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -50,12 +50,13 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Files]
 ; NOTE: Use the "issigverify" flag or the "Hash" parameter to verify downloads
 Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/nightly/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
+Source: "../../assets/lce_inst.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\../../assets/lce_inst.ico"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 
 [Icons]
