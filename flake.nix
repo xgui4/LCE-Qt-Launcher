@@ -7,5 +7,4 @@
 
   outputs = { self, nixpkgs }: {
 
-
   };
