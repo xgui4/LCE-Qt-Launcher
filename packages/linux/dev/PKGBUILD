@@ -1,5 +1,5 @@
 # Maintainer: Xgui4
-pkgname=lce-qt-launcher-beta
+pkgname=lce-qt-launcher-de
 pkgver=049bcc6
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Beta Build)"
@@ -30,7 +30,8 @@ optdepends=(
     'steamtinkerlaunch: For better Stream integration on Linux'
 )
 
-provides=("${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+replace=("${pkgname%-beta}")
+provides=("${pkgname%-dev}" "${pkgname%}")
 conflicts=("${pkgname%-nightly}" "${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
 source=("${pkgname}::git+${url}.git#branch=beta")
 sha256sums=('SKIP')

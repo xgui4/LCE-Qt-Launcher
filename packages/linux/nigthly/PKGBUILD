@@ -29,7 +29,7 @@ optdepends=(
     'steam: Allow for Steam integration'
 )
 
-provides=("${pkgname%-git}" "${pkgname%-nightly}" "${pkgname%}")
+provides=("${pkgname%-nightly}" "${pkgname%}")
 conflicts=("${pkgname%-dev}" "${pkgname%-stable}" "${pkgname%}")
 source=("${pkgname}::git+${url}.git#branch=nightly")
 sha256sums=('SKIP')
