@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.2
       - name: Compile .ISS
-        uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.7 # Test ! check if the bug was a regresion
         with:
           path: packages\windows\windows-setup-nigthly.iss
           options: '/O+ /F"LCE_Qt_Launcher_Windows_Nigthly_Setup"'

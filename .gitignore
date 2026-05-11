@@ -1,7 +1,6 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
-!core/
 *.*#
 *.a
 *.app
@@ -31,7 +30,6 @@
 .qmake.stash
 .qmlls.ini
 .axivion
-Makefile*
 Thumbs.db
 core
 moc_*.cpp
