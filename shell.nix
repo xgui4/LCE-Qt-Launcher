@@ -19,9 +19,9 @@ let
   '';
 
 in
-pkgs.mkShell {
+pkgs.mkShell rec {
   pname = "lce-qt-launcher";
-  version = "0.2026.5.9";
+  version = "0.2026.5.10";
   format = "pyproject";
 
   src = ./.;

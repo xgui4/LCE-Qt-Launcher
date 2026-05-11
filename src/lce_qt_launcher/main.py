@@ -6,10 +6,9 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --windows-console-mode=force
-# nuitka-project: --product-version="1.0.0.20"
-# nuitka-project: --file-version="1.0.0.20"
-# nuitka-project: --file-description="Custom Free/Libre Minecraft LCE Launcher (Nightly)"
+# nuitka-project: --product-version="0.2026.5.10"
+# nuitka-project: --file-version="0.2026.5.10"
+# nuitka-project: --file-description="Manage Minecraft Legacy Console Instances."
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
@@ -28,7 +27,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    along with this program. If not, see https://www.gnu.org/licenses/.
 """
 
 from PySide6.QtWidgets import (
@@ -39,7 +38,6 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import (
     QFontDatabase
 )
-
 
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
