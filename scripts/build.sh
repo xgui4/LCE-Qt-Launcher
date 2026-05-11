@@ -28,19 +28,17 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
             OUT="src/lce_qt_launcher/ui_${ui}.py"
             /usr/lib/qt6/uic -g python "src/${ui}.ui" -o "$OUT"
             echo "done"
-            sed -i "s/^import res_rc/from . import res_rc/g" "$OUT"
         done
     fi
 else
     echo "Starting Compilaton of Qt Ressource"
-    /usr/local/pyside6/rcc -g python $QT_RESSOURCE -o src/lce_qt_launcher/res_rc.py
+    /usr/local/PySide6/bin/rcc -g python $QT_RESSOURCE -o src/lce_qt_launcher/res_rc.py
     echo "done"
                 
     for ui in "${UI_FILES[@]}"; do
         echo "Compiling ${ui}.ui"
         OUT="src/lce_qt_launcher/ui_${ui}.py"
-        /usr/local/pyside6/uic -g python "src/${ui}.ui" -o "$OUT"
+        /usr/local/PySide6/bin/uic -g python "src/${ui}.ui" -o "$OUT"
         echo "done"
-        sed -i "s/^import res_rc/from . import res_rc/g" "$OUT"
     done
 fi
