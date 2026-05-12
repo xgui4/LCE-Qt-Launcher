@@ -2,6 +2,8 @@
 from __future__ import annotations 
 from typing import TYPE_CHECKING
 
+from PySide6.QtWidgets import QMessageBox
+
 if TYPE_CHECKING:
     from lce_qt_launcher.app_context import AppContext
 
@@ -200,6 +202,7 @@ class Instance(QObject):
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
         self.version = inst_dict.get("version", _DEFAULT_VERSION)
         self.steam_link = inst_dict.get("steam_link", "N/A")
+
     def get_download_url(self) -> str:
         """_summary_ Get the download URL of a Instance
 
@@ -264,15 +267,25 @@ class InstanceManager:
         from lce_qt_launcher.managers.downloader import Downloader
         self._downloader: Downloader = Downloader(appContext)
         self._build_info: BuildInfo = build_info
+
     def play(self) -> str:
         """_summary_ Launch an Instance
 
         Returns:
             str: _description_ error message or status and exit codes
         """
+        return_code :int = 0
         try:
             client_path : str = os.path.join(self.instance.installation_path, self.instance.exe_name)
-            game_process = subprocess.run([client_path, "-name", self.instance.username])
+            try : 
+                game_process_temp = subprocess.run([client_path, "-name", self.instance.username])
+                return_code = game_process_temp.returncode
+            except subprocess.SubprocessError as e:
+                if os.name == "posix":
+                    game_process_temp = subprocess.run(["wine", client_path, "-name", self.instance.username])
+                    return_code = game_process_temp.returncode
+                else:
+                    QMessageBox.critical(None, "Instance Error", e)
         except TimeoutExpired as err: 
             term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
             return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
@@ -280,7 +293,8 @@ class InstanceManager:
             term_service.print_error(f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
             return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
-            return f"Client closed with code {game_process.returncode}"  
+            return f"Client closed with code {return_code}"
+            
     def install_instance(self) -> QNetworkReply:
         """_summary_ Install the selected Instance
 

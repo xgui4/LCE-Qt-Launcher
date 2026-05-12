@@ -197,7 +197,7 @@ class LauncherView(QMainWindow):
                         inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
                         instanceManager.instance.load_inst_from_dict(inst_dict)
                         instanceManager.instance.display()
-                        self.ui.instanceNameLabel.setText(instanceManager.instance.name)
+                        self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
                         self.image_label = instanceManager.instance.image
                         self.news_feed = instanceManager.instance.news_feed
                         self.instance_name = instanceManager.instance.name
@@ -390,7 +390,7 @@ class LauncherView(QMainWindow):
             instance = Instance()
             instance.load_inst_from_dict(data)
             features.load_instance_from_instance(instanceManager, instance)
-            self.ui.instanceNameLabel.setText(instanceManager.instance.name)
+            self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
             self.image_label = instanceManager.instance.image
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name

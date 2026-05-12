@@ -321,10 +321,14 @@ default.lce_inst
 # pacman
 
 packages/**/src/
-packages/**/pkg
+packages/**/pkg/
 packages/**/lce-qt-launcher-*/
 packages/**/lce-qt-launcher-**-**-any.pkg.tar.zst
 
-#Nix 
+# Nix 
 
 result
+
+# FreeBSD
+
+freebsd-ports/distinfo

@@ -103,15 +103,14 @@ def main() -> None:
         os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
         app = App(appContext.theme, appContext, sys.argv)
-        _ = app.setStyle("Fusion")
-        _ = app.aboutToQuit.connect(about_to_quit_event)
+        app.setStyle("Fusion")  # pyright: ignore[reportUnusedCallResult]
+        app.aboutToQuit.connect(about_to_quit_event)  # pyright: ignore[reportUnusedCallResult]
 
         font_id = QFontDatabase.addApplicationFont(":/fonts/miracode.ttf")
 
         if font_id == -1:
             print("Error: Font could not be loaded.")
         else:
-            # 2. Get the font family name (the name defined inside the file)
             family = QFontDatabase.applicationFontFamilies(font_id)[0]
             app.setFont(family)
 

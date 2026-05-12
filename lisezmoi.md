@@ -140,12 +140,12 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
     Plateforme testée avec implémentation en cours de developement
 
 - NixOS
+- FreeBSD
 
 ### Plateformes prises en charge partiellement
 
     Plateformes non testées, mais avec implémentation
 
-- FreeBSD
 - Flatpak
 
 ### Systèmes d'exploitation non pris en charge
