@@ -43,10 +43,12 @@ class BuildInfo:
             if license_metadata:
                 self.license = license_metadata
             
-        except PackageNotFoundError:
-            term_service.print_error(f"Package not found! More info : {PackageNotFoundError.msg}")
-        except RuntimeError:
-            term_service.print_error(f"Metadata not found! More info : {RuntimeError.args}")
+        except PackageNotFoundError as e:
+            term_service.print_error(f"Package not found! More info : {e.msg}")
+        except RuntimeError as e:
+            term_service.print_error(f"Metadata not found! More info : {e}")
+        except KeyError as e:
+            term_service.print_error(f"Metadata not found! More info : {e}")
 
         self.qt_version : str = qVersion()
         self.authors : str = AUTHORS

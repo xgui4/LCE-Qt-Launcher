@@ -1,0 +1,4 @@
+This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.
+It have a CLI, support multiples Minecraft Instances, have marketplade/workshop by LCE Emerald Team to add community
+content in the game. In aps News/Git History for most default instances. Since it ise Qt, the theme will fit your system theme
+(espcially if you use KDE Plasma-and could easily customised further. Since it is written in pyton, it could be expanded. 

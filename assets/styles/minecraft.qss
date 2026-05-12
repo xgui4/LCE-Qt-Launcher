@@ -1,14 +1,19 @@
-/* 
-DISABLED DUE TO A ISSUE 
-{
+/*
+
+DISABLED. UNTIL UI READY FOR IT
+
+* {
   font-family : Miracode;
-} */
+  font-size : 10px;
+} 
+
+*/
+
 
 QLabel:disabled {
     color : gray; 
     opacity : 100;
 }
-
 
 QPushButton {
     border-image : url(":/assets/button.png"); 

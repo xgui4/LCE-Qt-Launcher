@@ -143,12 +143,12 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
     Plattform tested with work in progress implemation
 
 - NixOS
+- FreeBSD
 
 ### Partly Supported Platform
 
     Platform not tested yet, but with implementation
 
-- FreeBSD
 - Flatpak
 
 ### Unsupported OS
