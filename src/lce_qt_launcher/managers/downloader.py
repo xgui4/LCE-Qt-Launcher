@@ -3,7 +3,6 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from lce_qt_launcher.managers.instance_manager import Instance
-    from requests.models import Response
 
 from lce_qt_launcher.app_context import AppContext
 import lce_qt_launcher.views.term_service as term_service 
@@ -27,7 +26,6 @@ from PySide6.QtCore import (
 
 from io import BytesIO
 
-import requests
 import os
 
 START_DOWNLOAD_REQUEST_MSG_STR = "Starting Download Request"
@@ -85,31 +83,6 @@ class Downloader(QObject):
 
         _ = reply.finished.connect(_when_finished)
         return reply
-    
-    def save_file_from_internet(
-        self,
-        url : str, 
-        filename : str, 
-        save_location : str = ".", 
-    ) -> None:
-        """
-        _summary_ : download a file from the internet and than save it in a specified location 
-
-        Args:
-            url : the url to download the file
-            filename : the filename to save the file inot (with extension)
-            save_location (optional) : the specified location , default into "." 
-        #TODO - Make Async
-        """
-        print("downloading img")
-        response: Response = requests.get(url)
-        response.raise_for_status()
-        if response.status_code == SUCCESS_STATUS_CODE:
-            term_service.print_success(f"Downloading of {url} file was success")
-            with open(file=os.path.join(save_location , filename), mode="wb") as f:
-                _ = f.write(response.content)
-        else:
-            print(f"Error while downloading the {url} file")
         
     def extract_inst_async(self, data : ZipFile, instance : Instance) -> None:
         """

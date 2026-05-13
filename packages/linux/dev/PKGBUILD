@@ -10,7 +10,6 @@ depends=(
     'python' 
     'pyside6' 
     'python-vdf'
-    'python-requests' 
     'python-platformdirs'
     'python-rich'
 ) 
