@@ -27,7 +27,6 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 
 - Interface en ligne de commande (CLI)
 - Prise en charge de plusieurs instances (en cours de développement)
-- Prise en charge des localisations (en cours de développement)
 - Instances préconfigurées :
   - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (anciennement smartcmd/MinecraftConsoles)
   - LegacyEvolved (sera bientôt supprimé car remplacé par NeoLegacy)
@@ -45,7 +44,8 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 - Prise en charge des thèmes
 - Compatibilité GNU/Linux
 - Prise en charge de Windows
-- Prise en charge expérimentale de FreeBSD
+- Prise en charge des localisations
+- Prise en charge expérimentale de FreeBSD et Nix/NixOS
 - Devenir la plateforme principale pour Minecraft LCE sur GNU/Linux
 
 ## Comment exécuter

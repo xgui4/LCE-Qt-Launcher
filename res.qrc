@@ -43,5 +43,6 @@
     </qresource>
     <qresource prefix="/fonts">
         <file alias="miracode.ttf">assets/fonts/Miracode.ttf</file>
+        <file alias="monocraft.ttc">assets/fonts/Monocraft.ttc</file>
     </qresource>
 </RCC>

@@ -106,7 +106,7 @@ def main() -> None:
         app.setStyle("Fusion")  # pyright: ignore[reportUnusedCallResult]
         app.aboutToQuit.connect(about_to_quit_event)  # pyright: ignore[reportUnusedCallResult]
 
-        font_id = QFontDatabase.addApplicationFont(":/fonts/miracode.ttf")
+        font_id = QFontDatabase.addApplicationFont(":/fonts/monocraft.ttc")
 
         if font_id == -1:
             print("Error: Font could not be loaded.")

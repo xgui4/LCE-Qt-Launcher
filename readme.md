@@ -27,7 +27,6 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 
 - Command Line interface (CLI)
 - Multiple Instances support (Work in progress)
-- localisations support (Work in progress)
   - Pre-Configured ones :
     - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (previously smartcmd/MinecraftConsoles)
     - LegacyEvolved (will be removed soon as was replaced with NeoLegacy)
@@ -48,7 +47,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Skin support
 - GNU/Linux compatibility
 - Windows support
-- Experimental FreeBSD support
+- Experimental FreeBSD and Nix/NixOS support
+- Localisations support
 - Focus on being the main hub for Minecraft LCE on GNU/Linux
 
 ## How to run

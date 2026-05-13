@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Minecraft LCE QT Launcher</string>
+   <string>LCE QT Launcher</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../res.qrc">
@@ -131,7 +131,6 @@
             <widget class="QLabel" name="progressLabel">
              <property name="font">
               <font>
-               <family>Monocraft</family>
                <bold>true</bold>
               </font>
              </property>
@@ -150,7 +149,6 @@
                   <widget class="QLabel" name="modifyInstancSectionLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <pointsize>14</pointsize>
                      <bold>true</bold>
                     </font>
@@ -167,7 +165,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -193,7 +190,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -216,7 +212,6 @@
                   <widget class="QLabel" name="pathInputBoxLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -239,7 +234,6 @@
                   <widget class="QLabel" name="repoURKLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -265,7 +259,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -294,7 +287,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -435,7 +427,6 @@
             <widget class="QLabel" name="repo_name_branch">
              <property name="font">
               <font>
-               <family>Monocraft</family>
                <pointsize>14</pointsize>
                <bold>true</bold>
               </font>
@@ -472,7 +463,6 @@
              </property>
              <property name="font">
               <font>
-               <family>Monocraft</family>
                <bold>true</bold>
               </font>
              </property>
@@ -549,7 +539,6 @@
            <widget class="QListWidget" name="listWidget">
             <property name="font">
              <font>
-              <family>Monocraft</family>
               <pointsize>24</pointsize>
               <bold>true</bold>
               <underline>false</underline>
@@ -1116,8 +1105,6 @@
  </customwidgets>
  <resources>
   <include location="../res.qrc"/>
-  <include location="../res.qrc"/>
-  <include location="../../../.designer/res.qrc"/>
  </resources>
  <connections/>
 </ui>
