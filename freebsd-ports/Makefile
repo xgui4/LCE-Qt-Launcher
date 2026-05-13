@@ -1,5 +1,5 @@
-PORTNAME=		lce-qt-launcher
-DISTVERSION=	26.5.11b0
+PORTNAME=		lce-qt-launcher-nightly
+DISTVERSION=	26.5.12b0
 CATEGORIES=		games python
 
 MAINTAINER=		xgui4-dev@example.com
@@ -19,7 +19,6 @@ RUN_DEPENDS=	bash:shells/bash \
 				${PYTHON_PKGNAMEPREFIX}hatch>0:devel/py-hatch@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}rich>0:devel/py-rich@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}vdf>0:devel/py-vdf@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}requests>0:devel/py-requests@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}platformdirs>0:devel/py-platformdirs@${PY_FLAVOR}
 
 USES=			python qt:6 shebangfix desktop-file-utils shared-mime-info
