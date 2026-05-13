@@ -1,3 +1,9 @@
+# pyright: reportUnusedCallResult=hint
+# pyright: reportAny=hint
+# pyright: reportAttributeAccessIssue=false
+# pyright: reportUnknownMemberType=false
+# pyright: reportUnknownVariableType=false
+
 from PySide6.QtWidgets import ( 
     QApplication,
     QFileDialog, 
@@ -46,13 +52,13 @@ from lce_qt_launcher.managers.steam_manager import add_instance_to_steam
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
-import lce_qt_launcher.res_rc
+import lce_qt_launcher.res_rc  # pyright: ignore[reportUnusedImport]
 
 class LauncherView(QMainWindow):
     """_summary_ The Main Window / launcher of the QApplcation
 
     Args:
-        QMainWindow (_type_): _description_ The inheite type of Launcher
+        QMainWindow (_type_): _description_ Inherited/is a QMainWindow
     """
     def __init__(self, 
                  appContext : AppContext, 
@@ -68,9 +74,9 @@ class LauncherView(QMainWindow):
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
-        self.instances : list[Instance] = list()
+        self.instances: list[Instance] = list[Instance]()
 
-        STARTING_GAME_MSG = translator.translate("start_game_msg")
+        STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
         def generateInstanceFromForm() -> None:
             """
@@ -139,6 +145,7 @@ class LauncherView(QMainWindow):
             self.news_feed = instanceManager.instance.news_feed
             self.instance_name = instanceManager.instance.name
             self.ui.usernameInputBox.setText(instanceManager.instance.username)
+            self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
             self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
             self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
             pixmap = QPixmap(self.image_label)
@@ -194,7 +201,7 @@ class LauncherView(QMainWindow):
                 path = Path(file_arg)
                 if path.is_file():
                     with path.open("r", encoding="utf-8") as instance:
-                        inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
+                        inst_dict: dict[str, str] = json.load(instance)
                         instanceManager.instance.load_inst_from_dict(inst_dict)
                         instanceManager.instance.display()
                         self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
@@ -202,6 +209,7 @@ class LauncherView(QMainWindow):
                         self.news_feed = instanceManager.instance.news_feed
                         self.instance_name = instanceManager.instance.name
                         self.ui.usernameInputBox.setText(instanceManager.instance.username)
+                        self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
                         self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
                         self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
                         pixmap = QPixmap(self.image_label)
@@ -225,7 +233,7 @@ class LauncherView(QMainWindow):
             term_service.print_information("No argument given, start with default instance.")
         
         self.sysinfo_dialog: QDialog = QDialog() 
-        self.dialog_ui = Ui_sys_info_dialog()
+        self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
 
         self.about: Ui_AboutDialog = Ui_AboutDialog()
@@ -239,8 +247,8 @@ class LauncherView(QMainWindow):
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
-        self.about.platformLabel.setText(f"Platform : {platform.release()}")
+        self.about.channelLabel.setText(f"**Channel** : {appContext.buildInfo.version_type}")
+        self.about.platformLabel.setText(f"**Platform** : {platform.release()}")
         from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
         self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
@@ -253,10 +261,10 @@ class LauncherView(QMainWindow):
 
         systemManager: SystemManager = appContext.sys_man
 
-        self.dialog_ui.appVersion.setText(f"{buildInfo.app_name} Version {buildInfo.version_type} {buildInfo.version}")
-        self.dialog_ui.qVersionLabel.setText(f"Qt Version {qVersion()}")
-        self.dialog_ui.pyVersionLabel.setText(f"Python Version : {sys.version}")
-        self.dialog_ui.osInfoLabel.setText(f"OS : {systemManager.name} \n Version : {systemManager.version}")
+        self.dialog_ui.appVersionLabel.setText(f"**App Version** : {buildInfo.app_name} {buildInfo.version_type} {buildInfo.version}")
+        self.dialog_ui.qVersionLabel.setText(f"**Qt Version** : {qVersion()}")
+        self.dialog_ui.pyVersionLabel.setText(f"**Python Version** : {sys.version}")
+        self.dialog_ui.osInfoLabel.setText(f"**System Name** : {systemManager.name} \n**System Version** : {systemManager.version}")
         self.dialog_ui.pluginsInfoLabel.setText("")
         self.dialog_ui.runnersLabel.setText("")
 
@@ -387,18 +395,19 @@ class LauncherView(QMainWindow):
         self.ui.statusbar.addWidget(holyday_label)
 
     def load_instance(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
-            instance = Instance()
-            instance.load_inst_from_dict(data)
-            features.load_instance_from_instance(instanceManager, instance)
-            self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
-            self.image_label = instanceManager.instance.image
-            self.news_feed = instanceManager.instance.news_feed
-            self.instance_name = instanceManager.instance.name
-            self.ui.usernameInputBox.setText(instanceManager.instance.username)
-            self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-            pixmap = QPixmap(self.image_label)
-            self.ui.instance_img.setPixmap(pixmap)
-            self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)   
-            self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)
+        instance = Instance()
+        instance.load_inst_from_dict(data)
+        features.load_instance_from_instance(instanceManager, instance)
+        self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
+        self.image_label = instanceManager.instance.image
+        self.news_feed = instanceManager.instance.news_feed
+        self.instance_name = instanceManager.instance.name
+        self.ui.usernameInputBox.setText(instanceManager.instance.username)
+        self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
+        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
+        pixmap: QPixmap = QPixmap(self.image_label)
+        self.ui.instance_img.setPixmap(pixmap)
+        self.ui.repo_name_branch.setText(self.instance_name)
+        self.ui.newsEngineView.setUrl(self.news_feed)   
+        self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)

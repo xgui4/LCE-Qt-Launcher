@@ -31,7 +31,7 @@ optdepends=(
 
 replace=("${pkgname%-beta}")
 provides=("${pkgname%-dev}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%-stable}")
 source=("${pkgname}::git+${url}.git#branch=beta")
 sha256sums=('SKIP')
 

@@ -21,7 +21,7 @@ let
 in
 pkgs.mkShell rec {
   pname = "lce-qt-launcher";
-  version = "0.2026.5.12";
+  version = "0.2026.5.13";
   format = "pyproject";
 
   src = ./.;

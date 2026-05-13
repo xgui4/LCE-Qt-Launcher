@@ -6,9 +6,9 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.2026.5.10"
-# nuitka-project: --file-version="0.2026.5.10"
-# nuitka-project: --file-description="Manage Minecraft Legacy Console Instances."
+# nuitka-project: --product-version="0.2026.5.13"
+# nuitka-project: --file-version="0.2026.5.13"
+# nuitka-project: --file-description="Manage Minecraft Legacy Console Edition Instances."
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
@@ -29,6 +29,9 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://www.gnu.org/licenses/.
 """
+
+from lce_qt_launcher.models.preferences import UserPref
+
 
 from PySide6.QtWidgets import (
     QMessageBox, 
@@ -57,20 +60,16 @@ def main() -> None:
 
     appData : AppData = AppData()
     appContext: AppContext = AppContext(appData)
-
     sys_man: SystemManager = appContext.sys_man
 
     try:
         sys_man.adapt_qt_system_theme()
-
-        userPref = appContext.userPref
-
-        user_language: str = userPref.get_language_pref()
+        userPref: UserPref = appContext.userPref
+        #user_language: str = userPref.get_language_pref()
         user_theme: str = userPref.get_theme_pref()
         show_holiday: str = userPref.get_show_holiday()
         developer_mode: str = userPref.get_developper_mode()
         accessible_mode: str = userPref.get_accesible_mode()
-         
         try: 
             selected_theme: StrTheme = theme.from_str_to_strTheme(user_theme)
             appContext.updateTheme(selected_theme)
@@ -79,11 +78,10 @@ def main() -> None:
             appContext.updateSetAccesbilityMoodeStatus(accessible_mode)
         except RuntimeError as err:
             term_service.print_error(str(err))
-
-        appContext.updateLanguage(user_language)
+        # appContext.updateLanguage(user_language)
     except:
         term_service.print_error("They were a error while loading the system theme or user preference.")
-
+        
     def about_to_quit_event() -> None:
         instance_manager_label: str = appContext.translator.translate("instance_manager_label")
         save_instance_msg_box_label: str = appContext.translator.translate("save_instance_msg_box_label")         

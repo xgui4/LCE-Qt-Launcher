@@ -26,10 +26,11 @@ makedepends=(
 optdepends=(
     'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
     'steam: Allow for Steam integration'
+    'steamtinkerlaunch: For better Stream integration on Linux'
 )
 
 provides=("${pkgname%-nightly}" "${pkgname%}")
-conflicts=("${pkgname%-dev}" "${pkgname%-stable}" "${pkgname%}")
+conflicts=("${pkgname%-dev}" "${pkgname%-stable}")
 source=("${pkgname}::git+${url}.git#branch=nightly")
 sha256sums=('SKIP')
 

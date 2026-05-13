@@ -1,5 +1,5 @@
 PORTNAME=		lce-qt-launcher-nightly
-DISTVERSION=	26.5.12b0
+DISTVERSION=	26.5.13b0
 CATEGORIES=		games python
 
 MAINTAINER=		xgui4-dev@example.com
