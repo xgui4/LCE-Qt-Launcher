@@ -120,7 +120,6 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 ## Bibliothèques et outils Python utilisés
 
 - PySide 6
-- requests
 - platformdirs
 - rich
 - hatch
