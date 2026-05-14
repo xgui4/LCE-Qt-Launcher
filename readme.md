@@ -1,4 +1,4 @@
-# LCE QT Launcher
+# LCE Qt Launcher
 
 [French Version](lisezmoi.md)
 
