@@ -627,8 +627,8 @@
         <item>
          <layout class="QGridLayout" name="marketplacesFrameGrid">
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="marketplaceFrameRow">
-            <item>
+           <layout class="QGridLayout" name="marketplacesGridLayout">
+            <item row="0" column="0">
              <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
               <property name="url">
                <url>

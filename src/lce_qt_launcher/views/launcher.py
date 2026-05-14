@@ -1,9 +1,3 @@
-# pyright: reportUnusedCallResult=hint
-# pyright: reportAny=hint
-# pyright: reportAttributeAccessIssue=false
-# pyright: reportUnknownMemberType=false
-# pyright: reportUnknownVariableType=false
-
 from PySide6.QtWidgets import ( 
     QApplication,
     QFileDialog, 
@@ -14,17 +8,21 @@ from PySide6.QtWidgets import (
     QInputDialog,
     QMessageBox
 )
+
 from PySide6.QtGui import ( 
     QPalette, 
     QPixmap,
     QBrush
 )
+
 from PySide6.QtCore import ( 
     qVersion,
     Qt,
     QFile,
     QIODevice
 )
+
+from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest
 
 import sys
 import platform
@@ -59,7 +57,7 @@ class LauncherView(QMainWindow):
 
     Args:
         QMainWindow (_type_): _description_ Inherited/is a QMainWindow
-    """
+    """    
     def __init__(self, 
                  appContext : AppContext, 
                  appData : AppData, 
@@ -315,7 +313,7 @@ class LauncherView(QMainWindow):
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
-        loadDefaultInstance = lambda : self.load_instance(dict(), instanceManager)
+        loadDefaultInstance = lambda : self.loadInstanceCommand(dict(), instanceManager)
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
 
         neoLegacyJson = QFile(":/instances/neoLegacy.lce_inst")
@@ -326,7 +324,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_neo = bytes(neoLegacyJson.readAll().data()).decode('utf-8')
             data_neo = json.loads(raw_text_neo)
-            loadNeoLegacyInstance = lambda : self.load_instance(data_neo, instanceManager)
+            loadNeoLegacyInstance = lambda : self.loadInstanceCommand(data_neo, instanceManager)
             self.ui.actionLoadNeoLegacyInstance.triggered.connect(loadNeoLegacyInstance)
 
         hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
@@ -337,7 +335,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
             data_hellish_end = json.loads(raw_text_hellish_end)
-            loadhellishEndsInstance = lambda : self.load_instance(data_hellish_end, instanceManager)
+            loadhellishEndsInstance = lambda : self.loadInstanceCommand(data_hellish_end, instanceManager)
             self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
 
         i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
@@ -348,7 +346,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
             data_360 = json.loads(raw_text_360)
-            load360RevivedInstance = lambda : self.load_instance(data_360, instanceManager)
+            load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
             self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
 
         revelationJson = QFile(":/instances/revelations.lce_inst")
@@ -359,7 +357,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
             data_rev = json.loads(raw_text_rev)
-            loadRevelationInstance = lambda : self.load_instance(data_rev, instanceManager)
+            loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
             self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
 
         aetherJson = QFile(":/instances/aether.lce_inst")
@@ -370,7 +368,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_aether = bytes(aetherJson.readAll().data()).decode('utf-8')
             data_aether = json.loads(raw_text_aether)
-            loadAetherInstance = lambda : self.load_instance(data_aether, instanceManager)
+            loadAetherInstance = lambda : self.loadInstanceCommand(data_aether, instanceManager)
             self.ui.actionLoadAetherInstance.triggered.connect(loadAetherInstance)
 
         def addSteamLinkIntegrationButtonCommand():
@@ -389,12 +387,29 @@ class LauncherView(QMainWindow):
 
         self.ui.InstancesList.setEnabled(False)
 
+        self.profile: QWebEngineProfile = self.ui.marketplacesWebsiteEngine.page().profile()
+        self.profile.downloadRequested.connect(self.handleDownloadCommand)
+
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
         holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)
-
-    def load_instance(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
+        
+    def handleDownloadCommand(self, download: QWebEngineDownloadRequest):
+        """Processes the PySide6 download stream request."""
+        suggested_path = str(Path.home() / download.suggestedFileName())
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Downloaded File", suggested_path)
+        
+        if file_path:
+            target_path = Path(file_path)
+            download.setDownloadDirectory(str(target_path.parent))
+            download.setDownloadFileName(target_path.name)
+            download.accept()
+            download.finished.connect(lambda: print("File download completed successfully."))
+        else:
+            download.cancel()
+    
+    def loadInstanceCommand(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
         instance = Instance()
         instance.load_inst_from_dict(data)
         features.load_instance_from_instance(instanceManager, instance)

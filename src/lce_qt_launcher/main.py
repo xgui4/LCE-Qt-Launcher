@@ -101,8 +101,8 @@ def main() -> None:
         os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
         app = App(appContext.theme, appContext, sys.argv)
-        app.setStyle("Fusion")  # pyright: ignore[reportUnusedCallResult]
-        app.aboutToQuit.connect(about_to_quit_event)  # pyright: ignore[reportUnusedCallResult]
+        app.setStyle("Fusion")
+        app.aboutToQuit.connect(about_to_quit_event)
 
         font_id = QFontDatabase.addApplicationFont(":/fonts/monocraft.ttc")
 

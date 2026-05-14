@@ -92,6 +92,11 @@
        <string>Mod</string>
       </property>
      </item>
+    <item>
+      <property name="text">
+       <string>Custom Skin</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="4" column="0">
