@@ -74,9 +74,9 @@ def launch_game(instanceManager : InstanceManager, starting_game_msg_str : str) 
     term_service.print_information(starting_game_msg_str)
     print(instanceManager.play())
 
-def show_setting(parent : QWidget, setting_ui : Ui_settingDialog)  -> None:
+def show_setting(parent : QWidget, setting_ui : Ui_settingDialog, appContext : AppContext)  -> None:
     """Features : Open the Setting Pages"""
-    _ = SettingDialog(parent, setting_ui)
+    _ = SettingDialog(parent, setting_ui, appContext)
 
 def show_system_info(parent : QWidget) -> None:
     """Features : Open the System Info Pages"""

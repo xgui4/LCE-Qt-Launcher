@@ -5,9 +5,9 @@
     "username": "Steve", 
     "archive_file": "LCEWindows64.zip", 
     "exe_name": "Minecraft.Client.exe", 
-    "repo_url": "https://github.com/MCLCE/MinecraftConsoles", 
+    "repo_url": "https://git.minecraftlegacy.com/backups/MinecraftConsoles", 
     "image" : ":/assets/mclce-ico.png",
-    "news_feed" : "https://github.com/MCLCE/MinecraftConsoles/commits/main/",
+    "news_feed" : "https://git.minecraftlegacy.com/backups/MinecraftConsoles/commits/branch/main",
     "instance_source": "InstanceSource.GITHUB_RELEASE", 
     "instance_type": "InstanceType.CLIENT_VANILLA", 
     "version": "nightly"

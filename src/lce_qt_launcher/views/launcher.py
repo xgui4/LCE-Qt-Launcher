@@ -100,7 +100,7 @@ class LauncherView(QMainWindow):
         def showSettingDialogCommand() -> None:
             """_summary_ Show the setting Dialog
             """
-            features.show_setting(self, Ui_settingDialog())
+            features.show_setting(self, Ui_settingDialog(), appContext)
 
         def saveInstanceButtonCommand() -> None:
             """_summary_ Save the instance on a file on disk
@@ -327,38 +327,47 @@ class LauncherView(QMainWindow):
             loadNeoLegacyInstance = lambda : self.loadInstanceCommand(data_neo, instanceManager)
             self.ui.actionLoadNeoLegacyInstance.triggered.connect(loadNeoLegacyInstance)
 
-        hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
-        if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open Helish Ends Instance")
-            self.ui.actionLoadHellishEndsInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
-            data_hellish_end = json.loads(raw_text_hellish_end)
-            loadhellishEndsInstance = lambda : self.loadInstanceCommand(data_hellish_end, instanceManager)
-            self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
+        self.ui.actionLoadHellishEndsInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoadHellishEndsInstance.setText("HellishEnd (Disabled due to DMCA)")
 
-        i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
-        if not i360RevivedJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open 360Revived Instance")
-            self.ui.actionLoad360RevivedInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
-            data_360 = json.loads(raw_text_360)
-            load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
-            self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
+        self.ui.actionLoad360RevivedInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoad360RevivedInstance.setText("360Revived (Disabled due to DMCA)")
 
-        revelationJson = QFile(":/instances/revelations.lce_inst")
-        if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open revelations Instance")
-            self.ui.actionLoadRevelationsInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
-            data_rev = json.loads(raw_text_rev)
-            loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
-            self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
+        self.ui.actionLoadRevelationsInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoadRevelationsInstance.setText("Revelations (Disabled due to DMCA)")
+
+        # hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
+        # if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open Helish Ends Instance")
+        #     self.ui.actionLoadHellishEndsInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
+        #     data_hellish_end = json.loads(raw_text_hellish_end)
+        #     loadhellishEndsInstance = lambda : self.loadInstanceCommand(data_hellish_end, instanceManager)
+        #     self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
+
+        # i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
+        # if not i360RevivedJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open 360Revived Instance")
+        #     self.ui.actionLoad360RevivedInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
+        #     data_360 = json.loads(raw_text_360)
+        #     load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
+        #     self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
+
+        # revelationJson = QFile(":/instances/revelations.lce_inst")
+        # if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open revelations Instance")
+        #     self.ui.actionLoadRevelationsInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
+        #     data_rev = json.loads(raw_text_rev)
+        #     loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
+        #     self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
 
         aetherJson = QFile(":/instances/aether.lce_inst")
         if not aetherJson.open(QIODevice.OpenModeFlag.ReadOnly):

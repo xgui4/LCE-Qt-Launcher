@@ -31,9 +31,7 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
     - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (previously smartcmd/MinecraftConsoles)
     - LegacyEvolved (will be removed soon as was replaced with NeoLegacy)
     - [NeoLegacy](https://github.com/pieeebot/neoLegacy/)
-    - [360Revived](https://github.com/BluTac10/360Revived)
     - [LCE-Revelations](https://github.com/itsRevela/LCE-Revelations)
-    - [HellishEnds](https://github.com/deadvoxelx/HellishEnds)
 - Marketplaces :
   - [LCE Hub Emeralds Launcher Workshop](https://github.com/LCE-Hub/piston)
   - [LegacyMods (coming soon)](https://legacymods.org/)
@@ -166,6 +164,8 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 - [LCE Hub](https://github.com/LCE-Hub) for the Marketplace/Workshop
 - [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
 - [Miracode Font](https://github.com/IdreesInc/Miracode)
+- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - now dcma, so it is removed/unaivable for now
+- [360Revived](https://github.com/BluTac10/360Revived) - now dcma, so it is removed/unaivable for now
 
 ## Code of Respect
 

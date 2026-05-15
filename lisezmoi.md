@@ -162,6 +162,8 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 aftConsoles) pour le portage du jeu sur PC
 - [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour la rétrocompatibilité des mises à jour pour le portage PC
 - [LCE Hub](https://github.com/LCE-Hub) pour la Marketplace/Workshop
+- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - maintenant DCMA, il est donc supprimé/indisponible pour le moment
+- [360Revived](https://github.com/BluTac10/360Revived) - maintenant DCMA, donc supprimé/inutilisable pour le moment
 
 ## Code de conduite
 
