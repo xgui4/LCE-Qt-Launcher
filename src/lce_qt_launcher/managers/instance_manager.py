@@ -144,13 +144,13 @@ _DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
 _DEFAULT_USERNAME = "Steve"
 _DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 _DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
-_DEFAULT_REPO_URL = "https://github.com/MCLCE/MinecraftConsoles"
+_DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/MinecraftConsoles"
 _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
-_DEFAULT_NEWS_FEED  = "https://github.com/MCLCE/minecraftconsoles/commits"
+_DEFAULT_NEWS_FEED  = "https://git.minecraftlegacy.com/backups/MinecraftConsoles/commits/branch/main"
 _DEFAULT_VERSION = "nightly"
 
 class Instance(QObject):
@@ -285,7 +285,7 @@ class InstanceManager:
                     game_process_temp = subprocess.run(["wine", client_path, "-name", self.instance.username])
                     return_code = game_process_temp.returncode
                 else:
-                    QMessageBox.critical(None, "Instance Error", e)
+                    QMessageBox.critical(None, "Instance Error", str(e.args))
         except TimeoutExpired as err: 
             term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
             return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
@@ -339,6 +339,6 @@ class InstanceManager:
             save_file (str): _description_ specified save file and location
         """
         with open(file=save_file, mode='r') as json_file:
-            json_data = json.load(json_file)     # pyright: ignore[reportAny]
-            inst_dict : dict[str, str] = json_data    # pyright: ignore[reportAny]
+            json_data = json.load(json_file)
+            inst_dict : dict[str, str] = json_data
             self.instance.load_inst_from_dict(inst_dict)
