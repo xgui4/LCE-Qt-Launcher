@@ -23,7 +23,6 @@ pkgs.python3Packages.buildPythonApplication rec {
 
   propagatedBuildInputs = with pkgs.python3Packages; [
     pyside6
-    requests
     platformdirs
     vdf
     rich
