@@ -19,6 +19,7 @@ class SettingDialog(QDialog):
             isHolidayEnabled = self.ui_setting.holydayDheckBox.isChecked()
             themeSelectedIndex = self.ui_setting.themesComboBox.currentIndex()
             languageSelectedIndex = self.ui_setting.languagesComboBox.currentData()
+            isExperimentsOn = self.ui_setting.enableExperimentscheckBox.isChecked()
             QMessageBox.information(self, "Setting", "Functionnal Setting Coming Later")
 
         self.ui_setting.settingsOptions.accepted.connect(applyButtonCommand)

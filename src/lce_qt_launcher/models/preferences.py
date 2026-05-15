@@ -11,6 +11,7 @@ _LANGUAGE_OPTION : str = "preferences/languages"
 _SHOW_HOLIDAY_OPTION : str = "views/show_hoyday_enabled"
 _DEVELOPPER_MODE_OPTION  : str = "developper/dev_mode_enabled"
 _ACCESIBLE_MODE_OPTION  : str = "accesibility/accesibility_mode_enabled"
+_EXPERIMENTAL_MODE_OPTION  : str = "preferenses/experimental_mode_enabled"
 
 class UserPref (QSettings): 
     """_summary_ The UserPref managed by QtSettings
@@ -26,6 +27,7 @@ class UserPref (QSettings):
         self.default_show_holiday : bool = True
         self.default_accesibility_mode : bool = False
         self.default_developper_mode : bool = False
+        self.default_experiment_mode : bool = False
 
     def set_theme_pref(self, theme : str) -> None:
         """_summary_ Theme Setter
@@ -109,6 +111,22 @@ class UserPref (QSettings):
         """
         return str(self.value(_DEVELOPPER_MODE_OPTION, self.default_developper_mode, type=str))
     
+    def set_experimental_mode(self, experimental_mode_bool : bool) -> None:
+        """_summary_ Experimental Mode Setter
+
+        Args:
+            developper_mode_bool (bool): _description_ #TODO DOCSTRINGS
+        """
+        super().setValue(_EXPERIMENTAL_MODE_OPTION, experimental_mode_bool)
+        super().sync()
+    def get_experimental_mode(self) -> str:
+        """_summary_ Experimental Mode Getter
+
+        Returns:
+            str: _description_ #TODO DOCSTRINGS
+        """
+        return str(self.value(_EXPERIMENTAL_MODE_OPTION, self.default_experiment_mode, type=str))
+    
     def generate_default_config(self) -> None:
         """_summary_ Generate the default config for the users
         """
@@ -118,4 +136,5 @@ class UserPref (QSettings):
         self.set_show_holiday(self.default_show_holiday)
         self.set_accesible_mode(self.default_accesibility_mode)
         self.set_accesible_mode(self.default_developper_mode)
+        self.set_experimental_mode(self.default_experiment_mode)
         super().sync()

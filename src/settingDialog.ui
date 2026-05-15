@@ -245,12 +245,17 @@
          </font>
         </property>
         <property name="text">
-         <string>Settings</string>
+         <string>Settings (Experimental GUI)</string>
         </property>
        </widget>
       </item>
       <item row="11" column="1">
        <widget class="QCheckBox" name="enableExperimentscheckBox">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>Enable Experiments</string>
         </property>
