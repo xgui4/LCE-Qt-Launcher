@@ -139,19 +139,19 @@ def from_str_to_InstanceType(string : str)-> InstanceType:
             return InstanceType.SERVER_MODDED
         case _: raise RuntimeError(f"{string} is an Incorrect Instance Type")
 
-_DEFAULT_INST_NAME = "Default"
-_DEFAULT_INSTALLATION_PATH = "MinecraftLCEClient"
+_DEFAULT_INST_NAME = "Default (MCLCE - Git Source)"
+_DEFAULT_INSTALLATION_PATH = ".default"
 _DEFAULT_USERNAME = "Steve"
-_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 _DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
+_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 _DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/MinecraftConsoles"
-_DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
+_DEFAULT_INST_SOURCE = InstanceSource.REMOTE_GIT_SOURCE
 _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
-_DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
+_DEFAULT_INST_SOURCE_STRING = "InstanceSource.REMOTE_GIT_SOURCE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED  = "https://git.minecraftlegacy.com/backups/MinecraftConsoles/commits/branch/main"
-_DEFAULT_VERSION = "nightly"
+_DEFAULT_VERSION = "main"
 
 class Instance(QObject):
     """_summary_ An config and inform an instance of Minecraft LCE Installed or to install
