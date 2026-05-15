@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1205</width>
-    <height>891</height>
+    <height>897</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -255,7 +255,7 @@
              <item>
               <widget class="QPushButton" name="settingButton">
                <property name="enabled">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -264,7 +264,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Setting</string>
+                <string>Setting (Experimental)</string>
                </property>
                <property name="icon">
                 <iconset theme="preferences-system"/>
@@ -632,7 +632,7 @@
              <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
               <property name="url">
                <url>
-                <string>https://lce-hub.github.io/piston/</string>
+                <string>https://github.com/LCE-Hub/LCE-Workshop</string>
                </url>
               </property>
              </widget>
@@ -993,7 +993,7 @@
     <iconset theme="preferences-system"/>
    </property>
    <property name="text">
-    <string>Setting</string>
+    <string>Setting (Experimental)</string>
    </property>
   </action>
   <action name="actionInstance_Editor">
@@ -1026,7 +1026,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Setting</string>
+    <string>Setting (Experiment)</string>
    </property>
   </action>
   <action name="actionSetting_3">
@@ -1037,7 +1037,7 @@
     <iconset theme="preferences-system"/>
    </property>
    <property name="text">
-    <string>Setting</string>
+    <string>Setting (Experiment)</string>
    </property>
   </action>
   <action name="actionView_LCE_Qt_Launcher">
@@ -1161,6 +1161,12 @@
   <action name="actionEnable_Experiments">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Enable Experiments</string>

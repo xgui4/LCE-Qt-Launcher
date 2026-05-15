@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>692</width>
-    <height>284</height>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,57 @@
       <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="8" column="0">
+      <item row="1" column="1">
+       <widget class="QLabel" name="settingIcon">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../res.qrc">:/assets/gear.gif</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QCheckBox" name="holydayDheckBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+          <hintingpreference>PreferFullHinting</hintingpreference>
+         </font>
+        </property>
+        <property name="accessibleName">
+         <string>Check Holiday</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>Check Holiday and display them</string>
+        </property>
+        <property name="accessibleIdentifier">
+         <string>checkboxHoliday</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Show Holiday</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
        <widget class="QCheckBox" name="accesibilitycheckBox">
         <property name="font">
          <font>
@@ -51,19 +101,6 @@
         </property>
         <property name="icon">
          <iconset theme="preferences-desktop-accessibility"/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="settingIcon">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="../res.qrc">:/assets/gear.gif</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -108,15 +145,16 @@
         </item>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="LanguagesComboBoxlabel">
+      <item row="1" column="0">
+       <widget class="QLabel" name="settingLabel">
         <property name="font">
          <font>
+          <pointsize>19</pointsize>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>Languages</string>
+         <string>Settings (Experimental GUI)</string>
         </property>
        </widget>
       </item>
@@ -147,7 +185,7 @@
         </item>
        </widget>
       </item>
-      <item row="11" column="0">
+      <item row="13" column="0">
        <widget class="QCheckBox" name="developperModeDheckBox">
         <property name="enabled">
          <bool>true</bool>
@@ -187,6 +225,18 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="LanguagesComboBoxlabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Languages</string>
+        </property>
+       </widget>
+      </item>
       <item row="5" column="0">
        <widget class="QLabel" name="themesComboBoxLabel">
         <property name="font">
@@ -199,57 +249,7 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QCheckBox" name="holydayDheckBox">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="font">
-         <font>
-          <bold>true</bold>
-          <hintingpreference>PreferFullHinting</hintingpreference>
-         </font>
-        </property>
-        <property name="accessibleName">
-         <string>Check Holiday</string>
-        </property>
-        <property name="accessibleDescription">
-         <string>Check Holiday and display them</string>
-        </property>
-        <property name="accessibleIdentifier">
-         <string>checkboxHoliday</string>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LayoutDirection::LeftToRight</enum>
-        </property>
-        <property name="text">
-         <string>Show Holiday</string>
-        </property>
-        <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="settingLabel">
-        <property name="font">
-         <font>
-          <pointsize>19</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Settings (Experimental GUI)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="1">
+      <item row="13" column="1">
        <widget class="QCheckBox" name="enableExperimentscheckBox">
         <property name="font">
          <font>
@@ -263,6 +263,21 @@
          <iconset theme="QIcon::ThemeIcon::DialogWarning"/>
         </property>
        </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="usernameInputBoxLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="2">
+       <widget class="QLineEdit" name="usenameInputBox"/>
       </item>
      </layout>
     </widget>

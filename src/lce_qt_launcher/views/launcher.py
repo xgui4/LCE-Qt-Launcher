@@ -138,18 +138,7 @@ class LauncherView(QMainWindow):
             """_summary_ Open the Load Save File Dialog 
             """
             features.load_instance_from_file(self, instanceManager, appContext, buildInfo, appData)
-            self.ui.instanceNameLabel.setText(instanceManager.instance.name)
-            self.image_label = instanceManager.instance.image
-            self.news_feed = instanceManager.instance.news_feed
-            self.instance_name = instanceManager.instance.name
-            self.ui.usernameInputBox.setText(instanceManager.instance.username)
-            self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
-            self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-            pixmap = QPixmap(self.image_label)
-            self.ui.instance_img.setPixmap(pixmap)
-            self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)       
+            self.loadInstanceInForm(instanceManager) 
 
         def showSystemInformationActionCommand() -> None:
             """_summary_ Show the system info dialog
@@ -202,19 +191,6 @@ class LauncherView(QMainWindow):
                         inst_dict: dict[str, str] = json.load(instance)
                         instanceManager.instance.load_inst_from_dict(inst_dict)
                         instanceManager.instance.display()
-                        self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
-                        self.image_label = instanceManager.instance.image
-                        self.news_feed = instanceManager.instance.news_feed
-                        self.instance_name = instanceManager.instance.name
-                        self.ui.usernameInputBox.setText(instanceManager.instance.username)
-                        self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
-                        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-                        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-                        pixmap = QPixmap(self.image_label)
-                        self.ui.instance_img.setPixmap(pixmap)
-                        self.ui.repo_name_branch.setText(self.instance_name)
-                        self.ui.newsEngineView.setUrl(self.news_feed) 
-                        self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)
                 else:
                     term_service.print_information("No file argument given or file not found. Loading default instance.")
             except json.JSONDecodeError as err:
@@ -396,32 +372,51 @@ class LauncherView(QMainWindow):
 
         self.ui.InstancesList.setEnabled(False)
 
-        self.profile: QWebEngineProfile = self.ui.marketplacesWebsiteEngine.page().profile()
-        self.profile.downloadRequested.connect(self.handleDownloadCommand)
+        self.setup_web_engine()
 
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
         holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)
+
+        self.loadInstanceInForm(instanceManager)
+
+        if not instanceManager.is_installable():
+            self.ui.installButton.setEnabled(False)
+
+    def setup_web_engine(self):
+        # 1. Get the current active page
+        page = self.ui.marketplacesWebsiteEngine.page()
+        
+        # 2. Extract and strictly bind the profile
+        self.browser_profile = page.profile()
+        
+        # 3. Connect the signal
+        self.browser_profile.downloadRequested.connect(self.handleDownloadCommand)
         
     def handleDownloadCommand(self, download: QWebEngineDownloadRequest):
         """Processes the PySide6 download stream request."""
-        suggested_path = str(Path.home() / download.suggestedFileName())
-        file_path, _ = QFileDialog.getSaveFileName(self, "Save Downloaded File", suggested_path)
-        
-        if file_path:
-            target_path = Path(file_path)
-            download.setDownloadDirectory(str(target_path.parent))
-            download.setDownloadFileName(target_path.name)
-            download.accept()
-            download.finished.connect(lambda: print("File download completed successfully."))
+        print("Download Started!")
+    
+        path_str, _ = QFileDialog.getSaveFileName(None, "Save File", download.downloadFileName())
+    
+        if path_str:
+            save_path = Path(path_str)
+            # Safely extract directory and filename regardless of OS (Windows/Mac/Linux)
+            download.setDownloadDirectory(str(save_path.parent))
+            download.setDownloadFileName(save_path.name)
+            download.accept() 
         else:
             download.cancel()
+
     
     def loadInstanceCommand(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
         instance = Instance()
         instance.load_inst_from_dict(data)
         features.load_instance_from_instance(instanceManager, instance)
+        self.loadInstanceInForm(instanceManager)
+
+    def loadInstanceInForm(self, instanceManager : InstanceManager):
         self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
         self.image_label = instanceManager.instance.image
         self.news_feed = instanceManager.instance.news_feed
@@ -430,8 +425,9 @@ class LauncherView(QMainWindow):
         self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
         self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
         self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-        pixmap: QPixmap = QPixmap(self.image_label)
+        pixmap = QPixmap(self.image_label)
         self.ui.instance_img.setPixmap(pixmap)
         self.ui.repo_name_branch.setText(self.instance_name)
-        self.ui.newsEngineView.setUrl(self.news_feed)   
-        self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)
+        self.ui.newsEngineView.setUrl(self.news_feed) 
+        if not instanceManager.is_installable():
+            self.ui.installButton.setEnabled(False)     

@@ -7,11 +7,12 @@ from lce_qt_launcher.models.theme import StrTheme
 
 _THEME_OPTION : str = "customisation/theme"
 _INSTANCE_PATH_OPTION : str = "preferences/default_path"
-_LANGUAGE_OPTION : str = "preferences/languages"
+_LANGUAGE_OPTION : str = "preferences/language"
 _SHOW_HOLIDAY_OPTION : str = "views/show_hoyday_enabled"
-_DEVELOPPER_MODE_OPTION  : str = "developper/dev_mode_enabled"
-_ACCESIBLE_MODE_OPTION  : str = "accesibility/accesibility_mode_enabled"
-_EXPERIMENTAL_MODE_OPTION  : str = "preferenses/experimental_mode_enabled"
+_DEVELOPPER_MODE_OPTION : str = "developper/dev_mode_enabled"
+_ACCESIBLE_MODE_OPTION : str = "accesibility/accesibility_mode_enabled"
+_EXPERIMENTAL_MODE_OPTION : str = "preferences/experimental_mode_enabled"
+_USERNAME_OPTION : str = "user_profile/username"
 
 class UserPref (QSettings): 
     """_summary_ The UserPref managed by QtSettings
@@ -19,15 +20,16 @@ class UserPref (QSettings):
     Args:
         QSettings (_type_): _description_  : Inherit QtSettings
     """
-    def __init__(self, build_info : BuildInfo) -> None:
-        super().__init__(QSettings.Format.IniFormat, QSettings.Scope.UserScope, "Xgui4", build_info.app_name) 
+    def __init__(self, buildInfo : BuildInfo) -> None:
+        super().__init__(QSettings.Format.IniFormat, QSettings.Scope.UserScope, "Xgui4", buildInfo.app_name) 
         self.default_theme : StrTheme = StrTheme.MINECRAFT
-        self.default_instance_path : str = "~/.local/share/lce_qt_launcher/default"
+        self.default_instance_path : str = "{appData}/instances"
         self.default_language : str  = "en"
         self.default_show_holiday : bool = True
         self.default_accesibility_mode : bool = False
         self.default_developper_mode : bool = False
         self.default_experiment_mode : bool = False
+        self.default_username : str = "Steve"
 
     def set_theme_pref(self, theme : str) -> None:
         """_summary_ Theme Setter
@@ -115,7 +117,7 @@ class UserPref (QSettings):
         """_summary_ Experimental Mode Setter
 
         Args:
-            developper_mode_bool (bool): _description_ #TODO DOCSTRINGS
+            experimental_mode_bool (bool): _description_ #TODO DOCSTRINGS
         """
         super().setValue(_EXPERIMENTAL_MODE_OPTION, experimental_mode_bool)
         super().sync()
@@ -127,6 +129,22 @@ class UserPref (QSettings):
         """
         return str(self.value(_EXPERIMENTAL_MODE_OPTION, self.default_experiment_mode, type=str))
     
+    def set_username(self, new_username : str) -> None:
+        """_summary_ Username Setter
+
+        Args:
+            new_username (str): _description_ #TODO DOCSTRINGS
+        """
+        super().setValue(_USERNAME_OPTION, new_username)
+        super().sync()
+    def get_username(self) -> str:
+        """_summary_ Experimental Mode Getter
+
+        Returns:
+            str: _description_ #TODO DOCSTRINGS
+        """
+        return str(self.value(_USERNAME_OPTION, self.default_username, type=str))
+
     def generate_default_config(self) -> None:
         """_summary_ Generate the default config for the users
         """
@@ -137,4 +155,5 @@ class UserPref (QSettings):
         self.set_accesible_mode(self.default_accesibility_mode)
         self.set_accesible_mode(self.default_developper_mode)
         self.set_experimental_mode(self.default_experiment_mode)
+        self.set_username(self.default_username)
         super().sync()

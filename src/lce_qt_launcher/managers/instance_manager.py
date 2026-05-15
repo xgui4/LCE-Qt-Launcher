@@ -77,7 +77,7 @@ def from_str_to_InstanceSource(string : str)-> InstanceSource:
             return InstanceSource.GITHUB_RELEASE
         case "InstanceSource.FORGEJO_RELEASE":
             return InstanceSource.FORGEJO_RELEASE
-        case "InstanceSource.REMOTE_GIT_SOURCE ":
+        case "InstanceSource.REMOTE_GIT_SOURCE":
             return InstanceSource.REMOTE_GIT_SOURCE 
         case "InstanceSource.LOCAL_INSTALLATION":
             return InstanceSource.LOCAL_INSTALLATION
@@ -342,3 +342,11 @@ class InstanceManager:
             json_data = json.load(json_file)
             inst_dict : dict[str, str] = json_data
             self.instance.load_inst_from_dict(inst_dict)
+
+    def is_installable(self) -> bool:
+        """_summary_ #TODO
+        """
+        #Note : Right now the remote git location is not installable via this launcher, it will added in the next version 
+        if self.instance.instance_source in [InstanceSource.LOCAL_INSTALLATION, InstanceSource.LOCAL_SOURCE_CODE, InstanceSource.REMOTE_GIT_SOURCE]:
+            return False
+        return True
