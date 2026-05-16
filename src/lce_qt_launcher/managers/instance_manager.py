@@ -75,15 +75,15 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
         InstanceSource: _description_ The InstanceSource from the str
     """
     match string:
-        case "InstanceSource.GITHUB_RELEASE":
+        case "InstanceSource.GITHUB_RELEASE" | "0":
             return InstanceSource.GITHUB_RELEASE
-        case "InstanceSource.FORGEJO_RELEASE":
+        case "InstanceSource.FORGEJO_RELEASE" | "1":
             return InstanceSource.FORGEJO_RELEASE
-        case "InstanceSource.REMOTE_GIT_SOURCE":
+        case "InstanceSource.REMOTE_GIT_SOURCE" | "2":
             return InstanceSource.REMOTE_GIT_SOURCE
-        case "InstanceSource.LOCAL_INSTALLATION":
+        case "InstanceSource.LOCAL_INSTALLATION" | "3":
             return InstanceSource.LOCAL_INSTALLATION
-        case "InstanceSource.LOCAL_SOURCE_CODE":
+        case "InstanceSource.LOCAL_SOURCE_CODE" | "4dol":
             return InstanceSource.LOCAL_SOURCE_CODE
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")

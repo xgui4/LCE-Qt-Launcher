@@ -399,10 +399,7 @@ class LauncherView(QMainWindow):
         self.ui.statusbar.addWidget(holyday_label)
 
         self.loadInstanceInForm(instanceManager)
-
-        if not instanceManager.is_installable():
-            self.ui.installButton.setEnabled(False)
-
+        
     def setup_web_engine(self):
         page: QWebEnginePage = self.ui.marketplacesWebsiteEngine.page()
         self.browser_profile: QWebEngineProfile = page.profile()
