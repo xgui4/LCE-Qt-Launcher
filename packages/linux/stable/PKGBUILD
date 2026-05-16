@@ -10,7 +10,6 @@ depends=(
     'python' 
     'pyside6' 
     'python-vdf'
-    'python-requests' 
     'python-platformdirs'
     'python-rich'
 ) 
@@ -27,11 +26,12 @@ makedepends=(
 optdepends=(
     'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
     'steam: Allow for Steam integration'
+    'steamtinkerlaunch: For better Stream integration on Linux'
 )
 provides=("${pkgname%-stable}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%}")
-source=("${pkgname}::git+${url}.git#branch=master")
-backup=("etc/lce-qt-launcher")
+conflicts=("${pkgname%-git}" "${pkgname%-dev}")
+source=("${pkgname}::git+${url}.git#tag=beta-v0.2.0")
+sha256sums=('SKIP')
 
 build() {
     cd "$pkgname"

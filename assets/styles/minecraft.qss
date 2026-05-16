@@ -1,15 +1,3 @@
-/*
-
-DISABLED. UNTIL UI READY FOR IT
-
-* {
-  font-family : Miracode;
-  font-size : 10px;
-} 
-
-*/
-
-
 QLabel:disabled {
     color : gray; 
     opacity : 100;

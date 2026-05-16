@@ -2,7 +2,7 @@
 
 if [ "$1" = "create-venv" ]; then 
     uv venv --system-site-packages
-    source .venv/bin/activate.sh
+    . ".venv/bin/activate"
     uv sync --system-certs
 fi
 

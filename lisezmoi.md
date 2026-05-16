@@ -27,7 +27,6 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 
 - Interface en ligne de commande (CLI)
 - Prise en charge de plusieurs instances (en cours de développement)
-- Prise en charge des localisations (en cours de développement)
 - Instances préconfigurées :
   - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (anciennement smartcmd/MinecraftConsoles)
   - LegacyEvolved (sera bientôt supprimé car remplacé par NeoLegacy)
@@ -45,7 +44,8 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 - Prise en charge des thèmes
 - Compatibilité GNU/Linux
 - Prise en charge de Windows
-- Prise en charge expérimentale de FreeBSD
+- Prise en charge des localisations
+- Prise en charge expérimentale de FreeBSD et Nix/NixOS
 - Devenir la plateforme principale pour Minecraft LCE sur GNU/Linux
 
 ## Comment exécuter
@@ -120,7 +120,6 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 ## Bibliothèques et outils Python utilisés
 
 - PySide 6
-- requests
 - platformdirs
 - rich
 - hatch
@@ -163,6 +162,8 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 aftConsoles) pour le portage du jeu sur PC
 - [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour la rétrocompatibilité des mises à jour pour le portage PC
 - [LCE Hub](https://github.com/LCE-Hub) pour la Marketplace/Workshop
+- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - maintenant DCMA, il est donc supprimé/indisponible pour le moment
+- [360Revived](https://github.com/BluTac10/360Revived) - maintenant DCMA, donc supprimé/inutilisable pour le moment
 
 ## Code de conduite
 

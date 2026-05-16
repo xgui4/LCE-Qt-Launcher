@@ -23,16 +23,17 @@ import argparse
 from enum import StrEnum
 from zipfile import ZipFile, BadZipFile
 
-DLC_LOCATION = os.path.join("Windows64Media", "DLC")
-WORLD_LOCATION = os.path.join("Windows64", "GameHDD")
-MOD_LOCATION = os.path.join("Windows64", "Media")
+DLC_LOCATION: str = os.path.join("Windows64Media", "DLC")
+WORLD_LOCATION: str = os.path.join("Windows64", "GameHDD")
+MOD_LOCATION: str = os.path.join("Windows64", "Media")
+CUSTOM_SKIN_LOCATION: str = os.path.join("Common","res","mob")
 
 class ContentType(StrEnum):
     DLC = DLC_LOCATION
     WORLD = WORLD_LOCATION
     MOD = MOD_LOCATION
+    CUSTOM_SKIN = CUSTOM_SKIN_LOCATION 
     NONE = "0"
-    CUSTOM_SKIN = "-1" # Temporaly placeholder DO NOT USE,
 
 def from_str_to_enum(string : str) -> ContentType:
     print(string)
@@ -43,10 +44,10 @@ def from_str_to_enum(string : str) -> ContentType:
             return ContentType.WORLD
         case "Mod":
             return ContentType.MOD
-        case "None" :
-            return ContentType.NONE
-        case "Skin":
+        case "Default Skin":
             return ContentType.CUSTOM_SKIN
+        case "None":
+            return ContentType.NONE
         case _ :
             raise RuntimeError("Invalid Argument")
 
@@ -113,16 +114,16 @@ def main():
 
         parsed_cmd_args = parser.parse_known_intermixed_args()
 
-        contentType : str = parsed_cmd_args[0].content_type
+        contentType = parsed_cmd_args[0].content_type
 
-        contentTypeEnum : ContentType = ContentType.NONE
+        contentTypeEnum = ContentType.NONE
 
         if parsed_cmd_args[0].content_type == "None":
             print(r"""
             1. Install Maps/World
             2. Install DLC
             3. Install Mods
-            4. Install Custom Skin (Coming Soon)
+            4. Install Custom Skin
             5. Cancel 
             """)
         
@@ -134,6 +135,8 @@ def main():
                 contentTypeEnum = ContentType.DLC
             if user_input == "3":
                 contentTypeEnum = ContentType.MOD
+            if user_input == "4":
+                contentTypeEnum = ContentType.CUSTOM_SKIN
             else:
                 exit("Operation Canceled")
             
@@ -143,6 +146,8 @@ def main():
             contentTypeEnum = ContentType.WORLD
         if (contentType == "Mod"):
             contentTypeEnum = ContentType.MOD
+        if (contentType == "Custom Skin"):
+            contentTypeEnum = ContentType.CUSTOM_SKIN 
         else:
             pass
             
@@ -151,7 +156,7 @@ def main():
         if instance_path == "None":
             instance_path = input("Enter the Instance path.")
 
-        file : str = parsed_cmd_args[0].file
+        file = parsed_cmd_args[0].file
 
         if file == "None":
             file = input(f"Enter the archive of the {contentTypeEnum.name}")
@@ -161,7 +166,7 @@ def main():
         1. Install Maps/World
         2. Install DLC
         3. Install Mods
-        4. Install Custom Skin (Coming Soon)
+        4. Install Custom Skin
         5. Cancel 
         """)
     
@@ -173,6 +178,8 @@ def main():
             contentTypeEnum = ContentType.DLC
         if user_input == "3":
             contentTypeEnum = ContentType.MOD
+        if user_input == "4":
+            contentTypeEnum = ContentType.CUSTOM_SKIN
         else:
             exit("Operation Canceled")
         

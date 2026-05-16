@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>LCE Content Installers</string>
+   <string>LCE Content Installer</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../res.qrc">
-    <normaloff>:/assets/piston.png</normaloff>:/assets/piston.png</iconset>
+    <normaloff>:/assets/jigsaw-ico.png</normaloff>:/assets/jigsaw-ico.png</iconset>
   </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
@@ -71,7 +71,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Progression de l'installation</string>
+      <string>Installation Progress</string>
      </property>
     </widget>
    </item>
@@ -90,6 +90,11 @@
      <item>
       <property name="text">
        <string>Mod</string>
+      </property>
+     </item>
+    <item>
+      <property name="text">
+       <string>Custom Skin</string>
       </property>
      </item>
     </widget>

@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher"
-#define MyAppVersion "1.0.2.0"
+#define MyAppVersion "0.0.20.0"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"

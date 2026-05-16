@@ -17,6 +17,7 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
             pyside6-uic -g python "src/${ui}.ui" -o "$OUT"
             echo "done"
             sed -i "s/^import res_rc/from . import res_rc/g" "$OUT"
+            echo "fixed the import done"
         done
     else
         echo "Starting Compilaton of Qt Ressource"
@@ -28,6 +29,8 @@ if [[ $(uname -s) != "FreeBSD" ]]; then
             OUT="src/lce_qt_launcher/ui_${ui}.py"
             /usr/lib/qt6/uic -g python "src/${ui}.ui" -o "$OUT"
             echo "done"
+            sed -i "s/^import res_rc/from . import res_rc/g" "$OUT"
+            echo "fixed the import done"
         done
     fi
 else

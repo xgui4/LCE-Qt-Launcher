@@ -6,8 +6,8 @@
     "image": ":/assets/lce-hub-ico.png",
     "archive_file": "neoLegacyWindows64.zip",
     "exe_name": "neoLegacyWindows64/Minecraft.Client.exe",
-    "news_feed": "https://github.com/pieeebot/neoLegacy/commits/main/",
+    "news_feed": "https://github.com/neoStudiosLCE/neoLegacy/commits/main/",
     "installation_path": ".neoLegacy",
-    "repo_url": "https://github.com/pieeebot/neoLegacy",
-    "version": "v1.0.1b"
+    "repo_url": "https://github.com/neoStudiosLCE/neoLegacy",
+    "version": "v1.0.3b"
 }

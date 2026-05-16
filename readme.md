@@ -1,4 +1,4 @@
-# LCE QT Launcher
+# LCE Qt Launcher
 
 [French Version](lisezmoi.md)
 
@@ -27,14 +27,11 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 
 - Command Line interface (CLI)
 - Multiple Instances support (Work in progress)
-- localisations support (Work in progress)
   - Pre-Configured ones :
     - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (previously smartcmd/MinecraftConsoles)
     - LegacyEvolved (will be removed soon as was replaced with NeoLegacy)
     - [NeoLegacy](https://github.com/pieeebot/neoLegacy/)
-    - [360Revived](https://github.com/BluTac10/360Revived)
     - [LCE-Revelations](https://github.com/itsRevela/LCE-Revelations)
-    - [HellishEnds](https://github.com/deadvoxelx/HellishEnds)
 - Marketplaces :
   - [LCE Hub Emeralds Launcher Workshop](https://github.com/LCE-Hub/piston)
   - [LegacyMods (coming soon)](https://legacymods.org/)
@@ -48,7 +45,8 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Skin support
 - GNU/Linux compatibility
 - Windows support
-- Experimental FreeBSD support
+- Experimental FreeBSD and Nix/NixOS support
+- Localisations support
 - Focus on being the main hub for Minecraft LCE on GNU/Linux
 
 ## How to run
@@ -123,7 +121,6 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 ## Python Library and Tools Used
 
 - PySide 6
-- requests
 - platformdirs
 - rich
 - hatch
@@ -167,6 +164,8 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 - [LCE Hub](https://github.com/LCE-Hub) for the Marketplace/Workshop
 - [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
 - [Miracode Font](https://github.com/IdreesInc/Miracode)
+- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - now dcma, so it is removed/unaivable for now
+- [360Revived](https://github.com/BluTac10/360Revived) - now dcma, so it is removed/unaivable for now
 
 ## Code of Respect
 

@@ -3,7 +3,6 @@
     "name": "aRockefeler Aether Mod", 
     "installation_path": ".lce-aether", 
     "archive_file": "Release", 
-    "username": "Steve", 
     "image": ":/aether.png",    
     "exe_name": "Minecraft.Client.exe", 
     "url": "https://github.com/Frcoxd/aether-papu",

@@ -2,7 +2,7 @@
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "lce-qt-launcher";
-  version = "0.2026.5.12";
+  version = "0.0.20.0";
   format = "pyproject";
 
   src = ./.;
@@ -23,7 +23,6 @@ pkgs.python3Packages.buildPythonApplication rec {
 
   propagatedBuildInputs = with pkgs.python3Packages; [
     pyside6
-    requests
     platformdirs
     vdf
     rich

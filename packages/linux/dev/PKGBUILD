@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-dev
-pkgver=049bcc6
+pkgver=3076fd1
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Nightly Beta Build)"
 arch=('any')
@@ -31,7 +31,7 @@ optdepends=(
 
 replace=("${pkgname%-beta}")
 provides=("${pkgname%-dev}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%-stable}")
 source=("${pkgname}::git+${url}.git#branch=beta")
 sha256sums=('SKIP')
 

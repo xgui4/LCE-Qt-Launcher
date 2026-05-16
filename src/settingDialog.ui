@@ -7,303 +7,292 @@
     <x>0</x>
     <y>0</y>
     <width>692</width>
-    <height>272</height>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>LCE Qt Launcher - Setting </string>
   </property>
-  <widget class="QDialogButtonBox" name="settingsOptions">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>240</y>
-     <width>261</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Close|QDialogButtonBox::StandardButton::Help</set>
-   </property>
-  </widget>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>10</y>
-     <width>691</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Shape::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Shadow::Raised</enum>
-   </property>
-   <widget class="QLabel" name="settingLabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>551</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>19</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Settings</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="LanguagesComboBoxlabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Languages</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="languagesComboBox">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>60</y>
-      <width>311</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="currentText">
-     <string comment="default" extracomment="default">Default</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>Default</string>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/assets/gear.gif</normaloff>:/assets/gear.gif</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="settingFrame">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>English</string>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>French</string>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <widget class="QLabel" name="settingIcon">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../res.qrc">:/assets/gear.gif</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QCheckBox" name="holydayDheckBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+          <hintingpreference>PreferFullHinting</hintingpreference>
+         </font>
+        </property>
+        <property name="accessibleName">
+         <string>Check Holiday</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>Check Holiday and display them</string>
+        </property>
+        <property name="accessibleIdentifier">
+         <string>checkboxHoliday</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Show Holiday</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QCheckBox" name="accesibilitycheckBox">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="accessibleName">
+         <string>acccesbilityToggle</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>Toggle the Accessibility Mode</string>
+        </property>
+        <property name="accessibleIdentifier">
+         <string>acccesbilityToggle</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Acccesible Mode </string>
+        </property>
+        <property name="icon">
+         <iconset theme="preferences-desktop-accessibility"/>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QComboBox" name="themesComboBox">
+        <property name="whatsThis">
+         <string>Set The App Thene</string>
+        </property>
+        <property name="accessibleName">
+         <string>chooseAppsTheme</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>Choose The Apps Theme</string>
+        </property>
+        <property name="accessibleIdentifier">
+         <string>chooseAppsThemeComboBox</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Default</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Minecraft</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Light</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dark</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>System</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="settingLabel">
+        <property name="font">
+         <font>
+          <pointsize>19</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Settings (Experimental GUI)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QComboBox" name="languagesComboBox">
+        <property name="font">
+         <font>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="currentText">
+         <string comment="default" extracomment="default">Default</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Default</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>English</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>French</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QCheckBox" name="developperModeDheckBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+          <hintingpreference>PreferFullHinting</hintingpreference>
+         </font>
+        </property>
+        <property name="accessibleName">
+         <string>Check Developper Mode</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>Check Developper Mode</string>
+        </property>
+        <property name="accessibleIdentifier">
+         <string>checkboxDevMode</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Developper Mode</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::Computer"/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="LanguagesComboBoxlabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Languages</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="themesComboBoxLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Themes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QCheckBox" name="enableExperimentscheckBox">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enable Experiments</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::DialogWarning"/>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="usernameInputBoxLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="2">
+       <widget class="QLineEdit" name="usenameInputBox"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="settingsOptions">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="themesComboBoxLabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>100</y>
-      <width>54</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Themes</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="themesComboBox">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>100</y>
-      <width>311</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="whatsThis">
-     <string>Set The App Thene</string>
-    </property>
-    <property name="accessibleName">
-     <string>chooseAppsTheme</string>
-    </property>
-    <property name="accessibleDescription">
-     <string>Choose The Apps Theme</string>
-    </property>
-    <property name="accessibleIdentifier">
-     <string>chooseAppsThemeComboBox</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>Default</string>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Close|QDialogButtonBox::StandardButton::Help</set>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Minecraft</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Light</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Dark</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>System</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QCheckBox" name="holydayDheckBox">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>431</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <hintingpreference>PreferFullHinting</hintingpreference>
-     </font>
-    </property>
-    <property name="accessibleName">
-     <string>Check Holiday</string>
-    </property>
-    <property name="accessibleDescription">
-     <string>Check Holiday and display them</string>
-    </property>
-    <property name="accessibleIdentifier">
-     <string>checkboxHoliday</string>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LayoutDirection::RightToLeft</enum>
-    </property>
-    <property name="text">
-     <string>Show Holiday</string>
-    </property>
-    <property name="icon">
-     <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-    <property name="tristate">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="developperModeDheckBox">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>190</y>
-      <width>431</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <hintingpreference>PreferFullHinting</hintingpreference>
-     </font>
-    </property>
-    <property name="accessibleName">
-     <string>Check Developper Mode</string>
-    </property>
-    <property name="accessibleDescription">
-     <string>Check Developper Mode</string>
-    </property>
-    <property name="accessibleIdentifier">
-     <string>checkboxDevMode</string>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LayoutDirection::RightToLeft</enum>
-    </property>
-    <property name="text">
-     <string>Developper Mode</string>
-    </property>
-    <property name="icon">
-     <iconset theme="QIcon::ThemeIcon::Computer"/>
-    </property>
-    <property name="checkable">
-     <bool>true</bool>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-    <property name="tristate">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="gearIconlabel">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>30</y>
-      <width>181</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../res.qrc">:/assets/gear.gif</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="accesibilitycheckBox">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>160</y>
-      <width>421</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="accessibleName">
-     <string>acccesbilityToggle</string>
-    </property>
-    <property name="accessibleDescription">
-     <string>Toggle the Accessibility Mode</string>
-    </property>
-    <property name="accessibleIdentifier">
-     <string>acccesbilityToggle</string>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LayoutDirection::RightToLeft</enum>
-    </property>
-    <property name="text">
-     <string>Acccesible Mode </string>
-    </property>
-    <property name="icon">
-     <iconset theme="preferences-desktop-accessibility"/>
-    </property>
-   </widget>
-  </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources>
   <include location="../res.qrc"/>

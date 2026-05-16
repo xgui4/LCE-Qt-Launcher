@@ -8,17 +8,21 @@ from PySide6.QtWidgets import (
     QInputDialog,
     QMessageBox
 )
+
 from PySide6.QtGui import ( 
     QPalette, 
     QPixmap,
     QBrush
 )
+
 from PySide6.QtCore import ( 
     qVersion,
     Qt,
     QFile,
     QIODevice
 )
+
+from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest
 
 import sys
 import platform
@@ -46,14 +50,14 @@ from lce_qt_launcher.managers.steam_manager import add_instance_to_steam
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
-import lce_qt_launcher.res_rc
+import lce_qt_launcher.res_rc  # pyright: ignore[reportUnusedImport]
 
 class LauncherView(QMainWindow):
     """_summary_ The Main Window / launcher of the QApplcation
 
     Args:
-        QMainWindow (_type_): _description_ The inheite type of Launcher
-    """
+        QMainWindow (_type_): _description_ Inherited/is a QMainWindow
+    """    
     def __init__(self, 
                  appContext : AppContext, 
                  appData : AppData, 
@@ -68,9 +72,9 @@ class LauncherView(QMainWindow):
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
-        self.instances : list[Instance] = list()
+        self.instances: list[Instance] = list[Instance]()
 
-        STARTING_GAME_MSG = translator.translate("start_game_msg")
+        STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
         def generateInstanceFromForm() -> None:
             """
@@ -96,7 +100,7 @@ class LauncherView(QMainWindow):
         def showSettingDialogCommand() -> None:
             """_summary_ Show the setting Dialog
             """
-            features.show_setting(self, Ui_settingDialog())
+            features.show_setting(self, Ui_settingDialog(), appContext)
 
         def saveInstanceButtonCommand() -> None:
             """_summary_ Save the instance on a file on disk
@@ -134,17 +138,7 @@ class LauncherView(QMainWindow):
             """_summary_ Open the Load Save File Dialog 
             """
             features.load_instance_from_file(self, instanceManager, appContext, buildInfo, appData)
-            self.ui.instanceNameLabel.setText(instanceManager.instance.name)
-            self.image_label = instanceManager.instance.image
-            self.news_feed = instanceManager.instance.news_feed
-            self.instance_name = instanceManager.instance.name
-            self.ui.usernameInputBox.setText(instanceManager.instance.username)
-            self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-            pixmap = QPixmap(self.image_label)
-            self.ui.instance_img.setPixmap(pixmap)
-            self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)       
+            self.loadInstanceInForm(instanceManager) 
 
         def showSystemInformationActionCommand() -> None:
             """_summary_ Show the system info dialog
@@ -194,21 +188,9 @@ class LauncherView(QMainWindow):
                 path = Path(file_arg)
                 if path.is_file():
                     with path.open("r", encoding="utf-8") as instance:
-                        inst_dict: dict[str, str] = json.load(instance)   # pyright: ignore[reportAny]
+                        inst_dict: dict[str, str] = json.load(instance)
                         instanceManager.instance.load_inst_from_dict(inst_dict)
                         instanceManager.instance.display()
-                        self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
-                        self.image_label = instanceManager.instance.image
-                        self.news_feed = instanceManager.instance.news_feed
-                        self.instance_name = instanceManager.instance.name
-                        self.ui.usernameInputBox.setText(instanceManager.instance.username)
-                        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-                        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-                        pixmap = QPixmap(self.image_label)
-                        self.ui.instance_img.setPixmap(pixmap)
-                        self.ui.repo_name_branch.setText(self.instance_name)
-                        self.ui.newsEngineView.setUrl(self.news_feed) 
-                        self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)
                 else:
                     term_service.print_information("No file argument given or file not found. Loading default instance.")
             except json.JSONDecodeError as err:
@@ -225,7 +207,7 @@ class LauncherView(QMainWindow):
             term_service.print_information("No argument given, start with default instance.")
         
         self.sysinfo_dialog: QDialog = QDialog() 
-        self.dialog_ui = Ui_sys_info_dialog()
+        self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
 
         self.about: Ui_AboutDialog = Ui_AboutDialog()
@@ -239,8 +221,8 @@ class LauncherView(QMainWindow):
         self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.channelLabel.setText(f"Channel : {appContext.buildInfo.version_type}")
-        self.about.platformLabel.setText(f"Platform : {platform.release()}")
+        self.about.channelLabel.setText(f"**Channel** : {appContext.buildInfo.version_type}")
+        self.about.platformLabel.setText(f"**Platform** : {platform.release()}")
         from lce_qt_launcher import license_str
         self.about.licenseText.setMarkdown(license_str)
         self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
@@ -253,10 +235,10 @@ class LauncherView(QMainWindow):
 
         systemManager: SystemManager = appContext.sys_man
 
-        self.dialog_ui.appVersion.setText(f"{buildInfo.app_name} Version {buildInfo.version_type} {buildInfo.version}")
-        self.dialog_ui.qVersionLabel.setText(f"Qt Version {qVersion()}")
-        self.dialog_ui.pyVersionLabel.setText(f"Python Version : {sys.version}")
-        self.dialog_ui.osInfoLabel.setText(f"OS : {systemManager.name} \n Version : {systemManager.version}")
+        self.dialog_ui.appVersionLabel.setText(f"**App Version** : {buildInfo.app_name} {buildInfo.version_type} {buildInfo.version}")
+        self.dialog_ui.qVersionLabel.setText(f"**Qt Version** : {qVersion()}")
+        self.dialog_ui.pyVersionLabel.setText(f"**Python Version** : {sys.version}")
+        self.dialog_ui.osInfoLabel.setText(f"**System Name** : {systemManager.name} \n**System Version** : {systemManager.version}")
         self.dialog_ui.pluginsInfoLabel.setText("")
         self.dialog_ui.runnersLabel.setText("")
 
@@ -307,7 +289,7 @@ class LauncherView(QMainWindow):
         open_github_issues = lambda : webbrowser.open(appContext.buildInfo.git_repo_url + "/issues")
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(open_github_issues)
 
-        loadDefaultInstance = lambda : self.load_instance(dict(), instanceManager)
+        loadDefaultInstance = lambda : self.loadInstanceCommand(dict(), instanceManager)
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
 
         neoLegacyJson = QFile(":/instances/neoLegacy.lce_inst")
@@ -318,41 +300,50 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_neo = bytes(neoLegacyJson.readAll().data()).decode('utf-8')
             data_neo = json.loads(raw_text_neo)
-            loadNeoLegacyInstance = lambda : self.load_instance(data_neo, instanceManager)
+            loadNeoLegacyInstance = lambda : self.loadInstanceCommand(data_neo, instanceManager)
             self.ui.actionLoadNeoLegacyInstance.triggered.connect(loadNeoLegacyInstance)
 
-        hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
-        if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open Helish Ends Instance")
-            self.ui.actionLoadHellishEndsInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
-            data_hellish_end = json.loads(raw_text_hellish_end)
-            loadhellishEndsInstance = lambda : self.load_instance(data_hellish_end, instanceManager)
-            self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
+        self.ui.actionLoadHellishEndsInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoadHellishEndsInstance.setText("HellishEnd (Disabled due to DMCA)")
 
-        i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
-        if not i360RevivedJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open 360Revived Instance")
-            self.ui.actionLoad360RevivedInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
-            data_360 = json.loads(raw_text_360)
-            load360RevivedInstance = lambda : self.load_instance(data_360, instanceManager)
-            self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
+        self.ui.actionLoad360RevivedInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoad360RevivedInstance.setText("360Revived (Disabled due to DMCA)")
 
-        revelationJson = QFile(":/instances/revelations.lce_inst")
-        if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open revelations Instance")
-            self.ui.actionLoadRevelationsInstance.setEnabled(False)
-            return None
-        else: 
-            raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
-            data_rev = json.loads(raw_text_rev)
-            loadRevelationInstance = lambda : self.load_instance(data_rev, instanceManager)
-            self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
+        self.ui.actionLoadRevelationsInstance.setEnabled(False) # Due to dcma it is disabled
+        self.ui.actionLoadRevelationsInstance.setText("Revelations (Disabled due to DMCA)")
+
+        # hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
+        # if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open Helish Ends Instance")
+        #     self.ui.actionLoadHellishEndsInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
+        #     data_hellish_end = json.loads(raw_text_hellish_end)
+        #     loadhellishEndsInstance = lambda : self.loadInstanceCommand(data_hellish_end, instanceManager)
+        #     self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
+
+        # i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
+        # if not i360RevivedJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open 360Revived Instance")
+        #     self.ui.actionLoad360RevivedInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
+        #     data_360 = json.loads(raw_text_360)
+        #     load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
+        #     self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
+
+        # revelationJson = QFile(":/instances/revelations.lce_inst")
+        # if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
+        #     term_service.print_error("Cannot found or open revelations Instance")
+        #     self.ui.actionLoadRevelationsInstance.setEnabled(False)
+        #     return None
+        # else: 
+        #     raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
+        #     data_rev = json.loads(raw_text_rev)
+        #     loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
+        #     self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
 
         aetherJson = QFile(":/instances/aether.lce_inst")
         if not aetherJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -362,7 +353,7 @@ class LauncherView(QMainWindow):
         else: 
             raw_text_aether = bytes(aetherJson.readAll().data()).decode('utf-8')
             data_aether = json.loads(raw_text_aether)
-            loadAetherInstance = lambda : self.load_instance(data_aether, instanceManager)
+            loadAetherInstance = lambda : self.loadInstanceCommand(data_aether, instanceManager)
             self.ui.actionLoadAetherInstance.triggered.connect(loadAetherInstance)
 
         def addSteamLinkIntegrationButtonCommand():
@@ -381,24 +372,62 @@ class LauncherView(QMainWindow):
 
         self.ui.InstancesList.setEnabled(False)
 
+        self.setup_web_engine()
+
         self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
         holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)
 
-    def load_instance(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
-            instance = Instance()
-            instance.load_inst_from_dict(data)
-            features.load_instance_from_instance(instanceManager, instance)
-            self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
-            self.image_label = instanceManager.instance.image
-            self.news_feed = instanceManager.instance.news_feed
-            self.instance_name = instanceManager.instance.name
-            self.ui.usernameInputBox.setText(instanceManager.instance.username)
-            self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
-            self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-            pixmap = QPixmap(self.image_label)
-            self.ui.instance_img.setPixmap(pixmap)
-            self.ui.repo_name_branch.setText(self.instance_name)
-            self.ui.newsEngineView.setUrl(self.news_feed)   
-            self.ui.steamLinkValue.setText(instanceManager.instance.steam_link)
+        self.loadInstanceInForm(instanceManager)
+
+        if not instanceManager.is_installable():
+            self.ui.installButton.setEnabled(False)
+
+    def setup_web_engine(self):
+        # 1. Get the current active page
+        page = self.ui.marketplacesWebsiteEngine.page()
+        
+        # 2. Extract and strictly bind the profile
+        self.browser_profile = page.profile()
+        
+        # 3. Connect the signal
+        self.browser_profile.downloadRequested.connect(self.handleDownloadCommand)
+        
+    def handleDownloadCommand(self, download: QWebEngineDownloadRequest):
+        """Processes the PySide6 download stream request."""
+        print("Download Started!")
+    
+        path_str, _ = QFileDialog.getSaveFileName(None, "Save File", download.downloadFileName())
+    
+        if path_str:
+            save_path = Path(path_str)
+            # Safely extract directory and filename regardless of OS (Windows/Mac/Linux)
+            download.setDownloadDirectory(str(save_path.parent))
+            download.setDownloadFileName(save_path.name)
+            download.accept() 
+        else:
+            download.cancel()
+
+    
+    def loadInstanceCommand(self, data : dict[str, str], instanceManager : InstanceManager, ) -> None:
+        instance = Instance()
+        instance.load_inst_from_dict(data)
+        features.load_instance_from_instance(instanceManager, instance)
+        self.loadInstanceInForm(instanceManager)
+
+    def loadInstanceInForm(self, instanceManager : InstanceManager):
+        self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
+        self.image_label = instanceManager.instance.image
+        self.news_feed = instanceManager.instance.news_feed
+        self.instance_name = instanceManager.instance.name
+        self.ui.usernameInputBox.setText(instanceManager.instance.username)
+        self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
+        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+        self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
+        pixmap = QPixmap(self.image_label)
+        self.ui.instance_img.setPixmap(pixmap)
+        self.ui.repo_name_branch.setText(self.instance_name)
+        self.ui.newsEngineView.setUrl(self.news_feed) 
+        if not instanceManager.is_installable():
+            self.ui.installButton.setEnabled(False)     

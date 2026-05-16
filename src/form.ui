@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1214</width>
-    <height>842</height>
+    <width>1205</width>
+    <height>897</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Minecraft LCE QT Launcher</string>
+   <string>LCE QT Launcher</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../res.qrc">
@@ -114,24 +114,10 @@
            </size>
           </property>
           <layout class="QGridLayout" name="launcherGridLayout">
-           <item row="14" column="5">
-            <widget class="QPushButton" name="settingButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="text">
-              <string>Setting</string>
-             </property>
-             <property name="icon">
-              <iconset theme="preferences-system"/>
-             </property>
-            </widget>
-           </item>
            <item row="9" column="1">
             <widget class="QLabel" name="progressLabel">
              <property name="font">
               <font>
-               <family>Monocraft</family>
                <bold>true</bold>
               </font>
              </property>
@@ -140,7 +126,154 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="1" rowspan="4" colspan="6">
+           <item row="1" column="2">
+            <widget class="QLabel" name="repo_name_branch">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Default (MCLCE)  - Vanilla Client</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QPushButton" name="changeInstanceIconButton">
+             <property name="text">
+              <string>Change Instance Icon</string>
+             </property>
+             <property name="icon">
+              <iconset theme="insert-image"/>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1" colspan="9">
+            <widget class="QProgressBar" name="progressBar">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="accessibleName">
+              <string>Installation Progress Bar</string>
+             </property>
+             <property name="accessibleDescription">
+              <string>The percentage of the installation</string>
+             </property>
+             <property name="accessibleIdentifier">
+              <string>install progress bar</string>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="9">
+            <widget class="QLabel" name="title">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="indent">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1" rowspan="2" colspan="9">
+            <layout class="QHBoxLayout" name="lauchersButtons">
+             <property name="sizeConstraint">
+              <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
+             </property>
+             <item>
+              <widget class="QPushButton" name="playButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Play</string>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="playOnSteamButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Play On Steam</string>
+               </property>
+               <property name="icon">
+                <iconset theme="computer"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="installButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Update</string>
+               </property>
+               <property name="icon">
+                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="settingButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Setting (Experimental)</string>
+               </property>
+               <property name="icon">
+                <iconset theme="preferences-system"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="1" rowspan="4" colspan="9">
             <widget class="QWidget" name="ModifyInstance" native="true">
              <layout class="QHBoxLayout" name="modifyInstanceLayout">
               <item>
@@ -150,7 +283,6 @@
                   <widget class="QLabel" name="modifyInstancSectionLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <pointsize>14</pointsize>
                      <bold>true</bold>
                     </font>
@@ -167,7 +299,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -193,7 +324,6 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -213,10 +343,21 @@
                   </widget>
                  </item>
                  <item row="8" column="0">
+                  <widget class="QLabel" name="versionsComboBoxLabel">
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Version</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="0">
                   <widget class="QLabel" name="pathInputBoxLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -225,7 +366,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="2">
+                 <item row="11" column="0" colspan="2">
                   <widget class="QLineEdit" name="pathInputBox">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -235,11 +376,10 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="12" column="0">
                   <widget class="QLabel" name="repoURKLabel">
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -248,7 +388,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0" colspan="2">
+                 <item row="13" column="0" colspan="2">
                   <widget class="QLineEdit" name="repoURLInputBox">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -258,14 +398,13 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0" colspan="2">
+                 <item row="14" column="0" colspan="2">
                   <widget class="QLabel" name="serverIPInputBoxLabel">
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -274,7 +413,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="2">
+                 <item row="15" column="0" colspan="2">
                   <widget class="QLineEdit" name="serverIPInputBox">
                    <property name="enabled">
                     <bool>false</bool>
@@ -287,14 +426,13 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0">
+                 <item row="16" column="0">
                   <widget class="QLabel" name="serverNameInputBoxLabel">
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
                    <property name="font">
                     <font>
-                     <family>Monocraft</family>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -303,7 +441,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="2">
+                 <item row="17" column="0" colspan="2">
                   <widget class="QLineEdit" name="serverNameInputBox">
                    <property name="enabled">
                     <bool>false</bool>
@@ -316,7 +454,17 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="1">
+                 <item row="25" column="0">
+                  <widget class="QPushButton" name="savetInstanceButton">
+                   <property name="text">
+                    <string>Save Instances Config</string>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="document-save"/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="25" column="1">
                   <widget class="QPushButton" name="confirmChangesButton">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -332,17 +480,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="0">
-                  <widget class="QPushButton" name="savetInstanceButton">
-                   <property name="text">
-                    <string>Save Instances Config</string>
-                   </property>
-                   <property name="icon">
-                    <iconset theme="document-save"/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="18" column="1">
+                 <item row="26" column="1">
                   <widget class="QPushButton" name="openInstanceEditor">
                    <property name="enabled">
                     <bool>false</bool>
@@ -358,6 +496,13 @@
                    </property>
                    <property name="flat">
                     <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="0" colspan="2">
+                  <widget class="QComboBox" name="versionsComboBox">
+                   <property name="editable">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -399,72 +544,6 @@
              </property>
             </widget>
            </item>
-           <item row="14" column="1">
-            <widget class="QPushButton" name="playButton">
-             <property name="text">
-              <string>Play</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-start"/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="6">
-            <widget class="QLabel" name="title">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-             <property name="indent">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLabel" name="repo_name_branch">
-             <property name="font">
-              <font>
-               <family>Monocraft</family>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Default (MCLCE)  - Vanilla Client</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="6">
-            <widget class="QLabel" name="steamLinkValue">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string> None</string>
-             </property>
-            </widget>
-           </item>
-           <item row="14" column="4">
-            <widget class="QPushButton" name="installButton">
-             <property name="text">
-              <string>Update</string>
-             </property>
-             <property name="icon">
-              <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="4">
             <widget class="QLabel" name="steamLinkLabel">
              <property name="enabled">
@@ -472,7 +551,6 @@
              </property>
              <property name="font">
               <font>
-               <family>Monocraft</family>
                <bold>true</bold>
               </font>
              </property>
@@ -481,51 +559,13 @@
              </property>
             </widget>
            </item>
-           <item row="14" column="2">
-            <widget class="QPushButton" name="playOnSteamButton">
+           <item row="4" column="6">
+            <widget class="QLabel" name="steamLinkValue">
              <property name="enabled">
               <bool>true</bool>
              </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
              <property name="text">
-              <string>Play On Steam</string>
-             </property>
-             <property name="icon">
-              <iconset theme="computer"/>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="1" colspan="6">
-            <widget class="QProgressBar" name="progressBar">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="accessibleName">
-              <string>Installation Progress Bar</string>
-             </property>
-             <property name="accessibleDescription">
-              <string>The percentage of the installation</string>
-             </property>
-             <property name="accessibleIdentifier">
-              <string>install progress bar</string>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QPushButton" name="changeInstanceIconButton">
-             <property name="text">
-              <string>Change Instance Icon</string>
-             </property>
-             <property name="icon">
-              <iconset theme="insert-image"/>
+              <string>N/A</string>
              </property>
             </widget>
            </item>
@@ -549,7 +589,6 @@
            <widget class="QListWidget" name="listWidget">
             <property name="font">
              <font>
-              <family>Monocraft</family>
               <pointsize>24</pointsize>
               <bold>true</bold>
               <underline>false</underline>
@@ -588,12 +627,12 @@
         <item>
          <layout class="QGridLayout" name="marketplacesFrameGrid">
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="marketplaceFrameRow">
-            <item>
+           <layout class="QGridLayout" name="marketplacesGridLayout">
+            <item row="0" column="0">
              <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
               <property name="url">
                <url>
-                <string>https://lce-hub.github.io/piston/</string>
+                <string>https://github.com/LCE-Hub/LCE-Workshop</string>
                </url>
               </property>
              </widget>
@@ -634,8 +673,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1214</width>
-     <height>35</height>
+     <width>1205</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -668,6 +707,7 @@
     <addaction name="actionImport_Instance"/>
     <addaction name="menuLoad_Instances"/>
     <addaction name="menuCreate_New_Instance"/>
+    <addaction name="actionExport"/>
     <addaction name="actionSetting"/>
     <addaction name="actionUpdate"/>
     <addaction name="actionQuit"/>
@@ -693,6 +733,7 @@
     </property>
     <addaction name="actionDefault"/>
     <addaction name="separator"/>
+    <addaction name="actionEnable_Experiments"/>
     <addaction name="actionSetting_3"/>
    </widget>
    <widget class="QMenu" name="menuFolders">
@@ -952,7 +993,7 @@
     <iconset theme="preferences-system"/>
    </property>
    <property name="text">
-    <string> Setting</string>
+    <string>Setting (Experimental)</string>
    </property>
   </action>
   <action name="actionInstance_Editor">
@@ -985,7 +1026,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Setting</string>
+    <string>Setting (Experiment)</string>
    </property>
   </action>
   <action name="actionSetting_3">
@@ -996,7 +1037,7 @@
     <iconset theme="preferences-system"/>
    </property>
    <property name="text">
-    <string>Setting</string>
+    <string>Setting (Experiment)</string>
    </property>
   </action>
   <action name="actionView_LCE_Qt_Launcher">
@@ -1106,6 +1147,31 @@
     <string>Aether</string>
    </property>
   </action>
+  <action name="actionExport">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="document-send"/>
+   </property>
+   <property name="text">
+    <string>Export...</string>
+   </property>
+  </action>
+  <action name="actionEnable_Experiments">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Enable Experiments</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1116,8 +1182,6 @@
  </customwidgets>
  <resources>
   <include location="../res.qrc"/>
-  <include location="../res.qrc"/>
-  <include location="../../../.designer/res.qrc"/>
  </resources>
  <connections/>
 </ui>

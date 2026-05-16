@@ -1,0 +1,4 @@
+platformdirs<=4.9.6
+rich<=15.0.0
+hatch<=1.16.5
+vdf<=3.4
