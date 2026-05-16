@@ -397,9 +397,8 @@ class InstanceManager:
         """_summary_ #TODO"""
         # Note : Right now the remote git location is not installable via this launcher, it will added in the next version
         if self.instance.instance_source in [
-            InstanceSource.LOCAL_INSTALLATION,
-            InstanceSource.LOCAL_SOURCE_CODE,
-            InstanceSource.REMOTE_GIT_SOURCE,
-        ]:
+            InstanceSource.FORGEJO_RELEASE,
+            InstanceSource.GITHUB_RELEASE
+        ]: return True
+        else:
             return False
-        return True

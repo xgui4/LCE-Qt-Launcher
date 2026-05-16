@@ -25,8 +25,6 @@ from lce_qt_launcher.views.setting_dialog import SettingDialog
 import lce_qt_launcher.views.cli as cli
 import lce_qt_launcher.views.term_service as term_service
 
-import os
-
 
 def install_game(
     parent: QWidget, instance: Instance, instanceManager: InstanceManager
@@ -134,14 +132,6 @@ def load_instance_from_file(
             "Instance already in data folder. Skipping making symlink. "
         )
 
-
-def load_instance_from_instance(
-    instanceManager: InstanceManager, instance: Instance
-) -> None:
-    """Features : Load the Selected Instance"""
-    instanceManager.instance = instance
-
-
 def show_about_qt(parent: QWidget) -> None:
     """Features : Load the Selected Instance"""
     print("Show About Qt popup.")
@@ -187,7 +177,7 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
         mainWindow, "Name your instance", "Set the name of the instance"
     )[0]
     newInstance = Instance()
-
+    
     if instance_name:
         newInstance.name = instance_name
     if username_str:

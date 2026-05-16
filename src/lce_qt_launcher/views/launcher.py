@@ -13,7 +13,7 @@ from PySide6.QtGui import QPalette, QPixmap, QBrush
 
 from PySide6.QtCore import qVersion, Qt, QFile, QIODevice
 
-from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest
+from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngineDownloadRequest
 
 import sys
 import platform
@@ -51,12 +51,7 @@ class LauncherView(QMainWindow):
         QMainWindow (_type_): _description_ Inherited/is a QMainWindow
     """
 
-    def __init__(
-        self,
-        appContext: AppContext,
-        appData: AppData,
-        app: QApplication,
-    ) -> None:
+    def __init__(self, appContext: AppContext, appData: AppData, app: QApplication,) -> None:
         super().__init__(None)
 
         translator: JsonTrans = appContext.translator
@@ -154,12 +149,7 @@ class LauncherView(QMainWindow):
             term_service.print_error("Cannot set the background")
 
         self.ui: Ui_launcher = Ui_launcher()
-        self.ui.setupUi(self)
-
-        arguments: list[str] = (
-            QApplication.instance().arguments() if not None else "Error"
-        )  # pyright: ignore[reportOptionalMemberAccess]
-
+        self.ui.setupUi(self)        
         for inst in appData.instsList:
             self.instances.append(inst)
             item = QListWidgetItem()
@@ -167,7 +157,8 @@ class LauncherView(QMainWindow):
             item.setIcon(QPixmap(inst.image))
             item.setData(Qt.ItemDataRole.FileInfoRole, inst)
             self.ui.listWidget.addItem(item)
-
+            
+        arguments: list[str] = (QApplication.instance().arguments() if not None else "Error")   # pyright: ignore[reportOptionalMemberAccess]
         if len(arguments) > 1:
             file_arg: str = arguments[1]
             try:
@@ -255,24 +246,18 @@ class LauncherView(QMainWindow):
         self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
         self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
         self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
-        self.ui.changeInstanceIconButton.clicked.connect(
-            changeInstanceIconButtonCommand
-        )
+        self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
 
         self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
         self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
         self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
         self.ui.actionQuit.triggered.connect(app.quit)
         self.ui.actionUpdate.triggered.connect(updateActionCommand)
-        self.ui.actionSystem_Information.triggered.connect(
-            showSystemInformationActionCommand
-        )
+        self.ui.actionSystem_Information.triggered.connect(showSystemInformationActionCommand)
         self.ui.actionAbout.triggered.connect(showAboutActionCommand)
         self.ui.actionAbout_QT.triggered.connect(showAboutQtActionCommand)
         self.ui.actionAbout_Minecraft.triggered.connect(showAboutMinecraftActionCommand)
-        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(
-            showMoreLCEProjectsActionCommand
-        )
+        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
         self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
         self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
@@ -319,33 +304,19 @@ class LauncherView(QMainWindow):
             self.ui.actionLoadNeoLegacyInstance.setEnabled(False)
             return None
         else:
-            raw_text_neo = bytes(neoLegacyJson.readAll().data()).decode("utf-8")
+            raw_text_neo: str = bytes(neoLegacyJson.readAll().data()).decode("utf-8")
             data_neo = json.loads(raw_text_neo)
-            loadNeoLegacyInstance = lambda: self.loadInstanceCommand(
-                data_neo, instanceManager
-            )
+            loadNeoLegacyInstance = lambda: self.loadInstanceCommand(data_neo, instanceManager)
             self.ui.actionLoadNeoLegacyInstance.triggered.connect(loadNeoLegacyInstance)
 
-        self.ui.actionLoadHellishEndsInstance.setEnabled(
-            False
-        )  # Due to dcma it is disabled
-        self.ui.actionLoadHellishEndsInstance.setText(
-            "HellishEnd (Disabled due to DMCA)"
-        )
+        self.ui.actionLoadHellishEndsInstance.setEnabled(False)  # Due to dcma it is disabled
+        self.ui.actionLoadHellishEndsInstance.setText("HellishEnd (Disabled due to DMCA)")
 
-        self.ui.actionLoad360RevivedInstance.setEnabled(
-            False
-        )  # Due to dcma it is disabled
-        self.ui.actionLoad360RevivedInstance.setText(
-            "360Revived (Disabled due to DMCA)"
-        )
+        self.ui.actionLoad360RevivedInstance.setEnabled(False)  # Due to dcma it is disabled
+        self.ui.actionLoad360RevivedInstance.setText("360Revived (Disabled due to DMCA)")
 
-        self.ui.actionLoadRevelationsInstance.setEnabled(
-            False
-        )  # Due to dcma it is disabled
-        self.ui.actionLoadRevelationsInstance.setText(
-            "Revelations (Disabled due to DMCA)"
-        )
+        self.ui.actionLoadRevelationsInstance.setEnabled(False)  # Due to dcma it is disabled
+        self.ui.actionLoadRevelationsInstance.setText("Revelations (Disabled due to DMCA)")
 
         # hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
         # if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -405,7 +376,7 @@ class LauncherView(QMainWindow):
                     self, "Add Instance to Steam Non-Steam Game Shortcuts ?", "Add "
                 )
                 if answer == QMessageBox.StandardButton.Yes:
-                    full_extention_path = os.path.join(
+                    full_extention_path: str = os.path.join(
                         instanceManager.instance.installation_path,
                         instanceManager.instance.exe_name,
                     )
@@ -416,9 +387,7 @@ class LauncherView(QMainWindow):
                     )
                 instanceManager.instance.steam_link = value[0]
 
-        self.ui.addSteamLinkIntegration.clicked.connect(
-            addSteamLinkIntegrationButtonCommand
-        )
+        self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
 
         self.ui.InstancesList.setEnabled(False)
 
@@ -435,43 +404,42 @@ class LauncherView(QMainWindow):
             self.ui.installButton.setEnabled(False)
 
     def setup_web_engine(self):
-        # 1. Get the current active page
-        page = self.ui.marketplacesWebsiteEngine.page()
-
-        # 2. Extract and strictly bind the profile
-        self.browser_profile = page.profile()
-
-        # 3. Connect the signal
+        page: QWebEnginePage = self.ui.marketplacesWebsiteEngine.page()
+        self.browser_profile: QWebEngineProfile = page.profile()
         self.browser_profile.downloadRequested.connect(self.handleDownloadCommand)
 
     def handleDownloadCommand(self, download: QWebEngineDownloadRequest):
         """Processes the PySide6 download stream request."""
         print("Download Started!")
 
-        path_str, _ = QFileDialog.getSaveFileName(
-            None, "Save File", download.downloadFileName()
-        )
+        path_str, _ = QFileDialog.getSaveFileName(None, "Save File", download.downloadFileName())
 
         if path_str:
-            save_path = Path(path_str)
-            # Safely extract directory and filename regardless of OS (Windows/Mac/Linux)
+            save_path: Path = Path(path_str)
             download.setDownloadDirectory(str(save_path.parent))
             download.setDownloadFileName(save_path.name)
             download.accept()
         else:
             download.cancel()
 
-    def loadInstanceCommand(
-        self,
-        data: dict[str, str],
-        instanceManager: InstanceManager,
-    ) -> None:
-        instance = Instance()
+    def loadInstanceCommand(self,data: dict[str, str], instanceManager: InstanceManager,) -> None:
+        """ TODO :_summary_
+
+        Args:
+            data (dict[str, str]): _description_
+            instanceManager (InstanceManager): _description_
+        """
+        instance: Instance = Instance()
         instance.load_inst_from_dict(data)
-        features.load_instance_from_instance(instanceManager, instance)
+        instanceManager.instance = instance
         self.loadInstanceInForm(instanceManager)
 
-    def loadInstanceInForm(self, instanceManager: InstanceManager):
+    def loadInstanceInForm(self, instanceManager: InstanceManager) -> None:
+        """TODO : _summary_
+
+        Args:
+            instanceManager (InstanceManager): _description_
+        """
         self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
         self.image_label = instanceManager.instance.image
         self.news_feed = instanceManager.instance.news_feed
@@ -480,9 +448,13 @@ class LauncherView(QMainWindow):
         self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
         self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
         self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
-        pixmap = QPixmap(self.image_label)
+        pixmap: QPixmap = QPixmap(self.image_label)
         self.ui.instance_img.setPixmap(pixmap)
         self.ui.repo_name_branch.setText(self.instance_name)
         self.ui.newsEngineView.setUrl(self.news_feed)
-        if not instanceManager.is_installable():
-            self.ui.installButton.setEnabled(False)
+        instanceManager.instance.display()
+        # TODO : FIX THE INSTANCE SOURCE BEFORE RENABLED THIS FEATURES
+        # if instanceManager.is_installable() == False:
+        #     self.ui.installButton.setEnabled(False)
+        # else:
+        #     self.ui.installButton.setEnabled(True)
