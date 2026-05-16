@@ -83,7 +83,7 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
             return InstanceSource.REMOTE_GIT_SOURCE
         case "InstanceSource.LOCAL_INSTALLATION" | "3":
             return InstanceSource.LOCAL_INSTALLATION
-        case "InstanceSource.LOCAL_SOURCE_CODE" | "4dol":
+        case "InstanceSource.LOCAL_SOURCE_CODE" | "4":
             return InstanceSource.LOCAL_SOURCE_CODE
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
@@ -148,21 +148,19 @@ def from_str_to_InstanceType(string: str) -> InstanceType:
             raise RuntimeError(f"{string} is an Incorrect Instance Type")
 
 
-_DEFAULT_INST_NAME = "Default (MCLCE - Git Source)"
-_DEFAULT_INSTALLATION_PATH = ".default"
+_DEFAULT_INST_NAME = "New Default (pieeebot neoLegacy)"
+_DEFAULT_INSTALLATION_PATH = ".new-default"
 _DEFAULT_USERNAME = "Steve"
-_DEFAULT_ARCHIVE_FILE = "LCEWindows64.zip"
-_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
-_DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/MinecraftConsoles"
-_DEFAULT_INST_SOURCE = InstanceSource.REMOTE_GIT_SOURCE
+_DEFAULT_ARCHIVE_FILE = "neoLegacyWindows64.zip"
+_DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
+_DEFAULT_REPO_URL = "https://github.com/neoStudiosLCE/neoLegacy"
+_DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
-_DEFAULT_INST_SOURCE_STRING = "InstanceSource.REMOTE_GIT_SOURCE"
+_DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
-_DEFAULT_IMAGE = ":/assets/minecraft.png"
-_DEFAULT_NEWS_FEED = (
-    "https://git.minecraftlegacy.com/backups/MinecraftConsoles/commits/branch/main"
-)
-_DEFAULT_VERSION = "main"
+_DEFAULT_IMAGE = ":/assets/lce-hub-ico.png"
+_DEFAULT_NEWS_FEED = ("https://github.com/neoStudiosLCE/neoLegacy/commits/main/")
+_DEFAULT_VERSION = "v1.0.3b"
 
 
 class Instance(QObject):

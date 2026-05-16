@@ -63,9 +63,9 @@ def main() -> None:
     sys_man: SystemManager = appContext.sys_man
 
     try:
-        sys_man.adapt_qt_system_theme()
+        # sys_man.adapt_qt_system_theme() # temporaly disabled cause it can cause issue, when a fixed will be made, it will be reenable
         userPref: UserPref = appContext.userPref
-        # user_language: str = userPref.get_language_pref()
+        user_language: str = userPref.get_language_pref()
         user_theme: str = userPref.get_theme_pref()
         show_holiday: str = userPref.get_show_holiday()
         developer_mode: str = userPref.get_developper_mode()
@@ -78,7 +78,7 @@ def main() -> None:
             appContext.updateSetAccesbilityMoodeStatus(accessible_mode)
         except RuntimeError as err:
             term_service.print_error(str(err))
-        # appContext.updateLanguage(user_language)
+        appContext.updateLanguage(user_language)
     except:
         term_service.print_error(
             "They were a error while loading the system theme or user preference."

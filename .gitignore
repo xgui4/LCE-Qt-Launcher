@@ -332,3 +332,6 @@ result
 # FreeBSD
 
 freebsd-ports/distinfo
+
+
+.new-default
