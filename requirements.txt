@@ -59,8 +59,6 @@ more-itertools==11.0.2
     # via
     #   jaraco-classes
     #   jaraco-functools
-nuitka==4.1
-    # via lce-qt-launcher (pyproject.toml)
 packaging==26.2
     # via
     #   hatch
