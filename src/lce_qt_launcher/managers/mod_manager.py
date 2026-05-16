@@ -1,21 +1,22 @@
 #!/usr/bin/env python
 """
-    LCE Mods Manager
-    Copyright (C) 2026 Xgui4
+LCE Mods Manager
+Copyright (C) 2026 Xgui4
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
 import sys
 import os
 import argparse
@@ -26,16 +27,18 @@ from zipfile import ZipFile, BadZipFile
 DLC_LOCATION: str = os.path.join("Windows64Media", "DLC")
 WORLD_LOCATION: str = os.path.join("Windows64", "GameHDD")
 MOD_LOCATION: str = os.path.join("Windows64", "Media")
-CUSTOM_SKIN_LOCATION: str = os.path.join("Common","res","mob")
+CUSTOM_SKIN_LOCATION: str = os.path.join("Common", "res", "mob")
+
 
 class ContentType(StrEnum):
     DLC = DLC_LOCATION
     WORLD = WORLD_LOCATION
     MOD = MOD_LOCATION
-    CUSTOM_SKIN = CUSTOM_SKIN_LOCATION 
+    CUSTOM_SKIN = CUSTOM_SKIN_LOCATION
     NONE = "0"
 
-def from_str_to_enum(string : str) -> ContentType:
+
+def from_str_to_enum(string: str) -> ContentType:
     print(string)
     match string:
         case "DLC":
@@ -48,8 +51,9 @@ def from_str_to_enum(string : str) -> ContentType:
             return ContentType.CUSTOM_SKIN
         case "None":
             return ContentType.NONE
-        case _ :
+        case _:
             raise RuntimeError("Invalid Argument")
+
 
 LEGAL_TEXT = """
     LCE Mods Managers    Copyright (C) 2026  Xgui4
@@ -59,7 +63,8 @@ LEGAL_TEXT = """
     under certain conditions; type `show c' for details.
 """
 
-def extract_zip(data : ZipFile, extraction_path : str) -> None:
+
+def extract_zip(data: ZipFile, extraction_path: str) -> None:
     """
     _summary_ : extract the zipfile of the content to the desired path
 
@@ -70,46 +75,64 @@ def extract_zip(data : ZipFile, extraction_path : str) -> None:
     """
     data.extractall(extraction_path)
 
-def install_content(instance_path : str,  contentType : ContentType, archive_file : str):
+
+def install_content(instance_path: str, contentType: ContentType, archive_file: str):
     """_summary_   #TODO docstring
 
     Args:
-        instance_path (str): _description_ 
-        contentType (ContentType): _description_ 
-        archive_file (str): _description_ 
+        instance_path (str): _description_
+        contentType (ContentType): _description_
+        archive_file (str): _description_
     """
     try:
         zipFile = ZipFile(archive_file)
-        content_path : str = os.path.join(instance_path, contentType.value)
+        content_path: str = os.path.join(instance_path, contentType.value)
         extract_zip(zipFile, content_path)
     except BadZipFile as e:
-        print(f"Could not extract content to destination, zipfile was bad. More Info : {e}")
+        print(
+            f"Could not extract content to destination, zipfile was bad. More Info : {e}"
+        )
     except FileNotFoundError as e:
-        print(f"Could not extract content to destination, archive do not exist. More Info : {e.filename} : {e}")
+        print(
+            f"Could not extract content to destination, archive do not exist. More Info : {e.filename} : {e}"
+        )
     except FileExistsError as e:
-        print(f"Could not extract content to destination, file(s) already exist. More Info : {e.filename} : {e}")
+        print(
+            f"Could not extract content to destination, file(s) already exist. More Info : {e.filename} : {e}"
+        )
     except RuntimeError as e:
         print(f"An unexpected error occured. More info {e.args}")
     else:
-        print(f"Successully extracted the {contentType.name} ({archive_file}) at instance : {instance_path}")
+        print(
+            f"Successully extracted the {contentType.name} ({archive_file}) at instance : {instance_path}"
+        )
 
-def main():     
+
+def main():
     parser = argparse.ArgumentParser(
         prog="LCE Mods Manager",
-        description="Manage DLC, World and Mods for Minecraft LCE"
+        description="Manage DLC, World and Mods for Minecraft LCE",
     )
 
-    file : str = ""
-    contentType : str = ""
-    instance_path : str = ""
-    contentTypeEnum : ContentType = ContentType.NONE
+    file: str = ""
+    contentType: str = ""
+    instance_path: str = ""
+    contentTypeEnum: ContentType = ContentType.NONE
 
     if len(sys.argv) > 1:
         parser.add_help = True
         parser.epilog = LEGAL_TEXT
 
-        parser.add_argument("--instance_path", type=str, help="Path of the instance to install the content on")
-        parser.add_argument("--content_type", type=str, help="Content Type, possible valie : DLC, World and Mod")
+        parser.add_argument(
+            "--instance_path",
+            type=str,
+            help="Path of the instance to install the content on",
+        )
+        parser.add_argument(
+            "--content_type",
+            type=str,
+            help="Content Type, possible valie : DLC, World and Mod",
+        )
         parser.add_argument("--file", type=str, help="The Archive file to install")
 
         parsed_cmd_args = parser.parse_known_intermixed_args()
@@ -126,7 +149,7 @@ def main():
             4. Install Custom Skin
             5. Cancel 
             """)
-        
+
             user_input = input("Choose a option")
 
             if user_input == "1":
@@ -139,18 +162,18 @@ def main():
                 contentTypeEnum = ContentType.CUSTOM_SKIN
             else:
                 exit("Operation Canceled")
-            
-        if (contentType == "DLC"):
+
+        if contentType == "DLC":
             contentTypeEnum = ContentType.DLC
-        if (contentType == "World"):
+        if contentType == "World":
             contentTypeEnum = ContentType.WORLD
-        if (contentType == "Mod"):
+        if contentType == "Mod":
             contentTypeEnum = ContentType.MOD
-        if (contentType == "Custom Skin"):
-            contentTypeEnum = ContentType.CUSTOM_SKIN 
+        if contentType == "Custom Skin":
+            contentTypeEnum = ContentType.CUSTOM_SKIN
         else:
             pass
-            
+
         instance_path = parsed_cmd_args[0].instance_path
 
         if instance_path == "None":
@@ -160,7 +183,7 @@ def main():
 
         if file == "None":
             file = input(f"Enter the archive of the {contentTypeEnum.name}")
-    
+
     else:
         print(r"""
         1. Install Maps/World
@@ -169,7 +192,7 @@ def main():
         4. Install Custom Skin
         5. Cancel 
         """)
-    
+
         user_input = input("Choose a option")
 
         if user_input == "1":
@@ -182,7 +205,7 @@ def main():
             contentTypeEnum = ContentType.CUSTOM_SKIN
         else:
             exit("Operation Canceled")
-        
+
         instance_path = input("Enter the Instance path.")
 
         file = input(f"Enter the archive of the {contentTypeEnum.name}")
@@ -193,7 +216,8 @@ def main():
     Content Type : {contentTypeEnum.value}
     Instance_Path : {instance_path}""")
 
-    install_content(instance_path, contentTypeEnum, file) 
+    install_content(instance_path, contentTypeEnum, file)
+
 
 if __name__ == "__main__":
     main()

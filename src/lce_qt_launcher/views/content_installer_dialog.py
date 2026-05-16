@@ -1,4 +1,4 @@
-from PySide6.QtWidgets  import QDialog
+from PySide6.QtWidgets import QDialog
 
 from lce_qt_launcher.managers import mod_manager
 from lce_qt_launcher.ui_contentInstaller import Ui_contentInstallerDialog
@@ -6,11 +6,12 @@ from lce_qt_launcher.views import term_service
 
 
 class ContentInstallerView(QDialog):
-    """ #TODO _summary_  
+    """#TODO _summary_
 
     Args:
         QDialog (_type_): _description_ inherited from QDialog
     """
+
     def __init__(self) -> None:
         super().__init__()
         self.ui_dialog: Ui_contentInstallerDialog = Ui_contentInstallerDialog()
@@ -29,9 +30,12 @@ class ContentInstallerView(QDialog):
             self.contentToInstallPath = self.ui_dialog.contentToInstallInputBox.text()
             self.contentTypeStr = self.ui_dialog.contentTypeComboBox.currentText()
             self.instancePath = self.ui_dialog.instamcePathInputPath.text()
-            mod_manager.install_content(self.instancePath, mod_manager.from_str_to_enum(self.contentTypeStr), self.contentToInstallPath)
+            mod_manager.install_content(
+                self.instancePath,
+                mod_manager.from_str_to_enum(self.contentTypeStr),
+                self.contentToInstallPath,
+            )
 
         self.ui_dialog.mainButtonBox.clicked.connect(installContentCommand)
 
         self.dialog.show()
-

@@ -1,36 +1,53 @@
 from datetime import datetime
 from enum import Enum
 
+
 class MONTH(Enum):
     """_summary_ The 12 Month as Enum (Start from 1 and go to 12) d"""
+
     JANUARY = 1
     FEBRURAY = 2
     MARCH = 3
     APRIL = 4
     MAY = 5
-    JUNE = 6 
-    JULY = 7 
+    JUNE = 6
+    JULY = 7
     AUGUST = 8
-    SEPTEMBER = 9 
+    SEPTEMBER = 9
     OCTOBER = 10
     NOVEMBER = 11
     DECEMBER = 12
 
-def monthEnumToStr(enum : MONTH) -> str : 
+
+def monthEnumToStr(enum: MONTH) -> str:
     match enum:
-        case 1 : return "January",
-        case 2 : return "February",
-        case 3 : return "March",
-        case 4 : return "April",
-        case 5 : return "May", 
-        case 6 : return "June",
-        case 7 : return "July",
-        case 8 : return "August",
-        case 9 : return "September",
-        case 10 : return "October",
-        case 11 : return "November",
-        case 12 : return "December",
-        case _  : return ""
+        case 1:
+            return ("January",)
+        case 2:
+            return ("February",)
+        case 3:
+            return ("March",)
+        case 4:
+            return ("April",)
+        case 5:
+            return ("May",)
+        case 6:
+            return ("June",)
+        case 7:
+            return ("July",)
+        case 8:
+            return ("August",)
+        case 9:
+            return ("September",)
+        case 10:
+            return ("October",)
+        case 11:
+            return ("November",)
+        case 12:
+            return ("December",)
+        case _:
+            return ""
+
 
 HOLIDAYS: dict[str, str] = {
     f"{MONTH.JANUARY.value}-1": "Happy New Years Day! 🎇",
@@ -43,38 +60,40 @@ HOLIDAYS: dict[str, str] = {
     f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
     f"{MONTH.DECEMBER.value}-24": "Xmas Eve 🎄",
     f"{MONTH.DECEMBER.value}-25": "Xmas 🎅",
-    f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆"
+    f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆",
 }
 
 HOLIDAYS_FRENCH: dict[str, str] = {
-f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
-f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
-f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",
-f"{MONTH.APRIL.value}-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
-f"{MONTH.APRIL.value}": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
-f"{MONTH.MAY.value}-4": "Journée Star Wars 🌟",
-f"{MONTH.MAY.value}-17": "Anniversaire de Minecraft 🎂",
-f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
-f"{MONTH.DECEMBER.value}-24": "Veille de Noël 🎄",
-f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
-f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆"
+    f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
+    f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
+    f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",
+    f"{MONTH.APRIL.value}-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
+    f"{MONTH.APRIL.value}": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
+    f"{MONTH.MAY.value}-4": "Journée Star Wars 🌟",
+    f"{MONTH.MAY.value}-17": "Anniversaire de Minecraft 🎂",
+    f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
+    f"{MONTH.DECEMBER.value}-24": "Veille de Noël 🎄",
+    f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
+    f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆",
 }
 
 NO_HOLIDAY = ""
 
+
 def get_holidays_list() -> str:
-    holidays_str : str = ""
+    holidays_str: str = ""
     for key, value in HOLIDAYS.items():
         holidays_str = f"{key} - {value}"
     return holidays_str
 
+
 def get_holiday() -> str:
-    """_summary_ Check for a holday and then return it or empty str if there is no holiday 
+    """_summary_ Check for a holday and then return it or empty str if there is no holiday
 
     Returns:
         str: _description_ The current holiday or an empty str
     """
     today: datetime = datetime.now()
-    month_key: str = str(today.month) 
+    month_key: str = str(today.month)
     day_key: str = f"{month_key}-{today.day}"
     return HOLIDAYS.get(day_key, HOLIDAYS.get(month_key, NO_HOLIDAY))

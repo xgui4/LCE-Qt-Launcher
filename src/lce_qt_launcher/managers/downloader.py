@@ -5,19 +5,13 @@ if TYPE_CHECKING:
     from lce_qt_launcher.managers.instance_manager import Instance
 
 from lce_qt_launcher.app_context import AppContext
-import lce_qt_launcher.views.term_service as term_service 
+import lce_qt_launcher.views.term_service as term_service
 
 from lce_qt_launcher.managers.system_manager import SystemManager
 
-from zipfile import (
-    ZipFile, BadZipFile
-)
+from zipfile import ZipFile, BadZipFile
 
-from PySide6.QtNetwork import (
-    QNetworkAccessManager,
-    QNetworkRequest,
-    QNetworkReply
-) 
+from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 
 from PySide6.QtCore import (
     QUrl,
@@ -32,19 +26,21 @@ START_DOWNLOAD_REQUEST_MSG_STR = "Starting Download Request"
 
 SUCCESS_STATUS_CODE = 200
 
+
 class Downloader(QObject):
     """_summary_ Downloader Manager to download stuff from the internet
 
     Args:
         QObject (_type_): _description_ Inherit from the QObject
     """
-    def __init__(self, appContext : AppContext) -> None:
+
+    def __init__(self, appContext: AppContext) -> None:
         super().__init__()
         self.manager: QNetworkAccessManager = QNetworkAccessManager()
-        self.appContext : AppContext = appContext
+        self.appContext: AppContext = appContext
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
-        """ _summary_ Download and install the selected Instance 
+        """_summary_ Download and install the selected Instance
 
         Args:
             instance : The selected instance to install or Update
@@ -63,12 +59,16 @@ class Downloader(QObject):
             try:
                 with ZipFile(BytesIO(data)) as archive:
                     _ = self.extract_inst_async(archive, instance)
-                term_service.print_success(f"Installation of {instance.name} was a success")
+                term_service.print_success(
+                    f"Installation of {instance.name} was a success"
+                )
                 if os.name == "posix":
-                    exe_path = os.path.join(instance.installation_path, instance.exe_name)
+                    exe_path = os.path.join(
+                        instance.installation_path, instance.exe_name
+                    )
                     _ = self.appContext.sys_man.set_file_permission(exe_path)
-            except BadZipFile as e: 
-                error_msg : str = f"Extraction Error : {e}"
+            except BadZipFile as e:
+                error_msg: str = f"Extraction Error : {e}"
                 term_service.print_error(error_msg)
                 raise RuntimeError(error_msg)
             except Exception as e:
@@ -77,20 +77,22 @@ class Downloader(QObject):
                 raise RuntimeError(error_msg)
             else:
                 if os.name == "posix":
-                    exe_abs_path: str = os.path.join(instance.installation_path, instance.exe_name)
+                    exe_abs_path: str = os.path.join(
+                        instance.installation_path, instance.exe_name
+                    )
                     system: SystemManager = self.appContext.sys_man
                     _ = system.set_file_permission(exe_abs_path)
 
         _ = reply.finished.connect(_when_finished)
         return reply
-        
-    def extract_inst_async(self, data : ZipFile, instance : Instance) -> None:
+
+    def extract_inst_async(self, data: ZipFile, instance: Instance) -> None:
         """
         _summary_ : extract the zipfile of the downloaded instance
 
         Args:
             data : the zip file itself
-            instance : the specified instance 
+            instance : the specified instance
         #TODO Make Async
         """
         data.extractall(instance.installation_path)

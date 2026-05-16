@@ -1,15 +1,10 @@
 app-id: io.github.xgui4.lce_qt_launcher
 runtime: org.kde.Platform
 runtime-version: '6.10'
-base: io.qt.PySide.BaseApp
 sdk: org.kde.Sdk
+base: io.qt.PySide.BaseApp
+base-version: '6.8'
 command: lce-qt-launcher
-
-name: LCE Qt Launcher
-summary: A Minecraft Legacy Console Launcher for GNU/Linux
-description: |
-  This is a custom Minecraft LCE Launcher written in 
-  Python and Qt with Freedom and with GNU/Linux support in mind.
 
 finish-args:
   - --device=dri
@@ -23,26 +18,29 @@ cleanup-commands:
   - /app/cleanup-BaseApp.sh
 
 modules:
+  - name: python3-backports-zstd
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-index --find-links=. --prefix=${FLATPAK_DEST} backports.zstd-1.3.0.tar.gz
+    sources:
+      - type: file
+        url: https://pythonhosted.org
+        sha256: 7f76fc6d5b0d6168e3cb20e9803001859a1cf6456f91d8487b320d39e2304899
+
   - python3-requirements.json
 
   - name: lce_qt_launcher
     buildsystem: simple
     build-commands:
-      - pip3 install --no-index --find-links=/app/lib/python3.12/site-packages/ --prefix=/app .
-      
+      - pip3 install --no-index --find-links=/app/lib/python3.13/site-packages/ --prefix=/app .
       - mkdir -p /app/share/io.github.lce_qt_launcher/data
       - mkdir -p /app/share/io.github.lce_qt_launcher/assets
-      
       - cp -r data/* /app/share/io.github.lce_qt_launcher/data/
       - cp -r assets/* /app/share/io.github.lce_qt_launcher/assets/
-      
       - install -Dm644 data/lce_qt_launcher.ini /app/etc/lce_qt_launcher.ini
-
       - install -Dm644 packages/io.github.xgui4.lce_qt_launcher.desktop /app/share/applications/io.github.xgui4.lce_qt_launcher.desktop
       - install -Dm644 assets/io.github.xgui4.lce_qt_launcher.png /app/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
-      
       - install -Dm644 packages/io.github.xgui4.lce_qt_launcher.metainfo.xml /app/share/metainfo/io.github.xgui4.lce_qt_launcher.metainfo.xml
-      
       - install -Dm644 packages/lce_inst-mime.xml /app/share/mime/packages/io.github.xgui4.lce_qt_launcher.xml
       - install -Dm644 assets/lce_inst.png /app/share/icons/hicolor/128x128/mimetypes/application-x-lce_inst.png
     sources:
