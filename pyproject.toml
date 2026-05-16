@@ -19,7 +19,7 @@ dependencies = [
     "platformdirs<=4.9.6",
     "rich<=15.0.0",
     "hatch<=1.16.5",
-    "Nuitka<=4.0.7",
+    "Nuitka<=4.1",
     "patchelf<=0.17.2.4; sys_platform == 'linux'",
     "vdf<=3.4"
 ]
