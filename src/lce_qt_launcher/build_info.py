@@ -15,14 +15,16 @@ from lce_qt_launcher import (
 )
 import lce_qt_launcher.views.term_service as term_service
 
+
 class BuildInfo:
     """Application Information and Metadata Information"""
+
     def __init__(self) -> None:
-        self.version : str = FALLBACK_VERSION_NUMBER
+        self.version: str = FALLBACK_VERSION_NUMBER
         self.app_name: str = FALLBACK_APP_NAME
-        self.git_repo_url: str = FALLBACK_GIT_REPO_URL 
-        self.license_link: str = FALLBACK_LICENSE_LINK 
-        self.license : str = FALLBACK_LICENSE 
+        self.git_repo_url: str = FALLBACK_GIT_REPO_URL
+        self.license_link: str = FALLBACK_LICENSE_LINK
+        self.license: str = FALLBACK_LICENSE
         try:
             app_metadata: PackageMetadata = metadata("LCE-Qt-Launcher")
 
@@ -42,7 +44,7 @@ class BuildInfo:
                 self.license_link = license_url_metadata
             if license_metadata:
                 self.license = license_metadata
-            
+
         except PackageNotFoundError as e:
             term_service.print_error(f"Package not found! More info : {e.msg}")
         except RuntimeError as e:
@@ -50,7 +52,7 @@ class BuildInfo:
         except KeyError as e:
             term_service.print_error(f"Metadata not found! More info : {e}")
 
-        self.qt_version : str = qVersion()
-        self.authors : str = AUTHORS
-        self.version_type : str = VERSION_TYPE
-        self.instance_extension : str = INSTANCE_EXTENSION
+        self.qt_version: str = qVersion()
+        self.authors: str = AUTHORS
+        self.version_type: str = VERSION_TYPE
+        self.instance_extension: str = INSTANCE_EXTENSION

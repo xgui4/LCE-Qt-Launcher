@@ -3,6 +3,7 @@ import os
 
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
+
 class CustomBuildHook(BuildHookInterface):  # pyright: ignore[reportMissingTypeArgument]
     def clean(self, versions) -> None:  # pyright: ignore[reportMissingParameterType]
         if os.name == "posix":

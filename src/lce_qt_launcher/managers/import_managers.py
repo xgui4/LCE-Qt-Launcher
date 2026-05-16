@@ -4,7 +4,10 @@ from pathlib import Path
 
 import os
 
-def import_inst_file_to_app_data(instance_file_path : str, appData : AppData, filename : str = ""):
+
+def import_inst_file_to_app_data(
+    instance_file_path: str, appData: AppData, filename: str = ""
+):
     if filename == "":
         filename_Path = Path(f"{instance_file_path}")
         filename = filename_Path.name

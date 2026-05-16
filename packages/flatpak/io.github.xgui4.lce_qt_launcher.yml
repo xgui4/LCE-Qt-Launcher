@@ -6,12 +6,6 @@ base: io.qt.PySide.BaseApp
 base-version: '6.8'
 command: lce-qt-launcher
 
-name: LCE Qt Launcher
-summary: A Minecraft Legacy Console Launcher for GNU/Linux
-description: |
-  This is a custom Minecraft LCE Launcher written in
-  Python and Qt with Freedom and with GNU/Linux support in mind.
-
 finish-args:
   - --device=dri
   - --share=network
@@ -24,7 +18,6 @@ cleanup-commands:
   - /app/cleanup-BaseApp.sh
 
 modules:
-
   - name: python3-backports-zstd
     buildsystem: simple
     build-commands:

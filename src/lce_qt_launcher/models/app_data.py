@@ -11,36 +11,45 @@ import os
 
 from lce_qt_launcher.views import term_service
 
+
 def _is_compiled() -> bool:
     return "__compiled__" in globals()
+
 
 def _is_installed() -> bool:
     current_dir = os.path.dirname(os.path.abspath(__file__))
     return "site-packages" in current_dir or "dist-packages" in current_dir
 
+
 class AppData(QObject):
     changed: Signal = Signal()
-    def __init__(self) -> None:
-        super().__init__(parent = None, objectName="App Data")
 
-        self.instsList : list[Instance] = []
-        self.sourceDir : str = self._get_source_dir()
-        self.projectRootDir : str = self._get_project_root_dir()
-        self.appConfigDir : str = self._get_app_config_dir()
-        self.localesDir : str = self._get_locales_dir()
-        self.assetsDirs : str = self._get_assets_dir()
-        self.appDataDirs: tuple[str, str]  = ( self._get_user_app_data_dir(), self._get_site_app_data_dir() )
-        self.appCacheDir : str =  self._get_app_cache_dir()
-        self.appLogDir : str = self._get_app_log_dir()
+    def __init__(self) -> None:
+        super().__init__(parent=None, objectName="App Data")
+
+        self.instsList: list[Instance] = []
+        self.sourceDir: str = self._get_source_dir()
+        self.projectRootDir: str = self._get_project_root_dir()
+        self.appConfigDir: str = self._get_app_config_dir()
+        self.localesDir: str = self._get_locales_dir()
+        self.assetsDirs: str = self._get_assets_dir()
+        self.appDataDirs: tuple[str, str] = (
+            self._get_user_app_data_dir(),
+            self._get_site_app_data_dir(),
+        )
+        self.appCacheDir: str = self._get_app_cache_dir()
+        self.appLogDir: str = self._get_app_log_dir()
         self.load_insts_list_into_mem()
 
     def load_insts_list_into_mem(self) -> None:
-        """#TODO : make it so it also work on both user and system (site) dir if needed. 
+        """#TODO : make it so it also work on both user and system (site) dir if needed.
         #TODO : docstring
         """
-        defaults_insts_dir : Path = Path(os.path.join(self.appDataDirs[0], "instances"))
+        defaults_insts_dir: Path = Path(os.path.join(self.appDataDirs[0], "instances"))
         if not defaults_insts_dir.exists():
-            term_service.print_information(f"{defaults_insts_dir} did not exist. Trying to recreate it.")
+            term_service.print_information(
+                f"{defaults_insts_dir} did not exist. Trying to recreate it."
+            )
             try:
                 os.makedirs(defaults_insts_dir)
             except OSError:
@@ -48,17 +57,19 @@ class AppData(QObject):
             except RuntimeError:
                 term_service.print_error("An une error have occured : {RuntineError}")
             return
-        instancesLists : list[Instance] = []
+        instancesLists: list[Instance] = []
         for file_path in defaults_insts_dir.iterdir():
             if file_path.is_file():
                 try:
-                    with open(file=file_path, mode="r", encoding="utf-8") as file:                        
-                        context_dict:dict[str, str] = json.load(file)    # pyright: ignore[reportAny]
+                    with open(file=file_path, mode="r", encoding="utf-8") as file:
+                        context_dict: dict[str, str] = json.load(file)  # pyright: ignore[reportAny]
                         new_inst = Instance()
                         new_inst.load_inst_from_dict(context_dict)
                         instancesLists.append(new_inst)
                 except (json.JSONDecodeError, OSError, ValueError):
-                    term_service.print_error(f"Cannot decode JSON {OSError} {ValueError} {json.JSONDecodeError}")
+                    term_service.print_error(
+                        f"Cannot decode JSON {OSError} {ValueError} {json.JSONDecodeError}"
+                    )
                 else:
                     term_service.print_information(f"{file_path} was not a file.")
         self.instsList = instancesLists
@@ -93,7 +104,7 @@ class AppData(QObject):
         Returns:
             str: _description_
         """
-        return os.path.join(self._get_project_root_dir(),"assets", "languages")
+        return os.path.join(self._get_project_root_dir(), "assets", "languages")
 
     def _get_assets_dir(self) -> str:
         """_summary_ TODO : docstring
@@ -138,7 +149,7 @@ class AppData(QObject):
         """
         dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_log_dir
-    
+
     def _get_app_config_dir(self) -> str:
         """_summary_ TODO : docstring
 
