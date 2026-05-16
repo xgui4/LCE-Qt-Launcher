@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher (Nightly)"
-#define MyAppVersion "2026.05.15"
+#define MyAppVersion "2026.05.16"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -44,6 +44,7 @@ ArchitecturesAllowed=x64compatible
 ; meaning it should use the native 64-bit Program Files directory and
 ; the 64-bit view of the registry.
 ArchitecturesInstallIn64BitMode=x64compatible
+; SetupArchitecture=x64 ; for the inno 7 preview
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

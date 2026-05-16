@@ -69,9 +69,12 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 2. compiled the ui and ressource file with [`scripts/build.sh`](scripts/build.sh)
 3. load the app with [`python src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py)
 
-### Others
+### Using the command line
 
-coming soon
+1. Create the venv with uv (`uv sync`)
+2. Load the venv with `source .venv/bin/activate.sh` (replace .sh with your shell, on Windows it is `.venv\Scripts\activate.ps1` for powershell or `.venv\Scripts\activate.bat` for cmd)
+3. Run `scripts/build.sh` (for Linux) `scripts\build.cmd` for (Windows)
+4. Run the main python script `src/lce_qt_launche.py` (On Windows you might need to invoque `python3` directly and replace `/` with `\`)
 
 ## How to build
 
@@ -88,22 +91,42 @@ coming soon
 
 ### Nix Package
 
-#### Nix Flake (Not tested yet/Work in progress)
+<!--
+#### Nix Flake (Coming Soon)
 
   Run `nix build`
-
+-->
 #### Nixpkg
 
   Run `nix-build default.nix`
 
-### Flatpak and Windows Installers
+  to install you can use the helper : `./nix-helper.sh` install
 
-- Guide Coming Later
+#### Windows Installer
+
+Requirements :
+  [Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
+
+  1. Go to the windows packages locations : `cd pacakges/windows`
+  2. run the script with Inno Setup for your desired channel [`setup-nightly.iss`](packages/windows/setup-nigthly.iss) or [`setup.iss`](packages/windows/setup.iss))
+
+#### FreeBSD
+
+1. go to the freebsd port folder : `cd freebsd-ports`
+2. run the install scripts : `install`
+
+#### Flatpak
+
+> [!NOTE]
+> For Flatpak, manual building is only recommended for development purposes or for forks that don't have a Flatpak repository.
+> Currently, this is the only method since the official Flatpak repository is not yet activated. Once activated, this part of the notice will be removed, and it will then be recommended to use the Flatpak repository, which will be displayed here.
+
+1. Go to the flatpak manifest location : `cd packages/flatpak`
+2. Build the flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
 
 ## Nigthly Build
 
 > [!NOTE]
-> This automatic nighly build is currently not-stable and is very experimental and in active developpement
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch

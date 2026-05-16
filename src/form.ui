@@ -699,7 +699,7 @@
       <string>Load Default Instance</string>
      </property>
      <addaction name="actionLoadDefaultInstance"/>
-     <addaction name="actionLoadNeoLegacyInstance"/>
+     <addaction name="actionLoadmclceInstance"/>
      <addaction name="actionLoadRevelationsInstance"/>
      <addaction name="actionLoad360RevivedInstance"/>
      <addaction name="actionLoadHellishEndsInstance"/>
@@ -1114,12 +1114,12 @@
   </action>
   <action name="actionLoadDefaultInstance">
    <property name="text">
-    <string>Default</string>
+    <string>Default (NeoLegacy)</string>
    </property>
   </action>
-  <action name="actionLoadNeoLegacyInstance">
+  <action name="actionLoadmclceInstance">
    <property name="text">
-    <string>NeoLegacy</string>
+    <string>MCLCE (Automatic Installation Coming Later)</string>
    </property>
   </action>
   <action name="actionLoadRevelationsInstance">

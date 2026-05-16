@@ -1,7 +1,7 @@
 {
     "$schema" : "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/nightly/schemas/x-application-lce_inst_config.json",
-    "name": "Default",
-    "installation_path": ".default", 
+    "name": "MCLCE Source Code Backup",
+    "installation_path": ".mclce", 
     "archive_file": "LCEWindows64.zip", 
     "exe_name": "Minecraft.Client.exe", 
     "repo_url": "https://git.minecraftlegacy.com/backups/MinecraftConsoles", 

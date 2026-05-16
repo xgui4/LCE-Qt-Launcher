@@ -68,9 +68,12 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 2. Compilez l'interface utilisateur et le fichier de ressources avec `scripts/build.sh`.
 3. Executé l'application avec `python src/lce_qt_launcher/main.py`.
 
-### Autres
+### Utilisation de la ligne de commande
 
-À venir
+1. Créez l'environnement virtuel avec uv (`uv sync`).
+2. Chargez l'environnement virtuel avec `source .venv/bin/activate.sh` (remplacez `.sh` par votre interpréteur de commandes ; sous Windows, il s'agit de `.venv\Scripts\activate.ps1` pour PowerShell ou de `.venv\Scripts\activate.bat` pour l'invite de commandes).
+3. Exécutez `scripts/build.sh` (pour Linux) ou `scripts\build.cmd` (pour Windows).
+4. Exécutez le script Python principal `src/lce_qt_launche.py` (sous Windows, vous devrez peut-être appeler `python3` directement et remplacer `/` par `\`).
 
 ## Comment compiler
 
@@ -87,23 +90,44 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 
 ### Paquet Nix
 
-#### Nix Flake (Non testé/En cours de développement)
+<!--
+#### Nix Flake (Coming soon)
 
 Exécutez `nix build`
+
+-->
 
 #### Nixpkg
 
 Exécutez `nix-build default.nix`
 
-### Installateurs Flatpak et Windows
+#### Windows Installer
 
-- Guide à venir
+Prérequis :
+
+[Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
+
+1. Accédez au répertoire des paquets Windows : `cd packages/windows`
+2. Exécutez le script avec Inno Setup pour le canal souhaité ([`setup-nightly.iss`](packages/windows/setup-nightly.iss) ou [`setup.iss`](packages/windows/setup.iss))
+
+#### FreeBSD
+
+1. Accédez au répertoire des ports FreeBSD : `cd freebsd-ports`
+2. Exécutez le script d'installation : `install`
+
+#### Flatpak
+
+> [!NOTE]
+> Pour flatpak, le build manual n'est recommender uniquement pour des raisons de développements ou pour les forks qui n'ont pas de repo flatpak.
+> Pour le moment, c'est la seule méthode puisque le repo flatpak officiel n'est pad encore activé. Une fois actvé cette partie de notice serait enlever, et il serait donc recommender d'utiliser le répo flatpak et il serait afficher ici
+
+1. Accédez au répertoire du manifeste Flatpak : `cd packages/flatpak`
+2. Compilez Flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
 
 ## Versions Quotidiennes (Nightly Release)
 
 > [!NOTE]
-> Les versions quotidiennes automatiques sont actuellement instable, très expérimentale et en développement actif.
-> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la compilation nocturne en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
+> Cette branche/Version n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la compilation nocturne en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
 
 Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche `nighly`.
 
