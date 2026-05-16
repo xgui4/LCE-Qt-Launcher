@@ -65,7 +65,7 @@ def main() -> None:
     try:
         # sys_man.adapt_qt_system_theme() # temporaly disabled cause it can cause issue, when a fixed will be made, it will be reenable
         userPref: UserPref = appContext.userPref
-        user_language: str = userPref.get_language_pref()
+        # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language, not aa theme file
         user_theme: str = userPref.get_theme_pref()
         show_holiday: str = userPref.get_show_holiday()
         developer_mode: str = userPref.get_developper_mode()
@@ -78,28 +78,16 @@ def main() -> None:
             appContext.updateSetAccesbilityMoodeStatus(accessible_mode)
         except RuntimeError as err:
             term_service.print_error(str(err))
-        appContext.updateLanguage(user_language)
+        # appContext.updateLanguage(user_language)
     except:
-        term_service.print_error(
-            "They were a error while loading the system theme or user preference."
-        )
+        term_service.print_error("They were a error while loading the system theme or user preference.")
 
     def about_to_quit_event() -> None:
-        instance_manager_label: str = appContext.translator.translate(
-            "instance_manager_label"
-        )
-        save_instance_msg_box_label: str = appContext.translator.translate(
-            "save_instance_msg_box_label"
-        )
-        save_filedialog_title: str = appContext.translator.translate(
-            "save_filedialog_title"
-        )
-        question_options = (
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-        )
-        anwser = QMessageBox.question(
-            None, instance_manager_label, save_instance_msg_box_label, question_options
-        )
+        instance_manager_label: str = appContext.translator.translate("instance_manager_label")
+        save_instance_msg_box_label: str = appContext.translator.translate("save_instance_msg_box_label")
+        save_filedialog_title: str = appContext.translator.translate("save_filedialog_title")
+        question_options = (QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        anwser = QMessageBox.question(None, instance_manager_label, save_instance_msg_box_label, question_options)
         if anwser == QMessageBox.StandardButton.Yes:
             file_name: str = QFileDialog.getSaveFileName(
                 None,

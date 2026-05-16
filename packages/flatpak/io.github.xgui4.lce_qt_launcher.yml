@@ -18,14 +18,14 @@ cleanup-commands:
   - /app/cleanup-BaseApp.sh
 
 modules:
-  - name: python3-backports-zstd
+  - name: python3-maturin
     buildsystem: simple
     build-commands:
-      - pip3 install --no-index --find-links=. --prefix=${FLATPAK_DEST} backports.zstd-1.3.0.tar.gz
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} maturin
     sources:
       - type: file
-        url: https://pythonhosted.org
-        sha256: 7f76fc6d5b0d6168e3cb20e9803001859a1cf6456f91d8487b320d39e2304899
+        url: https://files.pythonhosted.org/packages/c7/7d/a1be934690cdcc3c6609769ceaad322ab7501c2ee5bafcac1b14d609e403/maturin-1.13.3-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.musllinux_1_1_x86_64.whl
+        sha256: 4667ef609ab446c1b5e0bfe4f9fb99699ab6d8548433f8d1a684256e0b67217f
 
   - python3-requirements.json
 

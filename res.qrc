@@ -29,7 +29,7 @@
         <file alias="light.qss">assets/styles/light.qss</file>
     </qresource>
     <qresource prefix="/instances">
-        <file alias="default.lce_inst">data/defaults_instances/default.lce_inst</file>
+        <file alias="mclce.lce_inst">data/defaults_instances/mclce.lce_inst</file>
         <file alias="neoLegacy.lce_inst">data/defaults_instances/neoLegacy.lce_inst</file>
         <file alias="hellishends.lce_inst">data/defaults_instances/hellishends.lce_inst</file>
         <file alias="360Revived.lce_inst">data/defaults_instances/360Revived.lce_inst</file>

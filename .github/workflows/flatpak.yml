@@ -1,9 +1,9 @@
-name: Build And Publish Flatpak Nightly using Flutter
+name: Build And Publish Flatpak Nightly using Flatter
 
 on:
   push:
     branches :
-        nightly
+      - nightly
 jobs:
   flatter:
     name: Flatter
@@ -16,15 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # See "GPG Signing" below
-      - name: Setup GPG
-        if: ${{ github.triggering_actor == github.repository_owner }}
-        id: gpg
-        uses: crazy-max/ghaction-import-gpg@v5
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
-
       # Generate a CNAME file on-the-fly for a configured host
       - name: Generate CNAME
         run: |
@@ -36,7 +27,6 @@ jobs:
           files: |
             packages/flatpak/io.github.xgui4.lce_qt_launcher.yml
           arch: ${{ matrix.arch }}
-          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-bundles: true
           upload-pages-artifact: true
           upload-pages-includes: |

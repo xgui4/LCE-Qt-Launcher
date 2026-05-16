@@ -298,16 +298,16 @@ class LauncherView(QMainWindow):
         loadDefaultInstance = lambda: self.loadInstanceCommand(dict(), instanceManager)
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
 
-        neoLegacyJson = QFile(":/instances/neoLegacy.lce_inst")
-        if not neoLegacyJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open NeoLegacy Instance")
-            self.ui.actionLoadNeoLegacyInstance.setEnabled(False)
+        mclceJson = QFile(":/instances/mclce.lce_inst")
+        if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
+            term_service.print_error("Cannot found or open MCLCE Instance")
+            self.ui.actionLoadmclceInstance.setEnabled(False)
             return None
         else:
-            raw_text_neo: str = bytes(neoLegacyJson.readAll().data()).decode("utf-8")
+            raw_text_neo: str = bytes(mclceJson.readAll().data()).decode("utf-8")
             data_neo = json.loads(raw_text_neo)
             loadNeoLegacyInstance = lambda: self.loadInstanceCommand(data_neo, instanceManager)
-            self.ui.actionLoadNeoLegacyInstance.triggered.connect(loadNeoLegacyInstance)
+            self.ui.actionLoadmclceInstance.triggered.connect(loadNeoLegacyInstance)
 
         self.ui.actionLoadHellishEndsInstance.setEnabled(False)  # Due to dcma it is disabled
         self.ui.actionLoadHellishEndsInstance.setText("HellishEnd (Disabled due to DMCA)")
@@ -451,7 +451,7 @@ class LauncherView(QMainWindow):
         self.ui.newsEngineView.setUrl(self.news_feed)
         instanceManager.instance.display()
         # TODO : FIX THE INSTANCE SOURCE BEFORE RENABLED THIS FEATURES
-        # if instanceManager.is_installable() == False:
-        #     self.ui.installButton.setEnabled(False)
-        # else:
-        #     self.ui.installButton.setEnabled(True)
+        if instanceManager.is_installable() == False:
+            self.ui.installButton.setEnabled(False)
+        else:
+            self.ui.installButton.setEnabled(True)

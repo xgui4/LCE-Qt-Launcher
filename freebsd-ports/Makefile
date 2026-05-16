@@ -1,6 +1,6 @@
 PORTNAME=		lce-qt-launcher
 DISTVERSION=	0.0.20b0
-CATEGORIES=		games python
+CATEGORIES=		games python utiity
 
 MAINTAINER=		xgui4-dev@example.com
 COMMENT=		Custom Free/Libre Minecraft Legacy Console Launcher
