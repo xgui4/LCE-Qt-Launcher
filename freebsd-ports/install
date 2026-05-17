@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-sudo make makesum
-
-sudo make install

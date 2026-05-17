@@ -136,6 +136,7 @@ You can also, downloading this repo with the command `git clone https://github.c
 - [Miracode Font](https://github.com/IdreesInc/Miracode)
 - [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - now dcma, so it is removed/unaivable for now
 - [360Revived](https://github.com/BluTac10/360Revived) - now dcma, so it is removed/unaivable for now
+- [Steam Tinker Launch](https://github.com/sonic2kk/steamtinkerlaunch) for Steam and SteamDeck integration on GNU/Linux via their software.
 
 ## Code of Respect
 

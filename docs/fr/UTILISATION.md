@@ -13,7 +13,7 @@
 
 4. Lancez l'application via le mode débogage de VSCode ou directement le fichier [`src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py).
 
-## FreeBSD 
+## FreeBSD
 
 ```shell
 

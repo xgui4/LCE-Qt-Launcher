@@ -49,8 +49,7 @@ Prérequis :
 
 #### FreeBSD
 
-1. Accédez au répertoire des ports FreeBSD : `cd freebsd-ports`
-2. Exécutez le script d'installation : `install`
+Utilité mon FreeBSD Port [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 
 #### Flatpak
 

@@ -45,8 +45,7 @@ Requirements :
 
 #### FreeBSD
 
-1. go to the freebsd port folder : `cd freebsd-ports`
-2. run the install scripts : `install`
+Using my Github FreeBSD [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 
 #### Flatpak
 

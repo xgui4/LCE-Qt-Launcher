@@ -293,8 +293,9 @@ tmp/
 
 # Minecraft Client
 MinecraftLCEClient/
-.lce**
-.**Legacy
+.lce*
+.*Legacy
+.*default
 
 # Output
 output/
@@ -333,4 +334,6 @@ result
 
 freebsd-ports/work-*
 
-.new-default
+# Others
+
+.ruff*
