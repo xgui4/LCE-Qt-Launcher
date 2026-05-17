@@ -49,87 +49,34 @@ This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom an
 - Localisations support
 - Focus on being the main hub for Minecraft LCE on GNU/Linux
 
-## How to run
+## Compiling
 
-### VSCode
+See [`docs/en/COMPILING.md`](docs/en/COMPILING.md)
 
-> [!NOTE]
-> In Windows you might need to replace `/` with `\`
-> [!WARNING]
-> This method is not recommed nore tested for NixOS, go to the NixOS Section, for the step for this particular OS.
+## Running/Debugging
 
-1. Create a Python Virtual Env via a tool like UV (if not already done)
-2. Set VSCode to that Python Virtual Env
-3. Run "Pyside : Sync Virtual Env and Launch"
-4. Run the app via Vscode debug mode or directly the [`src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py) file.
+See [`docs/en/RUNNING.md`](docs/en/RUNNING.md)
 
-### NixOS
+## How to get
 
-1. load the nix shell with `nix-shell` command
-2. compiled the ui and ressource file with [`scripts/build.sh`](scripts/build.sh)
-3. load the app with [`python src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py)
+### Tag Release
 
-### Using the command line
+In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launcher/releases/) page you will found tagged Release like [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta). Right now it is just source code but next version , it will have installer and packages for Windows and Linux and instruction for FreeBSD Ports and Nix package.
 
-1. Create the venv with uv (`uv sync`)
-2. Load the venv with `source .venv/bin/activate.sh` (replace .sh with your shell, on Windows it is `.venv\Scripts\activate.ps1` for powershell or `.venv\Scripts\activate.bat` for cmd)
-3. Run `scripts/build.sh` (for Linux) `scripts\build.cmd` for (Windows)
-4. Run the main python script `src/lce_qt_launche.py` (On Windows you might need to invoque `python3` directly and replace `/` with `\`)
+### Flatpak (Coming Soon)
 
-## How to build
+Soon, they will be a flatpak repo with instruction here.
 
-### Portable Nuitka Build
-
-0. Create a Python Virtual Env via a tool like UV (if not already done)
-1. Run `hatch run packages`
-
-### Arch Linux
-
-1. Go the [`packages/linux` directory](packages/linux)
-2. Choose a channel dev, nigthly or stable (go to the directory)
-3. Run `makepkg -si` or `makepkg -s` (for no install) in one of these directory
-
-### Nix Package
-
-<!--
-#### Nix Flake (Coming Soon)
-
-  Run `nix build`
--->
-#### Nixpkg
-
-  Run `nix-build default.nix`
-
-  to install you can use the helper : `./nix-helper.sh` install
-
-#### Windows Installer
-
-Requirements :
-  [Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
-
-  1. Go to the windows packages locations : `cd pacakges/windows`
-  2. run the script with Inno Setup for your desired channel [`setup-nightly.iss`](packages/windows/setup-nigthly.iss) or [`setup.iss`](packages/windows/setup.iss))
-
-#### FreeBSD
-
-1. go to the freebsd port folder : `cd freebsd-ports`
-2. run the install scripts : `install`
-
-#### Flatpak
-
-> [!NOTE]
-> For Flatpak, manual building is only recommended for development purposes or for forks that don't have a Flatpak repository.
-> Currently, this is the only method since the official Flatpak repository is not yet activated. Once activated, this part of the notice will be removed, and it will then be recommended to use the Flatpak repository, which will be displayed here.
-
-1. Go to the flatpak manifest location : `cd packages/flatpak`
-2. Build the flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
-
-## Nigthly Build
+### Nigthly Build
 
 > [!NOTE]
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
 
-In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch
+In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`nightly` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly)
+
+### Via Git
+
+You can also, downloading this repo with the command `git clone https://github.com/xgui4/lce-qt-launcher.git` and then compiling (see `docs/en/COMPILING.md` for more info how) anually or running in a .venv (see `docs/en/RUNNING.md` for more info how).
 
 ## Software Requirement
 
@@ -153,27 +100,27 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 
 ### Golden Support
 
-    Platform Tested Regurlaly and with completed implemation/patch
+  Platform Tested Regurlaly and with completed implemation/patch
 
 - Windows 10 and later
 - GNU/Linux
 
 ### Experimental Support
 
-    Plattform tested with work in progress implemation
+  Plattform tested with work in progress implemation
 
 - NixOS
 - FreeBSD
 
 ### Partly Supported Platform
 
-    Platform not tested yet, but with implementation
+  Platform not tested yet, but with implementation
 
 - Flatpak
 
 ### Unsupported OS
 
-    These platform are not tested and may work or not at all
+  These platform are not tested and may work or not at all
 
 - Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.
 - Minecraft LCE on Android is currently quite laggy and buggy

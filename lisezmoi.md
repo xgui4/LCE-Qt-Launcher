@@ -7,7 +7,7 @@
 
 > [!WARNING]
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.
-> Les contributions (PR) sont les bienvenues pour corriger ou ajouter des fonctionnalités. Veuillez respecter la [licence GPLv3](license.md) et le [Code de conduite](code-of-conduct.md).
+> Les contributions (PR) sont les bienvenues pour corriger ou ajouter des fonctionnalités. Veuillez respecter la [licence GPLv3](license.md) et le [Code de conduite](CODE-DE-CONDUITE.md).
 
 ## À propos
 
@@ -50,86 +50,32 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt 
 
 ## Comment exécuter
 
-### VSCode
+voir [`docs/fr/UTILISATION`](docs/fr/UTILISATION.md)
+
+## Comment compiler/débugger
+
+voir [`docs/fr/COMPILATION`](docs/fr/COMPILATION.md)
+
+## Comment obtenir
+
+### Version taggé
+
+Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Launcher/releases/), vous trouverez les versions étiquetées, par exemple [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta). Actuellement, il ne s'agit que du code source, mais la prochaine version inclura un programme d'installation, des paquets pour Windows et Linux, ainsi que des instructions pour FreeBSD Ports et un paquet Nix.
+
+### Flatpak (Bientôt disponible)
+
+Un dépôt Flatpak avec les instructions sera bientôt disponible ici.
+
+### Version de nuit
 
 > [!NOTE]
-> Sous Windows, remplacez `/` par `\`.
-> [!WARNING]
-> Cette méthode n'est ni recommandée ni testée pour NixOS. Consultez la section NixOS pour la procédure spécifique à ce système d'exploitation.
+> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version de nuit en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
 
-1. Créez un environnement virtuel Python à l'aide d'un outil comme UV (si ce n'est pas déjà fait).
-2. Configurez VS Code pour utiliser cet environnement virtuel Python.
-3. Exécutez « PySide : Sync Virtual Env and Launch ».
-4. Exécutez l'application via le mode débogage de VS Code ou directement le fichier [`src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py).
+Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`nightly`](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly).
 
-### NixOS
+### Via Git
 
-1. Lancez le shell Nix avec la commande `nix-shell`.
-2. Compilez l'interface utilisateur et le fichier de ressources avec `scripts/build.sh`.
-3. Executé l'application avec `python src/lce_qt_launcher/main.py`.
-
-### Utilisation de la ligne de commande
-
-1. Créez l'environnement virtuel avec uv (`uv sync`).
-2. Chargez l'environnement virtuel avec `source .venv/bin/activate.sh` (remplacez `.sh` par votre interpréteur de commandes ; sous Windows, il s'agit de `.venv\Scripts\activate.ps1` pour PowerShell ou de `.venv\Scripts\activate.bat` pour l'invite de commandes).
-3. Exécutez `scripts/build.sh` (pour Linux) ou `scripts\build.cmd` (pour Windows).
-4. Exécutez le script Python principal `src/lce_qt_launche.py` (sous Windows, vous devrez peut-être appeler `python3` directement et remplacer `/` par `\`).
-
-## Comment compiler
-
-### Compilation portable avec Nuitka
-
-0. Créez un environnement virtuel Python avec un outil comme UV (si ce n'est pas déjà fait).
-1. Exécutez `hatch run packages`.
-
-### Arch Linux
-
-1. Accédez au répertoire `packages/linux`.
-2. Choisissez un canal : dev, nightly ou stable (accédez au répertoire correspondant).
-3. Exécutez `makepkg -si` ou `makepkg -s` (pour une installation sans paquets) dans l'un de ces répertoires.
-
-### Paquet Nix
-
-<!--
-#### Nix Flake (Coming soon)
-
-Exécutez `nix build`
-
--->
-
-#### Nixpkg
-
-Exécutez `nix-build default.nix`
-
-#### Windows Installer
-
-Prérequis :
-
-[Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
-
-1. Accédez au répertoire des paquets Windows : `cd packages/windows`
-2. Exécutez le script avec Inno Setup pour le canal souhaité ([`setup-nightly.iss`](packages/windows/setup-nightly.iss) ou [`setup.iss`](packages/windows/setup.iss))
-
-#### FreeBSD
-
-1. Accédez au répertoire des ports FreeBSD : `cd freebsd-ports`
-2. Exécutez le script d'installation : `install`
-
-#### Flatpak
-
-> [!NOTE]
-> Pour flatpak, le build manual n'est recommender uniquement pour des raisons de développements ou pour les forks qui n'ont pas de repo flatpak.
-> Pour le moment, c'est la seule méthode puisque le repo flatpak officiel n'est pad encore activé. Une fois actvé cette partie de notice serait enlever, et il serait donc recommender d'utiliser le répo flatpak et il serait afficher ici
-
-1. Accédez au répertoire du manifeste Flatpak : `cd packages/flatpak`
-2. Compilez Flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
-
-## Versions Quotidiennes (Nightly Release)
-
-> [!NOTE]
-> Cette branche/Version n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la compilation nocturne en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
-
-Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche `nighly`.
+Vous pouvez également télécharger ce dépôt avec la commande `git clone https://github.com/xgui4/lce-qt-launcher.git` puis le compiler (voir [`docs/fr/COMPILATION.md`](docs/fr/COMPILATION.md) pour plus d'informations) manuellement ou l'exécuter dans un environnement virtuel (.venv) (voir [`docs/fr/UTILISATION.md`](docs/fr/UTILISATION.md) pour plus d'informations).
 
 ## Configuration logicielle requise
 
@@ -153,27 +99,31 @@ Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/release
 
 ### Compatibilité officielle
 
-    Plateformes testées régulièrement et avec implémentation/correctif finalisé
+> [!NOTE]
+> Plateformes testées régulièrement et avec implémentation/correctif finalisé
 
 - Windows 10 et versions ultérieures
 - GNU/Linux
 
 ### Compatibilité expérimentale
 
-    Plateforme testée avec implémentation en cours de developement
+> [!NOTE]
+> Plateforme testée avec implémentation en cours de developement
 
 - NixOS
 - FreeBSD
 
 ### Plateformes prises en charge partiellement
 
-    Plateformes non testées, mais avec implémentation
+> [!NOTE]
+> Plateformes non testées, mais avec implémentation
 
 - Flatpak
 
 ### Systèmes d'exploitation non pris en charge
 
-    Ces plateformes n'ont pas été testées et leur fonctionnement n'est pas garantis :
+> [!NOTE]
+> Ces plateformes n'ont pas été testées et leur fonctionnement n'est pas garantis :
 
 - Autres systèmes *BSD, car Minecraft LCE n'est pas pris en charge sur ces systèmes et Wine n'est pas disponible.
 - Minecraft LCE sur Android est actuellement assez lent et bogué.
