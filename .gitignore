@@ -331,7 +331,6 @@ result
 
 # FreeBSD
 
-freebsd-ports/distinfo
-
+freebsd-ports/work-*
 
 .new-default
