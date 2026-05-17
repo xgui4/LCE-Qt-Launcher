@@ -2,4 +2,4 @@
 
 sudo make makesum
 
-make install
+sudo make install
