@@ -2,18 +2,15 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from PySide6.QtWidgets import QMessageBox
-
 if TYPE_CHECKING:
     from lce_qt_launcher.app_context import AppContext
 
 from lce_qt_launcher.build_info import BuildInfo
-
 import lce_qt_launcher.views.term_service as term_service
 
 from PySide6.QtNetwork import QNetworkReply
-
 from PySide6.QtCore import QObject
+from PySide6.QtWidgets import QMessageBox
 
 from enum import Enum
 from subprocess import TimeoutExpired
@@ -289,9 +286,7 @@ class Instance(QObject):
 class InstanceManager:
     """_summary_ The Manager for Instances objects"""
 
-    def __init__(
-        self, instance: Instance, build_info: BuildInfo, appContext: AppContext
-    ):
+    def __init__(self, instance: Instance, build_info: BuildInfo, appContext: AppContext):
         self.instance: Instance = instance
         from lce_qt_launcher.managers.downloader import Downloader
 
@@ -306,36 +301,26 @@ class InstanceManager:
         """
         return_code: int = 0
         try:
-            client_path: str = os.path.join(
-                self.instance.installation_path, self.instance.exe_name
-            )
+            client_path: str = os.path.join(self.instance.installation_path, self.instance.exe_name)
             try:
-                game_process_temp = subprocess.run(
-                    [client_path, "-name", self.instance.username]
-                )
+                game_process_temp = subprocess.run([client_path, "-name", self.instance.username])
                 return_code = game_process_temp.returncode
             except subprocess.SubprocessError as e:
                 if os.name == "posix":
-                    game_process_temp = subprocess.run(
-                        ["wine", client_path, "-name", self.instance.username]
-                    )
+                    game_process_temp = subprocess.run(["wine", client_path, "-name", self.instance.username])
                     return_code = game_process_temp.returncode
                 else:
                     QMessageBox.critical(None, "Instance Error", str(e.args))
         except TimeoutExpired as err:
-            term_service.print_error(
-                f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
-            )
+            term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
             return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
         except PermissionError as err:
-            term_service.print_error(
-                f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
-            )
+            term_service.print_error(f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
             return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
             return f"Client closed with code {return_code}"
 
-    def install_instance(self) -> QNetworkReply:
+    def install_instance(self) -> QNetworkReply | str:
         """_summary_ Install the selected Instance
 
         Raises:
@@ -351,6 +336,9 @@ class InstanceManager:
                 InstanceSource.FORGEJO_RELEASE,
             ]:
                 return self._downloader.download_inst_async(self.instance)
+            if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
+                subprocess.run(["git", "clone", self.instance.repo_url, self.instance.installation_path])
+                return "git_operation_finished"
             else:
                 raise RuntimeWarning(
                     "Not implemented YET"

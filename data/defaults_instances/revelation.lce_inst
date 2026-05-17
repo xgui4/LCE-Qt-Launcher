@@ -5,7 +5,7 @@
     "archive_file": "LCE-Revelations-Client-Win64.zip", 
     "exe_name": "Minecraft.Client.exe", 
     "repo_url": "https://github.com/itsRevela/LCE-Revelations", 
-    "image" : ":/assets/minecraft.png",
+    "image" : ":/assets/Revelation.jpg",
     "news_feed" : "https://github.com/itsRevela/LCE-Revelations/commits/main/",
     "instance_source": "InstanceSource.GITHUB_RELEASE", 
     "instance_type": "InstanceType.CLIENT_VANILLA", 
