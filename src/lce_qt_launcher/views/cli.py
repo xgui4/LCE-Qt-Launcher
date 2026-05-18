@@ -33,9 +33,9 @@ under certain conditions; type `show c' for details.
 
     if len(argv) < 1:
         user_output = input()
-    if user_output == "1" or argv[2] == "play":
+    if user_output == "1" or argv[1] == "play":
         print(instance_man.play())
-    if user_output == "2" or argv[2] == "install":
+    if user_output == "2" or argv[1] == "install":
         print(instance_man.install_instance())
     else:
         term_service.print_information("Not implemented Yet!")

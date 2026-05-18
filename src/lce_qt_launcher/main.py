@@ -6,14 +6,14 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.2026.5.13"
-# nuitka-project: --file-version="0.2026.5.13"
+# nuitka-project: --product-version="0.2026.5.17"
+# nuitka-project: --file-version="0.2026.5.17"
 # nuitka-project: --file-description="Manage Minecraft Legacy Console Edition Instances."
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
 """
-LCE Qt Launcher Manager
+LCE Qt Launcher Alpha
 Copyright (C) 2026 Xgui4
 
 This program is free software: you can redistribute it and/or modify
@@ -30,13 +30,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/.
 """
 
-from lce_qt_launcher.models.preferences import UserPref
-
-
-from PySide6.QtWidgets import QMessageBox, QFileDialog
-
-from PySide6.QtGui import QFontDatabase
-
+from lce_qt_launcher import instance_extension_str
+from lce_qt_launcher.models.pref import UserPref
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views import term_service
 from lce_qt_launcher.views.cmd_arg import (
@@ -50,6 +45,11 @@ from lce_qt_launcher.app import App
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.models.theme import StrTheme
 import lce_qt_launcher.models.theme as theme
+
+
+from PySide6.QtWidgets import QMessageBox, QFileDialog
+from PySide6.QtGui import QFontDatabase
+
 
 import sys
 import os
@@ -67,18 +67,26 @@ def main() -> None:
         userPref: UserPref = appContext.userPref
         # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language, not aa theme file
         user_theme: str = userPref.get_theme_pref()
-        show_holiday: str = userPref.get_show_holiday()
-        developer_mode: str = userPref.get_developper_mode()
-        accessible_mode: str = userPref.get_accesible_mode()
+        show_holiday: str = userPref.get_show_holiday_pref()
+        developer_mode: str = userPref.get_developper_mode_pref()
+        accessible_mode: str = userPref.get_accesible_mode_pref()
+        experiment_mode: str = userPref.get_experimental_mode_pref()
+        username: str = userPref.get_username_pref()
+        default_instance_path : str = userPref.get_instance_path_pref()
         try:
             selected_theme: StrTheme = theme.from_str_to_strTheme(user_theme)
-            appContext.updateTheme(selected_theme)
-            appContext.updateShowHolidayStatus(show_holiday)
-            appContext.updateSetDevMoodeStatus(developer_mode)
-            appContext.updateSetAccesbilityMoodeStatus(accessible_mode)
+            appContext.theme = selected_theme
+            appContext.showHolidayEnabled = bool(show_holiday)
+            appContext.devModeEnabled = bool(developer_mode)
+            appContext.experimentModeEnabled = bool(experiment_mode)
+            appContext.accesibleModeEnabled = bool(accessible_mode)
+            appContext.defaultUsername = str(username)
+            appContext.defaultInstancePath = str(default_instance_path)
         except RuntimeError as err:
             term_service.print_error(str(err))
-        # appContext.updateLanguage(user_language)
+        finally:
+            pass
+            #appContext.updateAppUILang()
     except:
         term_service.print_error("They were a error while loading the system theme or user preference.")
 
@@ -92,7 +100,7 @@ def main() -> None:
             file_name: str = QFileDialog.getSaveFileName(
                 None,
                 save_filedialog_title,
-                f'{appContext.sys_man.found_default_save_path()}("LCE Instance Save File" (*{appContext.buildInfo.instance_extension}))',
+                f'{appContext.sys_man.found_default_save_path()}("LCE Instance Save File" (*{instance_extension_str}))',
             )[0]
             appContext.instanceMan.save_instance(file_name)
 
@@ -115,7 +123,6 @@ def main() -> None:
             app.setFont(family)
 
         sys.exit(app.exec())
-
 
 if __name__ == "__main__":
     main()

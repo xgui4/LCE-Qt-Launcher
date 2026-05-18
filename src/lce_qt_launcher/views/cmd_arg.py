@@ -48,20 +48,27 @@ def parse_args(argv: list[str]) -> CmdArgAction:
     Returns:
         CmdArgAction: _description_ The Action of the flags/cmd_args to launch/activated
     """
-    match argv:
+    match argv[1]:
         case CmdArg.GEN_CONFIG_CMD_ARG | CmdArg.GEN_CONFIG_CMD_ARG_SHORT:
+            print("config")
             return CmdArgAction.GEN_CONFIG
         case CmdArg.VERSION_CMD_ARG | CmdArg.VERSION_CMD_ARG_SHORT:
+            print("version")
             return CmdArgAction.PRINT_VERSION
         case CmdArg.LICENSE_CMD_ARG | CmdArg.LICENSE_CMD_ARG_SHORT:
+            print("license")
             return CmdArgAction.PRINT_LICENSE
         case CmdArg.ABOUT_CMD_ARG | CmdArg.ABOUT_CMD_ARG_SHORT:
+            print("about")
             return CmdArgAction.PRINT_ABOUT_INFO
-        case CmdArg.HELP_CMD_ARG, CmdArg.HELP_CMD_ARG_SHORT:
+        case CmdArg.HELP_CMD_ARG | CmdArg.HELP_CMD_ARG_SHORT:
+            print("help")
             return CmdArgAction.PRINT_HELP
-        case CmdArg.CLI_VERSION_CMD_ARG, CmdArg.CLI_VERSION_CMD_ARG_SHORT:
+        case CmdArg.CLI_VERSION_CMD_ARG | CmdArg.CLI_VERSION_CMD_ARG_SHORT:
+            print("cli")
             return CmdArgAction.CLI_VERSION
         case _:
+            print("Not Args detected")
             return CmdArgAction.NO_ARGS
 
 
@@ -79,7 +86,7 @@ def launch_cmd_action(action: CmdArgAction, appContext: AppContext) -> None:
     if action == CmdArgAction.GEN_CONFIG:
         features.generate_user_config(appContext.userPref)
     elif action == CmdArgAction.PRINT_LICENSE:
-        features.display_license(appContext.buildInfo)
+        features.display_license()
     elif action == CmdArgAction.PRINT_HELP:
         features.display_help(
             appContext.translator.translate("help-message", FALLBACK_HELP_MESSAGE)
@@ -89,7 +96,7 @@ def launch_cmd_action(action: CmdArgAction, appContext: AppContext) -> None:
             appContext.translator.translate("about_message", FALLBACK_ABOUT_MESSAGE)
         )
     elif action == CmdArgAction.PRINT_VERSION:
-        features.display_version(appContext.buildInfo)
+        features.display_version()
     elif action == CmdArgAction.CLI_VERSION:
         features.launch_cli_interface(appContext.instanceMan)
     else:

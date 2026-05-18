@@ -21,30 +21,30 @@ class MONTH(Enum):
 
 def monthEnumToStr(enum: MONTH) -> str:
     match enum:
-        case 1:
-            return ("January",)
-        case 2:
-            return ("February",)
-        case 3:
-            return ("March",)
-        case 4:
-            return ("April",)
-        case 5:
-            return ("May",)
-        case 6:
-            return ("June",)
-        case 7:
-            return ("July",)
-        case 8:
-            return ("August",)
-        case 9:
-            return ("September",)
-        case 10:
-            return ("October",)
-        case 11:
-            return ("November",)
-        case 12:
-            return ("December",)
+        case MONTH.JANUARY:
+            return ("January")
+        case MONTH.FEBRURAY:
+            return ("February")
+        case MONTH.MARCH:
+            return ("March")
+        case MONTH.APRIL:
+            return ("April")
+        case MONTH.MAY:
+            return ("May")
+        case MONTH.JUNE:
+            return ("June")
+        case MONTH.JULY:
+            return ("July")
+        case MONTH.AUGUST:
+            return ("August")
+        case MONTH.SEPTEMBER:
+            return ("September")
+        case MONTH.OCTOBER:
+            return ("October")
+        case MONTH.NOVEMBER:
+            return ("November")
+        case MONTH.DECEMBER:
+            return ("December")
         case _:
             return ""
 

@@ -5,6 +5,13 @@ import os
 import lce_qt_launcher.models.app_data as AppData
 import lce_qt_launcher.views.term_service as term_service
 
+from enum import StrEnum
+
+class Languages(StrEnum):
+    """_summary_ : "Language Codes for JsonTrans"""
+    FALLBACK = "translations.json"
+    ENGLISH = "en"
+    FRENCH = "fr"
 
 class JsonTrans(QObject):
     """_summary_ The JSON Translators. Translating str with a json locales file

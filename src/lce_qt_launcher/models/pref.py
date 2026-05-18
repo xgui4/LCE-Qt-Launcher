@@ -2,8 +2,8 @@
 
 from PySide6.QtCore import QSettings
 
-from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.models.theme import StrTheme
+from lce_qt_launcher import app_name_str
 
 _THEME_OPTION: str = "customisation/theme"
 _INSTANCE_PATH_OPTION: str = "preferences/default_path"
@@ -22,12 +22,12 @@ class UserPref(QSettings):
         QSettings (_type_): _description_  : Inherit QtSettings
     """
 
-    def __init__(self, buildInfo: BuildInfo) -> None:
+    def __init__(self) -> None:
         super().__init__(
             QSettings.Format.IniFormat,
             QSettings.Scope.UserScope,
             "Xgui4",
-            buildInfo.app_name,
+            app_name_str,
         )
         self.default_theme: StrTheme = StrTheme.MINECRAFT
         self.default_instance_path: str = "{appData}/instances"
@@ -73,18 +73,18 @@ class UserPref(QSettings):
         super().setValue(_INSTANCE_PATH_OPTION, instance_path)
         super().sync()
 
-    def get_instance_path(self) -> str:
+    def get_instance_path_pref(self) -> str:
         """_summary_ Default Instance Path Getter"""
         return str(
             self.value(_INSTANCE_PATH_OPTION, self.default_instance_path, type=str)
         )
 
-    def set_show_holiday(self, show_holiday_bool: bool) -> None:
+    def set_show_holiday_pref(self, show_holiday_bool: bool) -> None:
         """_summary_  Show Holiday Toggle Setter"""
         super().setValue(_SHOW_HOLIDAY_OPTION, show_holiday_bool)
         super().sync()
 
-    def get_show_holiday(self) -> str:
+    def get_show_holiday_pref(self) -> str:
         """_summary_ Show Holiday Toggle Getter
 
         Returns:
@@ -94,7 +94,7 @@ class UserPref(QSettings):
             self.value(_SHOW_HOLIDAY_OPTION, self.default_show_holiday, type=str)
         )
 
-    def set_accesible_mode(self, accesbility_mode_bool: bool) -> None:
+    def set_accesible_mode_pref(self, accesbility_mode_bool: bool) -> None:
         """_summary_ Accessiblty Mode Sette
 
         Args:
@@ -103,7 +103,7 @@ class UserPref(QSettings):
         super().setValue(_ACCESIBLE_MODE_OPTION, accesbility_mode_bool)
         super().sync()
 
-    def get_accesible_mode(self) -> str:
+    def get_accesible_mode_pref(self) -> str:
         """_summary_ Accesiblity Toggle Getter
 
         Returns:
@@ -113,7 +113,7 @@ class UserPref(QSettings):
             self.value(_ACCESIBLE_MODE_OPTION, self.default_accesibility_mode, type=str)
         )
 
-    def set_developper_mode(self, developper_mode_bool: bool) -> None:
+    def set_developper_mode_pref(self, developper_mode_bool: bool) -> None:
         """_summary_ Dev Mode Setter
 
         Args:
@@ -122,7 +122,7 @@ class UserPref(QSettings):
         super().setValue(_DEVELOPPER_MODE_OPTION, developper_mode_bool)
         super().sync()
 
-    def get_developper_mode(self) -> str:
+    def get_developper_mode_pref(self) -> str:
         """_summary_ Dev Mode Getter
 
         Returns:
@@ -132,7 +132,7 @@ class UserPref(QSettings):
             self.value(_DEVELOPPER_MODE_OPTION, self.default_developper_mode, type=str)
         )
 
-    def set_experimental_mode(self, experimental_mode_bool: bool) -> None:
+    def set_experimental_mode_pref(self, experimental_mode_bool: bool) -> None:
         """_summary_ Experimental Mode Setter
 
         Args:
@@ -141,7 +141,7 @@ class UserPref(QSettings):
         super().setValue(_EXPERIMENTAL_MODE_OPTION, experimental_mode_bool)
         super().sync()
 
-    def get_experimental_mode(self) -> str:
+    def get_experimental_mode_pref(self) -> str:
         """_summary_ Experimental Mode Getter
 
         Returns:
@@ -153,7 +153,7 @@ class UserPref(QSettings):
             )
         )
 
-    def set_username(self, new_username: str) -> None:
+    def set_username_pref(self, new_username: str) -> None:
         """_summary_ Username Setter
 
         Args:
@@ -162,7 +162,7 @@ class UserPref(QSettings):
         super().setValue(_USERNAME_OPTION, new_username)
         super().sync()
 
-    def get_username(self) -> str:
+    def get_username_pref(self) -> str:
         """_summary_ Experimental Mode Getter
 
         Returns:
@@ -175,9 +175,9 @@ class UserPref(QSettings):
         self.set_theme_pref(self.default_theme)
         self.set_language_pref(self.default_language)
         self.set_instance_path_pref(self.default_instance_path)
-        self.set_show_holiday(self.default_show_holiday)
-        self.set_accesible_mode(self.default_accesibility_mode)
-        self.set_accesible_mode(self.default_developper_mode)
-        self.set_experimental_mode(self.default_experiment_mode)
-        self.set_username(self.default_username)
+        self.set_show_holiday_pref(self.default_show_holiday)
+        self.set_accesible_mode_pref(self.default_accesibility_mode)
+        self.set_accesible_mode_pref(self.default_developper_mode)
+        self.set_experimental_mode_pref(self.default_experiment_mode)
+        self.set_username_pref(self.default_username)
         super().sync()

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from lce_qt_launcher.app_context import AppContext
 
-from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher import instance_extension_str
 import lce_qt_launcher.views.term_service as term_service
 
 from PySide6.QtNetwork import QNetworkReply
@@ -286,13 +286,11 @@ class Instance(QObject):
 class InstanceManager:
     """_summary_ The Manager for Instances objects"""
 
-    def __init__(self, instance: Instance, build_info: BuildInfo, appContext: AppContext):
+    def __init__(self, instance: Instance, appContext: AppContext):
         self.instance: Instance = instance
         from lce_qt_launcher.managers.downloader import Downloader
 
         self._downloader: Downloader = Downloader(appContext)
-        self._build_info: BuildInfo = build_info
-
     def play(self) -> str:
         """_summary_ Launch an Instance
 
@@ -361,8 +359,8 @@ class InstanceManager:
             )
         except:
             json_string = json.dumps(obj=vars(self.instance), indent=4, default=str)
-        if not save_file.endswith(self._build_info.instance_extension):
-            full_save_file: str = save_file + self._build_info.instance_extension
+        if not save_file.endswith(instance_extension_str):
+            full_save_file: str = save_file + instance_extension_str
         with open(file=full_save_file, mode="w") as f:
             _ = f.write(json_string)
 

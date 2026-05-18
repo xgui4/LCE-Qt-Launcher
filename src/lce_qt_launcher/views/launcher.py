@@ -27,7 +27,6 @@ from pathlib import Path
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
-from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views.content_installer_dialog import ContentInstallerView
 from lce_qt_launcher.ui_about import Ui_AboutDialog
@@ -37,6 +36,14 @@ from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
 from lce_qt_launcher.utils.json_trans import JsonTrans
 from lce_qt_launcher.ui_form import Ui_launcher
 from lce_qt_launcher.managers.steam_manager import add_instance_to_steam
+from lce_qt_launcher import (
+    app_name_str,
+    version_str,
+    license_text_str,
+    version_type_str,
+    git_repo_url_str,
+    instance_extension_str
+)
 
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
@@ -56,7 +63,6 @@ class LauncherView(QMainWindow):
 
         translator: JsonTrans = appContext.translator
         instanceManager: InstanceManager = appContext.instanceMan
-        buildInfo: BuildInfo = appContext.buildInfo
 
         self.image_label: str = instanceManager.instance.image
         self.news_feed: str = instanceManager.instance.news_feed
@@ -89,14 +95,14 @@ class LauncherView(QMainWindow):
 
         def saveInstanceButtonCommand() -> None:
             """_summary_ Save the instance on a file on disk"""
-            features.save_instance_to_file(self, instanceManager, appContext, buildInfo)
+            features.save_instance_to_file(self, instanceManager, appContext)
 
         def changeInstanceIconButtonCommand() -> None:
             file_name: str = QFileDialog.getOpenFileName(
                 self,
                 "Select the image file for the instance",
                 appContext.sys_man.found_default_save_path(),
-                f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})",
+                f"{app_name_str} Instance File (*{instance_extension_str})",
             )[0]
             instanceManager.instance.image = file_name
             self.ui.instance_img.setPixmap(QPixmap(file_name))
@@ -106,20 +112,20 @@ class LauncherView(QMainWindow):
 
         def showAboutMinecraftActionCommand() -> None:
             """_summary_ Open an QWebEngine at the Minecraft Website"""
-            features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE, buildInfo)
+            features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE)
 
         def showMoreLCEProjectsActionCommand() -> None:
             """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)"""
-            features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE, buildInfo)
+            features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE)
 
         def updateActionCommand() -> None:
             """_summary_ "Show the Update Page in a QWebEngine Popup"""
-            features.show_webbrowser(self, buildInfo.git_repo_url, buildInfo)
+            features.show_webbrowser(self, git_repo_url_str)
 
         def loadInstanceActionCommand() -> None:
             """_summary_ Open the Load Save File Dialog"""
             features.load_instance_from_file(
-                self, instanceManager, appContext, buildInfo, appData
+                self, instanceManager, appContext, appData
             )
             self.loadInstanceInForm(instanceManager)
 
@@ -201,32 +207,31 @@ class LauncherView(QMainWindow):
         self.aboutDialog: QDialog = QDialog()
 
         self.about.setupUi(self.aboutDialog)
-        self.aboutDialog.setWindowTitle(appContext.buildInfo.app_name)
+        self.aboutDialog.setWindowTitle(app_name_str)
 
-        self.about.title.setText(appContext.buildInfo.app_name)
-        self.about.versionLabel.setText(f"{appContext.buildInfo.version}")
-        self.about.urlLabel.setText(appContext.buildInfo.git_repo_url)
+        self.about.title.setText(app_name_str)
+        self.about.versionLabel.setText(f"{version_str}")
+        self.about.urlLabel.setText(git_repo_url_str)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
         self.about.channelLabel.setText(
-            f"**Channel** : {appContext.buildInfo.version_type}"
+            f"**Channel** : {version_type_str}"
         )
         self.about.platformLabel.setText(f"**Platform** : {platform.release()}")
-        from lce_qt_launcher import license_str
 
-        self.about.licenseText.setMarkdown(license_str)
+        self.about.licenseText.setMarkdown(license_text_str)
         self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
         self.about.closeButton.clicked.connect(self.aboutDialog.close)
 
         self.instance_window: QDialog = QDialog()
         self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
         self.instance_editor.setupUi(self.instance_window)
-        self.instance_window.setWindowTitle(appContext.buildInfo.app_name)
+        self.instance_window.setWindowTitle(app_name_str)
 
         systemManager: SystemManager = appContext.sys_man
 
         self.dialog_ui.appVersionLabel.setText(
-            f"**App Version** : {buildInfo.app_name} {buildInfo.version_type} {buildInfo.version}"
+            f"**App Version** : {app_name_str} {version_type_str} {version_str}"
         )
         self.dialog_ui.qVersionLabel.setText(f"**Qt Version** : {qVersion()}")
         self.dialog_ui.pyVersionLabel.setText(f"**Python Version** : {sys.version}")
@@ -273,12 +278,12 @@ class LauncherView(QMainWindow):
         self.ui.actionInstances.triggered.connect(openAppInstancesData)
 
         open_workshop = lambda: features.show_webbrowser(
-            self, "https://lce-hub.github.io/piston/", buildInfo
+            self, "https://lce-hub.github.io/piston/"
         )
         self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
 
         open_legacymods = lambda: features.show_webbrowser(
-            self, "https://legacymods.org/", buildInfo
+            self, "https://legacymods.org/"
         )
         self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
 
@@ -289,7 +294,7 @@ class LauncherView(QMainWindow):
         self.ui.actionApp_Root.triggered.connect(openAppConfig)
 
         open_github_issues = lambda: webbrowser.open(
-            appContext.buildInfo.git_repo_url + "/issues"
+            git_repo_url_str + "/issues"
         )
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
             open_github_issues
@@ -393,7 +398,7 @@ class LauncherView(QMainWindow):
 
         self.setup_web_engine()
 
-        self.versionlabel: QLabel = QLabel(f"Version {buildInfo.version}")
+        self.versionlabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
         holyday_label: QLabel = QLabel(holiday.get_holiday())
         self.ui.statusbar.addWidget(holyday_label)

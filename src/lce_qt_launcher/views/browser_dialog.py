@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QDialog, QHBoxLayout, QWidget
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
 
-from lce_qt_launcher.build_info import BuildInfo
+from lce_qt_launcher import app_name_str
 
 
 class BrowserDialog(QDialog):
@@ -12,12 +12,12 @@ class BrowserDialog(QDialog):
         QDialog (_type_): _description_ inherited from QDialog
     """
 
-    def __init__(self, parent: QWidget, url: str, build_info: BuildInfo) -> None:
+    def __init__(self, parent: QWidget, url: str) -> None:
         super().__init__()
         browser_dialog = QDialog(parent)
         webview = QWebEngineView()
         webview.load(QUrl(url))
-        browser_dialog.setWindowTitle(build_info.app_name)
+        browser_dialog.setWindowTitle(app_name_str)
         layout = QHBoxLayout()
         layout.addWidget(webview)
         browser_dialog.setLayout(layout)
