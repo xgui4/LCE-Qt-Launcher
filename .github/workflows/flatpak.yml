@@ -1,0 +1,50 @@
+name: Build And Publish Flatpak Nightly using Flatter
+
+on:
+  push:
+    branches :
+      - nightly
+jobs:
+  flatter:
+    name: Flatter
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/andyholmes/flatter/gnome:master
+      options: --privileged
+    steps:
+      # Checkout a repository with Flatpak manifests
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Generate a CNAME file on-the-fly for a configured host
+      - name: Generate CNAME
+        run: |
+          echo "lce_qt_launcher.xgui4.github.io" > CNAME
+
+      - name: Build
+        uses: andyholmes/flatter@main
+        with:
+          files: |
+            packages/flatpak/io.github.xgui4.lce_qt_launcher.yml
+          arch: ${{ matrix.arch }}
+          upload-bundles: true
+          upload-pages-artifact: true
+          upload-pages-includes: |
+            CNAME
+
+  # See "Github Pages" below
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: flatter
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

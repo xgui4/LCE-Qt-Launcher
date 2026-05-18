@@ -1,22 +1,56 @@
-from enum import StrEnum
+from importlib.metadata import PackageNotFoundError, metadata, version
+from importlib.metadata._meta import PackageMetadata
 
-FALLBACK_APP_NAME = "LCE Qt Launcher"
-FALLBACK_VERSION_NUMBER  = "0.0.1b1"
-FALLBACK_LICENSE = "GPLv3"
-FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
-FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
+from PySide6.QtCore import qVersion
 
-VERSION_TYPE = "nightly"
-INSTANCE_EXTENSION = ".lce_inst"
-AUTHORS = "Xgui4"
+_FALLBACK_APP_NAME = "LCE Qt Launcher"
+_FALLBACK_VERSION = "0.0.20b0"
+_FALLBACK_LICENSE = "GPLv3"
+_FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
+_FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
-class Languages(StrEnum): 
-    """ _summary_ : "Language Codes for JsonTrans """
-    FALLBACK = "translations.json"
-    ENGLISH = "en"
-    FRENCH = "fr"
+_VERSION_TYPE : str = "alpha"
+_INSTANCE_EXTENSION : str = ".lce_inst"
+_AUTHORS : str = "Xgui4"
 
-license_str = r"""
+app_name_str : str = _FALLBACK_APP_NAME
+version_str : str  = _FALLBACK_VERSION
+licence_name_str : str = _FALLBACK_LICENSE
+license_link_str : str = _FALLBACK_LICENSE_LINK
+git_repo_url_str : str = _FALLBACK_GIT_REPO_URL
+
+try:
+    app_metadata: PackageMetadata = metadata("LCE-Qt-Launcher")
+
+    _version_temp: str = version("LCE-Qt-Launcher")
+    _app_name_temp: str = app_metadata["Name"]
+    _repo_url_temp: str = app_metadata["Repository"]
+    _license_url_temp: str = app_metadata["LicenseURL"]
+    _license_temp: str = app_metadata["License"]
+
+    if _version_temp:
+        version_str = _version_temp
+    if _app_name_temp:
+        app_name_str = _app_name_temp
+    if _repo_url_temp:
+        git_repo_url_str = _repo_url_temp
+    if _license_url_temp:
+        license_link_str = _license_url_temp
+    if _license_temp:
+        license_text_str = _license_temp
+
+except PackageNotFoundError as e:
+    print(f"Error : Package not found! More info : {e.msg}")
+except RuntimeError as e:
+    print(f"Error : Metadata not found! More info : {e}")
+except KeyError as e:
+    print(f"Error : Metadata not found! More info : {e}")
+
+qt_version_str: str = qVersion()
+authors_str: str = _AUTHORS
+version_type_str: str = _VERSION_TYPE
+instance_extension_str: str = _INSTANCE_EXTENSION
+license_text_str = r"""
 # GNU GENERAL PUBLIC LICENSE
 
 Version 3, 29 June 2007
@@ -692,4 +726,10 @@ library, you may consider it more useful to permit linking proprietary
 applications with the library. If this is what you want to do, use the
 GNU Lesser General Public License instead of this License. But first,
 please read <https://www.gnu.org/licenses/why-not-lgpl.html>.
+"""
+legal_str = """
+LCE Qt Launcher Copyright (C) 2026  Xgui4
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `show c' for details.
 """

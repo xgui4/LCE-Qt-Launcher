@@ -21,6 +21,7 @@
             ]
         },
         "username" : {
+            "$comment": "DEPRECIATED  : will be soon removed and replaced by the username config settng",
             "description": "The username of the player for the instance",
             "type" : "string",
             "default" : "Steve"
@@ -89,7 +90,15 @@
             "default" : "nightly",
             "examples": [
                 "nightly-dedicated-server",
-                "Nightly"
+                "Nightly",
+                "v1.0.0b"
+            ]
+        },
+        "steam_link" : {
+            "description": "Steam id command of the instance",
+            "type" : "string",
+            "examples" : [
+                "steam://rungameid/{number}"
             ]
         }
     }

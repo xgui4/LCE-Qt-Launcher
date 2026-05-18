@@ -1,15 +1,15 @@
 # Maintainer: Xgui4
-pkgname=lce-qt-launcher-beta
-pkgver=nightly.r18.g5a60241
+pkgname=lce-qt-launcher-dev
+pkgver=3076fd1
 pkgrel=1
-pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Beta Build)"
+pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind. (Nightly Beta Build)"
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
 license=('GPL-3.0-or-later')
 depends=(
     'python' 
     'pyside6' 
-    'python-requests' 
+    'python-vdf'
     'python-platformdirs'
     'python-rich'
 ) 
@@ -24,20 +24,21 @@ makedepends=(
     'qt6-tools'
 )
 optdepends=(
-    'wine: Allow to launch non-Linux-native Minecraft LCE ports' 
+    'wine: Allow to launch non-Linux-native Minecraft LCE ports'
     'steam: Allow for Steam integration'
-    'ttc-monocraft: Minecraft Font for the UI (Availaible in the AUR)'
+    'steamtinkerlaunch: For better Stream integration on Linux'
 )
 
-provides=("${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
-conflicts=("${pkgname%-nightly}" "${pkgname%-dev}" "${pkgname%-beta}" "${pkgname%}")
+replace=("${pkgname%-beta}")
+provides=("${pkgname%-dev}" "${pkgname%}")
+conflicts=("${pkgname%-nightly}" "${pkgname%-git}" "${pkgname%-stable}")
 source=("${pkgname}::git+${url}.git#branch=beta")
 sha256sums=('SKIP')
 
 pkgver() {
   cd "$pkgname"
   # cutting off 'foo-' prefix that presents in the git tag
-  git describe --long --tags | sed 's/^foo-//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --long --always --tags | sed 's/^foo-//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {

@@ -9,7 +9,7 @@ Write-Output "done"
 Write-Output "Removing the compilated Qt UI and Qt Ressource files"
 
 $QT_RESSOURCE="res_rc" 
-$QT_UI_ARRAY="system_info","form","instance","settingDialog","about"
+$QT_UI_ARRAY="system_info","form","instance","settingDialog","about", "contentInstaller"
 
 Write-Output "Removing the compilated Qt Ressource file"
 Remove-Item -Path "src\lce_qt_launcher\$QT_RESSOURCE.py"

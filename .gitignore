@@ -1,7 +1,6 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
-!core/
 *.*#
 *.a
 *.app
@@ -31,7 +30,6 @@
 .qmake.stash
 .qmlls.ini
 .axivion
-Makefile*
 Thumbs.db
 core
 moc_*.cpp
@@ -295,8 +293,9 @@ tmp/
 
 # Minecraft Client
 MinecraftLCEClient/
-.lce**
-.**Legacy
+.lce*
+.*Legacy
+.*default
 
 # Output
 output/
@@ -323,10 +322,18 @@ default.lce_inst
 # pacman
 
 packages/**/src/
-packages/**/pkg
+packages/**/pkg/
 packages/**/lce-qt-launcher-*/
 packages/**/lce-qt-launcher-**-**-any.pkg.tar.zst
 
-#Nix 
+# Nix 
 
 result
+
+# FreeBSD
+
+freebsd-ports/work-*
+
+# Others
+
+.ruff*

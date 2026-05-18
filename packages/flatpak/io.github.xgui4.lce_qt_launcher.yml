@@ -1,15 +1,10 @@
 app-id: io.github.xgui4.lce_qt_launcher
 runtime: org.kde.Platform
-runtime-version: '6.8'
-base: io.qt.PySide.BaseApp
+runtime-version: '6.10'
 sdk: org.kde.Sdk
-
-name: LCE Qt Launcher
-command: lce_qt_launcher
-summary: My First GTK App
-description: |
-    This is a custom Minecraft LCE Launcher written in 
-    Python and Qt with Freedom and with GNU/Linux support in mind.
+base: io.qt.PySide.BaseApp
+base-version: '6.8'
+command: lce-qt-launcher
 
 finish-args:
   - --device=dri
@@ -17,24 +12,38 @@ finish-args:
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
-  - --filesystem=home 
+  - --filesystem=home
+
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
 
 modules:
+  - name: python3-maturin
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} maturin
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/c7/7d/a1be934690cdcc3c6609769ceaad322ab7501c2ee5bafcac1b14d609e403/maturin-1.13.3-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.musllinux_1_1_x86_64.whl
+        sha256: 4667ef609ab446c1b5e0bfe4f9fb99699ab6d8548433f8d1a684256e0b67217f
+
+  - python3-requirements.json
+
   - name: lce_qt_launcher
     buildsystem: simple
     build-commands:
-      - install -D main.py /app/bin/lce-qt-launcher
-      - chmod +x /app/bin/lce-qt-launcher
-      - install -D packages/io.github.xgui4.lce_qt_launcher.desktop /app/share/applications/io.github.xgui4.lce_qt_launcher.desktop
-      - install -D assets/io.github.xgui4.lce_qt_launcher.png /app/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
-      - install -D "$pkgdir/opt/lce_qt_launcher"
-      - install -D data/* /app/share/io.github.lce_qt_launcher/data
-      - install -D assets/* /app/share/io.github.lce_qt_launcher/assets
-      - install -D data/lce_qt_launcher.ini "/app/etc/lce_qt_launcher.ini
+      - pip3 install --no-index --find-links=/app/lib/python3.13/site-packages/ --prefix=/app .
+      - mkdir -p /app/share/io.github.lce_qt_launcher/data
+      - mkdir -p /app/share/io.github.lce_qt_launcher/assets
+      - cp -r data/* /app/share/io.github.lce_qt_launcher/data/
+      - cp -r assets/* /app/share/io.github.lce_qt_launcher/assets/
+      - install -Dm644 data/lce_qt_launcher.ini /app/etc/lce_qt_launcher.ini
+      - install -Dm644 packages/io.github.xgui4.lce_qt_launcher.desktop /app/share/applications/io.github.xgui4.lce_qt_launcher.desktop
+      - install -Dm644 assets/io.github.xgui4.lce_qt_launcher.png /app/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
+      - install -Dm644 packages/io.github.xgui4.lce_qt_launcher.metainfo.xml /app/share/metainfo/io.github.xgui4.lce_qt_launcher.metainfo.xml
+      - install -Dm644 packages/lce_inst-mime.xml /app/share/mime/packages/io.github.xgui4.lce_qt_launcher.xml
+      - install -Dm644 assets/lce_inst.png /app/share/icons/hicolor/128x128/mimetypes/application-x-lce_inst.png
     sources:
-      - type: file
-        path: main.py
-      - type: file
-        path: io.github.xgui4.lce_qt_launcher.desktop
-      - type: file
-        path: io.github.xgui4.lce_qt_launcher.png
+      - type: git
+        url: "https://github.com/xgui4/lce-qt-launcher"
+        branch: nightly

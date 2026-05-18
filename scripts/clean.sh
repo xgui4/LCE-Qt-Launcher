@@ -9,7 +9,7 @@ echo "Removing the Nuitka compilation folder finished"
 echo "Removing the compilated Qt UI and Qt Ressource files"
 
 QT_RESSOURCE="res_rc" 
-QT_UI_ARRAY=("system_info" "form" "instance" "settingDialog" "about")
+QT_UI_ARRAY=("system_info" "form" "instance" "settingDialog" "about" "contentInstaller")
 
 echo "Removing the compilated Qt Ressource file"
 rm "src/lce_qt_launcher/$QT_RESSOURCE.py"

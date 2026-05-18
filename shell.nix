@@ -19,13 +19,20 @@ let
   '';
 
 in
-pkgs.mkShell {
+pkgs.mkShell rec {
+  pname = "lce-qt-launcher";
+  version = "0.0.20.0";
+  format = "pyproject";
+
+  src = ./.;
+  
   buildInputs = with pkgs; [
     pyside-uic
     pyside-rcc
     qt6.qtbase
     qt6.qtwayland
     libGL
+    steamtinkerlaunch
   ];
 
    postPatch = ''

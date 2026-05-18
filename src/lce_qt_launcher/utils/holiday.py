@@ -1,20 +1,53 @@
 from datetime import datetime
 from enum import Enum
 
+
 class MONTH(Enum):
     """_summary_ The 12 Month as Enum (Start from 1 and go to 12) d"""
+
     JANUARY = 1
     FEBRURAY = 2
     MARCH = 3
     APRIL = 4
     MAY = 5
-    JUNE = 6 
-    JULY = 7 
+    JUNE = 6
+    JULY = 7
     AUGUST = 8
-    SEPTEMBER = 9 
+    SEPTEMBER = 9
     OCTOBER = 10
     NOVEMBER = 11
     DECEMBER = 12
+
+
+def monthEnumToStr(enum: MONTH) -> str:
+    match enum:
+        case MONTH.JANUARY:
+            return ("January")
+        case MONTH.FEBRURAY:
+            return ("February")
+        case MONTH.MARCH:
+            return ("March")
+        case MONTH.APRIL:
+            return ("April")
+        case MONTH.MAY:
+            return ("May")
+        case MONTH.JUNE:
+            return ("June")
+        case MONTH.JULY:
+            return ("July")
+        case MONTH.AUGUST:
+            return ("August")
+        case MONTH.SEPTEMBER:
+            return ("September")
+        case MONTH.OCTOBER:
+            return ("October")
+        case MONTH.NOVEMBER:
+            return ("November")
+        case MONTH.DECEMBER:
+            return ("December")
+        case _:
+            return ""
+
 
 HOLIDAYS: dict[str, str] = {
     f"{MONTH.JANUARY.value}-1": "Happy New Years Day! 🎇",
@@ -27,32 +60,40 @@ HOLIDAYS: dict[str, str] = {
     f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
     f"{MONTH.DECEMBER.value}-24": "Xmas Eve 🎄",
     f"{MONTH.DECEMBER.value}-25": "Xmas 🎅",
-    f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆"
+    f"{MONTH.DECEMBER.value}-31": "New Year Eve 🎆",
 }
 
 HOLIDAYS_FRENCH: dict[str, str] = {
-f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
-f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
-f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",
-f"{MONTH.APRIL.value}-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
-f"{MONTH.APRIL.value}": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
-f"{MONTH.MAY.value}-4": "Journée Star Wars 🌟",
-f"{MONTH.MAY.value}-17": "Anniversaire de Minecraft 🎂",
-f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
-f"{MONTH.DECEMBER.value}-24": "Veille de Noël 🎄",
-f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
-f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆"
+    f"{MONTH.JANUARY.value}-1": "Bonne année ! 🎇",
+    f"{MONTH.FEBRURAY.value}-14": "Bonne Saint-Valentin ! 💘",
+    f"{MONTH.APRIL.value}-1": "Poisson d'avril 🐟",
+    f"{MONTH.APRIL.value}-2": "Célébrons la Journée de sensibilisation à l'autisme aujourd'hui ! 🎉🌈♾️",
+    f"{MONTH.APRIL.value}": "Joyeux mois de sensibilisation à l'autisme ! 🎉🌈♾️",
+    f"{MONTH.MAY.value}-4": "Journée Star Wars 🌟",
+    f"{MONTH.MAY.value}-17": "Anniversaire de Minecraft 🎂",
+    f"{MONTH.OCTOBER.value}-31": "Halloween 🎃",
+    f"{MONTH.DECEMBER.value}-24": "Veille de Noël 🎄",
+    f"{MONTH.DECEMBER.value}-25": "Noël 🎅",
+    f"{MONTH.DECEMBER.value}-31": "Veille du Nouvel An 🎆",
 }
 
 NO_HOLIDAY = ""
 
+
+def get_holidays_list() -> str:
+    holidays_str: str = ""
+    for key, value in HOLIDAYS.items():
+        holidays_str = f"{key} - {value}"
+    return holidays_str
+
+
 def get_holiday() -> str:
-    """_summary_ Check for a holday and then return it or empty str if there is no holiday 
+    """_summary_ Check for a holday and then return it or empty str if there is no holiday
 
     Returns:
         str: _description_ The current holiday or an empty str
     """
     today: datetime = datetime.now()
-    month_key: str = str(today.month) 
+    month_key: str = str(today.month)
     day_key: str = f"{month_key}-{today.day}"
     return HOLIDAYS.get(day_key, HOLIDAYS.get(month_key, NO_HOLIDAY))

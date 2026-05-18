@@ -7,25 +7,27 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.1b1"
-description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Beta Build)"
+version = "0.0.20a0"
+description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nightly Build)"
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
 license-files = [ "license.md" ] 
 
 dependencies = [
-    "PySide6>=6.11.0; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
-    "requests>=2.33.1",
-    "platformdirs",
-    "rich>=14.3.3",
+    "PySide6<=6.11.0; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
+    "platformdirs<=4.9.6",
+    "rich<=15.0.0",
     "hatch<=1.16.5",
-    "Nuitka<=4.0.7",
+    "Nuitka<=4.1",
     "patchelf<=0.17.2.4; sys_platform == 'linux'",
+    "vdf<=3.4"
 ]
 
 [project.scripts]
 lce-qt-launcher = "lce_qt_launcher.main:main"
+lce-mod-manager = "lce_qt_launcher.managers.mod_manager:main"
+lce-steam-manager = "lce_qt_launcher.managers.steam_manager:main"
 
 [project.urls]
 Repository = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -40,6 +42,10 @@ run-app = "python run.py"
 
 [tool.pyright]
 reportImportCycles="hint"
+reportUnusedCallResult="hint"
+reportAny="hint"
+reportUnknownMemberType="hint"
+reportUnknownVariableType="hint"
 
 [tool.hatch.build]
 artifacts = [
@@ -58,27 +64,26 @@ files = [
     "src/lce_qt_launcher/__init__.py",
     "src/lce_qt_launcher/app.py",
     "src/lce_qt_launcher/app_context.py",
-    "src/lce_qt_launcher/downloader.py",
     "src/lce_qt_launcher/features.py",
     "src/lce_qt_launcher/views/__init__.py",
     "src/lce_qt_launcher/views/cmd_args.py",
-    "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/setting_dialog.py",
     "src/lce_qt_launcher/views/browser_dialog.py",
     "src/lce_qt_launcher/views/term_service.py",
     "src/lce_qt_launcher/views/cli.py",
     "src/lce_qt_launcher/views/launcher.py",
-    "src/lce_qt_launcher/views/theme.py",
-    "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/app_data.py",
     "src/lce_qt_launcher/managers/__init__.py",
     "src/lce_qt_launcher/managers/instance.py",
-    "src/lce_qt_launcher/managers/system_managers.py",
-    "src/lce_qt_launcher/managers/steam_managers.py",
-    "src/lce_qt_launcher/managers/proton_managers.py",
+    "src/lce_qt_launcher/managers/system_manager.py",
+    "src/lce_qt_launcher/managers/steam_manager.py",
+    "src/lce_qt_launcher/managers/mod_manager.py",
+    "src/lce_qt_launcher/managers/import_manager.py",
+    "src/lce_qt_launcher/managers/skin_manager.py",
+    "src/lce_qt_launcher/managers/display_manager.py",
     "src/lce_qt_launcher/models/__init__.py",
-    "src/lce_qt_launcher/models/image_class.py",
-    "src/lce_qt_launcher/models/preferences.py",
+    "src/lce_qt_launcher/models/pref.py",
+    "src/lce_qt_launcher/models/theme.py",
     "src/lce_qt_launcher/utils/__init__.py",
     "src/lce_qt_launcher/utils/json_trans.py",
     "src/lce_qt_launcher/utils/holyday.py",

@@ -1,8 +1,8 @@
-# LCE QT Launcher
+# LCE Qt Launcher
 
 [French Version](lisezmoi.md)
 
-![LCE-QT-Launcher](assets/images/Launcher.png)
+![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Screnshot of the launcher](.github/screenshots/image.png)
 
 > [!WARNING]
@@ -13,55 +13,70 @@
 
 This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.
 
+## Why LCE Qt Launcher ?
+
+- Made in Python with Qt 6 : bloat free and integrate with GNU/Linux Plasma 6/Qt 6 Theme
+- Customisation with Themes and laters modules/plugins
+- Integration with Community Tools
+- GNU/Linux first class support
+- Licensed via copyleft licensing (GPLv3), so big tech free
+- Free as Freedom Launcher
+- Minecraft Themed by default
+
 ## Features
 
 - Command Line interface (CLI)
-- Qt 6 GUI (Native like Interface)
-- Written in Python (No Electron or Rust)
-- Customisable
-- Free Software (GPLv3)
-- Multiple Instances (Work in progress)
-- localisations (Work in progress)
-<!-- Coming laters: 
-- Launcher Plugins
-- Skin support
-- Modding Support -->
-- Multiples Defaults Instances : MCLE and Legacy Evolved
+- Multiple Instances support (Work in progress)
+  - Pre-Configured ones :
+    - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (previously smartcmd/MinecraftConsoles)
+    - LegacyEvolved (will be removed soon as was replaced with NeoLegacy)
+    - [NeoLegacy](https://github.com/pieeebot/neoLegacy/)
+    - [LCE-Revelations](https://github.com/itsRevela/LCE-Revelations)
+- Marketplaces :
+  - [LCE Hub Emeralds Launcher Workshop](https://github.com/LCE-Hub/piston)
+  - [LegacyMods (coming soon)](https://legacymods.org/)
 - in-app news
-- Minecraft Theme pre-configured
 
-## Long Term Goal
+## Long Term Goal / Roadmap
 
 - Accessibility
+- Modding Support
+- Launcher Plugins
+- Skin support
 - GNU/Linux compatibility
 - Windows support
-- Experimental FreeBSD support
+- Experimental FreeBSD and Nix/NixOS support
+- Localisations support
 - Focus on being the main hub for Minecraft LCE on GNU/Linux
 
-## How to run
+## Compiling
 
-### VSCode
+See [`docs/en/COMPILING.md`](docs/en/COMPILING.md)
 
-1. Create a Python Virtual Env via a tool like UV
-2. Set VSCode to that Python Virtual Env
-3. Run "Pyside : Sync Virtual Env and Launch"
-4. Run the app via Vscode debug mode or directly the [`src/main.py`](src/main.py) file.
+## Running/Debugging
 
-### Others
+See [`docs/en/RUNNING.md`](docs/en/RUNNING.md)
 
-Guide coming laters
+## How to get
 
-## How to build
+### Tag Release
 
-Coming in the next stable release when the program will be more stable
+In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launcher/releases/) page you will found tagged Release like [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta). Right now it is just source code but next version , it will have installer and packages for Windows and Linux and instruction for FreeBSD Ports and Nix package.
 
-## Nigthly Build
+### Flatpak (Coming Soon)
+
+Soon, they will be a flatpak repo with instruction here.
+
+### Nigthly Build
 
 > [!NOTE]
-> This automatic nighly build is currently not-stable and is very experimental and in active developpement
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
 
-In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the `nighly` branch
+In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`nightly` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly)
+
+### Via Git
+
+You can also, downloading this repo with the command `git clone https://github.com/xgui4/lce-qt-launcher.git` and then compiling (see `docs/en/COMPILING.md` for more info how) anually or running in a .venv (see `docs/en/RUNNING.md` for more info how).
 
 ## Software Requirement
 
@@ -76,7 +91,7 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 ## Python Library and Tools Used
 
 - PySide 6
-- requests
+- platformdirs
 - rich
 - hatch
 - uv
@@ -85,24 +100,43 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 
 ### Golden Support
 
+  Platform Tested Regurlaly and with completed implemation/patch
+
 - Windows 10 and later
 - GNU/Linux
 
 ### Experimental Support
 
+  Plattform tested with work in progress implemation
+
+- NixOS
 - FreeBSD
 
+### Partly Supported Platform
+
+  Platform not tested yet, but with implementation
+
+- Flatpak
+
 ### Unsupported OS
+
+  These platform are not tested and may work or not at all
 
 - Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.
 - Minecraft LCE on Android is currently quite laggy and buggy
 - macOS: LCE Qt Launcher does not officially support MacOS and is not tested during PRs, but POISX compatibility should allow its use.
 
-## Thank to
+## Special Thank to
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) for certain UI elements and ui files
 - [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles) for the port of the game for PC
 - [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) for backporting updates for the PC port
+- [LCE Hub](https://github.com/LCE-Hub) for the Marketplace/Workshop
+- [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
+- [Miracode Font](https://github.com/IdreesInc/Miracode)
+- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - now dcma, so it is removed/unaivable for now
+- [360Revived](https://github.com/BluTac10/360Revived) - now dcma, so it is removed/unaivable for now
+- [Steam Tinker Launch](https://github.com/sonic2kk/steamtinkerlaunch) for Steam and SteamDeck integration on GNU/Linux via their software.
 
 ## Code of Respect
 

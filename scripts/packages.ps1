@@ -6,5 +6,5 @@ hatch run python -m nuitka --standalone --assume-yes-for-download --output-dir=d
 Write-Output "done"
 
 Write-Output "Compressing the Nuitka compressions"
-Compress-Archive -Path dist/main.dist\* -DestinationPath LCE-Qt-Launcher-Windows.zip
+Compress-Archive -Path dist\main.dist\* -DestinationPath LCE-Qt-Launcher-Windows.zip
 Write-Output "done"

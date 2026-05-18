@@ -13,8 +13,9 @@ set ui[1]="system_info"
 set ui[2]="instance"
 set ui[3]="settingDialog"
 set ui[4]="about"
+set ui[5]="contentInstaller"
 
-for /L %%i in (0,1,4) do (
+for /L %%i in (0,1,5) do (
     set "filename=!ui[%%i]!"
 
     echo "Compiling !filename!.ui Qt UI file"

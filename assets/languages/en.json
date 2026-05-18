@@ -11,5 +11,17 @@
     "instance_manager_label" : "Instance Manager",
     "save_instance_msg_box_label" : "Do you want to save the instance to a file ?",
     "start_game_msg" : "Starting the game!",
-    "save_filedialog_title" : "Set the instance save file path"
+    "save_filedialog_title" : "Set the instance save file path",
+
+    "1-1": "Happy New Years Day! 🎇",
+    "2-14": "Happy Valentine Day! 💘",
+    "3-1": "April Fool Day 🐟",
+    "3-2": "Celebrate Autism Acceptance Day Today! 🎉🌈♾️",
+    "3": "Happy Autism Acceptance Month! 🎉🌈♾️",
+    "4-4": "Star Wars Day 🌟",
+    "4-17": "Minecraft Anniversary 🎂",
+    "10-31": "Halloween 🎃",
+    "12-24": "Xmas Eve 🎄",
+    "12-25": "Xmas 🎅",
+    "12-31": "New Year Eve 🎆"
 }
