@@ -155,7 +155,7 @@ _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
-_DEFAULT_IMAGE = ":/assets/lce-hub-ico.png"
+_DEFAULT_IMAGE = ":/assets/neoLegacy.png"
 _DEFAULT_NEWS_FEED = ("https://github.com/neoStudiosLCE/neoLegacy/commits/main/")
 _DEFAULT_VERSION = "v1.0.3b"
 
