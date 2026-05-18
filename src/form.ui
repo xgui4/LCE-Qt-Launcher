@@ -1113,26 +1113,46 @@
    </property>
   </action>
   <action name="actionLoadDefaultInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/neoLegacy.png</normaloff>:/assets/neoLegacy.png</iconset>
+   </property>
    <property name="text">
     <string>Default (NeoLegacy)</string>
    </property>
   </action>
   <action name="actionLoadmclceInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/mclce-ico.png</normaloff>:/assets/mclce-ico.png</iconset>
+   </property>
    <property name="text">
-    <string>MCLCE (Automatic Installation Coming Later)</string>
+    <string>MCLCE MinecraftConsoles</string>
    </property>
   </action>
   <action name="actionLoadRevelationsInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/Revelation.jpg</normaloff>:/assets/Revelation.jpg</iconset>
+   </property>
    <property name="text">
     <string>Revelations</string>
    </property>
   </action>
   <action name="actionLoad360RevivedInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/360Revived.png</normaloff>:/assets/360Revived.png</iconset>
+   </property>
    <property name="text">
     <string>360Revived</string>
    </property>
   </action>
   <action name="actionLoadHellishEndsInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/hellishends.jpg</normaloff>:/assets/hellishends.jpg</iconset>
+   </property>
    <property name="text">
     <string>HellishEnds</string>
    </property>
@@ -1141,11 +1161,19 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/portable-lce.png</normaloff>:/assets/portable-lce.png</iconset>
+   </property>
    <property name="text">
     <string>Portable MCLE</string>
    </property>
   </action>
   <action name="actionLoadAetherInstance">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/assets/aether.png</normaloff>:/assets/aether.png</iconset>
+   </property>
    <property name="text">
     <string>Aether</string>
    </property>

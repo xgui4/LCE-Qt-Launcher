@@ -13,15 +13,24 @@ from PySide6.QtWidgets import (
 )
 
 from lce_qt_launcher.app_context import AppContext
-from lce_qt_launcher.build_info import BuildInfo
 from lce_qt_launcher.managers import import_managers
 from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.models.app_data import AppData
-from lce_qt_launcher.models.preferences import UserPref
+from lce_qt_launcher.models.pref import UserPref
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
 from lce_qt_launcher.views.browser_dialog import BrowserDialog
 from lce_qt_launcher.views.setting_dialog import SettingDialog
+from lce_qt_launcher import (
+    app_name_str,
+    version_str,
+    licence_name_str,
+    qt_version_str,
+    license_link_str,
+    instance_extension_str
+)
+
+
 import lce_qt_launcher.views.cli as cli
 import lce_qt_launcher.views.term_service as term_service
 
@@ -49,22 +58,24 @@ def install_game(
         progressLabel: QLabel = parent.ui.progressLabel
         progressBar: QProgressBar = parent.ui.progressBar
         try:
-            reply: QNetworkReply = instanceManager.install_instance()
-            _ = progressLabel.setVisible(True)
-            _ = progressBar.setVisible(True)
-            _ = progressBar.setEnabled(True)
-            _ = progressLabel.setText(f"Downloading {instance.name} Progress")
+            reply: QNetworkReply | str = instanceManager.install_instance()
+            if isinstance(reply, QNetworkReply):
+                _ = progressLabel.setVisible(True)
+                _ = progressBar.setVisible(True)
+                _ = progressBar.setEnabled(True)
+                _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-            # TODO - Verify this methodd
-            def update_progress_bar(bytes_received, bytes_total) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
-                if bytes_total > 0:
-                    _ = progressBar.setMaximum(bytes_total)  # pyright: ignore[reportUnknownArgumentType]
-                    _ = progressBar.setValue(bytes_received)  # pyright: ignore[reportUnknownArgumentType]
-                else:
-                    _ = progressBar.setRange(0, 0)
+                # TODO - Verify this methodd
+                def update_progress_bar(bytes_received, bytes_total) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
+                    if bytes_total > 0:
+                        _ = progressBar.setMaximum(bytes_total)  # pyright: ignore[reportUnknownArgumentType]
+                        _ = progressBar.setValue(bytes_received)  # pyright: ignore[reportUnknownArgumentType]
+                    else:
+                        _ = progressBar.setRange(0, 0)
 
-            _ = reply.downloadProgress.connect(update_progress_bar)  # pyright: ignore[reportUnknownArgumentType]
-
+                _ = reply.downloadProgress.connect(update_progress_bar)  # pyright: ignore[reportUnknownArgumentType]
+            else:
+                pass
         except RuntimeError as e:
             _ = progressLabel.setVisible(True)
             _ = progressBar.setVisible(True)
@@ -114,7 +125,6 @@ def load_instance_from_file(
     parent: QWidget,
     instanceManager: InstanceManager,
     appContext: AppContext,
-    buildInfo: BuildInfo,
     appData: AppData,
 ) -> None:
     """Features : Load the Selected Instance"""
@@ -122,7 +132,7 @@ def load_instance_from_file(
         parent,
         "Load Instance File",
         appContext.sys_man.found_default_save_path(),
-        f"{buildInfo.app_name} Instance (*{buildInfo.instance_extension})",
+        f"{app_name_str} Instance (*{instance_extension_str})",
     )
     instanceManager.load_instance(file_name[0])
     try:
@@ -192,7 +202,7 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
     return newInstance
 
 
-def show_webbrowser(parent: QWidget, url: str, buildInfo: BuildInfo):
+def show_webbrowser(parent: QWidget, url: str):
     """_summary_ Create and show a Webbrowser view
 
     Args:
@@ -200,14 +210,13 @@ def show_webbrowser(parent: QWidget, url: str, buildInfo: BuildInfo):
         url (str): _description_ the url desired
         buildInfo (BuildInfo): _description_ : The Build info of the app info
     """
-    _ = BrowserDialog(parent, url, buildInfo)
+    _ = BrowserDialog(parent, url)
 
 
 def save_instance_to_file(
     parent: QWidget,
     instanceManager: InstanceManager,
     appContext: AppContext,
-    buildInfo: BuildInfo,
 ) -> None:
     """_summary_ Save the instance to a file
 
@@ -221,7 +230,7 @@ def save_instance_to_file(
         parent,
         "Save Instance option to a file",
         appContext.sys_man.found_default_save_path(),
-        f"{buildInfo.app_name} Instance File (*{buildInfo.instance_extension})",
+        f"{app_name_str} Instance File (*{instance_extension_str})",
     )[0]
     instanceManager.save_instance(file_name)
 
@@ -245,16 +254,16 @@ def generate_user_config(userPref: UserPref) -> None:
     userPref.generate_default_config()
 
 
-def display_license(buildInfo: BuildInfo) -> None:
+def display_license() -> None:
     """_summary_ Display the license of the app on the console
 
     Args:
         buildInfo (BuildInfo): _description_ : The Build info for the App Info
     """
     term_service.print_information(
-        f"{buildInfo.app_name} is licensed via the {buildInfo.license} License."
+        f"{app_name_str} is licensed via the {licence_name_str} License."
     )
-    term_service.print_information(f"See {buildInfo.license_link} for more info")
+    term_service.print_information(f"See {license_link_str} for more info")
 
 
 def display_help(help_str: str) -> None:
@@ -275,11 +284,11 @@ def display_about(about_str: str) -> None:
     term_service.print_pretty(about_str)
 
 
-def display_version(buildInfo: BuildInfo) -> None:
+def display_version() -> None:
     """_summary_ Display the string version on the console
 
     Args:
         buildInfo (BuildInfo): _description_ Display the help string of the app for the cli on the console
     """
-    term_service.print_information(f"{buildInfo.app_name} Version {buildInfo.version}")
-    term_service.print_information(f"Qt Version {buildInfo.qt_version}")
+    term_service.print_information(f"{app_name_str} Version {version_str}")
+    term_service.print_information(f"Qt Version {qt_version_str}")

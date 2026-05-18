@@ -3,7 +3,7 @@
     "name": "pieeebot neoLegacy",
     "instance_type": "InstanceType.CLIENT_VANILLA",
     "instance_source": "InstanceSource.GITHUB_RELEASE",
-    "image": ":/assets/lce-hub-ico.png",
+    "image": ":/assets/neoLegacy.png",
     "archive_file": "neoLegacyWindows64.zip",
     "exe_name": "neoLegacyWindows64/Minecraft.Client.exe",
     "news_feed": "https://github.com/neoStudiosLCE/neoLegacy/commits/main/",

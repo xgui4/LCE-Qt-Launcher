@@ -22,6 +22,11 @@
         <file alias="piston.png">assets/images/piston.png</file>
         <file alias="aether.png">assets/images/aether.png</file>
         <file alias="jigsaw-ico.png">assets/images/jigsaw-ico.png</file>
+        <file alias="neoLegacy.png">assets/images/neoLegacy.png</file>
+        <file alias="360Revived.png">assets/images/360Revived.png</file>
+        <file alias="Revelation.jpg">assets/images/Revelation.jpg</file>
+        <file alias="portable-lce.png">assets/images/portable-lce.png</file>
+        <file alias="hellishends.jpg">assets/images/hellishends.jpg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>

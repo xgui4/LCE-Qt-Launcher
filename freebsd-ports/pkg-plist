@@ -1,9 +1,0 @@
-data/lce_qt_launcher.ini
-usr/local/share/applications/io.github.xgui4.lce_qt_launcher.desktop
-usr/local/share/mime/packages/io.github.xgui4.lce_qt_launcher.gtk.metainfo.xml
-usr/local/share/licenses/lce-qt-Launcher.md
-usr/local/share/doc/lce-qt-launcher/code-of-conduct.md
-usr/local/share/doc/lce-qt-launcher/readme.md
-usr/local/share/metainfo/io.github.xgui4.lce_qt_launcher.metainfo.xml
-usr/local/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png
-usr/local/share/icons/hicolor/128x128/mimetypes/application-x-lce_inst.png
