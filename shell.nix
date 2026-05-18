@@ -29,10 +29,10 @@ pkgs.mkShell rec {
   buildInputs = with pkgs; [
     pyside-uic
     pyside-rcc
-    monocraft 
     qt6.qtbase
     qt6.qtwayland
     libGL
+    steamtinkerlaunch
   ];
 
    postPatch = ''

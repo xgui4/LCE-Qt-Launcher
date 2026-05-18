@@ -400,8 +400,10 @@ class LauncherView(QMainWindow):
 
         self.versionlabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
-        holyday_label: QLabel = QLabel(holiday.get_holiday())
-        self.ui.statusbar.addWidget(holyday_label)
+
+        if (appContext.showHolidayEnabled):
+            holyday_label: QLabel = QLabel(holiday.get_holiday())
+            self.ui.statusbar.addWidget(holyday_label)
 
         self.loadInstanceInForm(instanceManager)
         

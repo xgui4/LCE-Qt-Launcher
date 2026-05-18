@@ -1,3 +1,5 @@
+import os
+
 from rich import print
 
 
@@ -45,3 +47,8 @@ def print_success(msg: str) -> None:
         msg (str): _description_  the success msg to show
     """
     print(f"[green] {msg}")
+
+def clear_console():
+    """_summary_ Clear the Console screen with the correct system commnd
+    """
+    os.system("cls" if os.name == "nt" else "clear")

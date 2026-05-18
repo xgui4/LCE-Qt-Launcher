@@ -235,14 +235,14 @@ def save_instance_to_file(
     instanceManager.save_instance(file_name)
 
 
-def launch_cli_interface(instance_man: InstanceManager) -> None:
+def launch_cli_interface(appContext : AppContext, appData : AppData) -> None:
     """_summary_ Launch the cli version of the app
 
     Args:
         instance_man (InstanceManager): _description_ : The instance manager to use
         buildInfo (BuildInfo): _description_ : The The Build info for the app info
     """
-    cli.launch_cli(instance_man)
+    cli.launch_cli(appContext, appData)
 
 
 def generate_user_config(userPref: UserPref) -> None:
