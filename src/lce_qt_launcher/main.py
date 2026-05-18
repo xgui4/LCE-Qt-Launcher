@@ -6,14 +6,14 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.2026.5.17"
-# nuitka-project: --file-version="0.2026.5.17"
+# nuitka-project: --product-version="0.0.20b0"
+# nuitka-project: --file-version="0.0.20b0"
 # nuitka-project: --file-description="Manage Minecraft Legacy Console Edition Instances."
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
 """
-LCE Qt Launcher Alpha
+LCE Qt Launcher
 Copyright (C) 2026 Xgui4
 
 This program is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ def main() -> None:
 
     action: CmdArgAction = parse_args(sys.argv)
     if argsDetected(action):
-        launch_cmd_action(action, appContext)
+        launch_cmd_action(action, appContext, appData)
     else:
         os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
