@@ -320,9 +320,6 @@ class LauncherView(QMainWindow):
         self.ui.actionLoad360RevivedInstance.setEnabled(False)  # Due to dcma it is disabled
         self.ui.actionLoad360RevivedInstance.setText("360Revived (Disabled due to DMCA)")
 
-        self.ui.actionLoadRevelationsInstance.setEnabled(False)  # Due to dcma it is disabled
-        self.ui.actionLoadRevelationsInstance.setText("Revelations (Disabled due to DMCA)")
-
         # hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
         # if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
         #     term_service.print_error("Cannot found or open Helish Ends Instance")
@@ -345,16 +342,16 @@ class LauncherView(QMainWindow):
         #     load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
         #     self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
 
-        # revelationJson = QFile(":/instances/revelations.lce_inst")
-        # if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
-        #     term_service.print_error("Cannot found or open revelations Instance")
-        #     self.ui.actionLoadRevelationsInstance.setEnabled(False)
-        #     return None
-        # else:
-        #     raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
-        #     data_rev = json.loads(raw_text_rev)
-        #     loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
-        #     self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
+        revelationJson = QFile(":/instances/revelations.lce_inst")
+        if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
+            term_service.print_error("Cannot found or open revelations Instance")
+            self.ui.actionLoadRevelationsInstance.setEnabled(False)
+            return None
+        else:
+            raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
+            data_rev = json.loads(raw_text_rev)
+            loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
+            self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
 
         aetherJson = QFile(":/instances/aether.lce_inst")
         if not aetherJson.open(QIODevice.OpenModeFlag.ReadOnly):
