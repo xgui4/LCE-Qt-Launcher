@@ -4,12 +4,12 @@ from importlib.metadata._meta import PackageMetadata
 from PySide6.QtCore import qVersion
 
 _FALLBACK_APP_NAME = "LCE Qt Launcher"
-_FALLBACK_VERSION = "0.0.20b0-pre1"
+_FALLBACK_VERSION = "0.0.20b0"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
-_VERSION_TYPE : str = "alpha testing"
+_VERSION_TYPE : str = "alpha"
 _INSTANCE_EXTENSION : str = ".lce_inst"
 _AUTHORS : str = "Xgui4"
 

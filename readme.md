@@ -65,7 +65,11 @@ In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launch
 
 ### Flatpak (Coming Soon)
 
-Soon, they will be a flatpak repo with instruction here.
+Coming Soon (Delayed due to technical issues)
+
+### FreeBSD Port (Coming Soon)
+
+Coming Soon (Delayed due to technical issues)
 
 ### Nigthly Build
 
@@ -100,23 +104,27 @@ You can also, downloading this repo with the command `git clone https://github.c
 
 ### Golden Support
 
-  Platform Tested Regurlaly and with completed implemation/patch
+> [!NOTE]
+> Platform Tested Regurlaly and with completed implemation/patch
 
 - Windows 10 and later
 - GNU/Linux
 
 ### Experimental Support
 
-  Plattform tested with work in progress implemation
+> [!NOTE]
+> Plattform tested with work in progress implemation
 
 - NixOS
-- FreeBSD
+- FreeBSD using UV (Note: The FreeBSD port is in active development and still experimental; using the UV virtual environment is currently the only officially supported method for FreeBSD.)
 
-### Partly Supported Platform
+### Upcoming Platform
 
-  Platform not tested yet, but with implementation
+> [!NOTE]
+> Platform not tested yet, but with implementation
 
 - Flatpak
+- FreeBSD Port
 
 ### Unsupported OS
 

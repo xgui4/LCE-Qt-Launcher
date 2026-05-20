@@ -3,7 +3,7 @@ name: Build And Publish Flatpak Nightly using Flatter
 on:
   push:
     branches :
-      - nightly
+      - flatpak-release
 jobs:
   flatter:
     name: Flatter

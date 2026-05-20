@@ -64,9 +64,13 @@ Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Laun
 
 ### Flatpak (Bientôt disponible)
 
-Un dépôt Flatpak avec les instructions sera bientôt disponible ici.
+A Venir bientôt (décalé du a des problèmes techniques)
 
-### Version de nuit
+### FreeBSD Port (Bientôt disponible)
+
+A Venir bientôt (décalé du a des problèmes techniques)
+
+### Version Nightly/Quotidienne (Nighly Build)
 
 > [!NOTE]
 > Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version de nuit en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
@@ -111,7 +115,7 @@ Vous pouvez également télécharger ce dépôt avec la commande `git clone http
 > Plateforme testée avec implémentation en cours de developement
 
 - NixOS
-- FreeBSD
+- FreeBSD en utilisant UV (Remarque : le portage FreeBSD est en développement actif et encore expérimental ; l'utilisation de l'environnement virtuel UV est actuellement la seule méthode officiellement prise en charge pour FreeBSD.)
 
 ### Plateformes prises en charge partiellement
 
@@ -119,6 +123,7 @@ Vous pouvez également télécharger ce dépôt avec la commande `git clone http
 > Plateformes non testées, mais avec implémentation
 
 - Flatpak
+- FreeBSD port
 
 ### Systèmes d'exploitation non pris en charge
 
