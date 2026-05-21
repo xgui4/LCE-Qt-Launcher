@@ -20,20 +20,10 @@
 
 ## FreeBSD
 
-```shell
-
-#!/usr/bin/env sh
-
-if [ "$1" = "create-venv" ]; then 
-    uv venv --system-site-packages
-fi
-
-if [ "$1" = "sync" ]; then 
-    uv sync --system-certs
-fi
-
-
-```
+1. Create a virtual Python environment with system access using the command `uv venv --system-site-packages`
+2. Synchronize the virtual environment with `uv sync`
+3. Activate the virtual environment (replace {.sh} with .sh for bash, .fish for fish, or leave it blank for the POSIX shell) using `source .venv/bin/activate{.sh}`
+4. Run the program with the command `python src/lce_qt_launcher/main.py`
 
 ## Using the command line
 

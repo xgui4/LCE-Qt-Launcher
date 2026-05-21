@@ -730,11 +730,11 @@ wheels = [
 
 [[package]]
 name = "trove-classifiers"
-version = "2026.5.20.13"
+version = "2026.5.20.19"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/44/ee/d0e3e48cf1c06193c2194116838f7eee19e52f192ed5d1955c1f715ac038/trove_classifiers-2026.5.20.13.tar.gz", hash = "sha256:ba51ff2e5c24bd5a23e17a8170acb7940ab677a5f90eed1ff5b03ca57be11732", size = 17047, upload-time = "2026-05-20T13:50:57.613Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/63/ee/4900b7d32cfe5bf40c31c3e65205922f65c6dceb32fc3f855711639d4025/trove_classifiers-2026.5.20.19.tar.gz", hash = "sha256:6e611993987ca9326968ad70452733dadd31471599d39896045b28970a9bb81e", size = 17036, upload-time = "2026-05-20T19:17:44.974Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/15/4056e54ec2f9d87a43d075b0f9468a250de1eac94157322377425ce0321f/trove_classifiers-2026.5.20.13-py3-none-any.whl", hash = "sha256:39488311115da459eba824bc928291723e29fb876f515af46933c5d5c617202c", size = 14222, upload-time = "2026-05-20T13:50:56.379Z" },
+    { url = "https://files.pythonhosted.org/packages/15/96/9666c8ba2e7695e804b2b2129e45202320d2a8b5e2c9f6e5e837a61708f5/trove_classifiers-2026.5.20.19-py3-none-any.whl", hash = "sha256:7a173916960d0635fcbf610550d2c27bcc9125164d6f397adf46fc1ef6455c7c", size = 14224, upload-time = "2026-05-20T19:17:42.949Z" },
 ]
 
 [[package]]

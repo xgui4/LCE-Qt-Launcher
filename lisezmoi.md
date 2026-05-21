@@ -3,7 +3,7 @@
 [Version anglaise](readme.md)
 
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
-![Capture d'écran du lanceur](.github/screenshots/image.png)
+![Capture d'écran du lanceur (version à jour)](.github/screenshots/image.png)
 
 > [!WARNING]
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.

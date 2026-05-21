@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 [project]
 name = "LCE-Qt-Launcher"
 version = "0.0.20a0"
-description = "This is a custom Free/Libre Minecraft LCE Launcher written in Python and Qt. (Nightly Build)"
+description = "A custom Free/Libre Minecraft LCE Launcher written with PySide6 (Python for Qt 6."
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
 readme = "readme.md"
@@ -38,7 +38,6 @@ path = "hatch_build.py"
 
 [tool.hatch.envs.default.scripts]
 packages = "python packages.py"
-run-app = "python run.py"
 
 [tool.pyright]
 reportImportCycles="hint"

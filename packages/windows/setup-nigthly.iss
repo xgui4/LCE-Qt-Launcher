@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher (Nightly)"
-#define MyAppVersion "0.0.20b0"
+#define MyAppVersion "nighly"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -35,7 +35,7 @@ OutputBaseFilename=LCE-Qt-Launcher-Windows-Nigthly-Setup
 SetupIconFile=..\..\assets\setup.ico
 SolidCompression=yes
 WizardStyle=modern dark polar
-ArchiveExtraction=full
+; ArchiveExtraction=full
 ; "ArchitecturesAllowed=x64compatible" specifies that Setup cannot run
 ; on anything but x64 and Windows 11 on Arm.
 ArchitecturesAllowed=x64compatible

@@ -3,7 +3,7 @@
 [French Version](lisezmoi.md)
 
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
-![Screnshot of the launcher](.github/screenshots/image.png)
+![Screnshot of the launcher (updated version)](.github/screenshots/image.png)
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
