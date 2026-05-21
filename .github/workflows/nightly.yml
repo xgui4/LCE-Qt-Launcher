@@ -78,13 +78,12 @@ jobs:
           namcap: true
           updpkgsums : true
           path : "packages/linux/nigthly"
-          srcinfo: true
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
         with:
           name: packages-arch
-          path: packages/linux/nightly/****.pkg.tar.zst
+          path: ./packages/linux/nightly/*.pkg.tar.zst
 
   # --- JOB 4 : Publish the Nightly Release ---
   release:
