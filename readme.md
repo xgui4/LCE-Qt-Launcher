@@ -3,7 +3,7 @@
 [French Version](lisezmoi.md)
 
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
-![Screnshot of the launcher](.github/screenshots/image.png)
+![Screnshot of the launcher (updated version)](.github/screenshots/image.png)
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
@@ -88,6 +88,7 @@ You can also, downloading this repo with the command `git clone https://github.c
   - with a virtual env with the required library install (specified in the readme and [`pyproject.toml`](pyproject.toml))
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft) installed
+- [Miracode Font](https://github.com/IdreesInc/Miracode)
 - For UNIX like system
   - A display server or compositor (Except on MacOS where it use its own proprietary one)
   - Bash (normally pre-installed on Linux but often demand installation in *BSD and MacOS)

@@ -13,31 +13,20 @@
 
 ### Paquet Nix
 
+Documentation à venir
+
 <!--
-#### Nix Flake (Bientôt disponible)
+#### Nix Flake (Expérimental)
 
-Exécutez `nix build`.
+1. Exécutez `nix build`.
 
--->
 #### Nixpkg
 
-```bash
+1. nix-build default.nix
 
-if [[ $user_input == "install" ]]; then
+2. nix-env -i ./result
 
-nix-build default.nix
-
-nix-env -i ./result
-fi
-if [[ $user_input == "compile" ]]; puis
-
-./scripts/build.sh
-fi puis
-
-./scripts/clear.sh
-fi
-
-```
+-->
 
 #### Programme d'installation Windows
 
@@ -47,7 +36,10 @@ Prérequis :
 1. Accédez au répertoire des paquets Windows : `cd packages/windows`
 2. Exécutez le script avec Inno Setup pour le canal souhaité : [`setup-nightly.iss`](packages/windows/setup-nightly.iss) ou [`setup.iss`](packages/windows/setup.iss)
 
-#### FreeBSD
+#### Via système de portage FreeBSD (Expérimental)
+
+> [!NOTE]
+> La version pour le system de portage pour FreeBSD n'est actuellement disponible que pour la dernière version étiquetée et est expérimental. Il peut arriver qu'il y ait un retard de version. Pour obtenir une version de développement ou une version personnalisée, la méthode UV est actuellement la seule méthode officiellement prise en charge.
 
 Utilité mon FreeBSD Port [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 

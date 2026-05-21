@@ -47,45 +47,48 @@ jobs:
             *.zip
             *.tar.gz
 
-  # # --- JOB 2 : Building Windows Installer ---
-  # # Disabled due to not working
-  # build_windows_installer:
-  #   name: Build Inno Setup
-  #   runs-on: windows-latest
-  #   steps:
-  #     - uses: actions/checkout@v6.0.2
-  #     - name: Compile .ISS
-  #       uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
-  #       with:
-  #         path: packages\windows\setup-nigthly.iss
-  #         options: '/O+ /F"LCE_Qt_Launcher_Windows_Nigthly_Setup"'
+  # --- JOB 2 : Building Windows Installer ---
+  build_windows_installer:
+    name: Build Inno Setup
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4 # test to see if version 4 work, verfify if update coudld be fixed or needed
+      - name: Compile .ISS
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
+        with:
+          path: packages\windows\setup-nigthly.iss
+          options: '/O+ /F"LCE_Qt_Launcher_Windows_Nigthly_Setup"'
       
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v7.0.1
-  #       with:
-  #         name: installer-windows
-  #         path: packages\windows\Output\*.exe 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: installer-windows
+          path: packages\windows\Output\*.exe 
 
-  # # --- JOB 3 : Making Arch Linux Packages ---
-  # # Disabled due to not working
-  # build_arch_installer:
-  #   name: Build Arch Package
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v6.0.2
-  #     - name: Validate and Build package
-  #       uses: heyhusen/archlinux-package-action@v3.0.0
-  #       with:
-  #         namcap: true
-  #         updpkgsums : true
-  #         path : "packages/linux/nigthly"
-  #         srcinfo: true
+  # --- JOB 3 : Making Arch Linux Packages ---
+  # Disabled due to not working
+  build_arch_installer:
+    name: Build Arch Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Validate and Build package
+        uses: heyhusen/archlinux-package-action@v3.0.0
+        with:
+          namcap: true
+          updpkgsums : true
+          path : "packages/linux/nigthly"
       
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v7.0.1
-  #       with:
-  #         name: packages-arch
-  #         path: packages/linux/nightly/****.pkg.tar.zst
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: packages-arch
+          path: |
+            packages/linux/nigthly/*
+            packages/linux/nigthly/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
+            !packages/linux/nigthly/pkg/
+            !packages/linux/nigthly/src/
+            !packages/linux/nigthly/lce-qt-launcher-git/
 
   # --- JOB 4 : Publish the Nightly Release ---
   release:
@@ -111,6 +114,8 @@ jobs:
             > The nightly prebuild is only avaiable for GNU/Linux and Windows. \n
             > For NixOS/Nixpkg you need to build it yourself by downloading the source files 
             and then run `./nix-helper install` \n
+            > For FreeBSD, check [my FreeBSD Port Overlay collection](https://github.com/xgui4/freebsd-ports/).
+            Note that the Nightly build is not avaiable as a port right now.
             \n
             Automatic Nighty (daily) binary build powered by GtiHub Actions. \n
             The nighy build are experimental nuitka compilation from the nighly branch \n

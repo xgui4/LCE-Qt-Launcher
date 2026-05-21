@@ -10,24 +10,14 @@
 1. Créez un environnement virtuel Python à l'aide d'un outil comme UV (si ce n'est pas déjà fait).
 2. Configurez VSCode pour utiliser cet environnement virtuel Python.
 3. Exécutez « Pyside : Synchroniser l'environnement virtuel et lancer ».
-
 4. Lancez l'application via le mode débogage de VSCode ou directement le fichier [`src/lce_qt_launcher/main.py`](src/lce_qt_launcher/main.py).
 
 ## FreeBSD
 
-```shell
-
-#!/usr/bin/env sh
-
-if [ "$1" = "create-venv" ]; then 
-    uv venv --system-site-packages
-fi
-
-if [ "$1" = "sync" ]; then 
-    uv sync --system-certs
-fi
-
-```
+1. Crée un environnemnt python virtuelle avec accès system avec la commande `uv venv --system-site-packages`
+2. Synchroniser l'environnement virtuelle avec `uv sync`
+3. Activer l'environnement virtuelle (remplace {.sh} par .sh pour bash, .fish  pour fish ou rien pour le shell POSIX) `source .venv/bin/activate{.sh}`
+4. Executer le programme avec la commande `python src/lce_qt_launcher/main.py`
 
 ## NixOS
 

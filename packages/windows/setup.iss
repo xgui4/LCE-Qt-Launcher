@@ -24,8 +24,18 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
-DisableDirPage=yes
-UninstallDisplayIcon={app}\{#MyAppExeName}
+DefaultGroupName={#MyAppName}
+LicenseFile=..\..\license.md
+InfoBeforeFile=..\..\code-of-conduct.md
+InfoAfterFile=..\..\readme.md
+; Uncomment the following line to run in non administrative install mode (install for current user only).
+;PrivilegesRequired=lowest
+PrivilegesRequiredOverridesAllowed=dialog
+OutputBaseFilename=LCE-Qt-Launcher-Windows-Setup
+SetupIconFile=..\..\assets\setup.ico
+SolidCompression=yes
+WizardStyle=modern dark polar
+; ArchiveExtraction=full
 ; "ArchitecturesAllowed=x64compatible" specifies that Setup cannot run
 ; on anything but x64 and Windows 11 on Arm.
 ArchitecturesAllowed=x64compatible
@@ -34,18 +44,7 @@ ArchitecturesAllowed=x64compatible
 ; meaning it should use the native 64-bit Program Files directory and
 ; the 64-bit view of the registry.
 ArchitecturesInstallIn64BitMode=x64compatible
-ChangesAssociations=yes
-LicenseFile=..\..\license.md
-InfoBeforeFile=..\..\code-of-conduct.md
-InfoAfterFile=..\..\lisezmoi.md
-; Uncomment the following line to run in non administrative install mode (install for current user only).
-;PrivilegesRequired=lowest
-PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=.
-OutputBaseFilename=LCE-Qt-Launcher-Windows-Setup
-SetupIconFile=..\..\assets\setup.ico
-SolidCompression=yes
-WizardStyle=modern dark polar
+; SetupArchitecture=x64 ; for the inno 7 preview
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -55,14 +54,15 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\..\dist\main.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\dist\main.dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; NOTE: Use the "issigverify" flag or the "Hash" parameter to verify downloads
+Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/v0.0.20b0/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
+Source: "lce_inst.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\lce_inst.ico"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 
 [Icons]

@@ -13,27 +13,7 @@
 
 ### Nix Package
 
-<!--
-#### Nix Flake (Coming Soon)
-
-  Run `nix build`
--->
-#### Nixpkg
-
-```bash
-
-if [[ $user_input == "install" ]]; then
-    nix-build default.nix
-    nix-env -i ./result
-fi
-if [[ $user_input == "compile" ]]; then
-    ./scripts/build.sh
-fi
-if [[ $user_input == "clear" ]]; then
-    ./scripts/clear.sh
-fi
-
-```
+Documentation Coming Soon
 
 #### Windows Installer
 
@@ -43,7 +23,10 @@ Requirements :
   1. Go to the windows packages locations : `cd pacakges/windows`
   2. run the script with Inno Setup for your desired channel [`setup-nightly.iss`](packages/windows/setup-nigthly.iss) or [`setup.iss`](packages/windows/setup.iss))
 
-#### FreeBSD
+#### FreeBSD Port (Experimental)
+
+> [!NOTE]
+> The FreeBSD port is only avaiable for the latest tagged release right now and is experimental. And sometime may lagged in version. To get the nightly build or custom version, the UV method is currently the only officially supported method.
 
 Using my Github FreeBSD [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 
