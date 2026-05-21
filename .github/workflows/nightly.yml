@@ -52,7 +52,7 @@ jobs:
     name: Build Inno Setup
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v4 # test to see if version 4 work, verfify if update coudld be fixed or needed
       - name: Compile .ISS
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
         with:
@@ -83,7 +83,12 @@ jobs:
         uses: actions/upload-artifact@v7.0.1
         with:
           name: packages-arch
-          path: ./packages/linux/nightly/*.pkg.tar.zst
+          path: |
+            packages/linux/nigthly/*
+            packages/linux/nigthly/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
+            !packages/linux/nigthly/pkg/
+            !packages/linux/nigthly/src/
+            !packages/linux/nigthly/lce-qt-launcher-git/
 
   # --- JOB 4 : Publish the Nightly Release ---
   release:
