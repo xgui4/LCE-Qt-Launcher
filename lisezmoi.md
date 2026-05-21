@@ -87,6 +87,7 @@ Vous pouvez également télécharger ce dépôt avec la commande `git clone http
 - Un environnement virtuel avec les bibliothèques requises installées (spécifiées dans le fichier README et le fichier [`pyproject.toml`](pyproject.toml))
 - [PySide6](https://pypi.org/project/PySide6/)
 - [Police Monocraft](https://github.com/IdreesInc/Monocraft) installée
+- [Police Miracode](https://github.com/IdreesInc/Miracode)
 - Pour les systèmes de type UNIX
   - Un serveur d'affichage ou un compositeur (sauf sur macOS où un serveur propriétaire est utilisé).
   - Bash (normalement préinstallé sous Linux, mais souvent requis sous *BSD et macOS)
