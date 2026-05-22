@@ -67,9 +67,9 @@ In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launch
 
 Coming Soon (Delayed due to technical issues)
 
-### FreeBSD Port (Coming Soon)
+### FreeBSD Port
 
-Coming Soon (Delayed due to technical issues)
+See [my FreeBSD Port Overlay](https://github.com/xgui4/freebsd-ports) to installing games/lce-qt-laucher (py311-lce-qt-launcher) port.
 
 ### Nigthly Build
 
