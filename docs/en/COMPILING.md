@@ -30,11 +30,14 @@ Requirements :
 
 Using my Github FreeBSD [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 
-#### Flatpak
+#### Flatpak (Coming soon)
 
+Flatpak support is in the work, but is not working right now.
+<!--
 > [!NOTE]
 > For Flatpak, manual building is only recommended for development purposes or for forks that don't have a Flatpak repository.
 > Currently, this is the only method since the official Flatpak repository is not yet activated. Once activated, this part of the notice will be removed, and it will then be recommended to use the Flatpak repository, which will be displayed here.
 
 1. Go to the flatpak manifest location : `cd packages/flatpak`
 2. Build the flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
+-->

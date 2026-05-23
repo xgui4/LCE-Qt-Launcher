@@ -43,11 +43,15 @@ Prérequis :
 
 Utilité mon FreeBSD Port [Overlay](https://github.com/xgui4/freebsd-ports/tree/master/lce-qt-launcher)
 
-#### Flatpak
+#### Flatpak (Bientôt)
 
+Le support pour flatpak est a venir et ne marche pas correctement pour le moment
+
+<!-- 
 > [!NOTE]
 > Pour Flatpak, la compilation manuelle est recommandée uniquement à des fins de développement ou pour les forks ne disposant pas de dépôt Flatpak.
 > Actuellement, il s'agit de la seule méthode disponible, le dépôt Flatpak officiel n'étant pas encore activé. Une fois activé, cette partie de l'annonce sera supprimée et il sera alors recommandé d'utiliser le dépôt Flatpak, qui sera affiché ici.
 
 1. Accédez au répertoire contenant le manifeste Flatpak : `cd packages/flatpak`
 2. Compilez Flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
+-->

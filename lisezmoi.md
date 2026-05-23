@@ -66,7 +66,7 @@ Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Laun
 
 A Venir bientôt (décalé du a des problèmes techniques)
 
-### FreeBSD Port
+### FreeBSD Port (Expérimental)
 
 Voir [mon superposition de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
 
