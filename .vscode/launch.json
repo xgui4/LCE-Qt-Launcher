@@ -18,12 +18,19 @@
             "program": "${workspaceFolder}/src/lce_qt_launcher/main.py",
             "preLaunchTask": "PySide: build (Windows)"
         },
-        {
+                {
             "name" : "Pyside : Sync Virtual Env and Launch",
             "type" : "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/lce_qt_launcher/main.py",
             "preLaunchTask": "Python: Sync Virtual Env"
+        },
+        {
+            "name" : "PySide: Build and Launch (no system qt plugins)",
+            "type" : "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/lce_qt_launcher/main.py --disable-system-qt-plugins",
+            "preLaunchTask": "PySide: build (Windows)"
         }
     ]
 }

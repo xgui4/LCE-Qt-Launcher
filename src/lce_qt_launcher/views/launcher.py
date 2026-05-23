@@ -98,6 +98,8 @@ class LauncherView(QMainWindow):
             features.save_instance_to_file(self, instanceManager, appContext)
 
         def changeInstanceIconButtonCommand() -> None:
+            """_summary_ Open the instance icon/image interface
+            """
             file_name: str = QFileDialog.getOpenFileName(
                 self,
                 "Select the image file for the instance",
@@ -108,6 +110,8 @@ class LauncherView(QMainWindow):
             self.ui.instance_img.setPixmap(QPixmap(file_name))
 
         def showInstanceEditorButtonCommand() -> None:
+            """_summary_ Open the instance editor button command
+            """
             features.show_instance_editor(self)
 
         def showAboutMinecraftActionCommand() -> None:
@@ -207,7 +211,6 @@ class LauncherView(QMainWindow):
         self.aboutDialog: QDialog = QDialog()
 
         self.about.setupUi(self.aboutDialog)
-        self.aboutDialog.setWindowTitle(app_name_str)
 
         self.about.title.setText(app_name_str)
         self.about.versionLabel.setText(f"{version_str}")

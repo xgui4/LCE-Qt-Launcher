@@ -11,8 +11,8 @@ more up to date."
 
 echo "1. Ntuika portable build"
 echo "2. Arch Packages (Require Arch)"
-echo "3. Flatpak. (Hightly experiental)"  
-echo "Choose a option (between 1 and 3):"
+# echo "3. Flatpak. (Hightly experiental)"  
+echo "Choose a option (between 1 and 2):"
 
 read -r user_input
 
@@ -37,7 +37,8 @@ elif [[ $user_input == "2" ]]; then
         cd "dev"
         makepkg -s
     fi
-elif [[ $user_input == "3" ]]; then
-    cd packages/flatpak
-    flatpak-builder --user --install build-dir io.github.xgui4 .lce_qt_launcher.yml --install-deps-from=flathub
+# flatpak is not ready yet
+# elif [[ $user_input == "3" ]]; then
+    # cd packages/flatpak
+    # flatpak-builder --user --force-clean --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub
 fi

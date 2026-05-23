@@ -63,7 +63,8 @@ def main() -> None:
     sys_man: SystemManager = appContext.sys_man
 
     try:
-        # sys_man.adapt_qt_system_theme() # temporaly disabled cause it can cause issue, when a fixed will be made, it will be reenable
+        if "--disable-system-qt-plugins" not in sys.argv : 
+            sys_man.adapt_qt_system_theme()
         userPref: UserPref = appContext.userPref
         # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language, not aa theme file
         user_theme: str = userPref.get_theme_pref()

@@ -1,3 +1,8 @@
+* {
+    background-image :  url(":/assets/background.png);
+    color : white;
+}
+
 QLabel:disabled {
     color : gray; 
     opacity : 100;
