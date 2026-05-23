@@ -39,5 +39,5 @@ elif [[ $user_input == "2" ]]; then
     fi
 elif [[ $user_input == "3" ]]; then
     cd packages/flatpak
-    flatpak-builder --user --install build-dir io.github.xgui4 .lce_qt_launcher.yml --install-deps-from=flathub
+    flatpak-builder --user --force-clean --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub
 fi
