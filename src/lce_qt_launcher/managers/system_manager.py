@@ -57,14 +57,14 @@ class SystemManager:
             self.name = self.type.name
             self.version = platform.version()
 
-    # def adapt_qt_system_theme(self) -> None:
-    #     """_summary_ Set the Qt Theme to the System on GNU/Linux and FreeBSD"""
-    #     if platform.system() == "Linux":
-    #         _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
-    #         os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
-    #     if platform.system() == "FreeBSD":
-    #         _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
-    #         os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
+    def adapt_qt_system_theme(self) -> None:
+        """_summary_ Set the Qt Theme to the System on GNU/Linux and FreeBSD"""
+        if platform.system() == "Linux":
+            _LINUX_QT6_PATH = "/usr/lib/qt6/plugins"
+            os.environ["QT_PLUGIN_PATH"] = _LINUX_QT6_PATH
+        if platform.system() == "FreeBSD":
+            _FREEBSD_QT6_PATH = "/usr/local/lib/qt6/plugins"
+            os.environ["QT_PLUGIN_PATH"] = _FREEBSD_QT6_PATH
 
     def set_file_permission(self, file_abs_path: str) -> str:
         """
