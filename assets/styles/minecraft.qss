@@ -1,6 +1,6 @@
 * {
     background-image :  url(":/assets/background.png);
-    color : white
+    color : white;
 }
 
 QLabel:disabled {

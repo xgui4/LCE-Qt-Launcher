@@ -44,12 +44,12 @@ def parse_args(argv: list[str]) -> CmdArgAction:
     """_summary_ Parse the cmd_args to get it actions
 
     Args:
-        argv (list[str]): _description_ the cmd_args/flags to paraes
+        argv (list[str]): _description_ the cmd_args/flags to parse (generally sys.argv[1:])
 
     Returns:
         CmdArgAction: _description_ The Action of the flags/cmd_args to launch/activated
     """
-    if len(argv) < 0:
+    if len(argv) > 0:
         match argv[1]:
             case CmdArg.GEN_CONFIG_CMD_ARG | CmdArg.GEN_CONFIG_CMD_ARG_SHORT:
                 print("config")
@@ -70,10 +70,10 @@ def parse_args(argv: list[str]) -> CmdArgAction:
                 print("cli")
                 return CmdArgAction.CLI_VERSION
             case _:
-                print("Not Args detected")
+                print("Unknown flag or argument")
                 return CmdArgAction.NO_ARGS
-    else:
-        return CmdArgAction.NO_ARGS
+    print("No Args detected")
+    return CmdArgAction.NO_ARGS
 
 
 FALLBACK_ABOUT_MESSAGE = "This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and GNU/Linux support in mind."
