@@ -308,7 +308,7 @@ class InstanceManager:
                     [client_path, "-name", self.instance.username]
                 )
                 return_code = game_process_temp.returncode
-            except subprocess.SubprocessError as e:
+            except OSError as e:
                 if os.name == "posix":
                     game_process_temp = subprocess.run(
                         ["wine", client_path, "-name", self.instance.username]
@@ -345,16 +345,17 @@ class InstanceManager:
                 InstanceSource.FORGEJO_RELEASE,
             ]:
                 return self._downloader.download_inst_async(self.instance)
-            if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
-                subprocess.run(
-                    [
-                        "git",
-                        "clone",
-                        self.instance.repo_url,
-                        self.instance.installation_path,
-                    ]
-                )
-                return "git_operation_finished"
+            #TODO : test this feature
+            # if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
+            #     subprocess.run(
+            #         [
+            #             "git",
+            #             "clone",
+            #             self.instance.repo_url,
+            #             self.instance.installation_path,
+            #         ]
+            #     )
+            #     return "git_operation_finished"
             else:
                 raise RuntimeWarning(
                     "Not implemented YET"
