@@ -3,7 +3,7 @@ name: Build and Deploy Nightly
 on:
   push:
     branches:
-      - nightly
+      - dev
 
 permissions:
   contents: write
