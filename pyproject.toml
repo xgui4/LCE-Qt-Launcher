@@ -20,11 +20,7 @@ dependencies = [
     "hatch<=1.16.5",
     "rich<=15.0.0",
     "vdf<=3.4",
-    "patchelf<=0.17.2.4; sys_platform == 'linux'"
-]
-
-[dependency-groups]
-dev = [    
+    "patchelf<=0.17.2.4; sys_platform == 'linux'",
     "Nuitka<=4.1"
 ]
 
