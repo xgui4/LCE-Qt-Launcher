@@ -80,7 +80,9 @@ FALLBACK_ABOUT_MESSAGE = "This is a custom Minecraft LCE Launcher written in Pyt
 FALLBACK_HELP_MESSAGE = "-h or --help to get this help \n -v or --version to get the app version \n -L or --license to get the license information \n -a or --about to get information about the app \n -cl or --cli to launch the cli version \n -g or --gen-config to generate or update the app config"
 
 
-def launch_cmd_action(action: CmdArgAction, appContext: AppContext, appData : AppData) -> None:
+def launch_cmd_action(
+    action: CmdArgAction, appContext: AppContext, appData: AppData
+) -> None:
     """_summary_ Do the action with an provided AppContext
 
     Args:
@@ -92,9 +94,13 @@ def launch_cmd_action(action: CmdArgAction, appContext: AppContext, appData : Ap
     elif action == CmdArgAction.PRINT_LICENSE:
         features.display_license()
     elif action == CmdArgAction.PRINT_HELP:
-        features.display_help(appContext.translator.translate("help-message", FALLBACK_HELP_MESSAGE))
+        features.display_help(
+            appContext.translator.translate("help-message", FALLBACK_HELP_MESSAGE)
+        )
     elif action == CmdArgAction.PRINT_ABOUT_INFO:
-        features.display_about(appContext.translator.translate("about_message", FALLBACK_ABOUT_MESSAGE))
+        features.display_about(
+            appContext.translator.translate("about_message", FALLBACK_ABOUT_MESSAGE)
+        )
     elif action == CmdArgAction.PRINT_VERSION:
         features.display_version()
     elif action == CmdArgAction.CLI_VERSION:

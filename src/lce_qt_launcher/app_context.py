@@ -17,7 +17,9 @@ _default_language: str = "en"
 
 class AppContext:
     """_summary_ The App Main Context"""
-    def __init__(self,
+
+    def __init__(
+        self,
         appData: AppData,
         theme: StrTheme = _default_theme,
         instance: Instance = _default_instance,
@@ -25,9 +27,7 @@ class AppContext:
     ) -> None:
         self.sys_man: SystemManager = SystemManager()
         self.userPref: UserPref = UserPref()
-        self.instanceMan: InstanceManager = InstanceManager(
-            instance, self
-        )
+        self.instanceMan: InstanceManager = InstanceManager(instance, self)
         self.theme: StrTheme = theme
         self.translator: JsonTrans = JsonTrans(appData, lang)
         self.selectedLang: str = Languages.FALLBACK.value

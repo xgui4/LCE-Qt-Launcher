@@ -13,7 +13,11 @@ from PySide6.QtGui import QPalette, QPixmap, QBrush
 
 from PySide6.QtCore import qVersion, Qt, QFile, QIODevice
 
-from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngineDownloadRequest
+from PySide6.QtWebEngineCore import (
+    QWebEnginePage,
+    QWebEngineProfile,
+    QWebEngineDownloadRequest,
+)
 
 import sys
 import platform
@@ -58,7 +62,12 @@ class LauncherView(QMainWindow):
         QMainWindow (_type_): _description_ Inherited/is a QMainWindow
     """
 
-    def __init__(self, appContext: AppContext, appData: AppData, app: QApplication,) -> None:
+    def __init__(
+        self,
+        appContext: AppContext,
+        appData: AppData,
+        app: QApplication,
+    ) -> None:
         super().__init__(None)
 
         translator: JsonTrans = appContext.translator
@@ -98,8 +107,7 @@ class LauncherView(QMainWindow):
             features.save_instance_to_file(self, instanceManager, appContext)
 
         def changeInstanceIconButtonCommand() -> None:
-            """_summary_ Open the instance icon/image interface
-            """
+            """_summary_ Open the instance icon/image interface"""
             file_name: str = QFileDialog.getOpenFileName(
                 self,
                 "Select the image file for the instance",
@@ -110,8 +118,7 @@ class LauncherView(QMainWindow):
             self.ui.instance_img.setPixmap(QPixmap(file_name))
 
         def showInstanceEditorButtonCommand() -> None:
-            """_summary_ Open the instance editor button command
-            """
+            """_summary_ Open the instance editor button command"""
             features.show_instance_editor(self)
 
         def showAboutMinecraftActionCommand() -> None:
@@ -128,9 +135,7 @@ class LauncherView(QMainWindow):
 
         def loadInstanceActionCommand() -> None:
             """_summary_ Open the Load Save File Dialog"""
-            features.load_instance_from_file(
-                self, instanceManager, appContext, appData
-            )
+            features.load_instance_from_file(self, instanceManager, appContext, appData)
             self.loadInstanceInForm(instanceManager)
 
         def showSystemInformationActionCommand() -> None:
@@ -159,7 +164,7 @@ class LauncherView(QMainWindow):
             term_service.print_error("Cannot set the background")
 
         self.ui: Ui_launcher = Ui_launcher()
-        self.ui.setupUi(self)        
+        self.ui.setupUi(self)
         for inst in appData.instsList:
             self.instances.append(inst)
             item = QListWidgetItem()
@@ -167,8 +172,10 @@ class LauncherView(QMainWindow):
             item.setIcon(QPixmap(inst.image))
             item.setData(Qt.ItemDataRole.FileInfoRole, inst)
             self.ui.listWidget.addItem(item)
-            
-        arguments: list[str] = (QApplication.instance().arguments() if not None else "Error")   # pyright: ignore[reportOptionalMemberAccess]
+
+        arguments: list[str] = (
+            QApplication.instance().arguments() if not None else "Error"
+        )  # pyright: ignore[reportOptionalMemberAccess]
         if len(arguments) > 1:
             file_arg: str = arguments[1]
             try:
@@ -217,9 +224,7 @@ class LauncherView(QMainWindow):
         self.about.urlLabel.setText(git_repo_url_str)
         self.about.creditsText.setText("Xgui4")
         self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.channelLabel.setText(
-            f"**Channel** : {version_type_str}"
-        )
+        self.about.channelLabel.setText(f"**Channel** : {version_type_str}")
         self.about.platformLabel.setText(f"**Platform** : {platform.release()}")
 
         self.about.licenseText.setMarkdown(license_text_str)
@@ -296,9 +301,7 @@ class LauncherView(QMainWindow):
         openAppConfig = lambda: systemManager.open_url_with_system(appData.appConfigDir)
         self.ui.actionApp_Root.triggered.connect(openAppConfig)
 
-        open_github_issues = lambda: webbrowser.open(
-            git_repo_url_str + "/issues"
-        )
+        open_github_issues = lambda: webbrowser.open(git_repo_url_str + "/issues")
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
             open_github_issues
         )
@@ -351,7 +354,7 @@ class LauncherView(QMainWindow):
             self.ui.actionLoadRevelationsInstance.setEnabled(False)
             return None
         else:
-            raw_text_rev = bytes(revelationJson.readAll().data()).decode('utf-8')
+            raw_text_rev = bytes(revelationJson.readAll().data()).decode("utf-8")
             data_rev = json.loads(raw_text_rev)
             loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
             self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
@@ -401,12 +404,12 @@ class LauncherView(QMainWindow):
         self.versionlabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
         self.ui.statusbar.addPermanentWidget(self.versionlabel)
 
-        if (appContext.showHolidayEnabled):
+        if appContext.showHolidayEnabled:
             holyday_label: QLabel = QLabel(holiday.get_holiday())
             self.ui.statusbar.addWidget(holyday_label)
 
         self.loadInstanceInForm(instanceManager)
-        
+
     def setup_web_engine(self):
         page: QWebEnginePage = self.ui.marketplacesWebsiteEngine.page()
         self.browser_profile: QWebEngineProfile = page.profile()
@@ -416,7 +419,9 @@ class LauncherView(QMainWindow):
         """Processes the PySide6 download stream request."""
         print("Download Started!")
 
-        path_str, _ = QFileDialog.getSaveFileName(None, "Save File", download.downloadFileName())
+        path_str, _ = QFileDialog.getSaveFileName(
+            None, "Save File", download.downloadFileName()
+        )
 
         if path_str:
             save_path: Path = Path(path_str)
@@ -426,8 +431,12 @@ class LauncherView(QMainWindow):
         else:
             download.cancel()
 
-    def loadInstanceCommand(self,data: dict[str, str], instanceManager: InstanceManager,) -> None:
-        """ TODO :_summary_
+    def loadInstanceCommand(
+        self,
+        data: dict[str, str],
+        instanceManager: InstanceManager,
+    ) -> None:
+        """TODO :_summary_
 
         Args:
             data (dict[str, str]): _description_

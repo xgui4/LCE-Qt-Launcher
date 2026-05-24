@@ -48,7 +48,7 @@ def print_success(msg: str) -> None:
     """
     print(f"[green] {msg}")
 
+
 def clear_console():
-    """_summary_ Clear the Console screen with the correct system commnd
-    """
+    """_summary_ Clear the Console screen with the correct system commnd"""
     os.system("cls" if os.name == "nt" else "clear")

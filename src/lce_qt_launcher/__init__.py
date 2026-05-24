@@ -9,15 +9,15 @@ _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
 
-_VERSION_TYPE : str = "alpha"
-_INSTANCE_EXTENSION : str = ".lce_inst"
-_AUTHORS : str = "Xgui4"
+_VERSION_TYPE: str = "alpha"
+_INSTANCE_EXTENSION: str = ".lce_inst"
+_AUTHORS: str = "Xgui4"
 
-app_name_str : str = _FALLBACK_APP_NAME
-version_str : str  = _FALLBACK_VERSION
-licence_name_str : str = _FALLBACK_LICENSE
-license_link_str : str = _FALLBACK_LICENSE_LINK
-git_repo_url_str : str = _FALLBACK_GIT_REPO_URL
+app_name_str: str = _FALLBACK_APP_NAME
+version_str: str = _FALLBACK_VERSION
+licence_name_str: str = _FALLBACK_LICENSE
+license_link_str: str = _FALLBACK_LICENSE_LINK
+git_repo_url_str: str = _FALLBACK_GIT_REPO_URL
 
 try:
     app_metadata: PackageMetadata = metadata("LCE-Qt-Launcher")

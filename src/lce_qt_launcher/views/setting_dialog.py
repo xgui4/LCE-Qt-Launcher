@@ -9,7 +9,9 @@ from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
 class SettingDialog(QDialog):
     """_summary_ The Setting Dialog"""
 
-    def __init__(self, parent: QWidget, ui_setting: Ui_settingDialog, appContext: AppContext) -> None:
+    def __init__(
+        self, parent: QWidget, ui_setting: Ui_settingDialog, appContext: AppContext
+    ) -> None:
         super().__init__()
         self.setting_dialog: QDialog = QDialog(parent)
         self.ui_setting: Ui_settingDialog = ui_setting
@@ -20,7 +22,9 @@ class SettingDialog(QDialog):
 
         self.ui_setting.settingsOptions.accepted.connect(self.applyButtonCommand)
 
-        comingSoonMsgBox = lambda: QMessageBox().information(self, "Setting", "Not Implemented Yet!")
+        comingSoonMsgBox = lambda: QMessageBox().information(
+            self, "Setting", "Not Implemented Yet!"
+        )
 
         self.ui_setting.settingsOptions.helpRequested.connect(comingSoonMsgBox)
 

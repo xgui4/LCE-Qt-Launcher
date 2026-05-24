@@ -24,19 +24,22 @@ CHOOSE_INST_LABEL = "Choose a instance to select : \n"
 MARKETPLACE_LINK = "https://lce-hub.github.io/piston/"
 SUCESS_SELECTING = "Successfully selected:"
 
-OPTIONS : dict[str, str] = {
-    "0" : "select",
-    "1" : "play",
-    "2" : "install",
-    "3" : "marketplace",
-    "4" : "exit"
+OPTIONS: dict[str, str] = {
+    "0": "select",
+    "1": "play",
+    "2": "install",
+    "3": "marketplace",
+    "4": "exit",
 }
 
 OPTION_MARKPLACE_LABEL = "[bold green]  1. Open the marketplace (right now : LCE Emerald Marketplace) [/bold green]"
-OPTION_INSTANCE_INSTALLER_LABEL = "[bold green]  2. Open the LCE Content Installer [/bold green]"
+OPTION_INSTANCE_INSTALLER_LABEL = (
+    "[bold green]  2. Open the LCE Content Installer [/bold green]"
+)
 CHOOSE_MARKPLACE_LABEL = "Choose a option between 1 and 2 : \n"
 
-def launch_cli(appContext : AppContext, appData : AppData) -> None:
+
+def launch_cli(appContext: AppContext, appData: AppData) -> None:
     """
     _summary_ : launch the cli interface
 
@@ -53,14 +56,14 @@ def launch_cli(appContext : AppContext, appData : AppData) -> None:
     if len(argv) > 1:
         arg_action = argv[1]
 
-    in_menu : bool = True
+    in_menu: bool = True
     while in_menu:
         term_service.print_pretty(legal_str)
         term_service.print_pretty(MENU_STR)
-        
+
         if arg_action:
             user_input = arg_action
-            arg_action = None 
+            arg_action = None
         else:
             user_input = input(CHOOSE_CHOICE_LABEL).strip()
 
@@ -74,21 +77,23 @@ def launch_cli(appContext : AppContext, appData : AppData) -> None:
                 selected_index = int(user_input) - 1
                 if 0 <= selected_index < len(instancesLists):
                     instanceMan.instance = instancesLists[selected_index]
-                    term_service.print_information(f"{SUCESS_SELECTING} {instancesLists[selected_index].name}")
+                    term_service.print_information(
+                        f"{SUCESS_SELECTING} {instancesLists[selected_index].name}"
+                    )
                 else:
                     term_service.print_error(OUT_OF_RANGE_ERROR_LABEL)
             except ValueError:
                 term_service.print_error(INORRECT_NUMBER_VALUE_LABEL)
             term_service.clear_console()
-            
+
         elif action == "play":
             print(instanceMan.play())
             term_service.clear_console()
-            
+
         elif action == "install":
             print(instanceMan.install_instance())
             term_service.clear_console()
-            
+
         elif action == "marketplace":
             term_service.print(OPTION_MARKPLACE_LABEL)
             term_service.print(OPTION_INSTANCE_INSTALLER_LABEL)
@@ -98,10 +103,10 @@ def launch_cli(appContext : AppContext, appData : AppData) -> None:
             if user_input == "2":
                 mod_manager.main()
             term_service.clear_console()
-                
+
         elif action == "exit":
             exit()
-            
+
         else:
             term_service.clear_console()
             term_service.print_error(INCORRECT_CHOICE_LABEL)
