@@ -116,7 +116,7 @@ jobs:
             > For NixOS/Nixpkg you need to build it yourself by downloading the source files 
             and then run `./nix-helper install` \n
             > For FreeBSD, check [my FreeBSD Port Overlay collection](https://github.com/xgui4/freebsd-ports/).
-            Note that the Nightly build is not avaiable as a port right now.\n
+            Note that the Nightly build is not available as a port right now.\n
             \n
             Automatic Nighty (daily) binary build powered by GtiHub Actions. \n
             The nigthly build are experimental nuitka compilation from the nighly branch \n
