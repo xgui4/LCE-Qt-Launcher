@@ -146,7 +146,7 @@ You can also, downloading this repo with the command `git clone https://github.c
 - [neoLegacy community](https://github.com/neoStudiosLCE/neoLegacy") for backporting updates for the PC port
 - [LCE-Revelation community](https://git.revela.dev/itsRevela/LCE-Revelations)
 - [LCE Hub Communiy](https://github.com/LCE-Hub) for the Marketplace/Workshop
-- [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my lancher in their list
+- [MinecraftLegacy Community](https://github.com/MinecraftConsole) to include my launcher in their list
 - [Miracode Font](https://github.com/IdreesInc/Miracode)
 - [Monocraft Font](https://github.com/IdreesInc/Monocraft)
 - [Steam Tinker Launch](https://github.com/sonic2kk/steamtinkerlaunch) for Steam and SteamDeck integration on GNU/Linux via their software.
