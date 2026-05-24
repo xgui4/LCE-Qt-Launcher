@@ -4,7 +4,6 @@ from enum import Enum
 
 class MONTH(Enum):
     """_summary_ The 12 Month as Enum (Start from 1 and go to 12) d"""
-
     JANUARY = 1
     FEBRURAY = 2
     MARCH = 3
@@ -22,29 +21,29 @@ class MONTH(Enum):
 def monthEnumToStr(enum: MONTH) -> str:
     match enum:
         case MONTH.JANUARY:
-            return ("January")
+            return "January"
         case MONTH.FEBRURAY:
-            return ("February")
+            return "February"
         case MONTH.MARCH:
-            return ("March")
+            return "March"
         case MONTH.APRIL:
-            return ("April")
+            return "April"
         case MONTH.MAY:
-            return ("May")
+            return "May"
         case MONTH.JUNE:
-            return ("June")
+            return "June"
         case MONTH.JULY:
-            return ("July")
+            return "July"
         case MONTH.AUGUST:
-            return ("August")
+            return "August"
         case MONTH.SEPTEMBER:
-            return ("September")
+            return "September"
         case MONTH.OCTOBER:
-            return ("October")
+            return "October"
         case MONTH.NOVEMBER:
-            return ("November")
+            return "November"
         case MONTH.DECEMBER:
-            return ("December")
+            return "December"
         case _:
             return ""
 

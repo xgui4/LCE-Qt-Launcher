@@ -156,7 +156,7 @@ _DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/neoLegacy.png"
-_DEFAULT_NEWS_FEED = ("https://github.com/neoStudiosLCE/neoLegacy/commits/main/")
+_DEFAULT_NEWS_FEED = "https://github.com/neoStudiosLCE/neoLegacy/commits/main/"
 _DEFAULT_VERSION = "v1.0.4b"
 
 
@@ -291,6 +291,7 @@ class InstanceManager:
         from lce_qt_launcher.managers.downloader import Downloader
 
         self._downloader: Downloader = Downloader(appContext)
+
     def play(self) -> str:
         """_summary_ Launch an Instance
 
@@ -299,21 +300,31 @@ class InstanceManager:
         """
         return_code: int = 0
         try:
-            client_path: str = os.path.join(self.instance.installation_path, self.instance.exe_name)
+            client_path: str = os.path.join(
+                self.instance.installation_path, self.instance.exe_name
+            )
             try:
-                game_process_temp = subprocess.run([client_path, "-name", self.instance.username])
+                game_process_temp = subprocess.run(
+                    [client_path, "-name", self.instance.username]
+                )
                 return_code = game_process_temp.returncode
             except subprocess.SubprocessError as e:
                 if os.name == "posix":
-                    game_process_temp = subprocess.run(["wine", client_path, "-name", self.instance.username])
+                    game_process_temp = subprocess.run(
+                        ["wine", client_path, "-name", self.instance.username]
+                    )
                     return_code = game_process_temp.returncode
                 else:
                     QMessageBox.critical(None, "Instance Error", str(e.args))
         except TimeoutExpired as err:
-            term_service.print_error(f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}")
+            term_service.print_error(
+                f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
+            )
             return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
         except PermissionError as err:
-            term_service.print_error(f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}")
+            term_service.print_error(
+                f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
+            )
             return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
         else:
             return f"Client closed with code {return_code}"
@@ -335,7 +346,14 @@ class InstanceManager:
             ]:
                 return self._downloader.download_inst_async(self.instance)
             if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
-                subprocess.run(["git", "clone", self.instance.repo_url, self.instance.installation_path])
+                subprocess.run(
+                    [
+                        "git",
+                        "clone",
+                        self.instance.repo_url,
+                        self.instance.installation_path,
+                    ]
+                )
                 return "git_operation_finished"
             else:
                 raise RuntimeWarning(

@@ -142,6 +142,7 @@ def load_instance_from_file(
             "Instance already in data folder. Skipping making symlink. "
         )
 
+
 def show_about_qt(parent: QWidget) -> None:
     """Features : Load the Selected Instance"""
     print("Show About Qt popup.")
@@ -187,7 +188,7 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
         mainWindow, "Name your instance", "Set the name of the instance"
     )[0]
     newInstance = Instance()
-    
+
     if instance_name:
         newInstance.name = instance_name
     if username_str:
@@ -235,7 +236,7 @@ def save_instance_to_file(
     instanceManager.save_instance(file_name)
 
 
-def launch_cli_interface(appContext : AppContext, appData : AppData) -> None:
+def launch_cli_interface(appContext: AppContext, appData: AppData) -> None:
     """_summary_ Launch the cli version of the app
 
     Args:
