@@ -701,8 +701,6 @@
      <addaction name="actionLoadDefaultInstance"/>
      <addaction name="actionLoadmclceInstance"/>
      <addaction name="actionLoadRevelationsInstance"/>
-     <addaction name="actionLoad360RevivedInstance"/>
-     <addaction name="actionLoadHellishEndsInstance"/>
      <addaction name="actionLoadPortable_MCLEInstance"/>
      <addaction name="actionLoadAetherInstance"/>
     </widget>
@@ -1137,24 +1135,6 @@
    </property>
    <property name="text">
     <string>Revelations</string>
-   </property>
-  </action>
-  <action name="actionLoad360RevivedInstance">
-   <property name="icon">
-    <iconset resource="../res.qrc">
-     <normaloff>:/assets/360Revived.png</normaloff>:/assets/360Revived.png</iconset>
-   </property>
-   <property name="text">
-    <string>360Revived</string>
-   </property>
-  </action>
-  <action name="actionLoadHellishEndsInstance">
-   <property name="icon">
-    <iconset resource="../res.qrc">
-     <normaloff>:/assets/hellishends.jpg</normaloff>:/assets/hellishends.jpg</iconset>
-   </property>
-   <property name="text">
-    <string>HellishEnds</string>
    </property>
   </action>
   <action name="actionLoadPortable_MCLEInstance">

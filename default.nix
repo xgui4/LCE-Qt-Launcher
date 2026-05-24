@@ -69,7 +69,7 @@ pkgs.python3Packages.buildPythonApplication rec {
   '';
 
   meta = with pkgs.lib; {
-    description = "A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind.";
+    description = "a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.";
     license = licenses.gpl3;
     platforms = platforms.linux;
     mainProgram = "lce-qt-launcher";

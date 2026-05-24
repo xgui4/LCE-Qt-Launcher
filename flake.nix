@@ -1,5 +1,5 @@
 {
-  description = "A Custom Minecraft Legacy Console Launcher written in Python with Free Software in mind.";
+  description = "A custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

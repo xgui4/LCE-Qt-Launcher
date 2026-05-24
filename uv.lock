@@ -412,31 +412,23 @@ version = "0.0.20a0"
 source = { editable = "." }
 dependencies = [
     { name = "hatch" },
+    { name = "nuitka" },
+    { name = "patchelf", marker = "sys_platform == 'linux'" },
     { name = "platformdirs" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'" },
     { name = "rich" },
     { name = "vdf" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "nuitka" },
-    { name = "patchelf", marker = "sys_platform == 'linux'" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "hatch", specifier = "<=1.16.5" },
+    { name = "nuitka", specifier = "<=4.1" },
+    { name = "patchelf", marker = "sys_platform == 'linux'", specifier = "<=0.17.2.4" },
     { name = "platformdirs", specifier = "<=4.9.6" },
     { name = "pyside6", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or sys_platform == 'win32'", specifier = "<=6.11.1" },
     { name = "rich", specifier = "<=15.0.0" },
     { name = "vdf", specifier = "<=3.4" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "nuitka", specifier = "<=4.1" },
-    { name = "patchelf", marker = "sys_platform == 'linux'", specifier = "<=0.17.2.4" },
 ]
 
 [[package]]

@@ -26,7 +26,6 @@
         <file alias="360Revived.png">assets/images/360Revived.png</file>
         <file alias="Revelation.jpg">assets/images/Revelation.jpg</file>
         <file alias="portable-lce.png">assets/images/portable-lce.png</file>
-        <file alias="hellishends.jpg">assets/images/hellishends.jpg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>
@@ -36,8 +35,6 @@
     <qresource prefix="/instances">
         <file alias="mclce.lce_inst">data/defaults_instances/mclce.lce_inst</file>
         <file alias="neoLegacy.lce_inst">data/defaults_instances/neoLegacy.lce_inst</file>
-        <file alias="hellishends.lce_inst">data/defaults_instances/hellishends.lce_inst</file>
-        <file alias="360Revived.lce_inst">data/defaults_instances/360Revived.lce_inst</file>
         <file alias="revelations.lce_inst">data/defaults_instances/revelation.lce_inst</file>
         <file alias="aether.lce_inst">data/defaults_instances/aether.lce_inst</file>
     </qresource>
