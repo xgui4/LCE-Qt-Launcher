@@ -174,8 +174,8 @@ class LauncherView(QMainWindow):
             self.ui.listWidget.addItem(item)
 
         arguments: list[str] = (
-            QApplication.instance().arguments() if not None else "Error"
-        )  # pyright: ignore[reportOptionalMemberAccess]
+            QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
+        ) 
         if len(arguments) > 1:
             file_arg: str = arguments[1]
             try:

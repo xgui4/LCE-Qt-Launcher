@@ -49,7 +49,7 @@ def parse_args(argv: list[str]) -> CmdArgAction:
     Returns:
         CmdArgAction: _description_ The Action of the flags/cmd_args to launch/activated
     """
-    if len(argv) > 0:
+    if len(argv) > 1:
         match argv[1]:
             case CmdArg.GEN_CONFIG_CMD_ARG | CmdArg.GEN_CONFIG_CMD_ARG_SHORT:
                 print("config")
