@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/nightly/schemas/x-application-lce_inst_config.json",
-    "name": "pieeebot neoLegacy",
+    "name": "neoStudiosLCE neoLegacy",
     "instance_type": "InstanceType.CLIENT_VANILLA",
     "instance_source": "InstanceSource.GITHUB_RELEASE",
     "image": ":/assets/neoLegacy.png",

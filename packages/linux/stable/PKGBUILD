@@ -2,7 +2,7 @@
 pkgname=lce-qt-launcher
 pkgver="0.0.20b0"
 pkgrel=1
-pkgdesc="A custom Minecraft LCE Launcher written in Python and Qt with GNU/Linux support in mind."
+pkgdesc="A custom Minecraft LCE Launcher written wiht PySide6 with GNU/Linux support in mind."
 arch=('any')
 url="https://github.com/xgui4/LCE-Qt-Launcher"
 license=('GPL-3.0-or-later')

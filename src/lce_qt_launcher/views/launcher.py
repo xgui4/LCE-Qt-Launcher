@@ -309,6 +309,9 @@ class LauncherView(QMainWindow):
         loadDefaultInstance = lambda: self.loadInstanceCommand(dict(), instanceManager)
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
 
+        self.ui.actionLoadmclceInstance.setEnabled(False)
+        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup (Remote Git Not supported yet)")
+
         mclceJson = QFile(":/instances/mclce.lce_inst")
         if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
             term_service.print_error("Cannot found or open MCLCE Instance")
@@ -319,34 +322,6 @@ class LauncherView(QMainWindow):
             data_neo = json.loads(raw_text_neo)
             loadNeoLegacyInstance = lambda: self.loadInstanceCommand(data_neo, instanceManager)
             self.ui.actionLoadmclceInstance.triggered.connect(loadNeoLegacyInstance)
-
-        self.ui.actionLoadHellishEndsInstance.setEnabled(False)  # Due to dcma it is disabled
-        self.ui.actionLoadHellishEndsInstance.setText("HellishEnd (Disabled due to DMCA)")
-
-        self.ui.actionLoad360RevivedInstance.setEnabled(False)  # Due to dcma it is disabled
-        self.ui.actionLoad360RevivedInstance.setText("360Revived (Disabled due to DMCA)")
-
-        # hellishEndsJson = QFile(":/instances/hellishends.lce_inst")
-        # if not hellishEndsJson.open(QIODevice.OpenModeFlag.ReadOnly):
-        #     term_service.print_error("Cannot found or open Helish Ends Instance")
-        #     self.ui.actionLoadHellishEndsInstance.setEnabled(False)
-        #     return None
-        # else:
-        #     raw_text_hellish_end = bytes(hellishEndsJson.readAll().data()).decode('utf-8')
-        #     data_hellish_end = json.loads(raw_text_hellish_end)
-        #     loadhellishEndsInstance = lambda : self.loadInstanceCommand(data_hellish_end, instanceManager)
-        #     self.ui.actionLoadHellishEndsInstance.triggered.connect(loadhellishEndsInstance)
-
-        # i360RevivedJson = QFile(":/instances/360Revived.lce_inst")
-        # if not i360RevivedJson.open(QIODevice.OpenModeFlag.ReadOnly):
-        #     term_service.print_error("Cannot found or open 360Revived Instance")
-        #     self.ui.actionLoad360RevivedInstance.setEnabled(False)
-        #     return None
-        # else:
-        #     raw_text_360 = bytes(i360RevivedJson.readAll().data()).decode('utf-8')
-        #     data_360 = json.loads(raw_text_360)
-        #     load360RevivedInstance = lambda : self.loadInstanceCommand(data_360, instanceManager)
-        #     self.ui.actionLoad360RevivedInstance.triggered.connect(load360RevivedInstance)
 
         revelationJson = QFile(":/instances/revelations.lce_inst")
         if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):

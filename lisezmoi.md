@@ -11,30 +11,29 @@
 
 ## À propos
 
-Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit en Python et Qt avec Freedom et conçu pour GNU/Linux.
+Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit avec PySide6 (Qt6 pour Python) et conçu pour GNU/Linux.
 
 ## Pourquoi le lanceur LCE Qt ?
 
 - Développé en Python avec Qt 6 : léger et compatible avec le thème Plasma 6/Qt 6 de GNU/Linux
-- Personnalisation avec les thèmes et les modules/plugins (prochainement)
+- Personnalisation avec les thèmes
 - Intégration avec les outils communautaires
 - Compatibilité GNU/Linux optimale
 - Licence copyleft (GPLv3), donc sans big tech
-- Gratuit comme Freedom Launcher
-- Thème Minecraft par défaut
+- Launcher Libre
 
 ## Fonctionnalités
 
 - Interface en ligne de commande (CLI)
-- Prise en charge de plusieurs instances (en cours de développement)
+- Prise en charge de plusieurs instances
 - Instances préconfigurées :
   - [MCLCE/MinecraftConsoles](https://github.com/mclce/minecraftconsoles) (anciennement smartcmd/MinecraftConsoles)
-  - LegacyEvolved (sera bientôt supprimé car remplacé par NeoLegacy)
-  - [NeoLegacy](https://github.com/pieeebot/neoLegacy/)
+  - [LCE-Revelation](https://git.revela.dev/itsRevela/LCE-Revelations)
+  - [Aether Mod](https://github.com/Frcoxd/aether-papu)
 - Places de marché / Workshop :
   - [Atelier du lanceur Emeralds de LCE Hub](https://github.com/LCE-Hub/piston)
   - [LegacyMods (bientôt disponible)](https://legacymods.org/)
-- Actualités intégrées
+- Actualités intégrées pour les instances
 
 ## Objectif à long terme / Feuille de route
 
@@ -60,7 +59,7 @@ voir [`docs/fr/COMPILATION`](docs/fr/COMPILATION.md)
 
 ### Version taggé
 
-Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Launcher/releases/), vous trouverez les versions étiquetées, par exemple [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta). Actuellement, il ne s'agit que du code source, mais la prochaine version inclura un programme d'installation, des paquets pour Windows et Linux, ainsi que des instructions pour FreeBSD Ports et un paquet Nix.
+Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Launcher/releases/), vous trouverez les versions étiquetées, par exemple [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta).
 
 ### Flatpak (Bientôt disponible)
 
@@ -68,14 +67,14 @@ A Venir bientôt (décalé du a des problèmes techniques)
 
 ### FreeBSD Port (Expérimental)
 
-Voir [mon superposition de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
+Voir [mon overlay tion de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
 
 ### Version Nightly/Quotidienne (Nighly Build)
 
 > [!NOTE]
-> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version de nuit en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
+> Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version nighly en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
 
-Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`nightly`](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly).
+Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`nightly`](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly). Cette méthode est sujet a changer prochainement
 
 ### Via Git
 
@@ -116,15 +115,14 @@ Vous pouvez également télécharger ce dépôt avec la commande `git clone http
 > Plateforme testée avec implémentation en cours de developement
 
 - NixOS
-- FreeBSD en utilisant UV (Remarque : le portage FreeBSD est en développement actif et encore expérimental ; l'utilisation de l'environnement virtuel UV est actuellement la seule méthode officiellement prise en charge pour FreeBSD.)
+- FreeBSD Port & en venv (installation portable)
 
-### Plateformes prises en charge partiellement
+### Plateformes prises en charge  prochainement
 
 > [!NOTE]
 > Plateformes non testées, mais avec implémentation
 
 - Flatpak
-- FreeBSD port
 
 ### Systèmes d'exploitation non pris en charge
 
@@ -138,17 +136,21 @@ Vous pouvez également télécharger ce dépôt avec la commande `git clone http
 ### Remerciements particuliers à
 
 - [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher) pour certains éléments et fichiers d'interface utilisateur
-- [MCLCE/MinecraftConsoles](https://github.com/MCLCE/MinecraftConsoles)
-aftConsoles) pour le portage du jeu sur PC
-- [pieeebot/neoLegacy](https://github.com/pieeebot/neoLegacy) pour la rétrocompatibilité des mises à jour pour le portage PC
-- [LCE Hub](https://github.com/LCE-Hub) pour la Marketplace/Workshop
-- [HellishEnds](https://github.com/deadvoxelx/HellishEnds) - maintenant DCMA, il est donc supprimé/indisponible pour le moment
-- [360Revived](https://github.com/BluTac10/360Revived) - maintenant DCMA, donc supprimé/inutilisable pour le moment
+- [Communauté MCLCE/MinecraftConsoles](https://git.minecraftlegacy.com/backups/MinecraftConsoles) pour le portage du jeu sur PC
+- [Communauté néoLegacy](https://github.com/neoStudiosLCE/neoLegacy) pour le rétroportage des mises à jour pour la version PC
+- [Communauté LCE-Revelation](https://git.revela.dev/itsRevela/LCE-Revelations)
+- [Communauté LCE Hub](https://github.com/LCE-Hub) pour le Marketplace/Workshop
+- [Communauté MinecraftLegacy](https://github.com/MinecraftConsole) pour l'ajout de mon lanceur à leur liste
+- [Miracode Police de caractères](https://github.com/IdreesInc/Miracode)
+- [Monocraft Police de caractères](https://github.com/IdreesInc/Monocraft)
+- [Steam Tinker Launch](https://github.com/sonic2kk/steamtinkerlaunch) pour l'intégration de Steam et SteamDeck sur GNU/Linux via leur logiciel.
+- et merci a toute a communauté LCE pour continuer sa "legacy" et donc certains images viennents
+- et merci à Notch (Markus Persson), 4J Studio pour avoir fait ce jeux.
 
-## Code de conduite
+## Code de respect
 
-- [Anglais](code-of-conduct.md)
-- [Français](CODE-DE-CONDUITE.md)
+- [En Anglais](code-of-conduct.md)
+- [En Français](CODE-DE-CONDUITE.md)
 
 ## Licence
 
