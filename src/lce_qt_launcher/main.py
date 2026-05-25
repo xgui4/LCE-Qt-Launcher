@@ -6,9 +6,9 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.0.20.0"
-# nuitka-project: --file-version="0.0.20.0"
-# nuitka-project: --file-description="Manage Minecraft Legacy Console Edition Instances."
+# nuitka-project: --product-version="0.0.20.1"
+# nuitka-project: --file-version="0.0.20.1"
+# nuitka-project: --file-description="LCE Qt Launcher Alpha"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 

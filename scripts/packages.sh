@@ -2,8 +2,6 @@
 
 set -e
 
-scripts/prepare.sh
-
 echo "NOTE : this new version of the packages helper script 
 for UNIX like system is experiental and a work in progrss
 The script in nightly or in other branch/channel might be

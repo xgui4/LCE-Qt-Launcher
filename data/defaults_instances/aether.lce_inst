@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/nightly/schemas/x-application-lce_inst_config.json",
+    "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/master/schemas/x-application-lce_inst_config.json",
     "name": "aRockefeler Aether Mod", 
     "installation_path": ".lce-aether", 
     "archive_file": "Release.zip", 
