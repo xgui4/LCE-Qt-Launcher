@@ -22,7 +22,7 @@
             ]
         },
         "username" : {
-            "$comment": "DEPRECIATED  : will be soon removed and replaced by the username config settng",
+            "$comment": "DEPRECIATED : will be soon removed and replaced by the username config settng",
             "description": "The username of the player for the instance",
             "type" : "string",
             "default" : "Steve"
@@ -74,23 +74,11 @@
             "type" : "string",
             "default" : "InstanceSource.GITHUB_RELEASE"
         }, 
-        "instance_type" : {
-            "description": "Type of the instance (not implemented/functionnal yet)",
-            "examples": [
-                "InstanceType.CLIENT_VANILLA", 
-                "InstanceType.CLENT_MODDED",
-                "InstanceType.SERVER_VANILLA",
-                "InstanceType.SERVER_MODDED"
-            ],
-            "type" : "string",
-            "default" : "InstanceType.CLIENT_VANILLA"
-        },
         "version" : {
             "description": "version/tag of the release",
             "type" : "string",
             "default" : "nightly",
             "examples": [
-                "nightly-dedicated-server",
                 "Nightly",
                 "v1.0.0b"
             ]

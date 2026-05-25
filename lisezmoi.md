@@ -3,7 +3,7 @@
 [Version anglaise](readme.md)
 
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
-![Capture d'écran du lanceur (version à jour)](.github/screenshots/image.png)
+![Capture d'écran du lanceur (version Alpha 0.0.20.0)](.github/screenshots/image.png)
 
 > [!WARNING]
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.
@@ -13,7 +13,7 @@
 
 Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit avec PySide6 (Qt6 pour Python) et conçu pour GNU/Linux.
 
-## Pourquoi le lanceur LCE Qt ?
+## Pourquoi LCE Qt Launcher ?
 
 - Développé en Python avec Qt 6 : léger et compatible avec le thème Plasma 6/Qt 6 de GNU/Linux
 - Personnalisation avec les thèmes
@@ -67,14 +67,14 @@ A Venir bientôt (décalé du a des problèmes techniques)
 
 ### FreeBSD Port (Expérimental)
 
-Voir [mon overlay tion de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
+Voir [mon overlay de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
 
 ### Version Nightly/Quotidienne (Nighly Build)
 
 > [!NOTE]
 > Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version nighly en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
 
-Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`nightly`](https://github.com/xgui4/LCE-Qt-Launcher/tree/nightly). Cette méthode est sujet a changer prochainement
+Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`dev`](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev).
 
 ### Via Git
 

@@ -1,7 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/master/schemas/x-application-lce_inst_config.json",
     "name": "neoStudiosLCE neoLegacy",
-    "instance_type": "InstanceType.CLIENT_VANILLA",
     "instance_source": "InstanceSource.GITHUB_RELEASE",
     "image": ":/assets/neoLegacy.png",
     "archive_file": "neoLegacyWindows64.zip",
@@ -9,5 +8,5 @@
     "news_feed": "https://github.com/neoStudiosLCE/neoLegacy/commits/main/",
     "installation_path": ".neoLegacy",
     "repo_url": "https://github.com/neoStudiosLCE/neoLegacy",
-    "version": "v1.0.4b"
+    "version": "v1.0.5b"
 }

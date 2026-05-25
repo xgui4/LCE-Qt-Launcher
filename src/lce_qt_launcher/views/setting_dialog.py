@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QDialog, QWidget, QMessageBox
-from PySide6.QtCore import Qt
 
 from lce_qt_launcher.app_context import AppContext
 import lce_qt_launcher.models.theme as theme
@@ -22,9 +21,8 @@ class SettingDialog(QDialog):
 
         self.ui_setting.settingsOptions.accepted.connect(self.applyButtonCommand)
 
-        comingSoonMsgBox = lambda: QMessageBox().information(
-            self, "Setting", "Not Implemented Yet!"
-        )
+        def comingSoonMsgBox():
+            return QMessageBox().information(self, "Setting", "Not Implemented Yet!")
 
         self.ui_setting.settingsOptions.helpRequested.connect(comingSoonMsgBox)
 

@@ -8,6 +8,5 @@
     "repo_url": "https://github.com/Frcoxd/aether-papu",
     "news_feed": "https://github.com/LCE-Hub/LCE-Workshop/tree/main/.00versions/test",
     "instance_source": "InstanceSource.GITHUB_RELEASE", 
-    "instance_type": "InstanceType.CLIENT_VANILLA", 
     "version": "Aether"
 }

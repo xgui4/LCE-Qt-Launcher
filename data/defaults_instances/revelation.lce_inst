@@ -8,6 +8,5 @@
     "image" : ":/assets/Revelation.jpg",
     "news_feed" : "https://git.revela.dev/itsRevela/LCE-Revelations/commits/branch/main",
     "instance_source": "InstanceSource.FORGEJO_RELEASE", 
-    "instance_type": "InstanceType.CLIENT_VANILLA", 
     "version": "Nightly"
 }

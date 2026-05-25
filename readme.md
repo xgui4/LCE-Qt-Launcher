@@ -3,7 +3,7 @@
 [French Version](lisezmoi.md)
 
 ![LCE-Qt-Launcher Icon](assets/io.github.xgui4.lce_qt_launcher.png)
-![Screnshot of the launcher in version 0.0.20a0 of the home screen)](.github/screenshots/image.png)
+![Screnshot of the launcher in version 0.0.20a0 of the launcher)](.github/screenshots/image.png)
 
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
@@ -73,7 +73,7 @@ See [my FreeBSD Port Overlay](https://github.com/xgui4/freebsd-ports) to install
 > [!NOTE]
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
 
-In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`dev` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev) (This is subject to change very soon)
+In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`dev` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev)
 
 ### Via Git
 

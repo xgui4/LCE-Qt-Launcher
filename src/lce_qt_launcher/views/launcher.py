@@ -52,7 +52,6 @@ from lce_qt_launcher import (
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
-import lce_qt_launcher.res_rc  # pyright: ignore[reportUnusedImport]
 
 
 class LauncherView(QMainWindow):
@@ -175,7 +174,7 @@ class LauncherView(QMainWindow):
 
         arguments: list[str] = (
             QApplication.instance().arguments() if not None else "Error"  # pyright: ignore[reportOptionalMemberAccess]
-        ) 
+        )
         if len(arguments) > 1:
             file_arg: str = arguments[1]
             try:
@@ -275,42 +274,54 @@ class LauncherView(QMainWindow):
         self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
 
-        loadSteam = lambda: subprocess.run(
-            ["steam", instanceManager.instance.steam_link]
-        )
+        def loadSteam():
+            return subprocess.run(["steam", instanceManager.instance.steam_link])
+
         self.ui.playOnSteamButton.clicked.connect(loadSteam)
 
-        openAppInstancesData = lambda: systemManager.open_url_with_system(
-            os.path.join(appData.appDataDirs[0], "instances")
-        )
+        def openAppInstancesData():
+            return systemManager.open_url_with_system(
+                os.path.join(appData.appDataDirs[0], "instances")
+            )
+
         self.ui.actionInstances.triggered.connect(openAppInstancesData)
 
-        open_workshop = lambda: features.show_webbrowser(
-            self, "https://lce-hub.github.io/piston/"
-        )
+        def open_workshop():
+            return features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
+
         self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
 
-        open_legacymods = lambda: features.show_webbrowser(
-            self, "https://legacymods.org/"
-        )
+        def open_legacymods():
+            return features.show_webbrowser(self, "https://legacymods.org/")
+
         self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
 
-        openAppRoot = lambda: systemManager.open_url_with_system(appData.projectRootDir)
+        def openAppRoot():
+            return systemManager.open_url_with_system(appData.projectRootDir)
+
         self.ui.actionApp_Root.triggered.connect(openAppRoot)
 
-        openAppConfig = lambda: systemManager.open_url_with_system(appData.appConfigDir)
+        def openAppConfig():
+            return systemManager.open_url_with_system(appData.appConfigDir)
+
         self.ui.actionApp_Root.triggered.connect(openAppConfig)
 
-        open_github_issues = lambda: webbrowser.open(git_repo_url_str + "/issues")
+        def open_github_issues():
+            return webbrowser.open(git_repo_url_str + "/issues")
+
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
             open_github_issues
         )
 
-        loadDefaultInstance = lambda: self.loadInstanceCommand(dict(), instanceManager)
+        def loadDefaultInstance():
+            return self.loadInstanceCommand(dict(), instanceManager)
+
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
 
         self.ui.actionLoadmclceInstance.setEnabled(False)
-        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup (Remote Git Not supported yet)")
+        self.ui.actionLoadmclceInstance.setText(
+            "MCLCE Source Code Backup (Remote Git Not supported yet)"
+        )
 
         mclceJson = QFile(":/instances/mclce.lce_inst")
         if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -320,7 +331,10 @@ class LauncherView(QMainWindow):
         else:
             raw_text_neo: str = bytes(mclceJson.readAll().data()).decode("utf-8")
             data_neo = json.loads(raw_text_neo)
-            loadNeoLegacyInstance = lambda: self.loadInstanceCommand(data_neo, instanceManager)
+
+            def loadNeoLegacyInstance():
+                return self.loadInstanceCommand(data_neo, instanceManager)
+
             self.ui.actionLoadmclceInstance.triggered.connect(loadNeoLegacyInstance)
 
         revelationJson = QFile(":/instances/revelations.lce_inst")
@@ -331,8 +345,13 @@ class LauncherView(QMainWindow):
         else:
             raw_text_rev = bytes(revelationJson.readAll().data()).decode("utf-8")
             data_rev = json.loads(raw_text_rev)
-            loadRevelationInstance = lambda : self.loadInstanceCommand(data_rev, instanceManager)
-            self.ui.actionLoadRevelationsInstance.triggered.connect(loadRevelationInstance)
+
+            def loadRevelationInstance():
+                return self.loadInstanceCommand(data_rev, instanceManager)
+
+            self.ui.actionLoadRevelationsInstance.triggered.connect(
+                loadRevelationInstance
+            )
 
         aetherJson = QFile(":/instances/aether.lce_inst")
         if not aetherJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -342,9 +361,10 @@ class LauncherView(QMainWindow):
         else:
             raw_text_aether = bytes(aetherJson.readAll().data()).decode("utf-8")
             data_aether = json.loads(raw_text_aether)
-            loadAetherInstance = lambda: self.loadInstanceCommand(
-                data_aether, instanceManager
-            )
+
+            def loadAetherInstance():
+                return self.loadInstanceCommand(data_aether, instanceManager)
+
             self.ui.actionLoadAetherInstance.triggered.connect(loadAetherInstance)
 
         def addSteamLinkIntegrationButtonCommand():
@@ -352,7 +372,7 @@ class LauncherView(QMainWindow):
             value = steamIntegrationDialog.getText(
                 self, "Add Steam Integration", "steamid"
             )
-            if value[1] == True:
+            if value[1]:
                 self.ui.steamLinkValue.setText(value[0])
                 question = QMessageBox()
                 answer = question.question(
@@ -370,7 +390,9 @@ class LauncherView(QMainWindow):
                     )
                 instanceManager.instance.steam_link = value[0]
 
-        self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
+        self.ui.addSteamLinkIntegration.clicked.connect(
+            addSteamLinkIntegrationButtonCommand
+        )
 
         self.ui.InstancesList.setEnabled(False)
 
@@ -442,7 +464,7 @@ class LauncherView(QMainWindow):
         self.ui.newsEngineView.setUrl(self.news_feed)
         instanceManager.instance.display()
         # TODO : FIX THE INSTANCE SOURCE BEFORE RENABLED THIS FEATURES
-        if instanceManager.is_installable() == False:
+        if not instanceManager.is_installable():
             self.ui.installButton.setEnabled(False)
         else:
             self.ui.installButton.setEnabled(True)

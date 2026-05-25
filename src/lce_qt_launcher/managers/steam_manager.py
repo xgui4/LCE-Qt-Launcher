@@ -22,7 +22,6 @@ from PySide6.QtWidgets import QMessageBox
 import argparse
 import subprocess
 import platform
-import os
 import sys
 
 LEGAL_TEXT = """
@@ -68,12 +67,12 @@ def add_instance_to_steam(abs_instance_exe_path: str, instance_name: str, icon: 
                     None,
                     "Warning",
                     "This function is in work in progress and the id is not saved in the launcher. \n"
-                    "Until this is added, a manual intervention is needed to found the id and put in the save file. ",
+                    + "Until this is added, a manual intervention is needed to found the id and put in the save file. ",
                 )
             except RuntimeError:
                 print(
                     "Warning : This function is in work in progress and the id is not saved in the launcher. \n"
-                    "Until this is added, a manual intervention is needed to found the id and put in the save file. "
+                    + "Until this is added, a manual intervention is needed to found the id and put in the save file. "
                 )
         else:
             QMessageBox.critical(None, "Critical Error", "Not Implemented Yet!")

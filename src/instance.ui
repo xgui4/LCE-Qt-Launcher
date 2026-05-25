@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>645</width>
-    <height>664</height>
+    <width>966</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,17 @@
       </sizepolicy>
      </property>
      <layout class="QGridLayout" name="instanceEditorGridLayout">
-      <item row="1" column="1">
+      <item row="14" column="1" colspan="3">
+       <widget class="QLineEdit" name="pathInputBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -39,117 +49,41 @@
         </property>
        </widget>
       </item>
-      <item row="20" column="3">
-       <widget class="QFrame" name="mdoifyInstanceFrame">
+      <item row="16" column="1" colspan="3">
+       <widget class="QLineEdit" name="repoURLInputBox">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <layout class="QGridLayout" name="instanceEditorGridFrame"/>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Change Instance Icon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="13" column="1">
-       <widget class="QLabel" name="serverIPInputBoxLabel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Server IP (Coming Soon)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="18" column="1">
-       <widget class="QLabel" name="steamLinkValue">
-        <property name="text">
-         <string>N/A</string>
-        </property>
-       </widget>
-      </item>
-      <item row="15" column="1">
-       <widget class="QLabel" name="serverNameInputBoxLabel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Server Name (Coming Soon)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QLabel" name="pathInputBoxLabel">
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Installation Path</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
+      <item row="11" column="1">
        <widget class="QLabel" name="versionsComboBoxLabel">
         <property name="text">
          <string>Versions</string>
         </property>
        </widget>
       </item>
-      <item row="17" column="1">
-       <widget class="QLabel" name="steamLinkLabel">
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Steam Link :</string>
+      <item row="10" column="1" colspan="3">
+       <widget class="QLineEdit" name="usernameInputBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="instanceNameLabel">
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
+      <item row="17" column="3">
+       <widget class="QPushButton" name="addSteamLinkButton">
         <property name="text">
-         <string>Instance Name</string>
+         <string>Add Steam Link</string>
         </property>
        </widget>
       </item>
-      <item row="11" column="1">
-       <widget class="QLabel" name="repoURKLabel">
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Repo URL</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
+      <item row="9" column="1">
        <widget class="QLabel" name="usernameInputBoxLabel">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -167,7 +101,112 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="19" column="3">
+       <widget class="QPushButton" name="confirmChangesButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Confirm Changes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <widget class="QLabel" name="repoURKLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Repo URL</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QLabel" name="pathInputBoxLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Installation Path</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Change Instance Icon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <widget class="QLabel" name="steamLinkLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Steam Link :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="1">
+       <widget class="QLabel" name="instanceImgTitle">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1" colspan="3">
+       <widget class="QComboBox" name="comboBox"/>
+      </item>
+      <item row="8" column="1" colspan="3">
+       <widget class="QLineEdit" name="instanceNameInputBox"/>
+      </item>
+      <item row="19" column="1">
+       <widget class="QPushButton" name="savetInstanceButton">
+        <property name="text">
+         <string>Save Instances Config</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="4">
+       <widget class="QFrame" name="mdoifyInstanceFrame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QGridLayout" name="instanceEditorGridFrame"/>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="instanceNameLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Instance Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
        <widget class="QLabel" name="instanceLogo">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -186,105 +225,10 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1" colspan="2">
-       <widget class="QLineEdit" name="instanceNameInputBox"/>
-      </item>
-      <item row="6" column="1" colspan="2">
-       <widget class="QLineEdit" name="usernameInputBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1" colspan="2">
-       <widget class="QComboBox" name="comboBox"/>
-      </item>
-      <item row="10" column="1" colspan="2">
-       <widget class="QLineEdit" name="pathInputBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="12" column="1" colspan="2">
-       <widget class="QLineEdit" name="repoURLInputBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="14" column="1" colspan="2">
-       <widget class="QLineEdit" name="serverIPInputBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="16" column="1" colspan="2">
-       <widget class="QLineEdit" name="serverNameInputBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
       <item row="17" column="2">
-       <widget class="QPushButton" name="addSteamLinkButton">
+       <widget class="QLabel" name="steamLinkValue">
         <property name="text">
-         <string>Add Steam Link</string>
-        </property>
-       </widget>
-      </item>
-      <item row="19" column="1">
-       <widget class="QPushButton" name="savetInstanceButton">
-        <property name="text">
-         <string>Save Instances Config</string>
-        </property>
-       </widget>
-      </item>
-      <item row="19" column="2">
-       <widget class="QPushButton" name="confirmChangesButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Confirm Changes</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="instanceImgTitle">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
+         <string>N/A</string>
         </property>
        </widget>
       </item>

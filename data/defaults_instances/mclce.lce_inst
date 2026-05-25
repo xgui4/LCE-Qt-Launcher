@@ -8,6 +8,5 @@
     "image" : ":/assets/mclce-ico.png",
     "news_feed" : "https://git.minecraftlegacy.com/backups/MinecraftConsoles/commits/branch/main",
     "instance_source": "InstanceSource.REMOTE_GIT_SOURCE", 
-    "instance_type": "InstanceType.CLIENT_VANILLA", 
     "version": "main"
 }

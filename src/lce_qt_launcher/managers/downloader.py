@@ -39,7 +39,7 @@ class Downloader(QObject):
         self.manager: QNetworkAccessManager = QNetworkAccessManager()
         self.appContext: AppContext = appContext
 
-    def download_async(self, url_str : str, object_name : str) -> QNetworkReply: 
+    def download_async(self, url_str: str, object_name: str) -> QNetworkReply:
         """#TODO docstring _summary_
 
         Args:
@@ -78,9 +78,9 @@ class Downloader(QObject):
                 error_msg = f"Extraction Error : {e}"
                 term_service.print_error(error_msg)
                 raise RuntimeError(error_msg)
+
         _ = reply.finished.connect(_when_finished)
         return reply
-
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
         """_summary_ Download and install the selected Instance
@@ -140,7 +140,7 @@ class Downloader(QObject):
         """
         data.extractall(instance.installation_path)
 
-    def extract_async(self, data: ZipFile, installation_path : str) -> None:
+    def extract_async(self, data: ZipFile, installation_path: str) -> None:
         """
         _summary_ : extract the the data into the specified path
 

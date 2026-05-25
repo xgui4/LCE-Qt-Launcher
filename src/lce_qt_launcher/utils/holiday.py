@@ -44,8 +44,6 @@ def monthEnumToStr(enum: MONTH) -> str:
             return "November"
         case MONTH.DECEMBER:
             return "December"
-        case _:
-            return ""
 
 
 HOLIDAYS: dict[str, str] = {

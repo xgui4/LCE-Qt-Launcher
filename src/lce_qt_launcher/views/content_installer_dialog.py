@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QDialog
 
 from lce_qt_launcher.managers import mod_manager
 from lce_qt_launcher.ui_contentInstaller import Ui_contentInstallerDialog
-from lce_qt_launcher.views import term_service
 
 
 class ContentInstallerView(QDialog):

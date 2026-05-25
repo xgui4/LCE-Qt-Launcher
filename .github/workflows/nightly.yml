@@ -119,7 +119,7 @@ jobs:
             Note that the Nightly build is not available as a port right now.\n
             \n
             Automatic Nighty (daily) binary build powered by GtiHub Actions. \n
-            The nigthly build are experimental nuitka compilation from the nighly branch \n
+            The nigthly build are experimental nuitka compilation from the dev branch \n
             Now includes installers (NOTE : currently, Automatic installer workflow is broken)."
           files: |
             ./artifacts/****.exe

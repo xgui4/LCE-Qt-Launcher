@@ -16,7 +16,7 @@ class DisplayType(Enum):
 class DisplayManager:
     def __init__(self, type: DisplayType, parentWindow: QWidget | None = None) -> None:
         self.type: DisplayType = type
-        if parentWindow != None:
+        if parentWindow is not None:
             self.parentWindow: QWidget = parentWindow
 
     def displayInfo(self, msg: str, title: str | None = None) -> None:
@@ -24,21 +24,21 @@ class DisplayManager:
             term_service.print_information(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
             QMessageBox.information(
-                self.parentWindow, title if not None else "Information", msg
-            )  # pyright: ignore[reportArgumentType, reportUnusedCallResult]
+                self.parentWindow, title if not None else "Information", msg # pyright: ignore[reportArgumentType]
+            )  
 
     def displayWarn(self, msg: str, title: str | None = None) -> None:
         if self.type == DisplayType.CONSOLE or DisplayType.MIXED:
             term_service.print_warning(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
             QMessageBox.warning(
-                self.parentWindow, title if not None else "⚠️ Warning!", msg
-            )  # pyright: ignore[reportArgumentType, reportUnusedCallResult]
+                self.parentWindow, title if not None else "⚠️ Warning!", msg # pyright: ignore[reportArgumentType]
+            )  
 
     def displayError(self, msg: str, title: str | None = None) -> None:
         if self.type == DisplayType.CONSOLE or DisplayType.MIXED:
             term_service.print_error(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
             QMessageBox.critical(
-                self.parentWindow, title if not None else "❗ Error", msg
-            )  # pyright: ignore[reportArgumentType, reportUnusedCallResult]
+                self.parentWindow, title if not None else "❗ Error", msg # pyright: ignore[reportArgumentType]
+            )  

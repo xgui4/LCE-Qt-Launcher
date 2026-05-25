@@ -24,7 +24,6 @@ SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/h
 
 class InstanceSource(Enum):
     """_summary_ The 4 Type of Instances (2 functional, the othes coming soon)"""
-
     GITHUB_RELEASE = 0
     FORGEJO_RELEASE = 1
     REMOTE_GIT_SOURCE = 2
@@ -86,65 +85,6 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
 
 
-class InstanceType(Enum):
-    """_summary_ The instance Type (no function yet)"""
-
-    CLIENT_VANILLA = 0
-    CLENT_MODDED = 1
-    SERVER_VANILLA = 2
-    SERVER_MODDED = 3
-
-
-def from_int_to_InstanceType(value: int) -> InstanceType:
-    """_summary_ Convert Into to Instance Type
-
-    Args:
-        value (int): _description_ the int to convert
-
-    Raises:
-        RuntimeError: _description_ Raise if a incorrect int is specified
-
-    Returns:
-        InstanceType: _description_ The InstanceType from the int
-    """
-    match value:
-        case 0:
-            return InstanceType.CLIENT_VANILLA
-        case 1:
-            return InstanceType.CLENT_MODDED
-        case 2:
-            return InstanceType.SERVER_VANILLA
-        case 3:
-            return InstanceType.SERVER_MODDED
-        case _:
-            raise RuntimeError(f"{value} is an Incorrect InstanceType Type")
-
-
-def from_str_to_InstanceType(string: str) -> InstanceType:
-    """_summary_ Convert str to Instance Type
-
-    Args:
-        string (str): _description_ the string to convert
-
-    Raises:
-        RuntimeError: _description_ Raise if a incorrect str is specified
-
-    Returns:
-        InstanceSource: _description_ The InstanceType from the str
-    """
-    match string:
-        case "InstanceType.CLIENT_VANILLA":
-            return InstanceType.CLIENT_VANILLA
-        case "InstanceType.CLENT_MODDED":
-            return InstanceType.CLENT_MODDED
-        case "InstanceType.SERVER_VANILLA":
-            return InstanceType.SERVER_VANILLA
-        case "InstanceType.SERVER_MODDED":
-            return InstanceType.SERVER_MODDED
-        case _:
-            raise RuntimeError(f"{string} is an Incorrect Instance Type")
-
-
 _DEFAULT_INST_NAME = "New Default (pieeebot neoLegacy)"
 _DEFAULT_INSTALLATION_PATH = ".new-default"
 _DEFAULT_USERNAME = "Steve"
@@ -152,7 +92,6 @@ _DEFAULT_ARCHIVE_FILE = "neoLegacyWindows64.zip"
 _DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
 _DEFAULT_REPO_URL = "https://github.com/neoStudiosLCE/neoLegacy"
 _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
-_DEFAULT_INST_TYPE = InstanceType.CLIENT_VANILLA
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/neoLegacy.png"
@@ -173,7 +112,6 @@ class Instance(QObject):
         repo_url: str = _DEFAULT_REPO_URL,
         image: str = _DEFAULT_IMAGE,
         instance_source: InstanceSource = _DEFAULT_INST_SOURCE,
-        instance_type: InstanceType = _DEFAULT_INST_TYPE,
         news_feed: str = _DEFAULT_NEWS_FEED,
         version: str = _DEFAULT_VERSION,
         steam_link: str = "N/A",
@@ -186,7 +124,6 @@ class Instance(QObject):
         self.exe_name: str = exe_name
         self.repo_url: str = repo_url
         self.instance_source: InstanceSource = instance_source
-        self.instance_type: InstanceType = instance_type
         self.image: str = image
         self.news_feed: str = news_feed
         self.version: str = version
@@ -208,9 +145,6 @@ class Instance(QObject):
         self.repo_url = inst_dict.get("repo_url", _DEFAULT_REPO_URL)
         self.instance_source = from_str_to_InstanceSource(
             inst_dict.get("instances_source", _DEFAULT_INST_SOURCE_STRING)
-        )
-        self.instance_type = from_str_to_InstanceType(
-            inst_dict.get("instance_type", _DEFAULT_INST_TYPE_STRING)
         )
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
@@ -258,7 +192,6 @@ class Instance(QObject):
             "archive_file": self.archive_file,
             "repo_url": self.repo_url,
             "instance_source": self.instance_source.name,
-            "instance_type": self.instance_type.name,
             "image": self.image,
             "news_feed": self.news_feed,
             "version": self.version,
@@ -268,7 +201,7 @@ class Instance(QObject):
 
     def display(self) -> None:
         print(f"Name : {self.name}")
-        print(f"=============================")
+        print("=============================")
         print(f"installation path : {self.installation_path}")
         print(f"username : {self.username}")
         print(f"executable name : {self.exe_name}")
@@ -276,7 +209,6 @@ class Instance(QObject):
         print(f"repo url : {self.repo_url}")
         print(f"image : {self.image}")
         print(f"instance source : {self.instance_source.value}")
-        print(f"instance type : {self.instance_source.value}")
         print(f"news_feed : {self.news_feed}")
         print(f"version : {self.version}")
         print(f"steam link : {self.steam_link}")
@@ -345,7 +277,7 @@ class InstanceManager:
                 InstanceSource.FORGEJO_RELEASE,
             ]:
                 return self._downloader.download_inst_async(self.instance)
-            #TODO : test this feature
+            # TODO : test this feature
             # if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
             #     subprocess.run(
             #         [
@@ -401,7 +333,8 @@ class InstanceManager:
         # Note : Right now the remote git location is not installable via this launcher, it will added in the next version
         if self.instance.instance_source in [
             InstanceSource.FORGEJO_RELEASE,
-            InstanceSource.GITHUB_RELEASE
-        ]: return True
+            InstanceSource.GITHUB_RELEASE,
+        ]:
+            return True
         else:
             return False
