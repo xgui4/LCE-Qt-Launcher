@@ -28,6 +28,7 @@ DefaultGroupName={#MyAppName}
 LicenseFile=..\..\license.md
 InfoBeforeFile=..\..\code-of-conduct.md
 InfoAfterFile=..\..\readme.md
+ArchiveExtraction=full
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
@@ -55,7 +56,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; NOTE: Use the "issigverify" flag or the "Hash" parameter to verify downloads
-Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/v0.0.20b0/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
+Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/v0.0.20a0/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
 Source: "lce_inst.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
