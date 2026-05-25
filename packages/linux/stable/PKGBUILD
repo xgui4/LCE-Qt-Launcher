@@ -29,7 +29,7 @@ optdepends=(
 )
 provides=("${pkgname%-stable}" "${pkgname%}")
 conflicts=("${pkgname%-git}" "${pkgname%-dev}")
-source=("${pkgname}::git+${url}.git#tag=v0.0.20b0")
+source=("${pkgname}::git+${url}.git#tag=v0.0.20a0")
 sha256sums=('SKIP')
 
 build() {

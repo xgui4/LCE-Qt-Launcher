@@ -324,6 +324,7 @@ default.lce_inst
 packages/**/src/
 packages/**/pkg/
 packages/**/lce-qt-launcher-*/
+packages/linux/*/lce-qt-launcher
 packages/**/lce-qt-launcher-**-**-any.pkg.tar.zst
 
 # Nix 
