@@ -1,6 +1,6 @@
 # Maintainer: Xgui4
 pkgname=lce-qt-launcher-git
-pkgver=nightly.r0.gef515be
+pkgver=nightly.r0.ga42d4f2
 pkgrel=1
 pkgdesc="A custom Minecraft LCE Launcher written with PySide6 with GNU/Linux support in mind. (Nightly/Git Build)"
 arch=('any')
@@ -30,7 +30,7 @@ optdepends=(
 
 provides=("${pkgname%-nightly}" "${pkgname%}")
 conflicts=("${pkgname%-dev}" "${pkgname%-git}" "${pkgname%-stable}")
-source=("${pkgname}::git+${url}.git#branch=nightly")
+source=("${pkgname}::git+${url}.git#branch=dev")
 sha256sums=('SKIP')
 
 pkgver() {
