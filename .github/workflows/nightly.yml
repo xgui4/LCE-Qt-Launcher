@@ -90,8 +90,34 @@ jobs:
   #           !packages/linux/nigthly/pkg/
   #           !packages/linux/nigthly/src/
   #           !packages/linux/nigthly/lce-qt-launcher-git/
+  
+  # --- JOB 4 : Making AppImage ---
+  build_appimage:
+    name: Build GNU/Linx AppImage
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyproject-appimage
+          pip -m pyproject-appimage
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: binaries-${{ matrix.os }}
+          path: |
+            *.
 
-  # --- JOB 4 : Publish the Nightly Release ---
+  # --- JOB 5 : Publish the Nightly Release ---
   release:
     name: Create Nightly Release
     needs: [build]
@@ -122,7 +148,8 @@ jobs:
             The nigthly build are experimental nuitka compilation from the dev branch \n
             Now includes installers (NOTE : currently, Automatic installer workflow is broken)."
           files: |
-            ./artifacts/****.exe
-            ./artifacts/****.zip
-            ./artifacts/****.pkg.tar.zst
-            ./artifacts/****.tar.gz
+            ./artifacts/*.exe
+            ./artifacts/*.zip
+            ./artifacts/*.AppImage
+            ./artifacts/*.pkg.tar.zst
+            ./artifacts/*.tar.gz
