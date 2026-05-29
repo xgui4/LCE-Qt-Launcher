@@ -6,8 +6,8 @@
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.0.20.1"
-# nuitka-project: --file-version="0.0.20.1"
+# nuitka-project: --product-version="0.0.20.3"
+# nuitka-project: --file-version="0.0.20.3"
 # nuitka-project: --file-description="LCE Qt Launcher Alpha"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 # nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
@@ -66,7 +66,7 @@ def main() -> None:
         if "--disable-system-qt-plugins" not in sys.argv:
             sys_man.adapt_qt_system_theme()
         userPref: UserPref = appContext.userPref
-        # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language, not aa theme file
+        # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language
         user_theme: str = userPref.get_theme_pref()
         show_holiday: str = userPref.get_show_holiday_pref()
         developer_mode: str = userPref.get_developper_mode_pref()
@@ -89,6 +89,7 @@ def main() -> None:
             pass
             # appContext.updateAppUILang()
     except:
+        #FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
         term_service.print_error(
             "They were a error while loading the system theme or user preference."
         )
@@ -113,7 +114,7 @@ def main() -> None:
             file_name: str = QFileDialog.getSaveFileName(
                 None,
                 save_filedialog_title,
-                f'{appContext.sys_man.found_default_save_path()}("LCE Instance Save File" (*{instance_extension_str}))',
+                f'{appData.appDataDirs}("LCE Instance Save File" (*{instance_extension_str}))',
             )[0]
             appContext.instanceMan.save_instance(file_name)
 

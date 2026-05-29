@@ -137,6 +137,9 @@
              <property name="text">
               <string>Default (MCLCE)  - Vanilla Client</string>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+             </property>
             </widget>
            </item>
            <item row="4" column="1">
@@ -504,6 +507,9 @@
              <property name="text">
               <string>Steam Link :</string>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+             </property>
             </widget>
            </item>
            <item row="4" column="6">
@@ -513,6 +519,9 @@
              </property>
              <property name="text">
               <string>N/A</string>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
              </property>
             </widget>
            </item>
@@ -621,7 +630,7 @@
      <x>0</x>
      <y>0</y>
      <width>1205</width>
-     <height>35</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

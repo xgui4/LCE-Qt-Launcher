@@ -338,3 +338,7 @@ freebsd-ports/work-*
 # Others
 
 .ruff*
+
+# AppImage
+
+*.AppImage

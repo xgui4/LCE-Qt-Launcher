@@ -4,7 +4,7 @@ from importlib.metadata._meta import PackageMetadata
 from PySide6.QtCore import qVersion
 
 _FALLBACK_APP_NAME = "LCE Qt Launcher"
-_FALLBACK_VERSION = "0.0.20b1"
+_FALLBACK_VERSION = "0.0.20b3"
 _FALLBACK_LICENSE = "GPLv3"
 _FALLBACK_LICENSE_LINK = "https://www.gnu.org/licenses/gpl-3.0"
 _FALLBACK_GIT_REPO_URL = "https://github.com/xgui4/LCE-QT-Launcher"
@@ -27,6 +27,8 @@ try:
     _repo_url_temp: str = app_metadata["Repository"]
     _license_url_temp: str = app_metadata["LicenseURL"]
     _license_temp: str = app_metadata["License"]
+    
+    print(app_metadata.json)
 
     if _version_temp:
         version_str = _version_temp

@@ -43,6 +43,7 @@ This is a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) wi
 - Windows support
 - Experimental FreeBSD and Nix/NixOS support
 - Flatpak support
+- AppImage Support
 - Localisations support
 - Focus on being one place for everything Minecraft LCE on GNU/Linux
 

@@ -66,23 +66,22 @@ LEGAL_TEXT = """
 
 def extract_zip(data: ZipFile, extraction_path: str) -> None:
     """
-    _summary_ : extract the zipfile of the content to the desired path
-
+    _summary_ : 
+        extract the zipfile of the content to the desired path
     Args:
         data : the zip file itself
         extraction_path : the specified extraction path
-    #TODO Make Async
-    """
+    #FIXME Make Async"""
     data.extractall(extraction_path)
 
 
-def install_content(instance_path: str, contentType: ContentType, archive_file: str):
-    """_summary_   #TODO docstring
-
+def install_content(instance_path: str, contentType: ContentType, archive_file: str) -> None:
+    """_summary_
+        install the content of the mode
     Args:
-        instance_path (str): _description_
-        contentType (ContentType): _description_
-        archive_file (str): _description_
+        instance_path (str): _description_ : the instance path
+        contentType (ContentType): _description_ : the content type
+        archive_file (str): _description_ the archive file that have the content
     """
     try:
         zipFile = ZipFile(archive_file)

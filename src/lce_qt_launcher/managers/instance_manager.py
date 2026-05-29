@@ -1,4 +1,4 @@
-# TODO : Make Instance mode indpendant
+#FIXME : Make Instance mode indpendant
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
@@ -263,37 +263,16 @@ class InstanceManager:
 
     def install_instance(self) -> QNetworkReply | str:
         """_summary_ Install the selected Instance
-
-        Raises:
-            RuntimeWarning: _description_  #TODO : TO REMOVE, no good Reason to be there
-            e: _description_ #TODO : TO REMOVE, no good Reason to be there
-
         Returns:
             QNetworkReply: _description_ : the QtNetwork Reply Object of the download process
         """
-        try:
-            if self.instance.instance_source in [
-                InstanceSource.GITHUB_RELEASE,
-                InstanceSource.FORGEJO_RELEASE,
-            ]:
-                return self._downloader.download_inst_async(self.instance)
-            # TODO : test this feature
-            # if self.instance.instance_source == InstanceSource.REMOTE_GIT_SOURCE:
-            #     subprocess.run(
-            #         [
-            #             "git",
-            #             "clone",
-            #             self.instance.repo_url,
-            #             self.instance.installation_path,
-            #         ]
-            #     )
-            #     return "git_operation_finished"
-            else:
-                raise RuntimeWarning(
-                    "Not implemented YET"
-                )  # TODO : implementing other type
-        except RuntimeError as e:
-            raise e
+        #FIXME do others types
+        if self.instance.instance_source in [
+            InstanceSource.GITHUB_RELEASE,
+            InstanceSource.FORGEJO_RELEASE,
+        ]:
+            return self._downloader.download_inst_async(self.instance)
+        return "Not implemented yet"
 
     def save_instance(self, save_file: str) -> None:
         """_summary_ Save the install with a specified save file and location
@@ -309,6 +288,7 @@ class InstanceManager:
                 indent=4,
             )
         except:
+            #FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
             json_string = json.dumps(obj=vars(self.instance), indent=4, default=str)
         if not save_file.endswith(instance_extension_str):
             full_save_file: str = save_file + instance_extension_str
@@ -317,9 +297,6 @@ class InstanceManager:
 
     def load_instance(self, save_file: str) -> None:
         """_summary_ Load an instance with a specified save file and location
-
-        #TODO : Check for the any report
-
         Args:
             save_file (str): _description_ specified save file and location
         """
@@ -329,7 +306,7 @@ class InstanceManager:
             self.instance.load_inst_from_dict(inst_dict)
 
     def is_installable(self) -> bool:
-        """_summary_ #TODO"""
+        """_summary_  assert if instance is installable"""
         # Note : Right now the remote git location is not installable via this launcher, it will added in the next version
         if self.instance.instance_source in [
             InstanceSource.FORGEJO_RELEASE,

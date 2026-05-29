@@ -5,7 +5,7 @@ from lce_qt_launcher.ui_contentInstaller import Ui_contentInstallerDialog
 
 
 class ContentInstallerView(QDialog):
-    """#TODO _summary_
+    """_summary_ The Content installer UI View
 
     Args:
         QDialog (_type_): _description_ inherited from QDialog
@@ -17,9 +17,9 @@ class ContentInstallerView(QDialog):
         self.dialog: QDialog = QDialog()
         self.ui_dialog.setupUi(self.dialog)
 
-        self.contentToInstallPath = ""
-        self.instancePath = ""
-        self.contentTypeStr = ""
+        self.contentToInstallPath : str = ""
+        self.instancePath : str = ""
+        self.contentTypeStr : str = ""
 
         self.contentToInstallPath = self.ui_dialog.contentToInstallInputBox.text()
         self.contentTypeStr = self.ui_dialog.contentTypeComboBox.currentText()

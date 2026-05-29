@@ -40,18 +40,13 @@ class Downloader(QObject):
         self.appContext: AppContext = appContext
 
     def download_async(self, url_str: str, object_name: str) -> QNetworkReply:
-        """#TODO docstring _summary_
-
+        """_summary_
+            Download Content from the internet from s certain url and a object_name
         Args:
-            url_str (str): _description_
-            object_name (str): _description_
-
-        Raises:
-            RuntimeError: _description_
-            RuntimeError: _description_
-
+            url_str (str): _description_ the url of the content to download
+            object_name (str): _description_ the name of the object name
         Returns:
-            QNetworkReply: _description_
+            QNetworkReply: _description_ the QNetworkReply to use for updating the ui/tui and get information about the downlaod
         """
         print(START_DOWNLOAD_REQUEST_MSG_STR)
         url: QUrl = QUrl(url_str)
@@ -83,11 +78,14 @@ class Downloader(QObject):
         return reply
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
-        """_summary_ Download and install the selected Instance
-
+        #FIXME : replace this function with the other independant function
+        """_summary_
+            Download and install the selected Instance
         Args:
-            instance : The selected instance to install or Update
-        #TODO  : make it better and less dependant of instance"""
+            instance (Instance): _description_  The selected instance to install or Update
+        Returns:
+            QNetworkReply: _description_ the QNetworkReply to use for updating the ui/tui and get information about the downlaod
+        """
         print(START_DOWNLOAD_REQUEST_MSG_STR)
         url: QUrl = QUrl(instance.get_download_url())
         request: QNetworkRequest = QNetworkRequest(url)
@@ -136,7 +134,7 @@ class Downloader(QObject):
         Args:
             data : the zip file itself
             instance : the specified instance
-        #TODO Make Async
+        #FIXME replace this function wit the newer and better indpendant extract async function
         """
         data.extractall(instance.installation_path)
 
@@ -147,6 +145,6 @@ class Downloader(QObject):
         Args:
             data : the zip file itself
             installation_path : path of the installation/extraction
-        #TODO Make Async
+        #FIXME Make Async
         """
         data.extractall(installation_path)

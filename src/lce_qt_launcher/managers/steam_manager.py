@@ -31,14 +31,16 @@ LEGAL_TEXT = """
     under certain conditions; type `show c' for details.
     """
 
+STEAM_USERS_LOCATION = "~/.steam/steam/config/loginusers.vdf"
+STEAM_SHORTCUTS_LOCATION = "~/steam/steam/userdata/{steam-id}/config/"
 
 def add_instance_to_steam(abs_instance_exe_path: str, instance_name: str, icon: str):
-    """#TODO _summary_
-
-    #TODO Args:
-        instance_exe_path (str): _description_
-        instance_name (str): _description_
-        icon (str): _description_
+    """ _summary_ 
+        add the instance to the steam
+    Args:
+        instance_exe_path (str): _description_ the instance executable file path
+        instance_name (str): _description_ the instance name string
+        icon (str): _description_ the icon path string
     """
     try:
         try:

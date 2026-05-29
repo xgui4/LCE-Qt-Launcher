@@ -110,7 +110,7 @@ class LauncherView(QMainWindow):
             file_name: str = QFileDialog.getOpenFileName(
                 self,
                 "Select the image file for the instance",
-                appContext.sys_man.found_default_save_path(),
+                os.path.expanduser("~"),
                 f"{app_name_str} Instance File (*{instance_extension_str})",
             )[0]
             instanceManager.instance.image = file_name
@@ -463,7 +463,6 @@ class LauncherView(QMainWindow):
         self.ui.repo_name_branch.setText(self.instance_name)
         self.ui.newsEngineView.setUrl(self.news_feed)
         instanceManager.instance.display()
-        # TODO : FIX THE INSTANCE SOURCE BEFORE RENABLED THIS FEATURES
         if not instanceManager.is_installable():
             self.ui.installButton.setEnabled(False)
         else:

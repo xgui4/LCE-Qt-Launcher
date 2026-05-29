@@ -5,7 +5,6 @@ from enum import StrEnum
 
 import platform
 import os
-import pathlib
 import stat
 
 import lce_qt_launcher.views.term_service as term_service
@@ -93,10 +92,3 @@ class SystemManager:
         service = QDesktopServices()
         _ = service.openUrl(url)
 
-    def found_default_save_path(self) -> str:
-        """
-        #! DEPRECIATED
-
-        FIXME - REMOVE THIS FUNCTION AND REPLACE IT WITH OTHERS
-        """
-        return os.path.join(pathlib.Path.home(), "lce-qt-launcher")

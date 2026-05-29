@@ -1,6 +1,8 @@
 # pyright: reportAttributeAccessIssue=false
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
+import os
+
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtWidgets import (
     QFileDialog,
@@ -38,12 +40,13 @@ import lce_qt_launcher.views.term_service as term_service
 def install_game(
     parent: QWidget, instance: Instance, instanceManager: InstanceManager
 ) -> None:
-    """Features : Install the game instance selected
-    #TODO : Separe the GUI with the logic of the model
-    # ARGS:
+    """_summary_
+        Features : Install the game instance selected    
+    args:
     - parent : The QWidget parent
     - instance : The selected Instance
     - instanceManager : The instance manager to use"""
+    #FIXME : Separe the GUI with the logic of the model
     button_reply = QMessageBox.question(
         parent,
         "Confirm Installation",
@@ -65,15 +68,14 @@ def install_game(
                 _ = progressBar.setEnabled(True)
                 _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-                # TODO - Verify this methodd
-                def update_progress_bar(bytes_received, bytes_total) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
+                def update_progress_bar(bytes_received : int, bytes_total : int) -> None: 
                     if bytes_total > 0:
-                        _ = progressBar.setMaximum(bytes_total)  # pyright: ignore[reportUnknownArgumentType]
-                        _ = progressBar.setValue(bytes_received)  # pyright: ignore[reportUnknownArgumentType]
+                        _ = progressBar.setMaximum(bytes_total) 
+                        _ = progressBar.setValue(bytes_received)
                     else:
                         _ = progressBar.setRange(0, 0)
 
-                _ = reply.downloadProgress.connect(update_progress_bar)  # pyright: ignore[reportUnknownArgumentType]
+                reply.downloadProgress.connect(update_progress_bar)
             else:
                 pass
         except RuntimeError as e:
@@ -131,7 +133,7 @@ def load_instance_from_file(
     file_name: tuple[str, str] = QFileDialog.getOpenFileName(
         parent,
         "Load Instance File",
-        appContext.sys_man.found_default_save_path(),
+        os.path.expanduser("~"),
         f"{app_name_str} Instance (*{instance_extension_str})",
     )
     instanceManager.load_instance(file_name[0])
@@ -158,7 +160,7 @@ def show_about_app(parent: QWidget) -> None:
     parent.aboutDialog.show()
 
 
-def open_url_at(sysMan: SystemManager, url: str):
+def open_url_at(sysMan: SystemManager, url: str) -> None:
     """_summary_ Open Url with system
 
     Args:
@@ -170,10 +172,10 @@ def open_url_at(sysMan: SystemManager, url: str):
 
 def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
     """_summary_ : Create With Instance From Form
-    #TODO : Make this feature less dependant on the GUI
+    #FIXME: Make this feature less dependant on the GUI
 
     Args:
-        mainWindow (QMainWindow): _description_ : the main window form (#TODO : should be changed)
+        mainWindow (QMainWindow): _description_ : the main window form
 
     Returns:
         Instance: _description_ : the returned Instance created with the Form
@@ -181,8 +183,6 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
     form: QMainWindow = mainWindow.ui
     username_str: str = form.usernameInputBox.text()
     path_str: str = form.pathInputBox.text()
-    server_ip_str: str = form.serverIPInputBox.text()
-    server_name_str: str = form.serverNameInputBox.text()
     repo_url_str: str = form.repoURLInputBox.text()
     instance_name: str = QInputDialog.getText(
         mainWindow, "Name your instance", "Set the name of the instance"
@@ -195,15 +195,13 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
         newInstance.username = username_str
     if path_str:
         newInstance.installation_path = path_str
-    if server_ip_str and server_name_str:
-        newInstance.servers = [f"ip : {server_ip_str}, name : {server_name_str}"]
     if repo_url_str:
         newInstance.repo_url = repo_url_str
 
     return newInstance
 
 
-def show_webbrowser(parent: QWidget, url: str):
+def show_webbrowser(parent: QWidget, url: str) -> None:
     """_summary_ Create and show a Webbrowser view
 
     Args:
@@ -224,13 +222,13 @@ def save_instance_to_file(
     Args:
         parent (QWidget): _description_ : the parent of the save dialog
         instanceManager (InstanceManager): _description_ Instance Manager to use to save the instance
-        appContext (AppContext): _description_ #TODO : To be determined
+        appContext (AppContext): _description_ the app context to use
         buildInfo (BuildInfo): _description_ The Build info of the app info
     """
     file_name: str = QFileDialog.getSaveFileName(
         parent,
         "Save Instance option to a file",
-        appContext.sys_man.found_default_save_path(),
+        os.path.expanduser("~"),
         f"{app_name_str} Instance File (*{instance_extension_str})",
     )[0]
     instanceManager.save_instance(file_name)

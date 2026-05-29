@@ -38,10 +38,9 @@ Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit avec PySide6 (Qt
 ## Objectif à long terme / Feuille de route
 
 - Accessibilité
-- Prise en charge des mods
-- Plugins pour le lanceur
 - Prise en charge des thèmes
 - Compatibilité GNU/Linux
+- Support pour le format AppImage
 - Prise en charge de Windows
 - Prise en charge des localisations
 - Prise en charge expérimentale de FreeBSD et Nix/NixOS
