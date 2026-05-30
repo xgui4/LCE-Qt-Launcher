@@ -113,16 +113,6 @@ def show_setting(
     _ = SettingDialog(parent, setting_ui, appContext)
 
 
-def show_system_info(parent: QWidget) -> None:
-    """Features : Open the System Info Pages"""
-    parent.sysinfo_dialog.show()
-
-
-def show_instance_editor(parent: QWidget) -> None:
-    """Features : Open the Instance Editor"""
-    parent.instance_window.show()
-
-
 def load_instance_from_file(
     parent: QWidget,
     instanceManager: InstanceManager,
@@ -149,15 +139,6 @@ def show_about_qt(parent: QWidget) -> None:
     """Features : Load the Selected Instance"""
     print("Show About Qt popup.")
     QMessageBox.aboutQt(parent, "About Qt")
-
-
-def show_about_app(parent: QWidget) -> None:
-    """_summary_ Features : Show About This App Dialog
-
-    Args:
-        parent (QWidget): _description_
-    """
-    parent.aboutDialog.show()
 
 
 def open_url_at(sysMan: SystemManager, url: str) -> None:

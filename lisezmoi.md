@@ -75,6 +75,12 @@ Voir [mon overlay de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour
 
 Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`dev`](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev).
 
+### AppImage
+
+Guide a venir
+
+Aussi disponible dans les versions nightly et versions taggée
+
 ### Via Git
 
 Vous pouvez également télécharger ce dépôt avec la commande `git clone https://github.com/xgui4/lce-qt-launcher.git` puis le compiler (voir [`docs/fr/COMPILATION.md`](docs/fr/COMPILATION.md) pour plus d'informations) manuellement ou l'exécuter dans un environnement virtuel (.venv) (voir [`docs/fr/UTILISATION.md`](docs/fr/UTILISATION.md) pour plus d'informations).

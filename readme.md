@@ -59,7 +59,7 @@ See [`docs/en/RUNNING.md`](docs/en/RUNNING.md)
 
 ### Tag Release
 
-In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launcher/releases/) page you will found tagged Release like [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta). 
+In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launcher/releases/) page you will found tagged Release like [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta).
 
 ### Flatpak (Coming Soon)
 
@@ -75,6 +75,12 @@ See [my FreeBSD Port Overlay](https://github.com/xgui4/freebsd-ports) to install
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`dev` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev)
+
+### AppImage
+
+Guide coming soon
+
+Also avaiable in nightly build and tagged version
 
 ### Via Git
 

@@ -3,7 +3,6 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QMainWindow,
     QLabel,
-    QDialog,
     QListWidgetItem,
     QInputDialog,
     QMessageBox,
@@ -11,7 +10,7 @@ from PySide6.QtWidgets import (
 
 from PySide6.QtGui import QPalette, QPixmap, QBrush
 
-from PySide6.QtCore import qVersion, Qt, QFile, QIODevice
+from PySide6.QtCore import Qt, QFile, QIODevice
 
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
@@ -19,8 +18,6 @@ from PySide6.QtWebEngineCore import (
     QWebEngineDownloadRequest,
 )
 
-import sys
-import platform
 import json
 import webbrowser
 import os
@@ -33,22 +30,21 @@ from lce_qt_launcher.app_context import AppContext
 from lce_qt_launcher.managers.instance_manager import Instance, InstanceManager
 from lce_qt_launcher.models.app_data import AppData
 from lce_qt_launcher.views.content_installer_dialog import ContentInstallerView
-from lce_qt_launcher.ui_about import Ui_AboutDialog
-from lce_qt_launcher.ui_instance import Ui_InstancesEditor
+from lce_qt_launcher.views.instance_editor_view import InstanceEditorView
+from lce_qt_launcher.views.about_view import AboutView
 from lce_qt_launcher.ui_settingDialog import Ui_settingDialog
-from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
 from lce_qt_launcher.utils.json_trans import JsonTrans
 from lce_qt_launcher.ui_form import Ui_launcher
 from lce_qt_launcher.managers.steam_manager import add_instance_to_steam
 from lce_qt_launcher import (
     app_name_str,
     version_str,
-    license_text_str,
     version_type_str,
     git_repo_url_str,
     instance_extension_str
 )
 
+from lce_qt_launcher.views.system_info_view import SystemInfoView
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
@@ -118,7 +114,7 @@ class LauncherView(QMainWindow):
 
         def showInstanceEditorButtonCommand() -> None:
             """_summary_ Open the instance editor button command"""
-            features.show_instance_editor(self)
+            InstanceEditorView(self)
 
         def showAboutMinecraftActionCommand() -> None:
             """_summary_ Open an QWebEngine at the Minecraft Website"""
@@ -139,7 +135,7 @@ class LauncherView(QMainWindow):
 
         def showSystemInformationActionCommand() -> None:
             """_summary_ Show the system info dialog"""
-            features.show_system_info(self)
+            SystemInfoView(self, systemManager)
 
         def showAboutQtActionCommand() -> None:
             """_summary_ Show the About Qt Dialog"""
@@ -147,7 +143,7 @@ class LauncherView(QMainWindow):
 
         def showAboutActionCommand() -> None:
             """_summary_ Show About App dialog"""
-            features.show_about_app(self)
+            AboutView(self)
 
         def installContentActionCommand() -> None:
             """_summary_ Open the Content Installer Window"""
@@ -209,44 +205,7 @@ class LauncherView(QMainWindow):
                 "No argument given, start with default instance."
             )
 
-        self.sysinfo_dialog: QDialog = QDialog()
-        self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
-        self.dialog_ui.setupUi(self.sysinfo_dialog)
-
-        self.about: Ui_AboutDialog = Ui_AboutDialog()
-        self.aboutDialog: QDialog = QDialog()
-
-        self.about.setupUi(self.aboutDialog)
-
-        self.about.title.setText(app_name_str)
-        self.about.versionLabel.setText(f"{version_str}")
-        self.about.urlLabel.setText(git_repo_url_str)
-        self.about.creditsText.setText("Xgui4")
-        self.about.copyLabel.setText("Copyleft (C) GPLv3 Xgui4")
-        self.about.channelLabel.setText(f"**Channel** : {version_type_str}")
-        self.about.platformLabel.setText(f"**Platform** : {platform.release()}")
-
-        self.about.licenseText.setMarkdown(license_text_str)
-        self.about.aboutQt.clicked.connect(showAboutQtActionCommand)
-        self.about.closeButton.clicked.connect(self.aboutDialog.close)
-
-        self.instance_window: QDialog = QDialog()
-        self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
-        self.instance_editor.setupUi(self.instance_window)
-        self.instance_window.setWindowTitle(app_name_str)
-
         systemManager: SystemManager = appContext.sys_man
-
-        self.dialog_ui.appVersionLabel.setText(
-            f"**App Version** : {app_name_str} {version_type_str} {version_str}"
-        )
-        self.dialog_ui.qVersionLabel.setText(f"**Qt Version** : {qVersion()}")
-        self.dialog_ui.pyVersionLabel.setText(f"**Python Version** : {sys.version}")
-        self.dialog_ui.osInfoLabel.setText(
-            f"**System Name** : {systemManager.name} \n**System Version** : {systemManager.version}"
-        )
-        self.dialog_ui.pluginsInfoLabel.setText("")
-        self.dialog_ui.runnersLabel.setText("")
 
         self.ui.progressLabel.setVisible(False)
         self.ui.progressBar.setVisible(False)
@@ -306,11 +265,11 @@ class LauncherView(QMainWindow):
 
         self.ui.actionApp_Root.triggered.connect(openAppConfig)
 
-        def open_github_issues():
+        def openGitHubIssues():
             return webbrowser.open(git_repo_url_str + "/issues")
 
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
-            open_github_issues
+            openGitHubIssues
         )
 
         def loadDefaultInstance():
@@ -433,11 +392,11 @@ class LauncherView(QMainWindow):
         data: dict[str, str],
         instanceManager: InstanceManager,
     ) -> None:
-        """TODO :_summary_
+        """_summary_ Loas insance from data json in instance manager
 
         Args:
-            data (dict[str, str]): _description_
-            instanceManager (InstanceManager): _description_
+            data (dict[str, str]): _description_ the json data to load
+            instanceManager (InstanceManager): _description_ the instance manager to use
         """
         instance: Instance = Instance()
         instance.load_inst_from_dict(data)
@@ -445,10 +404,10 @@ class LauncherView(QMainWindow):
         self.loadInstanceInForm(instanceManager)
 
     def loadInstanceInForm(self, instanceManager: InstanceManager) -> None:
-        """TODO : _summary_
+        """_summary_ Load Instance in form
 
         Args:
-            instanceManager (InstanceManager): _description_
+            instanceManager (InstanceManager): _description_ the instance manager to load
         """
         self.ui.instanceNameInputBox.setText(instanceManager.instance.name)
         self.image_label = instanceManager.instance.image

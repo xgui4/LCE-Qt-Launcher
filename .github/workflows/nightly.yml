@@ -13,7 +13,6 @@ jobs:
   build:
     name: Build Nuitka Binaries
     strategy:
-      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -48,12 +47,12 @@ jobs:
             *.tar.gz
 
   # --- JOB 2 : Building Windows Installer ---
-  # Disabled due to not working
+  # FIXME : Error: Execution failed: Error in D:\a\LCE-Qt-Launcher\LCE-Qt-Launcher\packages\windows\setup-nigthly.iss: Invalid filename.
   build_windows_installer:
     name: Build Inno Setup
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4 # test to see if version 4 work, verfify if update coudld be fixed or needed
+      - uses: actions/checkout@v6.0.2
       - name: Compile .ISS
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
         with:
@@ -67,7 +66,7 @@ jobs:
           path: packages\windows\Output\*.exe 
 
   # --- JOB 3 : Making Arch Linux Packages ---
-  # Disabled due to not working
+  # FIXME : Do no keep the package file, should keep it and upload it as a Artifect for Release
   build_arch_installer:
     name: Build Arch Package
     runs-on: ubuntu-latest
