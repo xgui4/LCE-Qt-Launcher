@@ -334,7 +334,7 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string>Username</string>
+                    <string>Override Default Username</string>
                    </property>
                   </widget>
                  </item>
@@ -1146,7 +1146,6 @@
  </customwidgets>
  <resources>
   <include location="../res.qrc"/>
-  <include location="../../../.designer/res.qrc"/>
  </resources>
  <connections/>
 </ui>

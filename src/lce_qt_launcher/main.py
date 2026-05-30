@@ -56,8 +56,6 @@ import os
 
 
 def main() -> None:
-    """_summary_ Main Function"""
-
     appData: AppData = AppData()
     appContext: AppContext = AppContext(appData)
     sys_man: SystemManager = appContext.sys_man
@@ -66,7 +64,7 @@ def main() -> None:
         if "--disable-system-qt-plugins" not in sys.argv:
             sys_man.adapt_qt_system_theme()
         userPref: UserPref = appContext.userPref
-        # user_language: str = userPref.get_language_pref() #FIXME :  This should return a language
+        user_language: str = userPref.get_language_pref() #FIXME :  This should return a language
         user_theme: str = userPref.get_theme_pref()
         show_holiday: str = userPref.get_show_holiday_pref()
         developer_mode: str = userPref.get_developper_mode_pref()
@@ -86,8 +84,7 @@ def main() -> None:
         except RuntimeError as err:
             term_service.print_error(str(err))
         finally:
-            pass
-            # appContext.updateAppUILang()
+            appContext.updateAppUILang()
     except:
         #FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
         term_service.print_error(
