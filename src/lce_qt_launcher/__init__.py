@@ -28,8 +28,6 @@ try:
     _license_url_temp: str = app_metadata["LicenseURL"]
     _license_temp: str = app_metadata["License"]
     
-    print(app_metadata.json)
-
     if _version_temp:
         version_str = _version_temp
     if _app_name_temp:

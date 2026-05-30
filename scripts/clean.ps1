@@ -17,7 +17,7 @@ Write-Output "done"
 
 foreach ($QT_UI in $QT_UI_ARRAY)
 {
-    Write-Output "Removing the compilated ui_$QT_UI.py Qt UI file"
+    Write-Output "Compiling $QT_UI.ui Qt UI file"
     Remove-Item -Path "src\lce_qt_launcher\ui_$QT_UI.py"
     Write-Output "done"
 }
