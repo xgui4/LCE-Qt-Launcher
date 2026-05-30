@@ -11,7 +11,7 @@
         {
             "label": "PySide: build (Windows)",
             "type": "shell",
-            "command":"${workspaceFolder}/scripts/build.cmd",
+            "command":"${workspaceFolder}/scripts/build.ps1",
             "group": "build",
             "problemMatcher": []
         },
