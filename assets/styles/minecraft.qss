@@ -1,3 +1,7 @@
+* {
+    font-family : "Monocraft"
+}
+
 QLabel:disabled {
     color : gray; 
     opacity : 100;

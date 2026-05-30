@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.20a3"
+version = "0.0.20a4"
 description = "A custom Free/Libre Minecraft LCE Launcher written with PySide6 (Python for Qt 6)."
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -49,7 +49,7 @@ reportUnknownVariableType="hint"
 [tool.pyproject-appimage]
 script = "lce-qt-launcher"
 output = "lce-qt-launcher.AppImage"
-desktop-entry = "packages/io.github.xgui4.lce_qt_launcher.desktop"
+desktop-entry = "packages/io.github.xgui4.lce_qt_launcher-isolated.desktop"
 icon = "assets/io.github.xgui4.lce_qt_launcher.png"
 appstream = "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml"
 
