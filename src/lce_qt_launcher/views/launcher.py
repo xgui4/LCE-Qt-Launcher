@@ -72,6 +72,7 @@ class LauncherView(QMainWindow):
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
         self.instances: list[Instance] = list[Instance]()
+        self.username: str = appContext.userPref.get_username_pref()
 
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
@@ -357,8 +358,11 @@ class LauncherView(QMainWindow):
 
         self.setup_web_engine()
 
-        self.versionlabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
-        self.ui.statusbar.addPermanentWidget(self.versionlabel)
+        self.versionLabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
+        self.ui.statusbar.addPermanentWidget(self.versionLabel)
+
+        self.usernameLabel: QLabel = QLabel(self.username)
+        self.ui.statusbar.addWidget(self.usernameLabel)
 
         if appContext.showHolidayEnabled:
             holyday_label: QLabel = QLabel(holiday.get_holiday())

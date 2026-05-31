@@ -80,6 +80,7 @@ files = [
     "src/lce_qt_launcher/views/launcher.py",
     "src/lce_qt_launcher/views/app_data.py",
     "src/lce_qt_launcher/views/system_info_view.py",
+    "src/lce_qt_launcher/views/instance_editor_view.py",
     "src/lce_qt_launcher/views/about_view.py",
     "src/lce_qt_launcher/managers/__init__.py",
     "src/lce_qt_launcher/managers/instance.py",
