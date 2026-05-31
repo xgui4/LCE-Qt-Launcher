@@ -26,6 +26,7 @@
         <file alias="360Revived.png">assets/images/360Revived.png</file>
         <file alias="Revelation.jpg">assets/images/Revelation.jpg</file>
         <file alias="portable-lce.png">assets/images/portable-lce.png</file>
+        <file alias="lce-content-installer">assets/lce_content_installer.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="minecraft.qss">assets/styles/minecraft.qss</file>

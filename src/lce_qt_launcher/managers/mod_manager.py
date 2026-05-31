@@ -108,6 +108,28 @@ def install_content(instance_path: str, contentType: ContentType, archive_file: 
 
 
 def main():
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--gui":
+            from PySide6.QtWidgets import QApplication
+            from PySide6.QtGui import QFontDatabase
+            from lce_qt_launcher.views.content_installer_dialog import ContentInstallerView
+
+            app = QApplication()
+            app.setStyle("Fusion")
+
+            ContentInstallerView()
+
+            font_id = QFontDatabase.addApplicationFont(":/fonts/monocraft.ttc")
+
+            if font_id == -1:
+                print("Error: Font could not be loaded.")
+            else:
+                family = QFontDatabase.applicationFontFamilies(font_id)[0]
+                app.setFont(family)
+
+            sys.exit(app.exec())
+    
     parser = argparse.ArgumentParser(
         prog="LCE Mods Manager",
         description="Manage DLC, World and Mods for Minecraft LCE",

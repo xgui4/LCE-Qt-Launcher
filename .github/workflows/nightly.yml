@@ -32,7 +32,7 @@ jobs:
       - name: Package Windows
         if: matrix.os == 'windows-latest'
         shell: pwsh
-        run: Compress-Archive -Path dist/main.dist/* -DestinationPath LCE-Qt-Launcher-Windows.zip
+        run: Compress-Archive -Path dist\main.dist\* -DestinationPath LCE-Qt-Launcher-Windows.zip
 
       - name: Package Linux
         if: matrix.os == 'ubuntu-latest'
@@ -66,33 +66,25 @@ jobs:
           path: packages\windows\Output\*.exe 
 
   # --- JOB 3 : Making Arch Linux Packages ---
-  # FIXME : Do no keep the package file, should keep it and upload it as a Artifect for Release
-  build_arch_installer:
-    name: Build Arch Package
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6.0.2
-      - name: Validate and Build package
-        uses: heyhusen/archlinux-package-action@v3.0.0
+  build_arch_package:
+      runs-on: ubuntu-latest
+      container:
+        image: archlinux
+        options: --privileged
+      steps: 
+      - name: Build Arch Linux package
+        uses: FFY00/build-arch-package@v1
         with:
-          namcap: true
-          updpkgsums : true
-          path : "packages/linux/nigthly"
-      
+          PKGBUILD: packages/linux/nigthly/PKGBUILD
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
         with:
           name: packages-arch
           path: |
-            packages/linux/nigthly/*
             packages/linux/nigthly/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
-            !packages/linux/nigthly/pkg/
-            !packages/linux/nigthly/src/
-            !packages/linux/nigthly/lce-qt-launcher-git/
   
   # --- JOB 4 : Making AppImage ---
   build_appimage:
-    #FIXME /opt/hostedtoolcache/Python/3.12.13/x64/bin/python: No module named pyproject-appimage Error: Process completed with exit code 1.
     name: Build GNU/Linx AppImage
     runs-on: ubuntu-latest
     steps:
@@ -104,15 +96,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install  --upgrade pip
-          pip install . 
-          pip install pyproject-appimage
-          python -m pyproject-appimage
+          pip install . pyproject-appimage
+          python pyproject-appimage 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
         with:
           name: binaries-${{ matrix.os }}
           path: |
-            *.zip
+            *.AppImage
 
   # --- JOB 5 : Publish the Nightly Release ---
   release:

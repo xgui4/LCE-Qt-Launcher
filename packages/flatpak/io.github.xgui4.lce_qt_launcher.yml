@@ -43,6 +43,7 @@ modules:
       - install -Dm644 packages/io.github.xgui4.lce_qt_launcher.metainfo.xml /app/share/metainfo/io.github.xgui4.lce_qt_launcher.metainfo.xml
       - install -Dm644 packages/lce_inst-mime.xml /app/share/mime/packages/io.github.xgui4.lce_qt_launcher.xml
       - install -Dm644 assets/lce_inst.png /app/share/icons/hicolor/128x128/mimetypes/application-x-lce_inst.png
+      - install -Dm644 assets/lce_content_installer.png /app/share/icons/hicolor/300x300/apps/lce_content_installer.png
     sources:
       - type: git
         url: "https://github.com/xgui4/lce-qt-launcher"

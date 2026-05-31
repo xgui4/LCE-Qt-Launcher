@@ -16,18 +16,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/.
 """
-
 # nuitka-project: --enable-plugin=pyside6
-# nuitka-project: --windows-icon-from-ico=assets/app.ico
-# nuitka-project: --windows-product-name=LCE-Qt-Launcher
+# nuitka-project: --include-qt-plugins=sensible
+
+# nuitka-project-if: {OS} == "Windows":
+#   nuitka-project: --windows-icon-from-ico=assets/app.ico
+#   nuitka-project: --windows-product-name=LCE-Qt-Launcher
+#   nuitka-project: --product-version="0.0.20.5"
+#   nuitka-project: --file-version="0.0.20.5"
+#   nuitka-project: --file-description="LCE Qt Launcher Alpha"
+#   nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
+
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
-# nuitka-project: --include-qt-plugins=sensible
-# nuitka-project: --product-version="0.0.20.5"
-# nuitka-project: --file-version="0.0.20.5"
-# nuitka-project: --file-description="LCE Qt Launcher Alpha"
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
-# nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
 
 from lce_qt_launcher import instance_extension_str

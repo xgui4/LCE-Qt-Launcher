@@ -21,7 +21,7 @@ Requirements :
   [Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
 
   1. Go to the windows packages locations : `cd pacakges/windows`
-  2. run the script with Inno Setup for your desired channel [`setup-nightly.iss`](packages/windows/setup-nigthly.iss) or [`setup.iss`](packages/windows/setup.iss))
+  2. run the script with Inno Setup for your desired channel [`nightly.iss`](packages/windows/setup-nigthly.iss) or [`stable.iss`](packages/windows/setup.iss))
 
 #### FreeBSD Port (Experimental)
 

@@ -34,7 +34,7 @@ Prérequis :
 [Inno Setup 6.6+](https://jrsoftware.org/isdl.php)
 
 1. Accédez au répertoire des paquets Windows : `cd packages/windows`
-2. Exécutez le script avec Inno Setup pour le canal souhaité : [`setup-nightly.iss`](packages/windows/setup-nightly.iss) ou [`setup.iss`](packages/windows/setup.iss)
+2. Exécutez le script avec Inno Setup pour le canal souhaité : [`nightly.iss`](packages/windows/setup-nightly.iss) ou [`stable.iss`](packages/windows/stable.iss)
 
 #### Via système de portage FreeBSD (Expérimental)
 

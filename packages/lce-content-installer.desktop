@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=X-Python;X-Minecraft;Game;X-Utils;Qt
+Comment=Install Content for Minecraft Legacy Console on Linux/BSD
+Exec=lce-mod-manager --gui %f 
+GenericName=Legacy Console Edition Mod Manager
+Icon=lce_content_installer
+Keywords=Minecraft;Games;LCE;Python;Qt;Legacy;Console;Edition
+Name=LCE Content Installer
+Type=Application
+Version=1.5
+X-KDE-SubstituteUID=false

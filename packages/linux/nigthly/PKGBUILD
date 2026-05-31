@@ -57,5 +57,6 @@ package() {
     install -Dm644 "readme.md" "code-of-conduct.md" -t "$pkgdir/usr/share/doc/$pkgname/"
     install -Dm644 "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.lce_qt_launcher.metainfo.xml"
     install -Dm644 "assets/io.github.xgui4.lce_qt_launcher.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/io.github.xgui4.lce_qt_launcher.png"
+    install -Dm644 "assets/lce_content_installer.png" "$pkgdir/usr/share/icons/hicolor/300x300/apps/lce_content_installer.png"
     install -Dm644 "assets/lce_inst.png" "$pkgdir/usr/share/icons/hicolor/128x128/mimetypes/application-x-lce_inst.png"
 }

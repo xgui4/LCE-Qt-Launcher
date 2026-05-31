@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../res.qrc">
-    <normaloff>:/assets/jigsaw-ico.png</normaloff>:/assets/jigsaw-ico.png</iconset>
+    <normaloff>:/assets/lce-content-installer</normaloff>:/assets/lce-content-installer</iconset>
   </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
@@ -92,7 +92,7 @@
        <string>Mod</string>
       </property>
      </item>
-    <item>
+     <item>
       <property name="text">
        <string>Custom Skin</string>
       </property>

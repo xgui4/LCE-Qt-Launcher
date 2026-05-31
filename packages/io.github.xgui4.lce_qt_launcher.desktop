@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=X-Python;X-Minecraft;Game;X-Utils;Qt
-Comment=A custom Minecraft LCE Launcher written with Pytho using PySide6 (Qt6 for Python)
+Comment=A custom Minecraft LCE Launcher written with Python using PySide6 (Qt6 for Python)
 Exec=lce-qt-launcher %f
 GenericName=Minecraft LCE Launcher
 Icon=io.github.xgui4.lce_qt_launcher
