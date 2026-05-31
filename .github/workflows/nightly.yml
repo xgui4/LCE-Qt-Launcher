@@ -92,6 +92,7 @@ jobs:
   
   # --- JOB 4 : Making AppImage ---
   build_appimage:
+    #FIXME /opt/hostedtoolcache/Python/3.12.13/x64/bin/python: No module named pyproject-appimage Error: Process completed with exit code 1.
     name: Build GNU/Linx AppImage
     runs-on: ubuntu-latest
     steps:
