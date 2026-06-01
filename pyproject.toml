@@ -21,7 +21,12 @@ dependencies = [
     "rich<=15.0.0",
     "vdf<=3.4",
     "patchelf<=0.17.2.4; sys_platform == 'linux'",
-    "Nuitka<=4.1"
+    "Nuitka<=4.1",
+]
+
+[dependency-groups]
+dev = [
+    "pyproject-appimage>=4.2; sys_platform == 'linux'",
 ]
 
 [project.scripts]

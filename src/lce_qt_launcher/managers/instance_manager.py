@@ -95,7 +95,7 @@ _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
 _DEFAULT_IMAGE = ":/assets/neoLegacy.png"
 _DEFAULT_NEWS_FEED = "https://github.com/neoStudiosLCE/neoLegacy/commits/main/"
-_DEFAULT_VERSION = "v1.0.4b"
+_DEFAULT_VERSION = "Nightly"
 
 
 class Instance(QObject):

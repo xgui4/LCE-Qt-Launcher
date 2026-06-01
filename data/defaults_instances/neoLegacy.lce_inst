@@ -8,5 +8,5 @@
     "news_feed": "https://github.com/neoStudiosLCE/neoLegacy/commits/main/",
     "installation_path": "{appInstancePath}/.neoLegacy",
     "repo_url": "https://github.com/neoStudiosLCE/neoLegacy",
-    "version": "v1.0.5b"
+    "version": "Nightly"
 }
