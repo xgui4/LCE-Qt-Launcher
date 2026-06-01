@@ -35,7 +35,7 @@ OutputBaseFilename=LCE-Qt-Launcher-Windows-Nigthly-Setup
 SetupIconFile=..\..\assets\setup.ico
 SolidCompression=yes
 WizardStyle=modern dark polar
-; A rchiveExtraction=full
+ArchiveExtraction=full
 ; "ArchitecturesAllowed=x64compatible" specifies that Setup cannot run
 ; on anything but x64 and Windows 11 on Arm.
 ArchitecturesAllowed=x64compatible
