@@ -7,11 +7,18 @@ from PySide6.QtWidgets import (
     QInputDialog,
     QMessageBox,
 )
-
-from PySide6.QtGui import QPalette, QPixmap, QBrush
-
-from PySide6.QtCore import Qt, QFile, QIODevice
-
+from PySide6.QtGui import (
+    QPalette, 
+    QPixmap, 
+    QBrush
+)
+from PySide6.QtCore import ( 
+    Qt, 
+    QMimeData, 
+    QByteArray,
+    QFile, 
+    QIODevice
+)
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
     QWebEngineProfile,
@@ -21,7 +28,6 @@ from PySide6.QtWebEngineCore import (
 import json
 import webbrowser
 import os
-import subprocess
 
 from pathlib import Path
 
@@ -150,6 +156,63 @@ class LauncherView(QMainWindow):
             """_summary_ Open the Content Installer Window"""
             ContentInstallerView()
 
+        def loadSteamCommand() -> None:
+            """_summary_ Launch instance via steam command"""
+            features.launch_instance_with_steam(instanceManager)
+
+        def openAppInstancesDataCommand() -> None:
+            systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
+        
+        def openWorkshopCommand() -> None:
+            features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
+        
+        def openLegacymodsCommand() -> None:
+            features.show_webbrowser(self, "https://legacymods.org/")
+        
+        def openAppRootCommand() -> None:
+            systemManager.open_url_with_system(appData.projectRootDir)
+        
+        def openAppConfigCommand() -> None:
+            systemManager.open_url_with_system(appData.appConfigDir)
+        
+        def openGitHubIssuesCommand() -> None:
+            webbrowser.open(git_repo_url_str + "/issues")
+
+        def loadDefaultInstanceCommand() -> None:
+            self.loadInstanceData(dict(), instanceManager)
+
+        def loadInstanceFromItemDataCommand() -> None:
+            item = self.ui.listWidget.currentItem()
+            if item is not None:
+                instance : Instance = item.data(Qt.UserRole) # type: ignore
+            else:
+                raise RuntimeError("Could not load instance")
+            instanceManager.instance = instance
+            self.loadInstanceInForm(instanceManager)
+            
+        def addSteamLinkIntegrationButtonCommand():
+            steamIntegrationDialog = QInputDialog(self)
+            value = steamIntegrationDialog.getText(
+                self, "Add Steam Integration", "steamid"
+            )
+            if value[1]:
+                self.ui.steamLinkValue.setText(value[0])
+                question = QMessageBox()
+                answer = question.question(
+                    self, "Add Instance to Steam Non-Steam Game Shortcuts ?", "Add "
+                )
+                if answer == QMessageBox.StandardButton.Yes:
+                    full_extention_path: str = os.path.join(
+                        instanceManager.instance.installation_path,
+                        instanceManager.instance.exe_name,
+                    )
+                    add_instance_to_steam(
+                        full_extention_path,
+                        instanceManager.instance.name,
+                        instanceManager.instance.image,
+                    )
+                instanceManager.instance.steam_link = value[0]
+
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
             palette: QPalette = self.palette()
@@ -166,7 +229,7 @@ class LauncherView(QMainWindow):
             item = QListWidgetItem()
             item.setText(inst.name)
             item.setIcon(QPixmap(inst.image))
-            item.setData(Qt.ItemDataRole.FileInfoRole, inst)
+            item.setData(Qt.UserRole, inst) # type: ignore
             self.ui.listWidget.addItem(item)
 
         arguments: list[str] = (
@@ -219,6 +282,11 @@ class LauncherView(QMainWindow):
         self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
         self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
         self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
+        self.ui.playOnSteamButton.clicked.connect(loadSteamCommand)
+        self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
+        self.ui.loadSelectedInstanceButton.clicked.connect(loadInstanceFromItemDataCommand)
+        self.ui.addInstanceButton.clicked.connect(loadInstanceActionCommand)
+
 
         self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
         self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
@@ -233,55 +301,17 @@ class LauncherView(QMainWindow):
         self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
         self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
+        self.ui.actionInstances.triggered.connect(openAppInstancesDataCommand)
+        self.ui.actionLCE_Hub_Workshop.triggered.connect(openWorkshopCommand)
+        self.ui.actionLegacyMods_Coming_Soon.triggered.connect(openLegacymodsCommand)
+        self.ui.actionApp_Root.triggered.connect(openAppRootCommand)
+        self.ui.actionApp_Root.triggered.connect(openAppConfigCommand)
+        self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(openGitHubIssuesCommand)
 
-        def loadSteam():
-            return subprocess.run(["steam", instanceManager.instance.steam_link])
 
-        self.ui.playOnSteamButton.clicked.connect(loadSteam)
-
-        def openAppInstancesData():
-            return systemManager.open_url_with_system(
-                os.path.join(appData.appDataDirs[0], "instances")
-            )
-
-        self.ui.actionInstances.triggered.connect(openAppInstancesData)
-
-        def open_workshop():
-            return features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
-
-        self.ui.actionLCE_Hub_Workshop.triggered.connect(open_workshop)
-
-        def open_legacymods():
-            return features.show_webbrowser(self, "https://legacymods.org/")
-
-        self.ui.actionLegacyMods_Coming_Soon.triggered.connect(open_legacymods)
-
-        def openAppRoot():
-            return systemManager.open_url_with_system(appData.projectRootDir)
-
-        self.ui.actionApp_Root.triggered.connect(openAppRoot)
-
-        def openAppConfig():
-            return systemManager.open_url_with_system(appData.appConfigDir)
-
-        self.ui.actionApp_Root.triggered.connect(openAppConfig)
-
-        def openGitHubIssues():
-            return webbrowser.open(git_repo_url_str + "/issues")
-
-        self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
-            openGitHubIssues
-        )
-
-        def loadDefaultInstance():
-            return self.loadInstanceCommand(dict(), instanceManager)
-
-        self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstance)
-
+        self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)
         self.ui.actionLoadmclceInstance.setEnabled(False)
-        self.ui.actionLoadmclceInstance.setText(
-            "MCLCE Source Code Backup (Remote Git Not supported yet)"
-        )
+        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup (Remote Git Not supported yet)")
 
         mclceJson = QFile(":/instances/mclce.lce_inst")
         if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -292,10 +322,9 @@ class LauncherView(QMainWindow):
             raw_text_neo: str = bytes(mclceJson.readAll().data()).decode("utf-8")
             data_neo = json.loads(raw_text_neo)
 
-            def loadNeoLegacyInstance():
-                return self.loadInstanceCommand(data_neo, instanceManager)
-
-            self.ui.actionLoadmclceInstance.triggered.connect(loadNeoLegacyInstance)
+            self.ui.actionLoadmclceInstance.triggered.connect(
+                lambda : self.loadInstanceData(data_neo, instanceManager)
+            )
 
         revelationJson = QFile(":/instances/revelations.lce_inst")
         if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -306,11 +335,8 @@ class LauncherView(QMainWindow):
             raw_text_rev = bytes(revelationJson.readAll().data()).decode("utf-8")
             data_rev = json.loads(raw_text_rev)
 
-            def loadRevelationInstance():
-                return self.loadInstanceCommand(data_rev, instanceManager)
-
             self.ui.actionLoadRevelationsInstance.triggered.connect(
-                loadRevelationInstance
+                lambda : self.loadInstanceData(data_rev, instanceManager)
             )
 
         aetherJson = QFile(":/instances/aether.lce_inst")
@@ -322,40 +348,10 @@ class LauncherView(QMainWindow):
             raw_text_aether = bytes(aetherJson.readAll().data()).decode("utf-8")
             data_aether = json.loads(raw_text_aether)
 
-            def loadAetherInstance():
-                return self.loadInstanceCommand(data_aether, instanceManager)
-
-            self.ui.actionLoadAetherInstance.triggered.connect(loadAetherInstance)
-
-        def addSteamLinkIntegrationButtonCommand():
-            steamIntegrationDialog = QInputDialog(self)
-            value = steamIntegrationDialog.getText(
-                self, "Add Steam Integration", "steamid"
+            self.ui.actionLoadAetherInstance.triggered.connect(
+                lambda : self.loadInstanceData(data_aether, instanceManager)
             )
-            if value[1]:
-                self.ui.steamLinkValue.setText(value[0])
-                question = QMessageBox()
-                answer = question.question(
-                    self, "Add Instance to Steam Non-Steam Game Shortcuts ?", "Add "
-                )
-                if answer == QMessageBox.StandardButton.Yes:
-                    full_extention_path: str = os.path.join(
-                        instanceManager.instance.installation_path,
-                        instanceManager.instance.exe_name,
-                    )
-                    add_instance_to_steam(
-                        full_extention_path,
-                        instanceManager.instance.name,
-                        instanceManager.instance.image,
-                    )
-                instanceManager.instance.steam_link = value[0]
-
-        self.ui.addSteamLinkIntegration.clicked.connect(
-            addSteamLinkIntegrationButtonCommand
-        )
-
-        self.ui.InstancesList.setEnabled(False)
-
+            
         self.setup_web_engine()
 
         self.versionLabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
@@ -377,7 +373,8 @@ class LauncherView(QMainWindow):
 
     def handleDownloadCommand(self, download: QWebEngineDownloadRequest):
         """Processes the PySide6 download stream request."""
-        print("Download Started!")
+
+        term_service.print_information("Download Started!")
 
         path_str, _ = QFileDialog.getSaveFileName(
             None, "Save File", download.downloadFileName()
@@ -391,7 +388,7 @@ class LauncherView(QMainWindow):
         else:
             download.cancel()
 
-    def loadInstanceCommand(
+    def loadInstanceData(
         self,
         data: dict[str, str],
         instanceManager: InstanceManager,

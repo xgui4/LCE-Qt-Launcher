@@ -47,7 +47,6 @@ jobs:
             *.tar.gz
 
   # --- JOB 2 : Building Windows Installer ---
-  # FIXME : Error: Execution failed: Error in D:\a\LCE-Qt-Launcher\LCE-Qt-Launcher\packages\windows\setup-nigthly.iss: Invalid filename.
   build_windows_installer:
     name: Build Inno Setup
     runs-on: windows-latest
@@ -56,7 +55,7 @@ jobs:
       - name: Compile .ISS
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
         with:
-          path: packages\windows\setup-nigthly.iss
+          path: packages\windows\nigthly.iss
           options: '/O+ /F"LCE_Qt_Launcher_Windows_Nigthly_Setup"'
       
       - name: Upload Artifact
@@ -72,6 +71,8 @@ jobs:
         image: archlinux
         options: --privileged
       steps: 
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
       - name: Build Arch Linux package
         uses: FFY00/build-arch-package@v1
         with:
@@ -81,7 +82,7 @@ jobs:
         with:
           name: packages-arch
           path: |
-            packages/linux/nigthly/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
+            $HOME/arch-packages/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
   
   # --- JOB 4 : Making AppImage ---
   build_appimage:
@@ -97,7 +98,7 @@ jobs:
         run: |
           python -m pip install  --upgrade pip
           pip install . pyproject-appimage
-          python pyproject-appimage 
+          python -m pyproject-appimage 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
         with:

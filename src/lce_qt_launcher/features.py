@@ -2,6 +2,7 @@
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
 import os
+import subprocess
 
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtWidgets import (
@@ -272,3 +273,7 @@ def display_version() -> None:
     """
     term_service.print_information(f"{app_name_str} Version {version_str}")
     term_service.print_information(f"Qt Version {qt_version_str}")
+
+def launch_instance_with_steam(instanceManager : InstanceManager) -> None:
+    subprocess.run(["steam", instanceManager.instance.steam_link])
+        
