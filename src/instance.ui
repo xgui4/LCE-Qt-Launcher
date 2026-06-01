@@ -227,7 +227,7 @@
        </widget>
       </item>
       <item row="12" column="1" colspan="4">
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="versionsComboBox"/>
       </item>
       <item row="13" column="1">
        <widget class="QLabel" name="pathInputBoxLabel">

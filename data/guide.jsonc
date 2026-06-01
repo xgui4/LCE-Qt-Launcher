@@ -1,8 +1,8 @@
 {
     "$schema" : "../schemas/x-application-lce_inst_config.json",
     "name" : "default", // Name of the instance 
-    "installation_path": ".lce", // Installation Path of the game files
-    "username" : "Steve", // Your Username, DEPRECIATED : will be soon removed and replaced by the username config settnig
+    "installation_path": "{appInstancePath}/.lce", // Installation Path of the game files, {appInstancePath} is a variable that represent the default instances location path
+    "username" : "Steve", // Old way to setup your username, it is not recommended and is being replaced with the username config
     "exe_name" : "Minecraft.Client.exe", // The executable name 
     "archive_name" : "LCEWindows64.zip", // The archive to download
     "repo_url" : "https://github.com/MCLCE/MinecraftConsoles", // The ur/repo of the project

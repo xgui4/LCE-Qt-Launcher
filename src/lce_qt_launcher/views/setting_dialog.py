@@ -27,20 +27,20 @@ class SettingDialog(QDialog):
         self.ui_setting.settingsOptions.helpRequested.connect(comingSoonMsgBox)
 
         self.ui_setting.accesibilitycheckBox.setChecked(
-            bool(self.userPref.get_accesible_mode_pref())
+            bool(self.userPref.getAccesibleModePref())
         )
         self.ui_setting.developperModeDheckBox.setChecked(
-            bool(self.userPref.get_developper_mode_pref())
+            bool(self.userPref.getDevelopperModePref())
         )
         self.ui_setting.holydayDheckBox.setChecked(
-            bool(self.userPref.get_show_holiday_pref())
+            bool(self.userPref.getShowHolidayPref())
         )
         self.ui_setting.enableExperimentscheckBox.setChecked(
-            bool(self.userPref.get_experimental_mode_pref())
+            bool(self.userPref.getExperimentalModePref())
         )
 
-        self.ui_setting.languagesComboBox.setEditText(self.userPref.get_language_pref())
-        self.ui_setting.themesComboBox.setEditText(self.userPref.get_theme_pref())
+        self.ui_setting.languagesComboBox.setEditText(self.userPref.getLanguagePref())
+        self.ui_setting.themesComboBox.setEditText(self.userPref.getThemePref())
 
     def applyButtonCommand(self):
         isDevelopperModeEnabled = self.ui_setting.developperModeDheckBox.isChecked()
@@ -51,11 +51,11 @@ class SettingDialog(QDialog):
         isExperimentsOn = self.ui_setting.enableExperimentscheckBox.isChecked()
         QMessageBox.information(self, "Setting", "Functionnal Setting Coming Later")
 
-        self.userPref.set_accesible_mode_pref(isAccesbilityModeEnabled)
-        self.userPref.set_developper_mode_pref(isDevelopperModeEnabled)
-        self.userPref.set_show_holiday_pref(isHolidayEnabled)
-        self.userPref.set_theme_pref(
+        self.userPref.setAccesibleModePref(isAccesbilityModeEnabled)
+        self.userPref.setDevelopperMode_pref(isDevelopperModeEnabled)
+        self.userPref.setShowHolidayPref(isHolidayEnabled)
+        self.userPref.setThemePref(
             str(theme.from_entity_to_strTheme(theme.ThemeEntity(themeSelectedIndex)))
         )
-        self.userPref.set_language_pref(languageSelectedIndex)
-        self.userPref.set_experimental_mode_pref(isExperimentsOn)
+        self.userPref.setLanguagePref(languageSelectedIndex)
+        self.userPref.setExperimentalModePref(isExperimentsOn)

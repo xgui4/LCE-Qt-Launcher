@@ -1,4 +1,4 @@
-#FIXME : Make Instance mode indpendant
+# FIXME : Make Instance mode indpendant
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
@@ -19,11 +19,12 @@ import subprocess
 import json
 import os
 
-SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/beta/schemas/x-application-lce_inst.json"
+SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/dev/schemas/x-application-lce_inst_config.json"
 
 
 class InstanceSource(Enum):
     """_summary_ The 4 Type of Instances (2 functional, the othes coming soon)"""
+
     GITHUB_RELEASE = 0
     FORGEJO_RELEASE = 1
     REMOTE_GIT_SOURCE = 2
@@ -84,16 +85,14 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
 
-
 _DEFAULT_INST_NAME = "New Default (pieeebot neoLegacy)"
-_DEFAULT_INSTALLATION_PATH = ".new-default"
+_DEFAULT_INSTALLATION_PATH = "{appInstancePath}/.new-default"
 _DEFAULT_USERNAME = "Steve"
 _DEFAULT_ARCHIVE_FILE = "neoLegacyWindows64.zip"
 _DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
 _DEFAULT_REPO_URL = "https://github.com/neoStudiosLCE/neoLegacy"
 _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
-_DEFAULT_INST_TYPE_STRING = "InstanceType.CLIENT_VANILLA"
 _DEFAULT_IMAGE = ":/assets/neoLegacy.png"
 _DEFAULT_NEWS_FEED = "https://github.com/neoStudiosLCE/neoLegacy/commits/main/"
 _DEFAULT_VERSION = "v1.0.4b"
@@ -195,7 +194,7 @@ class Instance(QObject):
             "image": self.image,
             "news_feed": self.news_feed,
             "version": self.version,
-            "steam_link": self.version,
+            "steam_link": self.version
         }
         return dict_to_return
 
@@ -212,7 +211,6 @@ class Instance(QObject):
         print(f"news_feed : {self.news_feed}")
         print(f"version : {self.version}")
         print(f"steam link : {self.steam_link}")
-        # print(f"servers : {self.servers}")
 
 
 class InstanceManager:
@@ -221,7 +219,6 @@ class InstanceManager:
     def __init__(self, instance: Instance, appContext: AppContext):
         self.instance: Instance = instance
         from lce_qt_launcher.managers.downloader import Downloader
-
         self._downloader: Downloader = Downloader(appContext)
 
     def play(self) -> str:
@@ -232,9 +229,7 @@ class InstanceManager:
         """
         return_code: int = 0
         try:
-            client_path: str = os.path.join(
-                self.instance.installation_path, self.instance.exe_name
-            )
+            client_path: str = os.path.join(self.instance.installation_path, self.instance.exe_name)
             try:
                 game_process_temp = subprocess.run(
                     [client_path, "-name", self.instance.username]
@@ -266,7 +261,7 @@ class InstanceManager:
         Returns:
             QNetworkReply: _description_ : the QtNetwork Reply Object of the download process
         """
-        #FIXME do others types
+        # FIXME do others types
         if self.instance.instance_source in [
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
@@ -288,7 +283,7 @@ class InstanceManager:
                 indent=4,
             )
         except:
-            #FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
+            # FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
             json_string = json.dumps(obj=vars(self.instance), indent=4, default=str)
         if not save_file.endswith(instance_extension_str):
             full_save_file: str = save_file + instance_extension_str
@@ -315,3 +310,6 @@ class InstanceManager:
             return True
         else:
             return False
+
+    def expanded_path(self, appContext : AppContext) -> str:
+        return self.instance.installation_path.replace("{appInstancePath}", appContext.instancePath)

@@ -1,4 +1,4 @@
-#FIXME make this module more python like with attributes instead of getter and setter
+# FIXME make this module more python like with attributes instead of getter and setter
 
 from PySide6.QtCore import QSettings
 
@@ -26,94 +26,94 @@ class UserPref(QSettings):
         super().__init__(
             QSettings.Format.IniFormat,
             QSettings.Scope.UserScope,
-            "Xgui4",
-            app_name_str,
+            "Xgui4", 
+            app_name_str
         )
-        self.default_theme: StrTheme = StrTheme.MINECRAFT
-        self.default_instance_path: str = "{appData}/instances"
-        self.default_language: str = "en"
-        self.default_show_holiday: bool = True
-        self.default_accesibility_mode: bool = False
-        self.default_developper_mode: bool = False
-        self.default_experiment_mode: bool = False
-        self.default_username: str = "Steve"
+        self.defaultTheme: StrTheme = StrTheme.MINECRAFT
+        self.defaultInstancePath: str = "{appInstancePath}/instances"
+        self.defaultLanguage: str = "en"
+        self.defaultShowHoliday: bool = True
+        self.defaultAccesibilityMode: bool = False
+        self.defaultDevelopperMode: bool = False
+        self.defaultExperimentMode: bool = False
+        self.defaultUsername: str = "Steve"
 
-    def set_theme_pref(self, theme: str) -> None:
+    def setThemePref(self, theme: str) -> None:
         super().setValue(_THEME_OPTION, theme)
         super().sync()
 
-    def get_theme_pref(self) -> str:
-        return str(self.value(_THEME_OPTION, self.default_theme, type=str))
+    def getThemePref(self) -> str:
+        return str(self.value(_THEME_OPTION, self.defaultTheme, type=str))
 
-    def set_language_pref(self, language: str) -> None:
+    def setLanguagePref(self, language: str) -> None:
         super().setValue(_LANGUAGE_OPTION, language)
         super().sync()
 
-    def get_language_pref(self) -> str:
-        return str(self.value(_LANGUAGE_OPTION, self.default_theme, type=str))
+    def getLanguagePref(self) -> str:
+        return str(self.value(_LANGUAGE_OPTION, self.defaultTheme, type=str))
 
-    def set_instance_path_pref(self, instance_path: str) -> None:
-        super().setValue(_INSTANCE_PATH_OPTION, instance_path)
+    def setInstancePathPref(self, instancePath: str) -> None:
+        super().setValue(_INSTANCE_PATH_OPTION, instancePath)
         super().sync()
 
-    def get_instance_path_pref(self) -> str:
+    def getInstancePathPref(self) -> str:
         return str(
-            self.value(_INSTANCE_PATH_OPTION, self.default_instance_path, type=str)
+            self.value(_INSTANCE_PATH_OPTION, self.defaultInstancePath, type=str)
         )
 
-    def set_show_holiday_pref(self, show_holiday_bool: bool) -> None:
-        super().setValue(_SHOW_HOLIDAY_OPTION, show_holiday_bool)
+    def setShowHolidayPref(self, showHolidayBool: bool) -> None:
+        super().setValue(_SHOW_HOLIDAY_OPTION, showHolidayBool)
         super().sync()
 
-    def get_show_holiday_pref(self) -> str:
+    def getShowHolidayPref(self) -> str:
         return str(
-            self.value(_SHOW_HOLIDAY_OPTION, self.default_show_holiday, type=str)
+            self.value(_SHOW_HOLIDAY_OPTION, self.defaultShowHoliday, type=str)
         )
 
-    def set_accesible_mode_pref(self, accesbility_mode_bool: bool) -> None:
-        super().setValue(_ACCESIBLE_MODE_OPTION, accesbility_mode_bool)
+    def setAccesibleModePref(self, accesbilityModeBool: bool) -> None:
+        super().setValue(_ACCESIBLE_MODE_OPTION, accesbilityModeBool)
         super().sync()
 
-    def get_accesible_mode_pref(self) -> str:
+    def getAccesibleModePref(self) -> str:
         return str(
-            self.value(_ACCESIBLE_MODE_OPTION, self.default_accesibility_mode, type=str)
+            self.value(_ACCESIBLE_MODE_OPTION, self.defaultAccesibilityMode, type=str)
         )
 
-    def set_developper_mode_pref(self, developper_mode_bool: bool) -> None:
-        super().setValue(_DEVELOPPER_MODE_OPTION, developper_mode_bool)
+    def setDevelopperMode_pref(self, developperModeBool: bool) -> None:
+        super().setValue(_DEVELOPPER_MODE_OPTION, developperModeBool)
         super().sync()
 
-    def get_developper_mode_pref(self) -> str:
+    def getDevelopperModePref(self) -> str:
         return str(
-            self.value(_DEVELOPPER_MODE_OPTION, self.default_developper_mode, type=str)
+            self.value(_DEVELOPPER_MODE_OPTION, self.defaultDevelopperMode, type=str)
         )
 
-    def set_experimental_mode_pref(self, experimental_mode_bool: bool) -> None:
-        super().setValue(_EXPERIMENTAL_MODE_OPTION, experimental_mode_bool)
+    def setExperimentalModePref(self, experimentalModeBool: bool) -> None:
+        super().setValue(_EXPERIMENTAL_MODE_OPTION, experimentalModeBool)
         super().sync()
 
-    def get_experimental_mode_pref(self) -> str:
+    def getExperimentalModePref(self) -> str:
         return str(
             self.value(
-                _EXPERIMENTAL_MODE_OPTION, self.default_experiment_mode, type=str
+                _EXPERIMENTAL_MODE_OPTION, self.defaultExperimentMode, type=str
             )
         )
 
-    def set_username_pref(self, new_username: str) -> None:
-        super().setValue(_USERNAME_OPTION, new_username)
+    def setUsernamePref(self, newUsername: str) -> None:
+        super().setValue(_USERNAME_OPTION, newUsername)
         super().sync()
 
-    def get_username_pref(self) -> str:
-        return str(self.value(_USERNAME_OPTION, self.default_username, type=str))
+    def getUsernamePref(self) -> str:
+        return str(self.value(_USERNAME_OPTION, self.defaultUsername, type=str))
 
-    def generate_default_config(self) -> None:
+    def generateDefaultConfig(self) -> None:
         """_summary_ Generate the default config for the users"""
-        self.set_theme_pref(self.default_theme)
-        self.set_language_pref(self.default_language)
-        self.set_instance_path_pref(self.default_instance_path)
-        self.set_show_holiday_pref(self.default_show_holiday)
-        self.set_accesible_mode_pref(self.default_accesibility_mode)
-        self.set_accesible_mode_pref(self.default_developper_mode)
-        self.set_experimental_mode_pref(self.default_experiment_mode)
-        self.set_username_pref(self.default_username)
+        self.setThemePref(self.defaultTheme)
+        self.setLanguagePref(self.defaultLanguage)
+        self.setInstancePathPref(self.defaultInstancePath)
+        self.setShowHolidayPref(self.defaultShowHoliday)
+        self.setAccesibleModePref(self.defaultAccesibilityMode)
+        self.setAccesibleModePref(self.defaultDevelopperMode)
+        self.setExperimentalModePref(self.defaultExperimentMode)
+        self.setUsernamePref(self.defaultUsername)
         super().sync()

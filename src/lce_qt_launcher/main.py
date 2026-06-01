@@ -22,15 +22,14 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 # nuitka-project-if: {OS} == "Windows":
 #   nuitka-project: --windows-icon-from-ico=assets/app.ico
 #   nuitka-project: --windows-product-name=LCE-Qt-Launcher
-#   nuitka-project: --product-version="0.0.20.6"
-#   nuitka-project: --file-version="0.0.20.6"
+#   nuitka-project: --product-version="0.0.20.7"
+#   nuitka-project: --file-version="0.0.20.7"
 #   nuitka-project: --file-description="LCE Qt Launcher Alpha"
 #   nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
 # nuitka-project: --include-data-dir=assets=assets
 # nuitka-project: --include-data-dir=data=data
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
-
 
 from lce_qt_launcher import instance_extension_str
 from lce_qt_launcher.models.pref import UserPref
@@ -66,29 +65,33 @@ def main() -> None:
         if "--disable-system-qt-plugins" not in sys.argv:
             sys_man.adapt_qt_system_theme()
         userPref: UserPref = appContext.userPref
-        user_language: str = userPref.get_language_pref() #FIXME :  This should return a language
-        user_theme: str = userPref.get_theme_pref()
-        show_holiday: str = userPref.get_show_holiday_pref()
-        developer_mode: str = userPref.get_developper_mode_pref()
-        accessible_mode: str = userPref.get_accesible_mode_pref()
-        experiment_mode: str = userPref.get_experimental_mode_pref()
-        username: str = userPref.get_username_pref()
-        default_instance_path: str = userPref.get_instance_path_pref()
+        languagePref : str = userPref.getLanguagePref() # FIXME : This should return a language
+        userTheme: str = userPref.getThemePref()
+        showHoliday: str = userPref.getShowHolidayPref()
+        developerMode: str = userPref.getDevelopperModePref()
+        accessibleMode: str = userPref.getAccesibleModePref()
+        experimentMode: str = userPref.getExperimentalModePref()
+        username: str = userPref.getUsernamePref()
+        defaultInstancePath: str = userPref.getInstancePathPref()
         try:
-            selected_theme: StrTheme = theme.from_str_to_strTheme(user_theme)
+            selected_theme: StrTheme = theme.from_str_to_strTheme(userTheme)
             appContext.theme = selected_theme
-            appContext.showHolidayEnabled = bool(show_holiday)
-            appContext.devModeEnabled = bool(developer_mode)
-            appContext.experimentModeEnabled = bool(experiment_mode)
-            appContext.accesibleModeEnabled = bool(accessible_mode)
-            appContext.defaultUsername = str(username)
-            appContext.defaultInstancePath = str(default_instance_path)
+            appContext.selectedLang = languagePref 
+            appContext.showHolidayEnabled = bool(showHoliday)
+            appContext.devModeEnabled = bool(developerMode)
+            appContext.experimentModeEnabled = bool(experimentMode)
+            appContext.accesibleModeEnabled = bool(accessibleMode)
+            appContext.username = username
+            appContext.instancePath =  appContext.expand_path(defaultInstancePath, appData)
+
+            print(appContext.instancePath)
+
         except RuntimeError as err:
             term_service.print_error(str(err))
         finally:
             appContext.updateAppUILang()
     except:
-        #FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
+        # FIXME do not use a bare except : https://docs.astral.sh/ruff/rules/bare-except/
         term_service.print_error(
             "They were a error while loading the system theme or user preference."
         )

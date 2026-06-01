@@ -17,9 +17,9 @@ class ContentInstallerView(QDialog):
         self.dialog: QDialog = QDialog()
         self.ui_dialog.setupUi(self.dialog)
 
-        self.contentToInstallPath : str = ""
-        self.instancePath : str = ""
-        self.contentTypeStr : str = ""
+        self.contentToInstallPath: str = ""
+        self.instancePath: str = ""
+        self.contentTypeStr: str = ""
 
         self.contentToInstallPath = self.ui_dialog.contentToInstallInputBox.text()
         self.contentTypeStr = self.ui_dialog.contentTypeComboBox.currentText()

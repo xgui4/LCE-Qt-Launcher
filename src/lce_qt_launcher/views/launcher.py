@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QListWidgetItem,
     QInputDialog,
-    QMessageBox,
+    QMessageBox
 )
 from PySide6.QtGui import (
     QPalette, 
@@ -22,7 +22,7 @@ from PySide6.QtCore import (
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
     QWebEngineProfile,
-    QWebEngineDownloadRequest,
+    QWebEngineDownloadRequest
 )
 
 import json
@@ -49,8 +49,8 @@ from lce_qt_launcher import (
     git_repo_url_str,
     instance_extension_str
 )
-
 from lce_qt_launcher.views.system_info_view import SystemInfoView
+
 import lce_qt_launcher.views.term_service as term_service
 import lce_qt_launcher.features as features
 import lce_qt_launcher.utils.holiday as holiday
@@ -78,7 +78,7 @@ class LauncherView(QMainWindow):
         self.news_feed: str = instanceManager.instance.news_feed
         self.instance_name: str = instanceManager.instance.name
         self.instances: list[Instance] = list[Instance]()
-        self.username: str = appContext.userPref.get_username_pref()
+        self.username: str = appContext.username
 
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
@@ -121,7 +121,9 @@ class LauncherView(QMainWindow):
 
         def showInstanceEditorButtonCommand() -> None:
             """_summary_ Open the instance editor button command"""
-            InstanceEditorView(self)
+            editor = InstanceEditorView(self)
+            editor.loadInstance(instanceManager.instance)
+            
 
         def showAboutMinecraftActionCommand() -> None:
             """_summary_ Open an QWebEngine at the Minecraft Website"""
@@ -138,7 +140,7 @@ class LauncherView(QMainWindow):
         def loadInstanceActionCommand() -> None:
             """_summary_ Open the Load Save File Dialog"""
             features.load_instance_from_file(self, instanceManager, appContext, appData)
-            self.loadInstanceInForm(instanceManager)
+            self.loadInstanceInForm(instanceManager, appContext)
 
         def showSystemInformationActionCommand() -> None:
             """_summary_ Show the system info dialog"""
@@ -165,31 +167,32 @@ class LauncherView(QMainWindow):
         
         def openWorkshopCommand() -> None:
             features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
-        
+
         def openLegacymodsCommand() -> None:
             features.show_webbrowser(self, "https://legacymods.org/")
-        
+
         def openAppRootCommand() -> None:
             systemManager.open_url_with_system(appData.projectRootDir)
-        
+
         def openAppConfigCommand() -> None:
+            # FIXME appData do not give the correct path
             systemManager.open_url_with_system(appData.appConfigDir)
-        
+
         def openGitHubIssuesCommand() -> None:
             webbrowser.open(git_repo_url_str + "/issues")
 
         def loadDefaultInstanceCommand() -> None:
-            self.loadInstanceData(dict(), instanceManager)
+            self.loadInstanceData(dict(), instanceManager, appContext)
 
         def loadInstanceFromItemDataCommand() -> None:
             item = self.ui.listWidget.currentItem()
             if item is not None:
-                instance : Instance = item.data(Qt.UserRole) # type: ignore
+                instance: Instance = item.data(Qt.UserRole)  # type: ignore
             else:
                 raise RuntimeError("Could not load instance")
             instanceManager.instance = instance
-            self.loadInstanceInForm(instanceManager)
-            
+            self.loadInstanceInForm(instanceManager, appContext)
+
         def addSteamLinkIntegrationButtonCommand():
             steamIntegrationDialog = QInputDialog(self)
             value = steamIntegrationDialog.getText(
@@ -229,7 +232,7 @@ class LauncherView(QMainWindow):
             item = QListWidgetItem()
             item.setText(inst.name)
             item.setIcon(QPixmap(inst.image))
-            item.setData(Qt.UserRole, inst) # type: ignore
+            item.setData(Qt.UserRole, inst)  # type: ignore
             self.ui.listWidget.addItem(item)
 
         arguments: list[str] = (
@@ -287,7 +290,6 @@ class LauncherView(QMainWindow):
         self.ui.loadSelectedInstanceButton.clicked.connect(loadInstanceFromItemDataCommand)
         self.ui.addInstanceButton.clicked.connect(loadInstanceActionCommand)
 
-
         self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
         self.ui.actionSetting_2.triggered.connect(showSettingDialogCommand)
         self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
@@ -305,9 +307,11 @@ class LauncherView(QMainWindow):
         self.ui.actionLCE_Hub_Workshop.triggered.connect(openWorkshopCommand)
         self.ui.actionLegacyMods_Coming_Soon.triggered.connect(openLegacymodsCommand)
         self.ui.actionApp_Root.triggered.connect(openAppRootCommand)
-        self.ui.actionApp_Root.triggered.connect(openAppConfigCommand)
+        # self.ui.actionConfigPath.triggered.connect(openAppConfigCommand)
+        # Action for opening configuration is temporaly disabled until it is fixed
+        self.ui.actionConfigPath.setEnabled(False)
+        self.ui.actionConfigPath.setText("Configuration (Broken)")
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(openGitHubIssuesCommand)
-
 
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)
         self.ui.actionLoadmclceInstance.setEnabled(False)
@@ -323,7 +327,7 @@ class LauncherView(QMainWindow):
             data_neo = json.loads(raw_text_neo)
 
             self.ui.actionLoadmclceInstance.triggered.connect(
-                lambda : self.loadInstanceData(data_neo, instanceManager)
+                lambda: self.loadInstanceData(data_neo, instanceManager, appContext)
             )
 
         revelationJson = QFile(":/instances/revelations.lce_inst")
@@ -336,7 +340,7 @@ class LauncherView(QMainWindow):
             data_rev = json.loads(raw_text_rev)
 
             self.ui.actionLoadRevelationsInstance.triggered.connect(
-                lambda : self.loadInstanceData(data_rev, instanceManager)
+                lambda: self.loadInstanceData(data_rev, instanceManager, appContext)
             )
 
         aetherJson = QFile(":/instances/aether.lce_inst")
@@ -349,9 +353,9 @@ class LauncherView(QMainWindow):
             data_aether = json.loads(raw_text_aether)
 
             self.ui.actionLoadAetherInstance.triggered.connect(
-                lambda : self.loadInstanceData(data_aether, instanceManager)
+                lambda: self.loadInstanceData(data_aether, instanceManager, appContext)
             )
-            
+
         self.setup_web_engine()
 
         self.versionLabel: QLabel = QLabel(f"Version {version_type_str} {version_str}")
@@ -364,7 +368,7 @@ class LauncherView(QMainWindow):
             holyday_label: QLabel = QLabel(holiday.get_holiday())
             self.ui.statusbar.addWidget(holyday_label)
 
-        self.loadInstanceInForm(instanceManager)
+        self.loadInstanceInForm(instanceManager, appContext)
 
     def setup_web_engine(self):
         page: QWebEnginePage = self.ui.marketplacesWebsiteEngine.page()
@@ -392,19 +396,21 @@ class LauncherView(QMainWindow):
         self,
         data: dict[str, str],
         instanceManager: InstanceManager,
+        appContext : AppContext
     ) -> None:
         """_summary_ Loas insance from data json in instance manager
 
         Args:
             data (dict[str, str]): _description_ the json data to load
             instanceManager (InstanceManager): _description_ the instance manager to use
+            appContext (AppContext): _description_ the App Context to use
         """
         instance: Instance = Instance()
         instance.load_inst_from_dict(data)
         instanceManager.instance = instance
-        self.loadInstanceInForm(instanceManager)
+        self.loadInstanceInForm(instanceManager, appContext)
 
-    def loadInstanceInForm(self, instanceManager: InstanceManager) -> None:
+    def loadInstanceInForm(self, instanceManager: InstanceManager, appContext : AppContext) -> None:
         """_summary_ Load Instance in form
 
         Args:
@@ -414,15 +420,16 @@ class LauncherView(QMainWindow):
         self.image_label = instanceManager.instance.image
         self.news_feed = instanceManager.instance.news_feed
         self.instance_name = instanceManager.instance.name
-        self.ui.usernameInputBox.setText(instanceManager.instance.username)
+        self.ui.usernameInputBox.setText(appContext.username if instanceManager.instance.username is "Steve" or "" else instanceManager.instance.username)
         self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
-        self.ui.pathInputBox.setText(instanceManager.instance.installation_path)
+        self.ui.pathInputBox.setText(instanceManager.expanded_path(appContext))
         self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)
         pixmap: QPixmap = QPixmap(self.image_label)
         self.ui.instance_img.setPixmap(pixmap)
         self.ui.repo_name_branch.setText(self.instance_name)
         self.ui.newsEngineView.setUrl(self.news_feed)
         instanceManager.instance.display()
+
         if not instanceManager.is_installable():
             self.ui.installButton.setEnabled(False)
         else:

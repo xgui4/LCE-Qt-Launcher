@@ -34,8 +34,9 @@ LEGAL_TEXT = """
 STEAM_USERS_LOCATION = "~/.steam/steam/config/loginusers.vdf"
 STEAM_SHORTCUTS_LOCATION = "~/steam/steam/userdata/{steam-id}/config/"
 
+
 def add_instance_to_steam(abs_instance_exe_path: str, instance_name: str, icon: str):
-    """ _summary_ 
+    """_summary_
         add the instance to the steam
     Args:
         instance_exe_path (str): _description_ the instance executable file path

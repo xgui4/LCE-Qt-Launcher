@@ -43,7 +43,7 @@ class AppData(QObject):
 
     def load_insts_list_into_mem(self) -> None:
         """_summary_ load instances from app data into a memory list"""
-        #FIXME : make it so it also work on both user and system (site) dir if needed
+        # FIXME : make it so it also work on both user and system (site) dir if needed
         defaults_insts_dir: Path = Path(os.path.join(self.appDataDirs[0], "instances"))
         if not defaults_insts_dir.exists():
             term_service.print_information(
@@ -61,7 +61,7 @@ class AppData(QObject):
             if file_path.is_file():
                 try:
                     with open(file=file_path, mode="r", encoding="utf-8") as file:
-                        context_dict: dict[str, str] = json.load(file) 
+                        context_dict: dict[str, str] = json.load(file)
                         new_inst = Instance()
                         new_inst.load_inst_from_dict(context_dict)
                         instancesLists.append(new_inst)
@@ -120,5 +120,6 @@ class AppData(QObject):
         return dirs.user_log_dir
 
     def _get_app_config_dir(self) -> str:
+        # FIXME : it should return the same location as the qt app setting which it do not right now
         dirs: PlatformDirs = PlatformDirs("LCE-Qt-Launcher", "Xgui4")
         return dirs.user_config_dir

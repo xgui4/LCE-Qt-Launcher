@@ -66,7 +66,7 @@ LEGAL_TEXT = """
 
 def extract_zip(data: ZipFile, extraction_path: str) -> None:
     """
-    _summary_ : 
+    _summary_ :
         extract the zipfile of the content to the desired path
     Args:
         data : the zip file itself
@@ -75,7 +75,9 @@ def extract_zip(data: ZipFile, extraction_path: str) -> None:
     data.extractall(extraction_path)
 
 
-def install_content(instance_path: str, contentType: ContentType, archive_file: str) -> None:
+def install_content(
+    instance_path: str, contentType: ContentType, archive_file: str
+) -> None:
     """_summary_
         install the content of the mode
     Args:
@@ -113,7 +115,9 @@ def main():
         if sys.argv[1] == "--gui":
             from PySide6.QtWidgets import QApplication
             from PySide6.QtGui import QFontDatabase
-            from lce_qt_launcher.views.content_installer_dialog import ContentInstallerView
+            from lce_qt_launcher.views.content_installer_dialog import (
+                ContentInstallerView,
+            )
 
             app = QApplication()
             app.setStyle("Fusion")
@@ -129,7 +133,7 @@ def main():
                 app.setFont(family)
 
             sys.exit(app.exec())
-    
+
     parser = argparse.ArgumentParser(
         prog="LCE Mods Manager",
         description="Manage DLC, World and Mods for Minecraft LCE",

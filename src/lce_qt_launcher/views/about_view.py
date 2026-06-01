@@ -1,4 +1,3 @@
-
 import platform
 
 from PySide6.QtWidgets import QDialog, QWidget
@@ -12,13 +11,15 @@ from lce_qt_launcher import (
     version_str,
     version_type_str,
     git_repo_url_str,
-    license_text_str
+    license_text_str,
 )
+
 
 class AboutView(QDialog):
     def showAboutQtActionCommand(self) -> None:
         """_summary_ Show the About Qt Dialog"""
         features.show_about_qt(self)
+
     def __init__(self, parent: QWidget):
         super().__init__(parent)
 

@@ -67,7 +67,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -206,7 +206,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Default (MCLCE)  - Vanilla Client</string>
+              <string>Default</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
@@ -626,7 +626,7 @@
          <widget class="QWebEngineView" name="newsEngineView">
           <property name="url">
            <url>
-            <string>https://github.com/MCLCE/MinecraftConsoles/commits</string>
+            <string>https://github.com/neoStudiosLCE/neoLegacy</string>
            </url>
           </property>
          </widget>
@@ -712,7 +712,7 @@
      <string>Folders</string>
     </property>
     <addaction name="actionLogs"/>
-    <addaction name="actionConfiguration"/>
+    <addaction name="actionConfigPath"/>
     <addaction name="actionThemes"/>
     <addaction name="actionSkins"/>
     <addaction name="actionInstances"/>
@@ -894,12 +894,15 @@
     <string>Logs</string>
    </property>
   </action>
-  <action name="actionConfiguration">
+  <action name="actionConfigPath">
    <property name="text">
     <string>Configuration</string>
    </property>
   </action>
   <action name="actionThemes">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Themes</string>
    </property>

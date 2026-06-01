@@ -1,4 +1,3 @@
-
 import sys
 
 from PySide6.QtWidgets import QDialog, QWidget
@@ -14,13 +13,13 @@ from lce_qt_launcher import (
 )
 
 class SystemInfoView(QDialog):
-    def __init__(self, parent: QWidget, systemManager : SystemManager):
+    def __init__(self, parent: QWidget, systemManager: SystemManager):
         super().__init__(parent)
 
         self.sysinfo_dialog: QDialog = QDialog()
         self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
         self.dialog_ui.setupUi(self.sysinfo_dialog)
-        
+
         self.dialog_ui.appVersionLabel.setText(
             f"**App Version** : {app_name_str} {version_type_str} {version_str}"
         )

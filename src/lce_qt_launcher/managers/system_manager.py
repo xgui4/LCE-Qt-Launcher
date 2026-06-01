@@ -91,4 +91,3 @@ class SystemManager:
         url = QUrl(url_str)
         service = QDesktopServices()
         _ = service.openUrl(url)
-

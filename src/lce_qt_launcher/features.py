@@ -30,7 +30,7 @@ from lce_qt_launcher import (
     licence_name_str,
     qt_version_str,
     license_link_str,
-    instance_extension_str
+    instance_extension_str,
 )
 
 
@@ -42,12 +42,12 @@ def install_game(
     parent: QWidget, instance: Instance, instanceManager: InstanceManager
 ) -> None:
     """_summary_
-        Features : Install the game instance selected    
+        Features : Install the game instance selected
     args:
     - parent : The QWidget parent
     - instance : The selected Instance
     - instanceManager : The instance manager to use"""
-    #FIXME : Separe the GUI with the logic of the model
+    # FIXME : Separe the GUI with the logic of the model
     button_reply = QMessageBox.question(
         parent,
         "Confirm Installation",
@@ -69,9 +69,9 @@ def install_game(
                 _ = progressBar.setEnabled(True)
                 _ = progressLabel.setText(f"Downloading {instance.name} Progress")
 
-                def update_progress_bar(bytes_received : int, bytes_total : int) -> None: 
+                def update_progress_bar(bytes_received: int, bytes_total: int) -> None:
                     if bytes_total > 0:
-                        _ = progressBar.setMaximum(bytes_total) 
+                        _ = progressBar.setMaximum(bytes_total)
                         _ = progressBar.setValue(bytes_received)
                     else:
                         _ = progressBar.setRange(0, 0)
@@ -232,7 +232,7 @@ def generate_user_config(userPref: UserPref) -> None:
     Args:
         userPref (UserPref): _description_ : UserPreference Manager
     """
-    userPref.generate_default_config()
+    userPref.generateDefaultConfig()
 
 
 def display_license() -> None:
@@ -274,6 +274,6 @@ def display_version() -> None:
     term_service.print_information(f"{app_name_str} Version {version_str}")
     term_service.print_information(f"Qt Version {qt_version_str}")
 
-def launch_instance_with_steam(instanceManager : InstanceManager) -> None:
+
+def launch_instance_with_steam(instanceManager: InstanceManager) -> None:
     subprocess.run(["steam", instanceManager.instance.steam_link])
-        

@@ -14,6 +14,7 @@ class DisplayType(Enum):
 
 class DisplayManager:
     """_summary_ The Display Manager Handler that will us the correct dysplay type"""
+
     def __init__(self, type: DisplayType, parentWindow: QWidget | None = None) -> None:
         self.type: DisplayType = type
         if parentWindow is not None:
@@ -29,23 +30,19 @@ class DisplayManager:
         if self.type == DisplayType.CONSOLE or DisplayType.MIXED:
             term_service.print_information(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
-            QMessageBox.information(
-                self.parentWindow, title, msg
-            )  
+            QMessageBox.information(self.parentWindow, title, msg)
 
     def displayWarn(self, msg: str, title: str = "Warning") -> None:
         """_summary_
             Display Warning with a msg and a title
         Args:
-            msg (str): _description_ : the body message 
+            msg (str): _description_ : the body message
             title (str, optional): _description_. The title of the message (Do not apply if type is Console). Defaults to "Warning".
         """
         if self.type == DisplayType.CONSOLE or DisplayType.MIXED:
             term_service.print_warning(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
-            QMessageBox.warning(
-                self.parentWindow, title, msg 
-            )  
+            QMessageBox.warning(self.parentWindow, title, msg)
 
     def displayError(self, msg: str, title: str = "❗Error") -> None:
         """_summary_
@@ -58,5 +55,7 @@ class DisplayManager:
             term_service.print_error(msg)
         if self.type == DisplayType.QMESSAGE_BOX or DisplayType.MIXED:
             QMessageBox.critical(
-                self.parentWindow, title, msg #
-            )  
+                self.parentWindow,
+                title,
+                msg,  
+            )

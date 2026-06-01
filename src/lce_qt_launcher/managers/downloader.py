@@ -5,9 +5,9 @@ if TYPE_CHECKING:
     from lce_qt_launcher.managers.instance_manager import Instance
 
 from lce_qt_launcher.app_context import AppContext
+from lce_qt_launcher.managers.system_manager import SystemManager
 import lce_qt_launcher.views.term_service as term_service
 
-from lce_qt_launcher.managers.system_manager import SystemManager
 
 from zipfile import ZipFile, BadZipFile
 
@@ -78,7 +78,7 @@ class Downloader(QObject):
         return reply
 
     def download_inst_async(self, instance: Instance) -> QNetworkReply:
-        #FIXME : replace this function with the other independant function
+        # FIXME : replace this function with the other independant function
         """_summary_
             Download and install the selected Instance
         Args:

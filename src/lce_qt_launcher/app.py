@@ -28,8 +28,8 @@ class App(QApplication):
         self.set_theme(theme)
 
     def set_theme(self, theme: StrTheme) -> None:
-        #"""Set Application Theme using a pretermined theme"""
-        """_summary_ Set/update the application theme 
+        # """Set Application Theme using a pretermined theme"""
+        """_summary_ Set/update the application theme
 
         Args:
             theme (StrTheme): _description_ thre strThene to set the app to
