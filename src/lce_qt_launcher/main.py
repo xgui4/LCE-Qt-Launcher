@@ -62,6 +62,7 @@ def main() -> None:
     try:
         if "--disable-system-qt-plugins" not in sys.argv:
             sys_man.adapt_qt_system_theme()
+            
         userPref: UserPref = appContext.userPref
         languagePref : str = userPref.getLanguagePref() # FIXME : This should return a language
         userTheme: str = userPref.getThemePref()

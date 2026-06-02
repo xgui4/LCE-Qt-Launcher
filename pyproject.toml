@@ -54,9 +54,9 @@ reportUnknownVariableType="hint"
 [tool.pyproject-appimage]
 script = "lce-qt-launcher"
 output = "lce-qt-launcher.AppImage"
-desktop-entry = "io.github.xgui4.lce_qt_launcher-isolated.desktop"
+desktop-entry = "packages/io.github.xgui4.lce_qt_launcher-isolated.desktop"
 icon = "assets/io.github.xgui4.lce_qt_launcher.png"
-appstream = "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml"
+appstream = "io.github.xgui4.lce_qt_launcher.metainfo.xml"
 
 [tool.hatch.build]
 artifacts = [
