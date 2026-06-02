@@ -114,142 +114,16 @@
            </size>
           </property>
           <layout class="QGridLayout" name="launcherGridLayout">
-           <item row="15" column="1" rowspan="2" colspan="9">
-            <layout class="QHBoxLayout" name="lauchersButtons">
-             <property name="sizeConstraint">
-              <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
-             </property>
-             <item>
-              <widget class="QPushButton" name="playButton">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Play</string>
-               </property>
-               <property name="icon">
-                <iconset theme="media-playback-start"/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="playOnSteamButton">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="text">
-                <string>Play On Steam</string>
-               </property>
-               <property name="icon">
-                <iconset theme="computer"/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="installButton">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Sync/Update</string>
-               </property>
-               <property name="icon">
-                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="settingButton">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Setting (Experimental)</string>
-               </property>
-               <property name="icon">
-                <iconset theme="preferences-system"/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="repo_name_branch">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Default</string>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="4">
-            <widget class="QLabel" name="steamLinkLabel">
+           <item row="6" column="6">
+            <widget class="QLabel" name="steamLinkValue">
              <property name="enabled">
               <bool>true</bool>
              </property>
-             <property name="font">
-              <font>
-               <bold>true</bold>
-              </font>
-             </property>
              <property name="text">
-              <string>Steam Link :</string>
+              <string>N/A</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QPushButton" name="changeInstanceIconButton">
-             <property name="text">
-              <string>Change Instance Icon</string>
-             </property>
-             <property name="icon">
-              <iconset theme="insert-image"/>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="1">
-            <widget class="QLabel" name="progressLabel">
-             <property name="font">
-              <font>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Progress</string>
              </property>
             </widget>
            </item>
@@ -272,38 +146,62 @@
              </property>
             </widget>
            </item>
-           <item row="13" column="1" colspan="9">
-            <widget class="QProgressBar" name="progressBar">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+           <item row="2" column="4">
+            <widget class="QLabel" name="title">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
              </property>
-             <property name="accessibleName">
-              <string>Installation Progress Bar</string>
+             <property name="text">
+              <string/>
              </property>
-             <property name="accessibleDescription">
-              <string>The percentage of the installation</string>
+             <property name="pixmap">
+              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
              </property>
-             <property name="accessibleIdentifier">
-              <string>install progress bar</string>
+             <property name="scaledContents">
+              <bool>true</bool>
              </property>
-             <property name="value">
+             <property name="indent">
               <number>0</number>
              </property>
             </widget>
            </item>
-           <item row="6" column="6">
-            <widget class="QLabel" name="steamLinkValue">
+           <item row="12" column="2">
+            <widget class="QLabel" name="downloadFromValue">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="4">
+            <widget class="QLabel" name="steamLinkLabel">
              <property name="enabled">
               <bool>true</bool>
              </property>
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
-              <string>N/A</string>
+              <string>Steam Link :</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <widget class="QLabel" name="progressLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Progress</string>
              </property>
             </widget>
            </item>
@@ -503,24 +401,164 @@
              </layout>
             </widget>
            </item>
-           <item row="2" column="4">
-            <widget class="QLabel" name="title">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
+           <item row="2" column="2">
+            <widget class="QLabel" name="repo_name_branch">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+               <bold>true</bold>
+              </font>
              </property>
+             <property name="text">
+              <string>Default</string>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="1">
+            <widget class="QLabel" name="downloadFromLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Download From</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1">
+            <widget class="QLabel" name="installToLabel">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Install To</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QPushButton" name="changeInstanceIconButton">
+             <property name="text">
+              <string>Change Instance Icon</string>
+             </property>
+             <property name="icon">
+              <iconset theme="insert-image"/>
+             </property>
+            </widget>
+           </item>
+           <item row="16" column="1" rowspan="2" colspan="9">
+            <layout class="QHBoxLayout" name="lauchersButtons">
+             <property name="sizeConstraint">
+              <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
+             </property>
+             <item>
+              <widget class="QPushButton" name="playButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Play</string>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="playOnSteamButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Play On Steam</string>
+               </property>
+               <property name="icon">
+                <iconset theme="computer"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="installButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Sync/Update</string>
+               </property>
+               <property name="icon">
+                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="settingButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Setting (Experimental)</string>
+               </property>
+               <property name="icon">
+                <iconset theme="preferences-system"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="13" column="2">
+            <widget class="QLabel" name="insallToValue">
              <property name="text">
               <string/>
              </property>
-             <property name="pixmap">
-              <pixmap resource="../res.qrc">:/assets/minecraft_lce_title.png</pixmap>
+            </widget>
+           </item>
+           <item row="11" column="2" colspan="7">
+            <widget class="QProgressBar" name="progressBar">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <property name="scaledContents">
-              <bool>true</bool>
+             <property name="accessibleName">
+              <string>Installation Progress Bar</string>
              </property>
-             <property name="indent">
+             <property name="accessibleDescription">
+              <string>The percentage of the installation</string>
+             </property>
+             <property name="accessibleIdentifier">
+              <string>install progress bar</string>
+             </property>
+             <property name="value">
               <number>0</number>
              </property>
             </widget>

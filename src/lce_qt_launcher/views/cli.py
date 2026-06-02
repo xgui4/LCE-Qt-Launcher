@@ -87,11 +87,11 @@ def launch_cli(appContext: AppContext, appData: AppData) -> None:
             term_service.clear_console()
 
         elif action == "play":
-            print(instanceMan.play())
+            instanceMan.play(appContext)
             term_service.clear_console()
 
         elif action == "install":
-            print(instanceMan.install_instance())
+            print(instanceMan.install_instance(appContext))
             term_service.clear_console()
 
         elif action == "marketplace":

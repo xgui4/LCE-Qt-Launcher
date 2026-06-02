@@ -14,8 +14,6 @@ from PySide6.QtGui import (
 )
 from PySide6.QtCore import ( 
     Qt, 
-    QMimeData, 
-    QByteArray,
     QFile, 
     QIODevice
 )
@@ -83,33 +81,24 @@ class LauncherView(QMainWindow):
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
         def generateInstanceFromForm() -> None:
-            """
-            _sumarry_ Generate An Instance From the Form
-            """
-            instanceManager.instance = features.new_instance_from_form(self)
+            instanceManager.instance = features.new_instance_from_form(self) # type: ignore
 
         def confirmChangesButtonCommand() -> None:
-            """_summary_ Generate An Instance From the Form for confirming the changes"""
             generateInstanceFromForm()
 
         def playButtonCommand() -> None:
-            """_summary_ playButtonCommand the Game"""
-            features.launch_game(instanceManager, STARTING_GAME_MSG)
+            features.launch_game(instanceManager, appContext, STARTING_GAME_MSG)
 
         def installButtonCommand() -> None:
-            """_summary_ Install the Game"""
-            features.install_game(self, instanceManager.instance, instanceManager)
+            features.install_game_gui(self, instanceManager, appContext)
 
         def showSettingDialogCommand() -> None:
-            """_summary_ Show the setting Dialog"""
             features.show_setting(self, Ui_settingDialog(), appContext)
 
         def saveInstanceButtonCommand() -> None:
-            """_summary_ Save the instance on a file on disk"""
             features.save_instance_to_file(self, instanceManager, appContext)
 
         def changeInstanceIconButtonCommand() -> None:
-            """_summary_ Open the instance icon/image interface"""
             file_name: str = QFileDialog.getOpenFileName(
                 self,
                 "Select the image file for the instance",
@@ -120,46 +109,36 @@ class LauncherView(QMainWindow):
             self.ui.instance_img.setPixmap(QPixmap(file_name))
 
         def showInstanceEditorButtonCommand() -> None:
-            """_summary_ Open the instance editor button command"""
             editor = InstanceEditorView(self)
             editor.loadInstance(instanceManager.instance)
             
 
         def showAboutMinecraftActionCommand() -> None:
-            """_summary_ Open an QWebEngine at the Minecraft Website"""
             features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE)
 
         def showMoreLCEProjectsActionCommand() -> None:
-            """_summary_ Open An QWebEngine at the Minecraft LCE collection website (not by me)"""
             features.show_webbrowser(self, appContext.MINECRAFT_LCE_WEBSITE)
 
         def updateActionCommand() -> None:
-            """_summary_ "Show the Update Page in a QWebEngine Popup"""
             features.show_webbrowser(self, git_repo_url_str)
 
         def loadInstanceActionCommand() -> None:
-            """_summary_ Open the Load Save File Dialog"""
             features.load_instance_from_file(self, instanceManager, appContext, appData)
             self.loadInstanceInForm(instanceManager, appContext)
 
         def showSystemInformationActionCommand() -> None:
-            """_summary_ Show the system info dialog"""
             SystemInfoView(self, systemManager)
 
         def showAboutQtActionCommand() -> None:
-            """_summary_ Show the About Qt Dialog"""
             features.show_about_qt(self)
 
         def showAboutActionCommand() -> None:
-            """_summary_ Show About App dialog"""
             AboutView(self)
 
         def installContentActionCommand() -> None:
-            """_summary_ Open the Content Installer Window"""
             ContentInstallerView()
 
         def loadSteamCommand() -> None:
-            """_summary_ Launch instance via steam command"""
             features.launch_instance_with_steam(instanceManager)
 
         def openAppInstancesDataCommand() -> None:
@@ -186,7 +165,7 @@ class LauncherView(QMainWindow):
 
         def loadInstanceFromItemDataCommand() -> None:
             item = self.ui.listWidget.currentItem()
-            if item is not None:
+            if item:
                 instance: Instance = item.data(Qt.UserRole)  # type: ignore
             else:
                 raise RuntimeError("Could not load instance")
@@ -226,7 +205,7 @@ class LauncherView(QMainWindow):
             term_service.print_error("Cannot set the background")
 
         self.ui: Ui_launcher = Ui_launcher()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self) # type: ignore
         for inst in appData.instsList:
             self.instances.append(inst)
             item = QListWidgetItem()
@@ -276,7 +255,10 @@ class LauncherView(QMainWindow):
 
         self.ui.progressLabel.setVisible(False)
         self.ui.progressBar.setVisible(False)
-        self.ui.progressBar.setEnabled(False)
+        self.ui.downloadFromLabel.setVisible(False)
+        self.ui.downloadFromValue.setVisible(False)
+        self.ui.installToLabel.setVisible(False)
+        self.ui.insallToValue.setVisible(False)
 
         self.ui.playButton.clicked.connect(playButtonCommand)
         self.ui.installButton.clicked.connect(installButtonCommand)
@@ -307,10 +289,12 @@ class LauncherView(QMainWindow):
         self.ui.actionLCE_Hub_Workshop.triggered.connect(openWorkshopCommand)
         self.ui.actionLegacyMods_Coming_Soon.triggered.connect(openLegacymodsCommand)
         self.ui.actionApp_Root.triggered.connect(openAppRootCommand)
-        # self.ui.actionConfigPath.triggered.connect(openAppConfigCommand)
+        
+        self.ui.actionConfigPath.triggered.connect(openAppConfigCommand)
         # Action for opening configuration is temporaly disabled until it is fixed
         self.ui.actionConfigPath.setEnabled(False)
         self.ui.actionConfigPath.setText("Configuration (Broken)")
+
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(openGitHubIssuesCommand)
 
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)

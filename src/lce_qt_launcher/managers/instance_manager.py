@@ -1,4 +1,3 @@
-# FIXME : Make Instance mode indpendant
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
@@ -10,10 +9,8 @@ import lce_qt_launcher.views.term_service as term_service
 
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtCore import QObject
-from PySide6.QtWidgets import QMessageBox
 
 from enum import Enum
-from subprocess import TimeoutExpired
 
 import subprocess
 import json
@@ -155,7 +152,7 @@ class Instance(QObject):
 
         Raises:
             RuntimeError: _description_ Error ! Local Installation does not have a download URL when trying to obtain a URL from a local installation
-            RuntimeError: _description_ Not implemented yet! if the state is not implemented yey.
+            RuntimeError: _description_ Not implemented yet! if the state is not implemented yet.
 
         Returns:
             str: _description_
@@ -221,43 +218,42 @@ class InstanceManager:
         from lce_qt_launcher.managers.downloader import Downloader
         self._downloader: Downloader = Downloader(appContext)
 
-    def play(self) -> str:
+    def play(self, appContext : AppContext) -> None:
         """_summary_ Launch an Instance
+
+        Args:
+            appContext (AppContext) : The appContext to get the instancePath
 
         Returns:
             str: _description_ error message or status and exit codes
         """
         return_code: int = 0
+        client_path: str = os.path.join(
+            self.expanded_path(appContext), 
+            self.instance.exe_name
+            )
         try:
-            client_path: str = os.path.join(self.instance.installation_path, self.instance.exe_name)
-            try:
+            game_process_temp = subprocess.run(
+                [client_path, "-name", self.instance.username]
+            )
+            return_code = game_process_temp.returncode
+        except OSError as e:
+            if os.name == "posix":
                 game_process_temp = subprocess.run(
-                    [client_path, "-name", self.instance.username]
+                    ["wine", client_path, "-name", self.instance.username]
                 )
                 return_code = game_process_temp.returncode
-            except OSError as e:
-                if os.name == "posix":
-                    game_process_temp = subprocess.run(
-                        ["wine", client_path, "-name", self.instance.username]
-                    )
-                    return_code = game_process_temp.returncode
-                else:
-                    QMessageBox.critical(None, "Instance Error", str(e.args))
-        except TimeoutExpired as err:
-            term_service.print_error(
-                f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
-            )
-            return f"process of lauching instance {self.instance.name} Failed. Reason : Timeout Expired.\n traceback : {err.with_traceback}"
-        except PermissionError as err:
-            term_service.print_error(
-                f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
-            )
-            return f"Cannot launch {self.instance.name}. Reason : Permission Denied.\n traceback : {err.with_traceback}"
-        else:
-            return f"Client closed with code {return_code}"
+            else:
+                raise e
+        finally:
+            term_service.print_information(f"Client closed with code {return_code}")
 
-    def install_instance(self) -> QNetworkReply | str:
+    def install_instance(self, appContext: AppContext) -> QNetworkReply | str:
         """_summary_ Install the selected Instance
+
+        Args:
+            appContext (AppContext) : The appContext to get the instancePath
+
         Returns:
             QNetworkReply: _description_ : the QtNetwork Reply Object of the download process
         """
@@ -266,7 +262,7 @@ class InstanceManager:
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
         ]:
-            return self._downloader.download_inst_async(self.instance)
+            return self._downloader.download_async(self.instance.repo_url, self.expanded_path(appContext), self.instance.name)
         return "Not implemented yet"
 
     def save_instance(self, save_file: str) -> None:

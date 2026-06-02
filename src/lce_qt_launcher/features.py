@@ -1,6 +1,3 @@
-# pyright: reportAttributeAccessIssue=false
-# pyright: reportUnknownMemberType=false
-# pyright: reportUnknownVariableType=false
 import os
 import subprocess
 
@@ -9,7 +6,6 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QInputDialog,
     QLabel,
-    QMainWindow,
     QMessageBox,
     QProgressBar,
     QWidget,
@@ -37,74 +33,86 @@ from lce_qt_launcher import (
 import lce_qt_launcher.views.cli as cli
 import lce_qt_launcher.views.term_service as term_service
 
+def install_game_gui(
+    parent: QWidget, instanceManager: InstanceManager, appContext : AppContext
+) -> None:
+    """_summary_
+        Features : Install the game instance selected from instanceManager
+    args:
+    - parent : The QWidget parent
+    - instanceManager : The instance manager to use
+    - appContext (App Context): the appContext to use
+    """
+    # HACK : i keep the older method for now, but should be replace with a more generic one it would work even with the cli
+    term_service.print_information("Starting Installation")
+    progressLabel: QLabel = parent.ui.progressLabel # type: ignore
+    progressBar: QProgressBar = parent.ui.progressBar # type: ignore
+    download_reply: QNetworkReply | str = instanceManager.install_instance(appContext)
+    if isinstance(download_reply, QNetworkReply):
+        progressLabel.setVisible(True) # type: ignore
+        progressBar.setVisible(True) # type: ignore
+        parent.ui.downloadFromLabel.setVisible(True) # type: ignore
+        parent.ui.downloadFromValue.setVisible(True) # type: ignore
+        parent.ui.installToLabel.setVisible(True) # type: ignore
+        parent.ui.insallToValue.setVisible(True) # type: ignore
+        progressLabel.setText(f"Downloading {instanceManager.instance.name} Progress") # type: ignore
+        parent.ui.downloadFromValue.setText(instanceManager.instance.repo_url) # type: ignore 
+        parent.ui.installToValue.setText(instanceManager.expanded_path(appContext)) # type: ignore
+
+        def update_progress_bar(bytes_received: int, bytes_total: int) -> None:
+            if bytes_total > 0:
+                progressBar.setMaximum(bytes_total) # type: ignore
+                progressBar.setValue(bytes_received) # type: ignore
+            else: 
+                progressBar.setRange(0, 0) # type: ignore
+
+        download_reply.errorOccurred.connect(
+            lambda : QMessageBox.critical(
+                parent,
+                "Install Manager",
+                f"Instance {instanceManager.instance.name} has failed to install. \n Error : {download_reply.errorString()}",
+                QMessageBox.StandardButton.Ok,
+            )
+        )
+        download_reply.finished.connect(
+            lambda : QMessageBox.information(
+                parent,
+                "Instance Manager",
+                f"Installation of instance {instanceManager.instance.name} was a success",
+                QMessageBox.StandardButton.Ok
+            )
+        )
+        download_reply.downloadProgress.connect(update_progress_bar)
 
 def install_game(
-    parent: QWidget, instance: Instance, instanceManager: InstanceManager
+    instanceManager: InstanceManager,
+    appContext : AppContext
 ) -> None:
     """_summary_
         Features : Install the game instance selected
     args:
-    - parent : The QWidget parent
-    - instance : The selected Instance
-    - instanceManager : The instance manager to use"""
-    # FIXME : Separe the GUI with the logic of the model
-    button_reply = QMessageBox.question(
-        parent,
-        "Confirm Installation",
-        "Do you really want to re-install the game? "
-        + "This version does not support update a installation yet,"
-        + " so a backup is recommended.",
-        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-    )
-    if button_reply == QMessageBox.StandardButton.Yes:
-        term_service.print_information("Starting Installation")
+    - instanceManager (InstanceManager): The instance manager to use
+    - appContext (AppContext): the AppContext to use
+    """
+    term_service.print_information("Starting Installation")
 
-        progressLabel: QLabel = parent.ui.progressLabel
-        progressBar: QProgressBar = parent.ui.progressBar
-        try:
-            reply: QNetworkReply | str = instanceManager.install_instance()
-            if isinstance(reply, QNetworkReply):
-                _ = progressLabel.setVisible(True)
-                _ = progressBar.setVisible(True)
-                _ = progressBar.setEnabled(True)
-                _ = progressLabel.setText(f"Downloading {instance.name} Progress")
-
-                def update_progress_bar(bytes_received: int, bytes_total: int) -> None:
-                    if bytes_total > 0:
-                        _ = progressBar.setMaximum(bytes_total)
-                        _ = progressBar.setValue(bytes_received)
-                    else:
-                        _ = progressBar.setRange(0, 0)
-
-                reply.downloadProgress.connect(update_progress_bar)
-            else:
-                pass
-        except RuntimeError as e:
-            _ = progressLabel.setVisible(True)
-            _ = progressBar.setVisible(True)
-            _ = progressBar.setEnabled(True)
-            _ = progressLabel.setText(
-                f"Downloading {instance.name} Cancelled due to a error."
-            )
-            _ = QMessageBox.critical(
-                parent,
-                "Minecraft LCE Qt Launcher",
-                f"There were a error during the installation \n traceback : {e.args}",
-                QMessageBox.StandardButton.Ok,
-            )
-    else:
-        _ = QMessageBox.information(
-            parent,
-            "Minecraft LCE Qt Launcher",
-            "Installation Cancelled",
-            QMessageBox.StandardButton.Ok,
+    download_reply : QNetworkReply | str = instanceManager.install_instance(appContext)
+    if isinstance(download_reply, QNetworkReply):
+        download_reply.errorOccurred.connect(
+            lambda : term_service.print_error(f"Instance {instanceManager.instance.name} has failed to install. Error : {download_reply.errorString()}")
         )
+        download_reply.finished.connect(
+            lambda : term_service.print_success(f"Installation of instance {instanceManager.instance.name} was a success")
+        )
+    else:
+        print(download_reply)
 
 
-def launch_game(instanceManager: InstanceManager, starting_game_msg_str: str) -> None:
+
+def launch_game(instanceManager: InstanceManager, appContext : AppContext, starting_game_msg_str: str) -> None:
     """Features : Launch the game instance selected"""
     term_service.print_information(starting_game_msg_str)
-    print(instanceManager.play())
+    instanceManager.play(appContext)
 
 
 def show_setting(
@@ -152,29 +160,29 @@ def open_url_at(sysMan: SystemManager, url: str) -> None:
     sysMan.open_url_with_system(url)
 
 
-def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
-    """_summary_ : Create With Instance From Form
-    #FIXME: Make this feature less dependant on the GUI
-
+def generate_instance(instance_dict : dict[str, str]) -> Instance:
+    """_summary_ :
+        Create With Instance From Form
     Args:
         mainWindow (QMainWindow): _description_ : the main window form
 
     Returns:
         Instance: _description_ : the returned Instance created with the Form
     """
-    form: QMainWindow = mainWindow.ui
-    username_str: str = form.usernameInputBox.text()
-    path_str: str = form.pathInputBox.text()
-    repo_url_str: str = form.repoURLInputBox.text()
-    instance_name: str = QInputDialog.getText(
-        mainWindow, "Name your instance", "Set the name of the instance"
-    )[0]
     newInstance = Instance()
+
+    instance_name = instance_dict.get("instance_name")
+    username_str = instance_dict.get("instance_str")
+    version_str = instance_dict.get("version_str")
+    path_str = instance_dict.get("path_str")
+    repo_url_str = instance_dict.get("repo_url_str")
 
     if instance_name:
         newInstance.name = instance_name
     if username_str:
         newInstance.username = username_str
+    if version_str:
+        newInstance.version = version_str
     if path_str:
         newInstance.installation_path = path_str
     if repo_url_str:
@@ -182,6 +190,38 @@ def new_instance_from_form(mainWindow: QMainWindow) -> Instance:
 
     return newInstance
 
+def new_instance_from_form(mainWindow) -> Instance: # type: ignore
+    #FIXME: Make this feature less dependant on the GUI
+    """_summary_ : Create With Instance From Form
+
+    Args:
+        mainWindow (QMainWindow): _description_ : the main window form
+
+    Returns:
+        Instance: _description_ : the returned Instance created with the Form
+    """
+    form  = mainWindow.ui # type: ignore
+    username_str: str = form.usernameInputBox.text() # type: ignore
+    version_str : str = form.versionInputBox.text() # type: ignore
+    path_str: str = form.pathInputBox.text() # type: ignore
+    repo_url_str: str = form.repoURLInputBox.text() # type: ignore
+    instance_name: str = QInputDialog.getText(
+        mainWindow, "Name your instance", "Set the name of the instance" # type: ignore
+    )[0]
+    newInstance = Instance()
+
+    if instance_name:
+        newInstance.name = instance_name
+    if username_str:
+        newInstance.username = username_str
+    if version_str:
+        newInstance.version = version_str
+    if path_str:
+        newInstance.installation_path = path_str
+    if repo_url_str:
+        newInstance.repo_url = repo_url_str
+
+    return newInstance
 
 def show_webbrowser(parent: QWidget, url: str) -> None:
     """_summary_ Create and show a Webbrowser view

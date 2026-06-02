@@ -45,11 +45,7 @@ path = "hatch_build.py"
 packages = "python packages.py"
 
 [tool.pyright]
-reportImportCycles="hint"
-reportUnusedCallResult="hint"
-reportAny="hint"
-reportUnknownMemberType="hint"
-reportUnknownVariableType="hint"
+typeCheckingMode="strict"
 
 [tool.pyproject-appimage]
 script = "lce-qt-launcher"
