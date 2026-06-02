@@ -27,8 +27,6 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 #   nuitka-project: --file-description="LCE Qt Launcher Alpha"
 #   nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 
-# nuitka-project: --include-data-dir=assets=assets
-# nuitka-project: --include-data-dir=data=data
 # nuitka-projet:  --include-distribution-metadata=lce-qt-launcher
 
 from lce_qt_launcher import instance_extension_str

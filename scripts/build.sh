@@ -10,24 +10,31 @@ UIC="pyside6-ui"
 
 fix_import() {
     if [[ $(uname -o) == "GNU/Linux" ]]; then
+        echo "fixing $1 file."
         sed -i 's/^import res_rc/from . import res_rc/g' "$1"
     else 
+        echo "fixing $1 file."
         sed -i.bak 's/^import res_rc/from . import res_rc/g' "$1"
         rm "$1.bak"
+        echo "removing $1.bak file."
     fi
 }
 
 find_qt_tool() {
     if command -v pyside6-rcc &> /dev/null; then
+        echo "pyside6-rcc detected. using pyside6 tools."
         RCC="pyside6-rcc"
         UIC="pyside6-uic"
     elif command -v /usr/local/bin/pyside6-rcc &> /dev/null; then
+        echo "/usr/local/bin/pyside6-rcc detected. using /usr/local/bin/pyside6 tools."
         RCC="/usr/local/bin/pyside6-rcc"
         UIC="/usr/local/bin/pyside6-uic"
     elif command -v /usr/lib/qt6/rcc &> /dev/null; then
+        echo "/usr/lib/qt6/rcc detected. using /usr/lib/qt6/rcc and uic tools."
         RCC="/usr/lib/qt6/rcc -g python"
         UIC="/usr/lib/qt6/uic -g python"
     elif command -v /usr/local/PySide6/bin/rcc &> /dev/null; then
+        echo "/usr/local/PySide6/bin/rcc detected. using /usr/local/PySide6/bin/rcc and uic tools."
         RCC="/usr/local/PySide6/bin/rcc -g python"
         UIC="/usr/local/PySide6/bin/uic -g python"
     fi

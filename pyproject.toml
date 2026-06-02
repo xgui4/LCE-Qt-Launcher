@@ -17,7 +17,7 @@ license-files = [ "license.md" ]
 dependencies = [
     "PySide6<=6.11.1; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
     "platformdirs<=4.10.0",
-    "hatch<=1.16.5",
+    "hatch<=1.17.0",
     "rich<=15.0.0",
     "vdf<=3.4",
     "patchelf<=0.17.2.4; sys_platform == 'linux'",
@@ -54,7 +54,7 @@ reportUnknownVariableType="hint"
 [tool.pyproject-appimage]
 script = "lce-qt-launcher"
 output = "lce-qt-launcher.AppImage"
-desktop-entry = "packages/io.github.xgui4.lce_qt_launcher-isolated.desktop"
+desktop-entry = "io.github.xgui4.lce_qt_launcher-isolated.desktop"
 icon = "assets/io.github.xgui4.lce_qt_launcher.png"
 appstream = "packages/io.github.xgui4.lce_qt_launcher.metainfo.xml"
 
