@@ -78,9 +78,7 @@ In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/n
 
 ### AppImage
 
-Guide coming soon
-
-Also avaiable in nightly build and tagged version
+Aavailable in [nightly build](https://github.com/xgui4/LCE-Qt-Launcher/releases/download/nightly/lce-qt-launcher.AppImage) and tagged version (Coming soon!)
 
 ### Via Git
 
@@ -129,6 +127,7 @@ You can also, downloading this repo with the command `git clone https://github.c
 
 - NixOS
 - FreeBSD Port & in venv (portable)
+- AppImage
 
 ### Upcoming Platform
 

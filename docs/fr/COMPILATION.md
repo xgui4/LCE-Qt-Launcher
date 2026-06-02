@@ -13,9 +13,6 @@
 
 ### Paquet Nix
 
-Documentation à venir
-
-<!--
 #### Nix Flake (Expérimental)
 
 1. Exécutez `nix build`.
@@ -23,10 +20,7 @@ Documentation à venir
 #### Nixpkg
 
 1. nix-build default.nix
-
 2. nix-env -i ./result
-
--->
 
 #### Programme d'installation Windows
 
@@ -55,3 +49,9 @@ Le support pour flatpak est a venir et ne marche pas correctement pour le moment
 1. Accédez au répertoire contenant le manifeste Flatpak : `cd packages/flatpak`
 2. Compilez Flatpak : `flatpak-builder --user --install build-dir io.github.xgui4.lce_qt_launcher.yml --install-deps-from=flathub`
 -->
+
+### AppImage (GNU/Linux uniquement)
+
+1. Accédez à l'environnement virtuel et activez-le.
+2. Installez le paquet pyproject-appimage.
+3. Exécutez pyproject-appimage.

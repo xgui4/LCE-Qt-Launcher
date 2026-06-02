@@ -55,7 +55,6 @@ jobs:
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.8
         with:
           path: packages\windows\nigthly.iss
-          # HACK : temporaly removed the filename to see if the installer workflow work
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
@@ -98,10 +97,10 @@ jobs:
       - name: Install dependencies
        # FIXME : OSError: [Errno 8] Exec format error: '/tmp/tmppzq4xr4e/magick' Error: Process completed with exit code 1.
         run: |
-          python -m pip install  --upgrade pip
+          python -m pip install --upgrade pip
           pip install pyproject-appimage
           pip install . 
-          pyproject-appimage || python -m pyproject_appimage
+          pyproject-appimage --no-fuse || python -m pyproject_appimage --no-fuse
           
 
       - name: Upload Artifact

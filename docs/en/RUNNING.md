@@ -31,3 +31,8 @@
 2. Load the venv with `source .venv/bin/activate.sh` (replace .sh with your shell, on Windows it is `.venv\Scripts\activate.ps1` for powershell or `.venv\Scripts\activate.bat` for cmd)
 3. Run `scripts/build.sh` (for Linux) `scripts\build.cmd` for (Windows)
 4. Run the main python script `src/lce_qt_launche.py` (On Windows you might need to invoque `python3` directly and replace `/` with `\`)
+
+## AppImage (GNU/Linux only)
+
+1. `chmod +x <appimage_filename>`
+2. `./<appimage_filename>`
