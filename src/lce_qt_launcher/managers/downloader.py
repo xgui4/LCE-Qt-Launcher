@@ -30,10 +30,11 @@ class Downloader(QObject):
         self.appContext: AppContext = appContext
 
     def download_async(self, url_str: str, installation_path : str, object_name: str) -> QNetworkReply:
-        """_summary_
-            Download Content from the internet from s certain url and a object_name
+        """_summary_:
+                Download Content from the internet from a certain url and a object_name
         Args:
             url_str (str): _description_ the url of the content to download
+            installation_path (str): _description_ : path to extract the installation
             object_name (str): _description_ the name of the object name
         Returns:
             QNetworkReply: _description_ the QNetworkReply to use for updating the ui/tui and get information about the downlaod
@@ -50,17 +51,18 @@ class Downloader(QObject):
                 return
             data = reply.readAll().data()
             with ZipFile(BytesIO(data)) as archive:
-                _ = self.extract_async(archive, installation_path)
+                self.extract_async(archive, installation_path)
             term_service.print_success(
                 f"Installation of {object_name} was a success"
             )
-        _ = reply.finished.connect(_when_finished)
+
+        reply.finished.connect(_when_finished)
         return reply
 
     def extract_async(self, data: ZipFile, installation_path: str) -> None:
         """
-        _summary_ : extract the the data into the specified path
-
+        _summary_ : 
+            extract the the data into the specified path
         Args:
             data : the zip file itself
             installation_path : path of the installation/extraction

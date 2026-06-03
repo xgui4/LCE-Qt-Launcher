@@ -258,7 +258,7 @@ class LauncherView(QMainWindow):
         self.ui.downloadFromLabel.setVisible(False)
         self.ui.downloadFromValue.setVisible(False)
         self.ui.installToLabel.setVisible(False)
-        self.ui.insallToValue.setVisible(False)
+        self.ui.installToValue.setVisible(False)
 
         self.ui.playButton.clicked.connect(playButtonCommand)
         self.ui.installButton.clicked.connect(installButtonCommand)

@@ -54,7 +54,7 @@ def install_game_gui(
         parent.ui.downloadFromLabel.setVisible(True) # type: ignore
         parent.ui.downloadFromValue.setVisible(True) # type: ignore
         parent.ui.installToLabel.setVisible(True) # type: ignore
-        parent.ui.insallToValue.setVisible(True) # type: ignore
+        parent.ui.installToValue.setVisible(True) # type: ignore
         progressLabel.setText(f"Downloading {instanceManager.instance.name} Progress") # type: ignore
         parent.ui.downloadFromValue.setText(instanceManager.instance.repo_url) # type: ignore 
         parent.ui.installToValue.setText(instanceManager.expanded_path(appContext)) # type: ignore
@@ -106,7 +106,6 @@ def install_game(
         )
     else:
         print(download_reply)
-
 
 
 def launch_game(instanceManager: InstanceManager, appContext : AppContext, starting_game_msg_str: str) -> None:

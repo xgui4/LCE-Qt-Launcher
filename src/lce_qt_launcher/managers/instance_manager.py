@@ -257,12 +257,12 @@ class InstanceManager:
         Returns:
             QNetworkReply: _description_ : the QtNetwork Reply Object of the download process
         """
-        # FIXME do others types
+        # TODO do others types
         if self.instance.instance_source in [
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
         ]:
-            return self._downloader.download_async(self.instance.repo_url, self.expanded_path(appContext), self.instance.name)
+            return self._downloader.download_async(self.instance.get_download_url(), self.expanded_path(appContext), self.instance.name)
         return "Not implemented yet"
 
     def save_instance(self, save_file: str) -> None:
