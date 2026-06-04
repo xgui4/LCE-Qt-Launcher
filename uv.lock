@@ -472,7 +472,7 @@ wheels = [
 
 [[package]]
 name = "lce-qt-launcher"
-version = "0.0.20a9"
+version = "0.0.21a0"
 source = { editable = "." }
 dependencies = [
     { name = "hatch" },

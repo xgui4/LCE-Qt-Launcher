@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.xgui4.lce_qt_launcher.metainfo.xml</id>
-  
-  <name>lce_qt_launcher</name>
-  <summary>A custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.</summary>
-  <metadata_license>GPLv3</metadata_license>
-  <project_license>GPLv3</project_license>
-  
+  <id>io.github.xgui4.lce_qt_launcher</id>
+  <name>LCE Qt Launcher</name>
+  <summary>A custom Free/Libre Minecraft LCE Launcher written with PySide6 (Python for Qt 6).</summary>
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <description>
-    <h1> LCE Qt Launcher </h1>
-    <h2 id="about">About</h2>
-    <p>This is a custom Minecraft LCE Launcher written in Python and Qt with Freedom and with GNU/Linux support in mind.</p>
-    <h2 id="features">Features</h2>
+    <h1>
+      About
+    </h1>
+    <p>
+      This is a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.
+    </p>
+    <h2>
+      Why LCE Qt Launcher ?
+    </h2>
     <ul>
-      <li>Command Line interface (CLI)</li>
-      <li>Qt 6 GUI (Native like Interface)</li>
-      <li>Written in Python (No Electron or Rust)</li>
-      <li>Customisable </li>
-      <li>Free Software (GPLv3)</li>  
-      <li>Multiple Instances</li>
-      <li>localisations</li>
-      <li>Multiples Defaults Instances</li>
-      <li>in-app news</li>
+      <li> Made in Python with Qt 6 : bloat free and integrate with GNU/Linux Plasma 6/Qt 6 Theme </li>
+      <li> Integration with Community Tools </li> 
+      <li> GNU/Linux first class support </li> 
+      <li> Licensed via copyleft licensing (GPLv3), so big tech free </li> 
+      <li> Free as Freedom Launcher </li> 
     </ul>
-    <h2 id="long-term-goal">Long Term Goal</h2>
+    <h2>
+      Features
+    </h2>
     <ul>
-    <li>Accessibility </li>
-    <li>GNU/Linux compatibility</li>
-    <li>Windows support</li>
-    <li>Experimental FreeBSD support </li>
-    <li>Focus on being the main hub for Minecraft LCE on GNU/Linux </li>
+      <li> Command Line interface (CLI) </li> 
+       <li> Multiple Instances support <li>    
+       - Pre-Configured ones :     
+        - [NeoLegacy (Default)](https://github.com/pieeebot/neoLegacy/)     
+        - [MCLCE/MinecraftConsoles (source code backup only)](https://git.minecraftlegacy.com/backups/MinecraftConsoles) (previously smartcmd/MinecraftConsoles)     
+        - [LCE-Revelation](https://git.revela.dev/itsRevela/LCE-Revelations)     
+        - [Aether Mod](https://github.com/Frcoxd/aether-papu) 
+      - Marketplaces :   
+        - [LCE Hub Emeralds Launcher Workshop](https://github.com/LCE-Hub/piston)   
+        - [LegacyMods (coming soon)](https://legacymods.org/) 
+      <li>  in-app news for the instances
+    </ul>
+    <p>
+      Long Term Goal / Roadmap
+    </p>
+    <ul>
+      <li> Accessibility </li> 
+      <li> Skin support </li> 
+      <li> GNU/Linux compatibility </li> 
+      <li> Windows support </li> 
+      <li> Experimental FreeBSD and Nix/NixOS support </li> 
+      <li> Flatpak support </li> 
+      <li> AppImage Support </li> 
+      <li> Localisations support </li> 
+      <li> Focus on being one place for everything Minecraft LCE on GNU/Linux </li> 
     </ul>
   </description>
-
-  <url>https://github.com/xgui4/LCE-Qt-Launcher</url>
   
   <launchable type="desktop-id">io.github.xgui4.lce_qt_launcher.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/92811211-23d1-4732-8b3d-31f2530cdb7e</image>
+    </screenshot>
+  </screenshots>
 </component>

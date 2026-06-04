@@ -5,6 +5,7 @@ sdk: org.kde.Sdk
 base: io.qt.PySide.BaseApp
 base-version: '6.8'
 command: lce-qt-launcher
+version: 0.0.21.0a
 
 finish-args:
   - --device=dri

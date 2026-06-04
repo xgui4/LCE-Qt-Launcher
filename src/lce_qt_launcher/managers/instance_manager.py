@@ -20,8 +20,9 @@ SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/h
 
 
 class InstanceSource(Enum):
-    """_summary_ The 4 Type of Instances (2 functional, the othes coming soon)"""
-
+    """_summary_
+        5 Instances Type : The Two Releases are on the only one working
+    """
     GITHUB_RELEASE = 0
     FORGEJO_RELEASE = 1
     REMOTE_GIT_SOURCE = 2
@@ -57,8 +58,8 @@ def from_int_to_InstanceSource(value: int) -> InstanceSource:
 
 
 def from_str_to_InstanceSource(string: str) -> InstanceSource:
-    """_summary_ Convert str to Instance Source
-
+    """_summary_ 
+        Convert str to Instance Source
     Args:
         string (str): _description_ the string to convert
 
@@ -82,22 +83,23 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
 
-_DEFAULT_INST_NAME = "New Default (pieeebot neoLegacy)"
-_DEFAULT_INSTALLATION_PATH = "{appInstancePath}/.new-default"
+_DEFAULT_INST_NAME = "Default"
+_DEFAULT_INSTALLATION_PATH = "{appInstancePath}/default"
 _DEFAULT_USERNAME = "Steve"
 _DEFAULT_ARCHIVE_FILE = "neoLegacyWindows64.zip"
 _DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
 _DEFAULT_REPO_URL = "https://github.com/neoStudiosLCE/neoLegacy"
 _DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
-_DEFAULT_IMAGE = ":/assets/neoLegacy.png"
-_DEFAULT_NEWS_FEED = "https://github.com/neoStudiosLCE/neoLegacy/commits/main/"
+_DEFAULT_IMAGE = ":/assets/minecrft.png"
+_DEFAULT_NEWS_FEED = ":/websites/instance_news.html"
 _DEFAULT_VERSION = "Nightly"
 
 
 class Instance(QObject):
-    """_summary_ An config and inform an instance of Minecraft LCE Installed or to install"""
-
+    """_summary_ 
+        An config and inform an instance of Minecraft LCE Installed or to install
+    """
     def __init__(
         self,
         name: str = _DEFAULT_INST_NAME,
@@ -196,22 +198,26 @@ class Instance(QObject):
         return dict_to_return
 
     def display(self) -> None:
-        print(f"Name : {self.name}")
-        print("=============================")
-        print(f"installation path : {self.installation_path}")
-        print(f"username : {self.username}")
-        print(f"executable name : {self.exe_name}")
-        print(f"archive file : {self.archive_file}")
-        print(f"repo url : {self.repo_url}")
-        print(f"image : {self.image}")
-        print(f"instance source : {self.instance_source.value}")
-        print(f"news_feed : {self.news_feed}")
-        print(f"version : {self.version}")
-        print(f"steam link : {self.steam_link}")
+        term_service.print_pretty(f"""
+[bold yellow]Name : {self.name} 
+=============================[/bold yellow]
+[bold yellow]installation path[/bold yellow] : {self.installation_path}
+[bold yellow]username[/bold yellow] : {self.username}
+[bold yellow]executable name[/bold yellow] : {self.exe_name}
+[bold yellow]archive file[/bold yellow] : {self.archive_file}
+[bold yellow]repo url[/bold yellow] : {self.repo_url}
+[bold yellow]image[/bold yellow] : {self.image}
+[bold yellow]instance source[/bold yellow] : {self.instance_source.value}
+[bold yellow]news_feed[/bold yellow] : {self.news_feed}
+[bold yellow]version[/bold yellow] : {self.version}
+[bold yellow]steam link[/bold yellow] : {self.steam_link}
+""")
 
 
 class InstanceManager:
-    """_summary_ The Manager for Instances objects"""
+    """_summary_ 
+        The Manager for Instances objects
+    """
 
     def __init__(self, instance: Instance, appContext: AppContext):
         self.instance: Instance = instance
@@ -219,13 +225,9 @@ class InstanceManager:
         self._downloader: Downloader = Downloader(appContext)
 
     def play(self, appContext : AppContext) -> None:
-        """_summary_ Launch an Instance
-
+        """_summary_  Launch an Instance
         Args:
             appContext (AppContext) : The appContext to get the instancePath
-
-        Returns:
-            str: _description_ error message or status and exit codes
         """
         return_code: int = 0
         client_path: str = os.path.join(
@@ -249,15 +251,13 @@ class InstanceManager:
             term_service.print_information(f"Client closed with code {return_code}")
 
     def install_instance(self, appContext: AppContext) -> QNetworkReply | str:
-        """_summary_ Install the selected Instance
-
+        """_summary_ 
+            Install the selected Instance
         Args:
             appContext (AppContext) : The appContext to get the instancePath
-
         Returns:
             QNetworkReply: _description_ : the QtNetwork Reply Object of the download process
         """
-        # TODO do others types
         if self.instance.instance_source in [
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
@@ -298,7 +298,7 @@ class InstanceManager:
 
     def is_installable(self) -> bool:
         """_summary_  assert if instance is installable"""
-        # Note : Right now the remote git location is not installable via this launcher, it will added in the next version
+        # HACK : Right now the remote git location is not installable via this launcher, it will added in the next version
         if self.instance.instance_source in [
             InstanceSource.FORGEJO_RELEASE,
             InstanceSource.GITHUB_RELEASE,

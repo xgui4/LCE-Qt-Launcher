@@ -8,6 +8,10 @@
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
 > PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.md) and the [Code of Respect](code-of-conduct.md)
+> [!Note]
+> The auto-update and installation of the game files is unstable and unviable, it is recommnend to have the game file already installation
+> as the installation and update mechanism require external repo that can be shutdown without previous notice. I do my best and the nightly build are often
+> uptodae but the stable version sometime lack behind and require manual intervention.
 
 ## About
 

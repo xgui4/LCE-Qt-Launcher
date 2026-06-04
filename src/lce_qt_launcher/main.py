@@ -22,8 +22,8 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 # nuitka-project-if: {OS} == "Windows":
 #   nuitka-project: --windows-icon-from-ico=assets/app.ico
 #   nuitka-project: --windows-product-name=LCE-Qt-Launcher
-#   nuitka-project: --product-version="0.0.20.9"
-#   nuitka-project: --file-version="0.0.20.9"
+#   nuitka-project: --product-version="0.0.21.0"
+#   nuitka-project: --file-version="0.0.21.0"
 #   nuitka-project: --file-description="LCE Qt Launcher Alpha"
 #   nuitka-project: --copyright="Copyleft Xgui4 2026 (GPLv3)"
 

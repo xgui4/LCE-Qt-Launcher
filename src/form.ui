@@ -664,7 +664,7 @@
          <widget class="QWebEngineView" name="newsEngineView">
           <property name="url">
            <url>
-            <string>https://github.com/neoStudiosLCE/neoLegacy</string>
+            <string>qrc:/website/instance_news.html</string>
            </url>
           </property>
          </widget>

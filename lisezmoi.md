@@ -8,6 +8,8 @@
 > [!WARNING]
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.
 > Les contributions (PR) sont les bienvenues pour corriger ou ajouter des fonctionnalités. Veuillez respecter la [licence GPLv3](license.md) et le [Code de conduite](CODE-DE-CONDUITE.md).
+> [!Note]
+> La mise à jour et l'installation automatiques des fichiers du jeu sont instables et non viables. Il est recommandé d'avoir déjà installé le jeu. En effet, le mécanisme d'installation et de mise à jour nécessite un dépôt externe qui peut être fermé sans préavis. Je fais de mon mieux et les versions de développement sont généralement à jour, mais la version stable est parfois en retard et nécessite une intervention manuelle.
 
 ## À propos
 

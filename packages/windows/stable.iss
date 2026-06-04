@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "LCE Qt Launcher"
-#define MyAppVersion "0.0.20b0"
+#define MyAppVersion "0.0.21a0"
 #define MyAppPublisher "Xgui4"
 #define MyAppURL "https://github.com/xgui4/lce-qt-launcher"
 #define MyAppExeName "main.exe"
@@ -56,7 +56,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; NOTE: Use the "issigverify" flag or the "Hash" parameter to verify downloads
-Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/v0.0.20a0/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
+Source: "https://github.com/xgui4/LCE-Qt-Launcher/releases/download/v0.0.21a0/LCE-Qt-Launcher-Windows.zip"; DestDir: "{app}"; DestName: "LCE-Qt-Launcher-Windows.zip"; ExternalSize: "186646528"; Flags: ignoreversion external download extractarchive recursesubdirs createallsubdirs
 Source: "lce_inst.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
