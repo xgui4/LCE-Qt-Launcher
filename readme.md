@@ -80,7 +80,7 @@ Coming Soon (Delayed due to technical issues)
 
 See [my FreeBSD Port Overlay](https://github.com/xgui4/freebsd-ports) to installing games/lce-qt-laucher (py{python version}-lce-qt-launcher) port.
 
-### Nigthly Build
+### Nigthly Build ![Nightly Build Action Status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/nightly.yml/badge.svg)
 
 > [!NOTE]
 > This branch is not stable and changes are made almost daily so this branch can sometimes break. Also, MacOS is not avaiable in the Nigthly Build due to Apple restriction and that I do now own a mac.

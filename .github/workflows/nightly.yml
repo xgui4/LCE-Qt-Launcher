@@ -1,9 +1,10 @@
 name: Build and Deploy Nightly
 
-on:
+on: 
   push:
     branches:
       - dev
+  workflow_dispatch :
 permissions:
   contents: write
  
@@ -69,7 +70,9 @@ jobs:
       container:
         image: archlinux
         options: --privileged
+
       steps: 
+      - run: sudo pacman -Syu
       - uses: actions/checkout@v6.0.2
       - name: Build Arch Linux package
         uses: FFY00/build-arch-package@v1
@@ -88,6 +91,7 @@ jobs:
     name: Build GNU/Linx AppImage
     runs-on: ubuntu-latest
     steps:
+      - run: sudo apt update && sudo apt upgrade
       - uses: actions/checkout@v6.0.2
       - uses: actions/setup-python@v6.2.0
         with:
@@ -139,7 +143,7 @@ jobs:
             \n
             Automatic Nighty (daily) binary build powered by GtiHub Actions. \n
             The nigthly build are experimental nuitka compilation from the dev branch \n
-            Now includes installer for Windows. Note : AppImage And Arch Packge automatic build are currently broken"
+            Now includes installer for Windows."
           files: |
             ./artifacts/*.exe
             ./artifacts/*.zip

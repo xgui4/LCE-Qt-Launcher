@@ -77,7 +77,7 @@ A Venir bientôt (décalé du a des problèmes techniques)
 
 Voir [mon overlay de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
 
-### Version Nightly/Quotidienne (Nighly Build)
+### Version Nightly/Quotidienne (Nighly Build) ![Nightly Build Action Status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/nightly.yml/badge.svg)
 
 > [!NOTE]
 > Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version nighly en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.
