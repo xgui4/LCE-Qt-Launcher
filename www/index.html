@@ -1,11 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" href="assets/favicon.png" />
     <title>LCE Qt Launcher - Home</title>
 </head>
+
 <body>
-    
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <a class="nav-link" href="#"><img src="assets/favicon.png" /></a>
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="marketplace.html">Marketplace</a>
+            <a class="nav-link" href="skins.html">Skin Manager</a>
+            <a class="nav-link" href="download.html">Download Center</a>
+            <a class="nav-link" href="news.html">News</a>
+        </nav>
+    </header>
+    <main>
+        <h1>LCE Qt Launcher</h1>
+        <p><a href="../lisezmoi.md">French Version</a></p>
+        <p> <img src="../.github/screenshots/image.png" alt="Screnshot of the launcher in version 0.0.20a0 of the launcher)" /> </p>
+
+        <ul>
+            <li>Other Repo:
+
+                <ul>
+                    <li><a href="https://code.nolog.cz/xgui4/LCE-Qt-Launcher">Backup repo</a></li>
+                    <li><a href="https://code.nolog.cz/xgui4/lce-qt-Launcher-data">Data repo</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <blockquote>
+            <p>[!WARNING]<br />
+                This launcher is work in progress and its feature could be changes or remove at any time.<br />
+                PR are more than welcome to fix or add features. Just be compliant with the <a href="license.md">GPLv3
+                    license</a> and the <a href="../code-of-conduct.md">Code of Respect</a></p>
+        </blockquote>
+
+        <h2></h2>
+
+        <blockquote>
+            <p>[!INFORMATION]<br />
+                The auto-update and installation of the game files is unstable and unviable, it is recommnend to have
+                the
+                game file already installation<br />
+                as the installation and update mechanism require external repo that can be shutdown without previous
+                notice.
+                I do my best and the nightly build are often<br />
+                uptodae but the stable version sometime lack behind and require manual intervention.</p>
+        </blockquote>
+
+        <h2>About</h2>
+
+        <p>This is a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux
+            support in mind.</p>
+
+        <h2>Why LCE Qt Launcher ?</h2>
+
+        <ul>
+            <li>Made in Python with Qt 6 : bloat free and integrate with GNU/Linux Plasma 6/Qt 6 Theme</li>
+            <li>Integration with Community Tools</li>
+            <li>GNU/Linux first class support</li>
+            <li>Licensed via copyleft licensing (GPLv3), so big tech free</li>
+            <li>Free as Freedom Launcher</li>
+        </ul>
+
+        <h2>Features</h2>
+
+        <ul>
+            <li>Command Line interface (CLI)</li>
+            <li>Multiple Instances support
+
+                <ul>
+                    <li>Pre-Configured ones :
+
+                        <ul>
+                            <li><a href="https://github.com/pieeebot/neoLegacy/">NeoLegacy (Default)</a></li>
+                            <li><a href="https://git.minecraftlegacy.com/backups/MinecraftConsoles">MCLCE/MinecraftConsoles
+                                    (source code backup only)</a> (previously smartcmd/MinecraftConsoles)</li>
+                            <li><a href="https://git.revela.dev/itsRevela/LCE-Revelations">LCE-Revelation</a></li>
+                            <li><a href="https://github.com/Frcoxd/aether-papu">Aether Mod</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Marketplaces :
+
+                <ul>
+                    <li><a href="https://github.com/LCE-Hub/piston">LCE Hub Emeralds Launcher Workshop</a></li>
+                    <li><a href="https://legacymods.org/">LegacyMods (coming soon)</a></li>
+                </ul>
+            </li>
+            <li>in-app news for the instances</li>
+        </ul>
+
+        <h2>Long Term Goal / Roadmap</h2>
+
+        <ul>
+            <li>Accessibility</li>
+            <li>Skin support</li>
+            <li>GNU/Linux compatibility</li>
+            <li>Windows support</li>
+            <li>Experimental FreeBSD and Nix/NixOS support</li>
+            <li>Flatpak support</li>
+            <li>AppImage Support</li>
+            <li>Localisations support</li>
+            <li>Focus on being one place for everything Minecraft LCE on GNU/Linux</li>
+        </ul>
+
+        <h2>Software Requirement</h2>
+
+        <ul>
+            <li><a href="https://pypi.org/project/uv">uv</a> or <a href="https://pypi.org/project/hatch/">hatch</a></li>
+            <li><a href="https://www.python.org">Python 3.10 to Python 3.12 (for Nuitka build, system package and
+                    portable
+                    build python version can be higher)</a></li>
+            <li>
+                <p>A display server or compositor</p>
+            </li>
+            <li>
+                <p>For UNIX like system</p>
+
+                <ul>
+                    <li>A display server or compositor</li>
+                    <li>Bash (normally pre-installed on Linux but often demand installation in *BSD and MacOS)</li>
+                </ul>
+            </li>
+            <li>For Windows
+
+                <ul>
+                    <li>Powershell</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Software recommendations</h2>
+
+        <ul>
+            <li><a href="https://github.com/IdreesInc/Monocraft">Monocraft Font</a> installed</li>
+            <li><a href="https://github.com/IdreesInc/Miracode">Miracode Font</a></li>
+            <li>Steam, <a href="https://github.com/sonic2kk/steamtinkerlaunch">Steam Tinker Launch</a> and Valve Proton
+                for
+                better GNU/Linux support, Proton is not required for Windows</li>
+        </ul>
+
+        <h2>Python Library and Tools Used</h2>
+
+        <ul>
+            <li>PySide 6</li>
+            <li>platformdirs</li>
+            <li>rich</li>
+            <li>hatch</li>
+            <li>uv</li>
+        </ul>
+
+        <h2>Compatible Operating System</h2>
+
+        <h3>Golden Support</h3>
+
+        <blockquote>
+            <p>[!NOTE]<br />
+                Platform Tested Regurlaly and with completed implemation/patch</p>
+        </blockquote>
+
+        <ul>
+            <li>Windows 10 and later</li>
+            <li>GNU/Linux</li>
+        </ul>
+
+        <h3>Experimental Support</h3>
+
+        <blockquote>
+            <p>[!NOTE]<br />
+                Plattform tested with work in progress implemation</p>
+        </blockquote>
+
+        <ul>
+            <li>NixOS</li>
+            <li>FreeBSD Port &amp; in venv (portable)</li>
+            <li>AppImage</li>
+        </ul>
+
+        <h3>Upcoming Platform</h3>
+
+        <blockquote>
+            <p>[!NOTE]<br />
+                Platform not tested yet, but with implementation</p>
+        </blockquote>
+
+        <ul>
+            <li>Flatpak</li>
+        </ul>
+
+        <h3>Unsupported OS</h3>
+
+        <blockquote>
+            <p>[!NOTE]<br />
+                These platform are not tested and may work or not at all</p>
+        </blockquote>
+
+        <ul>
+            <li>Other *BSD system, as Minecraft LCE is not supported on those and Wine is not available.</li>
+            <li>Minecraft LCE on Android is currently quite laggy and buggy</li>
+            <li>macOS: LCE Qt Launcher does not officially support MacOS and is not tested during PRs and testing and
+                does
+                not have package for it and there is no documentation for it. But expericenced user could make it work.
+            </li>
+        </ul>
+
+        <h2>Special Thank to</h2>
+
+        <ul>
+            <li><a href="https://github.com/PrismLauncher/PrismLauncher">Prism Launcher</a> for certain UI elements and
+                ui
+                files</li>
+            <li><a href="https://git.minecraftlegacy.com/backups/MinecraftConsoles">MCLCE/MinecraftConsoles
+                    community</a>
+                for the port of the game for PC</li>
+            <li><a href="https://github.com/neoStudiosLCE/neoLegacy" title="">neoLegacy community</a> for backporting
+                updates for the PC port</li>
+            <li><a href="https://git.revela.dev/itsRevela/LCE-Revelations">LCE-Revelation community</a></li>
+            <li><a href="https://github.com/LCE-Hub">LCE Hub Communiy</a> for the Marketplace/Workshop</li>
+            <li><a href="https://github.com/MinecraftConsole">MinecraftLegacy Community</a> to include my launcher in
+                their
+                list</li>
+            <li><a href="https://github.com/IdreesInc/Miracode">Miracode Font</a></li>
+            <li><a href="https://github.com/IdreesInc/Monocraft">Monocraft Font</a></li>
+            <li><a href="https://github.com/sonic2kk/steamtinkerlaunch">Steam Tinker Launch</a> for Steam and SteamDeck
+                integration on GNU/Linux via their software.</li>
+            <li>and also everyone in the LCE community to continue the legacy of Legacy Console Edition and where some
+                of
+                the images assets came from.</li>
+            <li>and to Notch (Markus Persson), 4J Studio and Mojang to make this game in the first place</li>
+        </ul>
+
+        <h2>Code of Respect</h2>
+
+        <ul>
+            <li><a href="../code-of-conduct.md">In English</a></li>
+            <li><a href="../CODE-DE-CONDUITE.md">In French</a></li>
+        </ul>
+
+        <h2>License</h2>
+
+        <p><a href="../license.md">GPLV3</a></p>
+    </main>
 </body>
+
 </html>

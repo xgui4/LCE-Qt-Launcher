@@ -15,10 +15,10 @@
 
 ##
 
-> [!INFORMATION]
+> [!NOTE]
 > The auto-update and installation of the game files is unstable and unviable, it is recommnend to have the game file already installation
 > as the installation and update mechanism require external repo that can be shutdown without previous notice. I do my best and the nightly build are often
-> uptodae but the stable version sometime lack behind and require manual intervention.
+> up to date but the stable version sometime lack behind and require manual intervention.
 
 ## About
 

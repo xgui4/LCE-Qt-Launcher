@@ -83,17 +83,18 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
 
+
 _DEFAULT_INST_NAME = "Default"
 _DEFAULT_INSTALLATION_PATH = "{appInstancePath}/default"
 _DEFAULT_USERNAME = "Steve"
-_DEFAULT_ARCHIVE_FILE = "neoLegacyWindows64.zip"
+_DEFAULT_ARCHIVE_FILE = "none"
 _DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
-_DEFAULT_REPO_URL = "https://github.com/neoStudiosLCE/neoLegacy"
-_DEFAULT_INST_SOURCE = InstanceSource.GITHUB_RELEASE
-_DEFAULT_INST_SOURCE_STRING = "InstanceSource.GITHUB_RELEASE"
-_DEFAULT_IMAGE = ":/assets/minecrft.png"
-_DEFAULT_NEWS_FEED = ":/websites/instance_news.html"
-_DEFAULT_VERSION = "Nightly"
+_DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/neoLegacy"
+_DEFAULT_INST_SOURCE = InstanceSource.REMOTE_GIT_SOURCE
+_DEFAULT_INST_SOURCE_STRING = "InstanceSource.REMOTE_GIT_SOURCE"
+_DEFAULT_IMAGE = ":/assets/minecraft.png"
+_DEFAULT_NEWS_FEED = "https://git.minecraftlegacy.com/backups/neoLegacy/commits/main/"
+_DEFAULT_VERSION = "master"
 
 
 class Instance(QObject):
@@ -142,7 +143,7 @@ class Instance(QObject):
         self.archive_file = inst_dict.get("archive_file", _DEFAULT_ARCHIVE_FILE)
         self.repo_url = inst_dict.get("repo_url", _DEFAULT_REPO_URL)
         self.instance_source = from_str_to_InstanceSource(
-            inst_dict.get("instances_source", _DEFAULT_INST_SOURCE_STRING)
+            inst_dict.get("instance_source", _DEFAULT_INST_SOURCE_STRING)
         )
         self.image = inst_dict.get("image", _DEFAULT_IMAGE)
         self.news_feed = inst_dict.get("news_feed", _DEFAULT_NEWS_FEED)
@@ -199,17 +200,17 @@ class Instance(QObject):
 
     def display(self) -> None:
         term_service.print_pretty(f"""
-[bold yellow]Name : {self.name} 
-=============================[/bold yellow]
+[bold yellow]Name : "{self.name}"[/bold yellow]
+=============================
 [bold yellow]installation path[/bold yellow] : {self.installation_path}
-[bold yellow]username[/bold yellow] : {self.username}
+[bold yellow]username[/bold yellow] : "{self.username}"
 [bold yellow]executable name[/bold yellow] : {self.exe_name}
 [bold yellow]archive file[/bold yellow] : {self.archive_file}
 [bold yellow]repo url[/bold yellow] : {self.repo_url}
 [bold yellow]image[/bold yellow] : {self.image}
-[bold yellow]instance source[/bold yellow] : {self.instance_source.value}
+[bold yellow]instance source[/bold yellow] : "{self.instance_source.value}"
 [bold yellow]news_feed[/bold yellow] : {self.news_feed}
-[bold yellow]version[/bold yellow] : {self.version}
+[bold yellow]version[/bold yellow] : "{self.version}"
 [bold yellow]steam link[/bold yellow] : {self.steam_link}
 """)
 

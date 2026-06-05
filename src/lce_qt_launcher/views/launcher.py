@@ -298,8 +298,7 @@ class LauncherView(QMainWindow):
         self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(openGitHubIssuesCommand)
 
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)
-        self.ui.actionLoadmclceInstance.setEnabled(False)
-        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup (Remote Git Not supported yet)")
+        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup")
 
         mclceJson = QFile(":/instances/mclce.lce_inst")
         if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
@@ -338,6 +337,19 @@ class LauncherView(QMainWindow):
 
             self.ui.actionLoadAetherInstance.triggered.connect(
                 lambda: self.loadInstanceData(data_aether, instanceManager, appContext)
+            )
+
+        mclceJson = QFile(":/instances/mclce.lce_inst")
+        if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
+            term_service.print_error("Cannot found or open MCLCE Instance")
+            self.ui.actionLoadmclceInstance.setEnabled(False)
+            return None
+        else:
+            raw_text_mcleJson = bytes(mclceJson.readAll().data()).decode("utf-8")
+            data_mclce = json.loads(raw_text_mcleJson)
+
+            self.ui.actionLoadAetherInstance.triggered.connect(
+                lambda: self.loadInstanceData(data_mclce, instanceManager, appContext)
             )
 
         self.setup_web_engine()

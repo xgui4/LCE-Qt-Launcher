@@ -1124,7 +1124,7 @@
      <normaloff>:/assets/neoLegacy.png</normaloff>:/assets/neoLegacy.png</iconset>
    </property>
    <property name="text">
-    <string>Default (NeoLegacy)</string>
+    <string>NeoLegacy (Source Code)</string>
    </property>
   </action>
   <action name="actionLoadmclceInstance">
@@ -1133,7 +1133,7 @@
      <normaloff>:/assets/mclce-ico.png</normaloff>:/assets/mclce-ico.png</iconset>
    </property>
    <property name="text">
-    <string>MCLCE MinecraftConsoles</string>
+    <string>MCLCE MinecraftConsoles (Source Code)</string>
    </property>
   </action>
   <action name="actionLoadRevelationsInstance">

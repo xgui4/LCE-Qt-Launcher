@@ -15,7 +15,7 @@
 
 ##
 
-> [!INFORMATION]
+> [!NOTE]
 > La mise à jour et l'installation automatiques des fichiers du jeu sont instables et non viables. Il est recommandé d'avoir déjà installé le jeu. En effet, le mécanisme d'installation et de mise à jour nécessite un dépôt externe qui peut être fermé sans préavis. Je fais de mon mieux et les versions de développement sont généralement à jour, mais la version stable est parfois en retard et nécessite une intervention manuelle.
 
 ## À propos
