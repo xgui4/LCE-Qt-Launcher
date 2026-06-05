@@ -5,10 +5,17 @@
 ![LCE-Qt-Launcher Icon](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Screnshot of the launcher in version 0.0.20a0 of the launcher)](.github/screenshots/image.png)
 
+- Other Repo:
+  - [Backup repo](https://code.nolog.cz/xgui4/LCE-Qt-Launcher)
+  - [Data repo](https://code.nolog.cz/xgui4/lce-qt-Launcher-data)
+
 > [!WARNING]
 > This launcher is work in progress and its feature could be changes or remove at any time.
 > PR are more than welcome to fix or add features. Just be compliant with the [GPLv3 license](license.md) and the [Code of Respect](code-of-conduct.md)
-> [!Note]
+
+##
+
+> [!INFORMATION]
 > The auto-update and installation of the game files is unstable and unviable, it is recommnend to have the game file already installation
 > as the installation and update mechanism require external repo that can be shutdown without previous notice. I do my best and the nightly build are often
 > uptodae but the stable version sometime lack behind and require manual intervention.
@@ -80,9 +87,9 @@ See [my FreeBSD Port Overlay](https://github.com/xgui4/freebsd-ports) to install
 
 In this [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) page you will found Nighly Build which are made automatically via GitHub Action when change are made in the [`dev` branch](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev)
 
-### AppImage
+### AppImage and Others Linux Packages
 
-Aavailable in [nightly build](https://github.com/xgui4/LCE-Qt-Launcher/releases/download/nightly/lce-qt-launcher.AppImage) and tagged version (Coming soon!)
+Aavailable in [nightly build](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) and tagged version (Coming soon!) (Note : currently the AppImage and Arch Package atomatic build is broken)
 
 ### Via Git
 

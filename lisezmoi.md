@@ -5,10 +5,17 @@
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Capture d'écran du lanceur (version Alpha 0.0.20.0)](.github/screenshots/image.png)
 
+- Autres Repo:
+  - [Repo de backup](https://code.nolog.cz/xgui4/LCE-Qt-Launcher)
+  - [Repo de données](https://code.nolog.cz/xgui4/lce-qt-Launcher-data)
+
 > [!WARNING]
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.
 > Les contributions (PR) sont les bienvenues pour corriger ou ajouter des fonctionnalités. Veuillez respecter la [licence GPLv3](license.md) et le [Code de conduite](CODE-DE-CONDUITE.md).
-> [!Note]
+
+##
+
+> [!INFORMATION]
 > La mise à jour et l'installation automatiques des fichiers du jeu sont instables et non viables. Il est recommandé d'avoir déjà installé le jeu. En effet, le mécanisme d'installation et de mise à jour nécessite un dépôt externe qui peut être fermé sans préavis. Je fais de mon mieux et les versions de développement sont généralement à jour, mais la version stable est parfois en retard et nécessite une intervention manuelle.
 
 ## À propos
@@ -77,9 +84,9 @@ Voir [mon overlay de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour
 
 Sur cette page [GitHub Release](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly), vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications apportées à la branche [`dev`](https://github.com/xgui4/LCE-Qt-Launcher/tree/dev).
 
-### AppImage
+### AppImage et autres paquets Linux
 
-Disponible dans la version [nightly build](https://github.com/xgui4/LCE-Qt-Launcher/releases/download/nightly/lce-qt-launcher.AppImage) et dans une version étiquetée (Bientôt disponible !)
+Disponible dans la version de développement [nightly](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly) et dans la version taguée (Bientôt disponible !). (Remarque : la génération automatique des paquets AppImage et Arch est actuellement défectueuse.)
 
 ### Via Git
 

@@ -139,7 +139,7 @@ jobs:
             \n
             Automatic Nighty (daily) binary build powered by GtiHub Actions. \n
             The nigthly build are experimental nuitka compilation from the dev branch \n
-            Now includes installers (NOTE : currently, Automatic installer workflow is broken)."
+            Now includes installer for Windows. Note : AppImage And Arch Packge automatic build are currently broken"
           files: |
             ./artifacts/*.exe
             ./artifacts/*.zip
