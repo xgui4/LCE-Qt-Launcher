@@ -63,35 +63,44 @@ jobs:
           name: installer-windows
           path: packages\windows\Output\*.exe 
 
-  # --- JOB 3 : Making Arch Linux Packages ---
   build_arch_package:
-      name : "Build Arch Packages"
-      runs-on: ubuntu-latest
-      container:
-        image: archlinux
-        options: --privileged
+    name: "Build Arch Packages"
+    runs-on: ubuntu-latest
+    container:
+     image: archlinux:latest
+     options: --privileged
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      steps: 
-      - run: sudo pacman -Syu
-      - uses: actions/checkout@v6.0.2
-      - name: Build Arch Linux package
-        uses: FFY00/build-arch-package@v1
-        with:
-          PKGBUILD: ${{ github.workspace }}/packages/linux/nigthly/PKGBUILD # HACK : test to see if it will work
+    - name: Setup build environment
+      run: |
+        echo "Starting System Update and installation of build tools"
+        pacman -Syu --noconfirm base-devel sudo
+        echo "Preparation of builduser"
+        useradd -m builduser
+        passwd -d builduser
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        chown -R builduser:builduser ${{ github.workspace }}
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v7.0.1
-        with:
-          name: packages-arch
-          path: |
-            $HOME/arch-packages/lce-qt-launcher-git-*.r?.*-?-any.pkg.tar.zst
+    - name: Build Arch Packages
+      run: |
+        cd ${{ github.workspace }}/packages/linux/nigthly
+        sudo -u builduser makepkg -s --noconfirm
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: packages-arch
+        path: |
+          ${{ github.workspace }}/packages/linux/nigthly/lce-qt-launcher-git-*.pkg.tar.zst
+
   
   # --- JOB 4 : Making AppImage ---
   build_appimage:
     name: Build GNU/Linx AppImage
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt update && sudo apt upgrade
       - uses: actions/checkout@v6.0.2
       - uses: actions/setup-python@v6.2.0
         with:
@@ -99,14 +108,17 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-       # FIXME : OSError: [Errno 8] Exec format error: '/tmp/tmppzq4xr4e/magick' Error: Process completed with exit code 1.
         run: |
-          python -m pip install --upgrade pip
-          pip install pyproject-appimage
+         sudo apt-get update
+         sudo apt-get install -y imagemagick
+         python -m pip install --upgrade pip
+
+      - name: Buil AppImage
+        run: |
           pip install . 
+          pip install pyproject-appimage
           pyproject-appimage --no-fuse || python -m pyproject_appimage --no-fuse
           
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v7.0.1
         with:
