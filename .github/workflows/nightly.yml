@@ -89,13 +89,12 @@ jobs:
         sudo -u builduser makepkg -s --noconfirm
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: packages-arch
         path: |
           ${{ github.workspace }}/packages/linux/nigthly/lce-qt-launcher-git-*.pkg.tar.zst
 
-  
   # --- JOB 4 : Making AppImage ---
   build_appimage:
     name: Build GNU/Linx AppImage
@@ -104,17 +103,17 @@ jobs:
       - uses: actions/checkout@v6.0.2
       - uses: actions/setup-python@v6.2.0
         with:
-          python-version: "3.12"
+          python-version: "3.12.12"
           cache: 'pip'
 
       - name: Install dependencies
         run: |
-         sudo apt-get update
-         sudo apt-get install -y imagemagick
-         python -m pip install --upgrade pip
+         sudo apt update
+         sudo apt install -y imagemagick
 
       - name: Buil AppImage
         run: |
+          python -m pip install --upgrade pip
           pip install . 
           pip install pyproject-appimage
           pyproject-appimage --no-fuse || python -m pyproject_appimage --no-fuse
