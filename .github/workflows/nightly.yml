@@ -81,6 +81,7 @@ jobs:
         useradd -m builduser
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        #FIXME :  chown: cannot access '/home/runner/work/LCE-Qt-Launcher/LCE-Qt-Launcher': No such file or directorY, Error: Process completed with exit code 1.
         chown -R builduser:builduser ${{ github.workspace }}
 
     - name: Build Arch Packages
@@ -111,8 +112,9 @@ jobs:
          sudo apt update
          sudo apt install -y imagemagick
 
-      - name: Buil AppImage
+      - name: Build  AppImage
         run: |
+          #FIXME : OSError: [Errno 8] Exec format error: '/tmp/tmpp_9dcsrv/magick'
           python -m pip install --upgrade pip
           pip install . 
           pip install pyproject-appimage

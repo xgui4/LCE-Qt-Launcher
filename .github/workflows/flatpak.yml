@@ -1,9 +1,9 @@
-name: Build And Publish Flatpak Nightly using Flatter
+name: Build And Publish Flatpak using Flatter
 
 on:
   push:
-    branches :
-      - flatpak-release
+    tags :
+      - v*
 jobs:
   flatter:
     name: Flatter
