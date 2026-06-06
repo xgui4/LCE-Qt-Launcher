@@ -15,7 +15,7 @@ depends=(
 ) 
 makedepends=(
     'git'     
-    'bash' 
+    'bash'
     'python-build' 
     'python-installer' 
     'python-hatchling' 
