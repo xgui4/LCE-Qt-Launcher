@@ -44,3 +44,7 @@ h2 {
 h3 {
     color : var(--clr-green);
 }
+
+noscript {
+    color : var(--clr-error)
+}
