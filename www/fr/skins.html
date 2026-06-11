@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="icon" href="../assets/favicon.png">
+    <script src="../js/form-handler.js" defer></script>
+    <title>LCE Qt Launcher - Gestionnaire de Skins</title>
+</head>
+ 
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <a class="nav-link" href="index.html"><img src="../assets/favicon.png" /></a>
+            <a class="nav-link" href="index.html">Accueil</a>
+            <a class="nav-link" href="marketplace.html">Place de marché</a>
+            <a class="nav-link active" aria-current="page" href="#"> Gestionnaire de Skins</a>
+            <a class="nav-link" href="download.html">Centre de téléchargement</a>
+            <a class="nav-link" href="news.html">Actualités</a>
+        </nav>
+    </header>
+    <main>
+        <noscript>
+            <h1> Note : Cette page nécessite JavaScript.</h1>
+        </noscript>
+
+        <form id="skinManager" action="" method="POST"> 
+            <label for="skin">Nom d'utilisateur (Java Uniquement)</label>
+            <input id="skin" name="skin" value="Steve">
+            <input type="submit" value="Voir le sin">
+        </form>
+
+      <iframe id="skinViewer" src="https://kurojs.github.io/McView3D/embed.html?skin=Steve&width=400&height=400&animation=idle" width="400" height="400" frameborder="0"></iframe>
+
+      <a id="skin-download" href="https://minotar.net/skin/Steve">Télécharger le skin</a>
+
+    </main>
+</body>
+
+</html>

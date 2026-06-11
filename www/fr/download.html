@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="icon" href="../assets/favicon.png">
+    <title>LCE Qt Launcher - Centre de téléchargement</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <a class="nav-link" href="index.html"><img src="../assets/favicon.png" /></a>
+            <a class="nav-link" href="index.html">Accueil</a>
+            <a class="nav-link" href="marketplace.html">Place de marché</a>
+            <a class="nav-link" href="skins.html">Gestionnaire de Skins</a>
+            <a class="nav-link active" aria-current="page" href="#">Centre de téléchargement</a>
+            <a class="nav-link" href="news.html">Actualités</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1> LCE Qt Launcher - Centre de téléchargement</h1>
+
+        <h2>Comment obtenir</h2>
+
+        <h3>Version étiquetée</h3>
+
+        <p>
+            Sur la <a href="https://github.com/xgui4/LCE-Qt-Launcher/releases/">page des versions GitHub de ce dépôt</a>,
+            vous trouverez des versions étiquetées comme <a href="https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta">
+            Bêta 0.0.1.1</a>.
+        </p>
+
+        <h3>Flatpak (Bientôt disponible)</h3>
+
+        <p>Bientôt disponible (Décalé pour raisons techniques)</p>
+
+        <h3>Portage FreeBSD (Expérimental)</h3>
+
+        <p>
+            Consultez <a href="https://github.com/xgui4/freebsd-ports">mon overlay de portage FreeBSD</a> pour installer
+            games/lce-qt-laucher (py{python version}-lce-qt-launcher) port.
+        </p>
+
+        <h3>Version Nightly</h3>
+
+        <p> <img src="https://github.com/xgui4/lce-qt-launcher/actions/workflows/nightly.yml/badge.svg" alt="Nightly Build Action Status" /></p>
+
+        <blockquote>
+            <p>[!NOTE]<br />
+                Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement ; elle peut
+                donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version Nightly en raison des restrictions d'Apple et du fait que je ne
+                possède pas de Mac.</p>
+        </blockquote>
+
+        <p>
+            Sur cette page <a href="https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly">GitHub Release</a>,
+            vous trouverez les versions Nightly, générées automatiquement via GitHub Actions lors de modifications dans la branche 
+            <a href="https://github.com/xgui4/LCE-Qt-Launcher/tree/dev"><code>dev</code></a>
+        </p>
+
+        <h3>AppImage et autres paquets Linux</h3>
+
+        <p>
+            Disponible dans la <a href="https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/nightly">version Nightly</a> 
+            et version taguée (Bientôt disponible !) (Remarque : actuellement la La compilation automatique des paquets
+            AppImage et Arch est défectueuse.
+        </p>
+
+        <h3>Via Git</h3>
+
+        <p>
+            Vous pouvez également télécharger ce dépôt avec la commande :
+            <code>git clone https://github.com/xgui4/lce-qt-launcher.git</code> puis compiler (voir
+            <code>docs/en/COMPILING.md</code> pour plus d'informations) manuellement ou exécuter dans un environnement
+            virtuel (.venv) (voir <code>docs/en/RUNNING.md</code> pour plus d'informations).
+        </p>
+    </main>
+</body>
+</html>

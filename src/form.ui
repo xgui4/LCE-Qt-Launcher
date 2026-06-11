@@ -623,6 +623,30 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="skin">
+       <attribute name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/assets/360Revived.png</normaloff>:/assets/360Revived.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Skin</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QWebEngineView" name="skinManagerWebUI">
+            <property name="url">
+             <url>
+              <string>qrc:/website/skins.html</string>
+             </url>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="Marketplaces">
        <attribute name="icon">
         <iconset resource="../res.qrc">

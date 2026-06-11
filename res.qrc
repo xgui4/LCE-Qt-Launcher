@@ -49,6 +49,7 @@
         <file alias="monocraft.ttc">assets/fonts/Monocraft.ttc</file>
     </qresource>
     <qresource prefix="/website">
-        <file alias="instance_news.html">www/instance_news.html</file>
+        <file alias="instance_news.html">src/instance_news.html</file>
+        <file alias="skins.html">src/skin-manager.html</file>
     </qresource>
 </RCC>
