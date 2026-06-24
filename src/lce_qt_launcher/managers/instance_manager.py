@@ -21,8 +21,9 @@ SCHEME_VERSION = "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/h
 
 class InstanceSource(Enum):
     """_summary_
-        5 Instances Type : The Two Releases are on the only one working
+    5 Instances Type : The Two Releases are on the only one working
     """
+
     GITHUB_RELEASE = 0
     FORGEJO_RELEASE = 1
     REMOTE_GIT_SOURCE = 2
@@ -61,7 +62,7 @@ def from_int_to_InstanceSource(value: int) -> InstanceSource:
 
 
 def from_str_to_InstanceSource(string: str) -> InstanceSource:
-    """_summary_ 
+    """_summary_
         Convert str to Instance Source
     Args:
         string (str): _description_ the string to convert
@@ -103,9 +104,10 @@ _DEFAULT_VERSION = "master"
 
 
 class Instance(QObject):
-    """_summary_ 
-        An config and inform an instance of Minecraft LCE Installed or to install
+    """_summary_
+    An config and inform an instance of Minecraft LCE Installed or to install
     """
+
     def __init__(
         self,
         name: str = _DEFAULT_INST_NAME,
@@ -201,7 +203,7 @@ class Instance(QObject):
             "image": self.image,
             "news_feed": self.news_feed,
             "version": self.version,
-            "steam_link": self.version
+            "steam_link": self.version,
         }
         return dict_to_return
 
@@ -223,25 +225,25 @@ class Instance(QObject):
 
 
 class InstanceManager:
-    """_summary_ 
-        The Manager for Instances objects
+    """_summary_
+    The Manager for Instances objects
     """
 
     def __init__(self, instance: Instance, appContext: AppContext):
         self.instance: Instance = instance
         from lce_qt_launcher.managers.downloader import Downloader
+
         self._downloader: Downloader = Downloader(appContext)
 
-    def play(self, appContext : AppContext) -> None:
+    def play(self, appContext: AppContext) -> None:
         """_summary_  Launch an Instance
         Args:
             appContext (AppContext) : The appContext to get the instancePath
         """
         return_code: int = 0
         client_path: str = os.path.join(
-            self.expanded_path(appContext), 
-            self.instance.exe_name
-            )
+            self.expanded_path(appContext), self.instance.exe_name
+        )
         try:
             game_process_temp = subprocess.run(
                 [client_path, "-name", self.instance.username]
@@ -259,7 +261,7 @@ class InstanceManager:
             term_service.print_information(f"Client closed with code {return_code}")
 
     def install_instance(self, appContext: AppContext) -> QNetworkReply | str:
-        """_summary_ 
+        """_summary_
             Install the selected Instance
         Args:
             appContext (AppContext) : The appContext to get the instancePath
@@ -269,9 +271,13 @@ class InstanceManager:
         if self.instance.instance_source in [
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
-            InstanceSource.DIRECT_DOWNLOAD
+            InstanceSource.DIRECT_DOWNLOAD,
         ]:
-            return self._downloader.download_async(self.instance.get_download_url(), self.expanded_path(appContext), self.instance.name)
+            return self._downloader.download_async(
+                self.instance.get_download_url(),
+                self.expanded_path(appContext),
+                self.instance.name,
+            )
         return "Not implemented yet"
 
     def save_instance(self, save_file: str) -> None:
@@ -311,11 +317,13 @@ class InstanceManager:
         if self.instance.instance_source in [
             InstanceSource.FORGEJO_RELEASE,
             InstanceSource.GITHUB_RELEASE,
-            InstanceSource.DIRECT_DOWNLOAD
+            InstanceSource.DIRECT_DOWNLOAD,
         ]:
             return True
         else:
             return False
 
-    def expanded_path(self, appContext : AppContext) -> str:
-        return self.instance.installation_path.replace("{appInstancePath}", appContext.instancePath)
+    def expanded_path(self, appContext: AppContext) -> str:
+        return self.instance.installation_path.replace(
+            "{appInstancePath}", appContext.instancePath
+        )

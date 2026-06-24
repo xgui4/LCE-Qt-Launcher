@@ -4,6 +4,7 @@ from enum import Enum
 
 class MONTH(Enum):
     """_summary_ The 12 Month as Enum (Start from 1 and go to 12) d"""
+
     JANUARY = 1
     FEBRURAY = 2
     MARCH = 3

@@ -5,22 +5,14 @@ from PySide6.QtWidgets import (
     QLabel,
     QListWidgetItem,
     QInputDialog,
-    QMessageBox
+    QMessageBox,
 )
-from PySide6.QtGui import (
-    QPalette, 
-    QPixmap, 
-    QBrush
-)
-from PySide6.QtCore import ( 
-    Qt, 
-    QFile, 
-    QIODevice
-)
+from PySide6.QtGui import QPalette, QPixmap, QBrush
+from PySide6.QtCore import Qt, QFile, QIODevice
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
     QWebEngineProfile,
-    QWebEngineDownloadRequest
+    QWebEngineDownloadRequest,
 )
 
 import json
@@ -45,7 +37,7 @@ from lce_qt_launcher import (
     version_str,
     version_type_str,
     git_repo_url_str,
-    instance_extension_str
+    instance_extension_str,
 )
 from lce_qt_launcher.views.system_info_view import SystemInfoView
 
@@ -81,7 +73,7 @@ class LauncherView(QMainWindow):
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
         def generateInstanceFromForm() -> None:
-            instanceManager.instance = features.new_instance_from_form(self) # type: ignore
+            instanceManager.instance = features.new_instance_from_form(self)  # type: ignore
 
         def confirmChangesButtonCommand() -> None:
             generateInstanceFromForm()
@@ -111,7 +103,6 @@ class LauncherView(QMainWindow):
         def showInstanceEditorButtonCommand() -> None:
             editor = InstanceEditorView(self)
             editor.loadInstance(instanceManager.instance)
-            
 
         def showAboutMinecraftActionCommand() -> None:
             features.show_webbrowser(self, appContext.MINECRAFT_WEBSITE)
@@ -142,8 +133,10 @@ class LauncherView(QMainWindow):
             features.launch_instance_with_steam(instanceManager)
 
         def openAppInstancesDataCommand() -> None:
-            systemManager.open_url_with_system(os.path.join(appData.appDataDirs[0], "instances"))
-        
+            systemManager.open_url_with_system(
+                os.path.join(appData.appDataDirs[0], "instances")
+            )
+
         def openWorkshopCommand() -> None:
             features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
 
@@ -205,7 +198,7 @@ class LauncherView(QMainWindow):
             term_service.print_error("Cannot set the background")
 
         self.ui: Ui_launcher = Ui_launcher()
-        self.ui.setupUi(self) # type: ignore
+        self.ui.setupUi(self)  # type: ignore
         for inst in appData.instsList:
             self.instances.append(inst)
             item = QListWidgetItem()
@@ -266,10 +259,16 @@ class LauncherView(QMainWindow):
         self.ui.savetInstanceButton.clicked.connect(saveInstanceButtonCommand)
         self.ui.confirmChangesButton.clicked.connect(confirmChangesButtonCommand)
         self.ui.openInstanceEditor.clicked.connect(showInstanceEditorButtonCommand)
-        self.ui.changeInstanceIconButton.clicked.connect(changeInstanceIconButtonCommand)
+        self.ui.changeInstanceIconButton.clicked.connect(
+            changeInstanceIconButtonCommand
+        )
         self.ui.playOnSteamButton.clicked.connect(loadSteamCommand)
-        self.ui.addSteamLinkIntegration.clicked.connect(addSteamLinkIntegrationButtonCommand)
-        self.ui.loadSelectedInstanceButton.clicked.connect(loadInstanceFromItemDataCommand)
+        self.ui.addSteamLinkIntegration.clicked.connect(
+            addSteamLinkIntegrationButtonCommand
+        )
+        self.ui.loadSelectedInstanceButton.clicked.connect(
+            loadInstanceFromItemDataCommand
+        )
         self.ui.addInstanceButton.clicked.connect(loadInstanceActionCommand)
 
         self.ui.actionSetting.triggered.connect(showSettingDialogCommand)
@@ -277,11 +276,15 @@ class LauncherView(QMainWindow):
         self.ui.actionSetting_3.triggered.connect(showSettingDialogCommand)
         self.ui.actionQuit.triggered.connect(app.quit)
         self.ui.actionUpdate.triggered.connect(updateActionCommand)
-        self.ui.actionSystem_Information.triggered.connect(showSystemInformationActionCommand)
+        self.ui.actionSystem_Information.triggered.connect(
+            showSystemInformationActionCommand
+        )
         self.ui.actionAbout.triggered.connect(showAboutActionCommand)
         self.ui.actionAbout_QT.triggered.connect(showAboutQtActionCommand)
         self.ui.actionAbout_Minecraft.triggered.connect(showAboutMinecraftActionCommand)
-        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(showMoreLCEProjectsActionCommand)
+        self.ui.actionMore_Minecraft_LCE_Projects.triggered.connect(
+            showMoreLCEProjectsActionCommand
+        )
         self.ui.actionSave.triggered.connect(saveInstanceButtonCommand)
         self.ui.actionImport_Instance.triggered.connect(loadInstanceActionCommand)
         self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
@@ -289,13 +292,15 @@ class LauncherView(QMainWindow):
         self.ui.actionLCE_Hub_Workshop.triggered.connect(openWorkshopCommand)
         self.ui.actionLegacyMods_Coming_Soon.triggered.connect(openLegacymodsCommand)
         self.ui.actionApp_Root.triggered.connect(openAppRootCommand)
-        
+
         self.ui.actionConfigPath.triggered.connect(openAppConfigCommand)
         # Action for opening configuration is temporaly disabled until it is fixed
         self.ui.actionConfigPath.setEnabled(False)
         self.ui.actionConfigPath.setText("Configuration (Broken)")
 
-        self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(openGitHubIssuesCommand)
+        self.ui.actionReport_a_Bugs_or_Sugess_a_feature.triggered.connect(
+            openGitHubIssuesCommand
+        )
 
         self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)
         self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup")
@@ -392,7 +397,7 @@ class LauncherView(QMainWindow):
         self,
         data: dict[str, str],
         instanceManager: InstanceManager,
-        appContext : AppContext
+        appContext: AppContext,
     ) -> None:
         """_summary_ Loas insance from data json in instance manager
 
@@ -406,7 +411,9 @@ class LauncherView(QMainWindow):
         instanceManager.instance = instance
         self.loadInstanceInForm(instanceManager, appContext)
 
-    def loadInstanceInForm(self, instanceManager: InstanceManager, appContext : AppContext) -> None:
+    def loadInstanceInForm(
+        self, instanceManager: InstanceManager, appContext: AppContext
+    ) -> None:
         """_summary_ Load Instance in form
 
         Args:
@@ -416,7 +423,11 @@ class LauncherView(QMainWindow):
         self.image_label = instanceManager.instance.image
         self.news_feed = instanceManager.instance.news_feed
         self.instance_name = instanceManager.instance.name
-        self.ui.usernameInputBox.setText(appContext.username if instanceManager.instance.username is "Steve" or "" else instanceManager.instance.username)
+        self.ui.usernameInputBox.setText(
+            appContext.username
+            if instanceManager.instance.username == "Steve" or ""
+            else instanceManager.instance.username
+        )
         self.ui.versionsComboBox.setEditText(instanceManager.instance.version)
         self.ui.pathInputBox.setText(instanceManager.expanded_path(appContext))
         self.ui.repoURLInputBox.setText(instanceManager.instance.repo_url)

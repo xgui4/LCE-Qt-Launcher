@@ -38,7 +38,9 @@ class AppContext:
         self.devModeEnabled: bool = self.userPref.defaultDevelopperMode
         self.experimentModeEnabled: bool = self.userPref.defaultExperimentMode
         self.showHolidayEnabled: bool = self.userPref.defaultShowHoliday
-        self.instancePath: str = self.expand_path(self.userPref.defaultInstancePath, appData)
+        self.instancePath: str = self.expand_path(
+            self.userPref.defaultInstancePath, appData
+        )
         self.username: str = self.userPref.defaultUsername
 
         self.BACKGROUND_PIXMAP_IMG: str = ":/assets/background.png"
@@ -46,7 +48,7 @@ class AppContext:
         self.MINECRAFT_WEBSITE: str = "https://minecraft.net"
         self.MINECRAFT_LCE_WEBSITE: str = "https://minecraftlegacy.com/"
 
-    def expand_path(self, path : str, appData : AppData) -> str:
+    def expand_path(self, path: str, appData: AppData) -> str:
         return path.replace("{appInstancePath}", os.path.join(appData.appDataDirs[0]))
 
     def updateAppUILang(self) -> None:

@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QMessageBox, QWidget
 
 class DisplayType(Enum):
     """_summary_ The display/loggin type : Console/Terminal, MessageBox (Qt), Mixed (both)"""
+
     CONSOLE = 0
     QMESSAGE_BOX = 1
     MIXED = 2
@@ -57,5 +58,5 @@ class DisplayManager:
             QMessageBox.critical(
                 self.parentWindow,
                 title,
-                msg,  
+                msg,
             )
