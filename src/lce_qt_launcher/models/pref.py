@@ -24,10 +24,7 @@ class UserPref(QSettings):
 
     def __init__(self) -> None:
         super().__init__(
-            QSettings.Format.IniFormat,
-            QSettings.Scope.UserScope,
-            "Xgui4", 
-            app_name_str
+            QSettings.Format.IniFormat, QSettings.Scope.UserScope, "Xgui4", app_name_str
         )
         self.defaultTheme: StrTheme = StrTheme.MINECRAFT
         self.defaultInstancePath: str = "{appInstancePath}/instances"
@@ -66,9 +63,7 @@ class UserPref(QSettings):
         super().sync()
 
     def getShowHolidayPref(self) -> str:
-        return str(
-            self.value(_SHOW_HOLIDAY_OPTION, self.defaultShowHoliday, type=str)
-        )
+        return str(self.value(_SHOW_HOLIDAY_OPTION, self.defaultShowHoliday, type=str))
 
     def setAccesibleModePref(self, accesbilityModeBool: bool) -> None:
         super().setValue(_ACCESIBLE_MODE_OPTION, accesbilityModeBool)
@@ -94,9 +89,7 @@ class UserPref(QSettings):
 
     def getExperimentalModePref(self) -> str:
         return str(
-            self.value(
-                _EXPERIMENTAL_MODE_OPTION, self.defaultExperimentMode, type=str
-            )
+            self.value(_EXPERIMENTAL_MODE_OPTION, self.defaultExperimentMode, type=str)
         )
 
     def setUsernamePref(self, newUsername: str) -> None:

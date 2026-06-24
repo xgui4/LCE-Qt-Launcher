@@ -10,6 +10,7 @@ from enum import StrEnum
 
 class Languages(StrEnum):
     """_summary_ : "Language Codes for JsonTrans"""
+
     FALLBACK = "translations.json"
     ENGLISH = "en"
     FRENCH = "fr"

@@ -16,11 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Generate a CNAME file on-the-fly for a configured host
-      - name: Generate CNAME
-        run: |
-          echo "lce_qt_launcher.xgui4.github.io" > CNAME
-
       - name: Build
         uses: andyholmes/flatter@main
         with:
@@ -29,8 +24,6 @@ jobs:
           arch: ${{ matrix.arch }}
           upload-bundles: true
           upload-pages-artifact: true
-          upload-pages-includes: |
-            CNAME
 
   # See "Github Pages" below
   deploy:

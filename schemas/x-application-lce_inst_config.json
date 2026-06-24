@@ -69,7 +69,8 @@
                 "InstanceSource.FORGEJO_RELEASE",
                 "InstanceSource.REMOTE_GIT_SOURCE",
                 "InstanceSource.LOCAL_INSTALLATION",
-                "InstanceSource.LOCAL_SOURCE_CODE"
+                "InstanceSource.LOCAL_SOURCE_CODE",
+                "InstanceSource.DIRECT_DOWNLOAD"
             ],
             "type" : "string",
             "default" : "InstanceSource.GITHUB_RELEASE"

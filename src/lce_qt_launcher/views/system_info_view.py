@@ -6,11 +6,8 @@ from PySide6.QtCore import qVersion
 from lce_qt_launcher.managers.system_manager import SystemManager
 from lce_qt_launcher.ui_system_info import Ui_sys_info_dialog
 
-from lce_qt_launcher import (
-    app_name_str,
-    version_str,
-    version_type_str
-)
+from lce_qt_launcher import app_name_str, version_str, version_type_str
+
 
 class SystemInfoView(QDialog):
     def __init__(self, parent: QWidget, systemManager: SystemManager):

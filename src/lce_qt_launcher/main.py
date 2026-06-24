@@ -62,7 +62,7 @@ def main() -> None:
         sys_man.adapt_qt_system_theme()
 
     userPref: UserPref = appContext.userPref
-    languagePref : str = userPref.getLanguagePref()
+    languagePref: str = userPref.getLanguagePref()
     userTheme: str = userPref.getThemePref()
     showHoliday: str = userPref.getShowHolidayPref()
     developerMode: str = userPref.getDevelopperModePref()
@@ -73,13 +73,13 @@ def main() -> None:
 
     selected_theme: StrTheme = theme.from_str_to_strTheme(userTheme)
     appContext.theme = selected_theme
-    appContext.selectedLang = languagePref 
+    appContext.selectedLang = languagePref
     appContext.showHolidayEnabled = bool(showHoliday)
     appContext.devModeEnabled = bool(developerMode)
     appContext.experimentModeEnabled = bool(experimentMode)
     appContext.accesibleModeEnabled = bool(accessibleMode)
     appContext.username = username
-    appContext.instancePath =  appContext.expand_path(defaultInstancePath, appData)
+    appContext.instancePath = appContext.expand_path(defaultInstancePath, appData)
     appContext.updateAppUILang()
 
     def about_to_quit_event() -> None:

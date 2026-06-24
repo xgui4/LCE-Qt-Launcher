@@ -20,7 +20,7 @@ class InstanceEditorView(QDialog):
 
         self.instance_window.show()
 
-    def loadInstance(self, instance : Instance):
+    def loadInstance(self, instance: Instance):
         self.instance_editor.instanceNameInputBox.setText(instance.name)
         self.instance_editor.usernameInputBox.setText(instance.username)
         self.instance_editor.repoURLInputBox.setText(instance.repo_url)

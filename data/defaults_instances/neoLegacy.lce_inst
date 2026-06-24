@@ -1,12 +1,12 @@
 {
     "$schema": "https://raw.githubusercontent.com/xgui4/LCE-Qt-Launcher/refs/heads/dev/schemas/x-application-lce_inst_config.json",
     "name": "neoStudiosLCE neoLegacy",
-    "instance_source": "InstanceSource.REMOTE_GIT_SOURCE",
+    "instance_source": "InstanceSource.",
     "image": ":/assets/neoLegacy.png",
-    "archive_file": "none",
+    "archive_file": "Release.zip",
     "exe_name": "neoLegacyWindows64/Minecraft.Client.exe",
-    "news_feed": "https://git.minecraftlegacy.com/backups/neoLegacy/commits/main/",
+    "news_feed": "https://git.neolegacy.dev/neoStudiosLCE/neoLegacy",
     "installation_path": "{appInstancePath}/.neoLegacy",
-    "repo_url": "https://git.minecraftlegacy.com/backups/neoLegacy",
-    "version": "master"
+    "repo_url": "https://bucket.ibatv.xyz/neolegacy/Release.zip",
+    "version": "latest-bin"
 }

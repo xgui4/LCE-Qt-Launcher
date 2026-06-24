@@ -33,8 +33,9 @@ from lce_qt_launcher import (
 import lce_qt_launcher.views.cli as cli
 import lce_qt_launcher.views.term_service as term_service
 
+
 def install_game_gui(
-    parent: QWidget, instanceManager: InstanceManager, appContext : AppContext
+    parent: QWidget, instanceManager: InstanceManager, appContext: AppContext
 ) -> None:
     """_summary_
         Features : Install the game instance selected from instanceManager
@@ -45,29 +46,29 @@ def install_game_gui(
     """
     # HACK : i keep the older method for now, but should be replace with a more generic one it would work even with the cli
     term_service.print_information("Starting Installation")
-    progressLabel: QLabel = parent.ui.progressLabel # type: ignore
-    progressBar: QProgressBar = parent.ui.progressBar # type: ignore
+    progressLabel: QLabel = parent.ui.progressLabel  # type: ignore
+    progressBar: QProgressBar = parent.ui.progressBar  # type: ignore
     download_reply: QNetworkReply | str = instanceManager.install_instance(appContext)
     if isinstance(download_reply, QNetworkReply):
-        progressLabel.setVisible(True) # type: ignore
-        progressBar.setVisible(True) # type: ignore
-        parent.ui.downloadFromLabel.setVisible(True) # type: ignore
-        parent.ui.downloadFromValue.setVisible(True) # type: ignore
-        parent.ui.installToLabel.setVisible(True) # type: ignore
-        parent.ui.installToValue.setVisible(True) # type: ignore
-        progressLabel.setText(f"Downloading {instanceManager.instance.name} Progress") # type: ignore
-        parent.ui.downloadFromValue.setText(instanceManager.instance.repo_url) # type: ignore 
-        parent.ui.installToValue.setText(instanceManager.expanded_path(appContext)) # type: ignore
+        progressLabel.setVisible(True)  # type: ignore
+        progressBar.setVisible(True)  # type: ignore
+        parent.ui.downloadFromLabel.setVisible(True)  # type: ignore
+        parent.ui.downloadFromValue.setVisible(True)  # type: ignore
+        parent.ui.installToLabel.setVisible(True)  # type: ignore
+        parent.ui.installToValue.setVisible(True)  # type: ignore
+        progressLabel.setText(f"Downloading {instanceManager.instance.name} Progress")  # type: ignore
+        parent.ui.downloadFromValue.setText(instanceManager.instance.repo_url)  # type: ignore
+        parent.ui.installToValue.setText(instanceManager.expanded_path(appContext))  # type: ignore
 
         def update_progress_bar(bytes_received: int, bytes_total: int) -> None:
             if bytes_total > 0:
-                progressBar.setMaximum(bytes_total) # type: ignore
-                progressBar.setValue(bytes_received) # type: ignore
-            else: 
-                progressBar.setRange(0, 0) # type: ignore
+                progressBar.setMaximum(bytes_total)  # type: ignore
+                progressBar.setValue(bytes_received)  # type: ignore
+            else:
+                progressBar.setRange(0, 0)  # type: ignore
 
         download_reply.errorOccurred.connect(
-            lambda : QMessageBox.critical(
+            lambda: QMessageBox.critical(
                 parent,
                 "Install Manager",
                 f"Instance {instanceManager.instance.name} has failed to install. \n Error : {download_reply.errorString()}",
@@ -75,19 +76,17 @@ def install_game_gui(
             )
         )
         download_reply.finished.connect(
-            lambda : QMessageBox.information(
+            lambda: QMessageBox.information(
                 parent,
                 "Instance Manager",
                 f"Installation of instance {instanceManager.instance.name} was a success",
-                QMessageBox.StandardButton.Ok
+                QMessageBox.StandardButton.Ok,
             )
         )
         download_reply.downloadProgress.connect(update_progress_bar)
 
-def install_game(
-    instanceManager: InstanceManager,
-    appContext : AppContext
-) -> None:
+
+def install_game(instanceManager: InstanceManager, appContext: AppContext) -> None:
     """_summary_
         Features : Install the game instance selected
     args:
@@ -96,19 +95,25 @@ def install_game(
     """
     term_service.print_information("Starting Installation")
 
-    download_reply : QNetworkReply | str = instanceManager.install_instance(appContext)
+    download_reply: QNetworkReply | str = instanceManager.install_instance(appContext)
     if isinstance(download_reply, QNetworkReply):
         download_reply.errorOccurred.connect(
-            lambda : term_service.print_error(f"Instance {instanceManager.instance.name} has failed to install. Error : {download_reply.errorString()}")
+            lambda: term_service.print_error(
+                f"Instance {instanceManager.instance.name} has failed to install. Error : {download_reply.errorString()}"
+            )
         )
         download_reply.finished.connect(
-            lambda : term_service.print_success(f"Installation of instance {instanceManager.instance.name} was a success")
+            lambda: term_service.print_success(
+                f"Installation of instance {instanceManager.instance.name} was a success"
+            )
         )
     else:
         print(download_reply)
 
 
-def launch_game(instanceManager: InstanceManager, appContext : AppContext, starting_game_msg_str: str) -> None:
+def launch_game(
+    instanceManager: InstanceManager, appContext: AppContext, starting_game_msg_str: str
+) -> None:
     """Features : Launch the game instance selected"""
     term_service.print_information(starting_game_msg_str)
     instanceManager.play(appContext)
@@ -159,7 +164,7 @@ def open_url_at(sysMan: SystemManager, url: str) -> None:
     sysMan.open_url_with_system(url)
 
 
-def generate_instance(instance_dict : dict[str, str]) -> Instance:
+def generate_instance(instance_dict: dict[str, str]) -> Instance:
     """_summary_ :
         Create With Instance From Form
     Args:
@@ -189,8 +194,9 @@ def generate_instance(instance_dict : dict[str, str]) -> Instance:
 
     return newInstance
 
-def new_instance_from_form(mainWindow) -> Instance: # type: ignore
-    #FIXME: Make this feature less dependant on the GUI
+
+def new_instance_from_form(mainWindow) -> Instance:  # type: ignore
+    # FIXME: Make this feature less dependant on the GUI
     """_summary_ : Create With Instance From Form
 
     Args:
@@ -199,13 +205,15 @@ def new_instance_from_form(mainWindow) -> Instance: # type: ignore
     Returns:
         Instance: _description_ : the returned Instance created with the Form
     """
-    form  = mainWindow.ui # type: ignore
-    username_str: str = form.usernameInputBox.text() # type: ignore
-    version_str : str = form.versionInputBox.text() # type: ignore
-    path_str: str = form.pathInputBox.text() # type: ignore
-    repo_url_str: str = form.repoURLInputBox.text() # type: ignore
+    form = mainWindow.ui  # type: ignore
+    username_str: str = form.usernameInputBox.text()  # type: ignore
+    version_str: str = form.versionInputBox.text()  # type: ignore
+    path_str: str = form.pathInputBox.text()  # type: ignore
+    repo_url_str: str = form.repoURLInputBox.text()  # type: ignore
     instance_name: str = QInputDialog.getText(
-        mainWindow, "Name your instance", "Set the name of the instance" # type: ignore
+        mainWindow,
+        "Name your instance",
+        "Set the name of the instance",  # type: ignore
     )[0]
     newInstance = Instance()
 
@@ -221,6 +229,7 @@ def new_instance_from_form(mainWindow) -> Instance: # type: ignore
         newInstance.repo_url = repo_url_str
 
     return newInstance
+
 
 def show_webbrowser(parent: QWidget, url: str) -> None:
     """_summary_ Create and show a Webbrowser view
