@@ -28,6 +28,7 @@ class InstanceSource(Enum):
     REMOTE_GIT_SOURCE = 2
     LOCAL_INSTALLATION = 3
     LOCAL_SOURCE_CODE = 4
+    DIRECT_DOWNLOAD = 5
 
 
 def from_int_to_InstanceSource(value: int) -> InstanceSource:
@@ -53,6 +54,8 @@ def from_int_to_InstanceSource(value: int) -> InstanceSource:
             return InstanceSource.LOCAL_INSTALLATION
         case 4:
             return InstanceSource.LOCAL_SOURCE_CODE
+        case 5:
+            return InstanceSource.DIRECT_DOWNLOAD
         case _:
             raise RuntimeError(f"{value} is an Incorrect InstanceSource Type")
 
@@ -80,6 +83,8 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
             return InstanceSource.LOCAL_INSTALLATION
         case "InstanceSource.LOCAL_SOURCE_CODE" | "4":
             return InstanceSource.LOCAL_SOURCE_CODE
+        case "InstanceSources.DIRECT_DOWNLOAD" | "5":
+            return InstanceSource.DIRECT_DOWNLOAD
         case _:
             raise RuntimeError(f"{string} is an Incorrect InstanceSource Type")
 
@@ -88,12 +93,12 @@ _DEFAULT_INST_NAME = "Default"
 _DEFAULT_INSTALLATION_PATH = "{appInstancePath}/default"
 _DEFAULT_USERNAME = "Steve"
 _DEFAULT_ARCHIVE_FILE = "none"
-_DEFAULT_EXE_NAME = "neoLegacyWindows64/Minecraft.Client.exe"
+_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
 _DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/neoLegacy"
-_DEFAULT_INST_SOURCE = InstanceSource.REMOTE_GIT_SOURCE
-_DEFAULT_INST_SOURCE_STRING = "InstanceSource.REMOTE_GIT_SOURCE"
+_DEFAULT_INST_SOURCE = InstanceSource.DIRECT_DOWNLOAD
+_DEFAULT_INST_SOURCE_STRING = "InstanceSource.DIRECT_DOWNLOAD"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
-_DEFAULT_NEWS_FEED = "https://git.minecraftlegacy.com/backups/neoLegacy/commits/main/"
+_DEFAULT_NEWS_FEED = "https://git.neolegacy.dev/neoStudiosLCE/neoLegacy"
 _DEFAULT_VERSION = "master"
 
 
@@ -178,6 +183,8 @@ class Instance(QObject):
             raise RuntimeError(
                 "Error ! Local Installation does not have a download URL"
             )
+        if self.instance_source == InstanceSource.DIRECT_DOWNLOAD:
+            return self.repo_url
         else:
             raise RuntimeError("Not implemented yet!")
 
@@ -262,6 +269,7 @@ class InstanceManager:
         if self.instance.instance_source in [
             InstanceSource.GITHUB_RELEASE,
             InstanceSource.FORGEJO_RELEASE,
+            InstanceSource.DIRECT_DOWNLOAD
         ]:
             return self._downloader.download_async(self.instance.get_download_url(), self.expanded_path(appContext), self.instance.name)
         return "Not implemented yet"
@@ -303,6 +311,7 @@ class InstanceManager:
         if self.instance.instance_source in [
             InstanceSource.FORGEJO_RELEASE,
             InstanceSource.GITHUB_RELEASE,
+            InstanceSource.DIRECT_DOWNLOAD
         ]:
             return True
         else:
