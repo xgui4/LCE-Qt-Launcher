@@ -93,14 +93,14 @@ def from_str_to_InstanceSource(string: str) -> InstanceSource:
 _DEFAULT_INST_NAME = "Default"
 _DEFAULT_INSTALLATION_PATH = "{appInstancePath}/default"
 _DEFAULT_USERNAME = "Steve"
-_DEFAULT_ARCHIVE_FILE = "none"
-_DEFAULT_EXE_NAME = "Minecraft.Client.exe"
-_DEFAULT_REPO_URL = "https://git.minecraftlegacy.com/backups/neoLegacy"
+_DEFAULT_ARCHIVE_FILE = "Release.zip"
+_DEFAULT_EXE_NAME = "Release/Minecraft.Client.exe"
+_DEFAULT_REPO_URL = "https://bucket.ibatv.xyz/neolegacy/Release.zip"
 _DEFAULT_INST_SOURCE = InstanceSource.DIRECT_DOWNLOAD
 _DEFAULT_INST_SOURCE_STRING = "InstanceSource.DIRECT_DOWNLOAD"
 _DEFAULT_IMAGE = ":/assets/minecraft.png"
 _DEFAULT_NEWS_FEED = "https://git.neolegacy.dev/neoStudiosLCE/neoLegacy"
-_DEFAULT_VERSION = "master"
+_DEFAULT_VERSION = "latest-bin"
 
 
 class Instance(QObject):

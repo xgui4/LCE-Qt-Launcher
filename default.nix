@@ -2,7 +2,7 @@
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "lce-qt-launcher";
-  version = "0.0.21.1";
+  version = "0.0.21.2";
   format = "pyproject";
 
   src = ./.;

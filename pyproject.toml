@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.21a1"
+version = "0.0.21a2"
 description = "A custom Free/Libre Minecraft LCE Launcher written with PySide6 (Python for Qt 6)."
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -18,10 +18,10 @@ dependencies = [
     "PySide6<=6.11.1; sys_platform == 'win32' or sys_platform == 'linux' or sys_platform == 'darwin'",
     "platformdirs<=4.10.0",
     "hatch<=1.17.0",
-    "rich<=15.0.0",
+    "rich<=15.0.0", 
     "vdf<=3.4",
     "patchelf<=0.17.2.4; sys_platform == 'linux'",
-    "Nuitka<=4.1",
+    "Nuitka<=4.1.3",
 ]
 
 [dependency-groups]
