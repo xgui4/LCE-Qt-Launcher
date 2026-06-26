@@ -664,7 +664,7 @@
              <widget class="QWebEngineView" name="marketplacesWebsiteEngine">
               <property name="url">
                <url>
-                <string>https://github.com/LCE-Hub/LCE-Workshop</string>
+                <string>https://lce-hub.github.io/piston/</string>
                </url>
               </property>
              </widget>

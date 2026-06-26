@@ -22,6 +22,8 @@
 
 Il s'agit d'un lanceur LCE personnalisé pour Minecraft, écrit avec PySide6 (Qt6 pour Python) et conçu pour GNU/Linux.
 
+[Consultez le site Web officiel de LCE Qt Launcher !](https://xgui4.github.io/LCE-Qt-Launcher/) ![État de l'action de déploiement de la page GitHub](https://github.com/xgui4/lce-qt-launcher/actions/workflows/site.yml/badge.svg)
+
 ## Pourquoi LCE Qt Launcher ?
 
 - Développé en Python avec Qt 6 : léger et compatible avec le thème Plasma 6/Qt 6 de GNU/Linux
@@ -65,11 +67,11 @@ voir [`docs/fr/COMPILATION`](docs/fr/COMPILATION.md)
 
 ## Comment obtenir
 
-### Version taggé
+### Version taggé ![État de l'action de déploiement de la version Stable](https://github.com/xgui4/lce-qt-launcher/actions/workflows/stable.yml/badge.svg)
 
 Sur la page [GitHub Releases de ce dépôt](https://github.com/xgui4/LCE-Qt-Launcher/releases/), vous trouverez les versions étiquetées, par exemple [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta).
 
-### Flatpak (Bientôt disponible)
+### Flatpak (Bientôt disponible) ![État de l'action de déploiement de Flatpak](https://github.com/xgui4/lce-qt-launcher/actions/workflows/flatpak.yml/badge.svg)
 
 A Venir bientôt (décalé du a des problèmes techniques)
 
@@ -77,7 +79,7 @@ A Venir bientôt (décalé du a des problèmes techniques)
 
 Voir [mon overlay de ports FreeBSD](https://github.com/xgui4/freebsd-ports) pour installer le port games/lce-qt-laucher (py311-lce-qt-launcher).
 
-### Version Nightly/Quotidienne (Nighly Build) ![Nightly Build Action Status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/nightly.yml/badge.svg)
+### Version Nightly/Quotidienne (Nighly Build) ![État de l'action de déploiement de la version Nightly](https://github.com/xgui4/lce-qt-launcher/actions/workflows/nightly.yml/badge.svg)
 
 > [!NOTE]
 > Cette branche n'est pas stable et des modifications y sont apportées presque quotidiennement. Elle peut donc parfois dysfonctionner. De plus, macOS n'est pas disponible dans la version nighly en raison des restrictions d'Apple et du fait que je ne possède pas de Mac.

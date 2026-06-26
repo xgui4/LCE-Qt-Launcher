@@ -24,6 +24,8 @@
 
 This is a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.
 
+[Check the official LCE Qt Launcher Website !](https://xgui4.github.io/LCE-Qt-Launcher/)![GitHub Page Deploy Action Status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/site.yml/badge.svg)
+
 ## Why LCE Qt Launcher ?
 
 - Made in Python with Qt 6 : bloat free and integrate with GNU/Linux Plasma 6/Qt 6 Theme
@@ -68,11 +70,11 @@ See [`docs/en/RUNNING.md`](docs/en/RUNNING.md)
 
 ## How to get
 
-### Tag Release
+### Tag Release ![Stable release deployment action status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/stable.yml/badge.svg)
 
 In the [GitHub Release page of this repo](https://github.com/xgui4/LCE-Qt-Launcher/releases/) page you will found tagged Release like [Beta 0.0.1.1](https://github.com/xgui4/LCE-Qt-Launcher/releases/tag/0.0.0.1beta).
 
-### Flatpak (Coming Soon)
+### Flatpak (Coming Soon) ![Flatpak deployment action status](https://github.com/xgui4/lce-qt-launcher/actions/workflows/flatpak.yml/badge.svg)
 
 Coming Soon (Delayed due to technical issues)
 
