@@ -1,15 +1,70 @@
 <!DOCTYPE html>
+<style>
+    :root {
+        --clr-primary: #f8f8f2;
+        --clr-title: #ff79c6;
+        --clr-subtitle: #f1fa8c;
+        --clr-bg: #282a36;
+        --clr-menu-link: #8be9fd;
+        --clr-slate: #f8f8f2;
+        --clr-green: #50fa7b;
+        --clr-error: #ff5555;
+    }
+
+    body {
+        background-color: var(--clr-bg);
+        color: var(--clr-primary);
+        font-family: "Hack Nerd Font";
+    }
+
+    a {
+        color: var(--clr-menu-link)
+    }
+
+    .navbar .nav-link {
+        margin: 20px;
+        text-decoration: none;
+    }
+
+    .active {
+        color: var(--clr-slate);
+        text-decoration: solid;
+    }
+
+    md-block {
+        color: var(--clr-slate);
+    }
+
+    h1 {
+        color: var(--clr-title);
+    }
+
+    h2 {
+        color: var(--clr-subtitle);
+    }
+
+    h3 {
+        color: var(--clr-green);
+    }
+
+    noscript {
+        color: var(--clr-error)
+    }
+</style>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" />
-    <link rel="icon" href="assets/favicon.png"/>
+    <link rel="icon" href="assets/favicon.png" />
     <title>LCE Qt Launcher - Default Instance News</title>
 </head>
+
 <body>
     <main>
         <p>Default Placeholder news</p>
     </main>
-</body> 
+</body>
+
 </html>

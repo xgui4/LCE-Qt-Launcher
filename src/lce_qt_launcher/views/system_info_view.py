@@ -15,7 +15,7 @@ class SystemInfoView(QDialog):
 
         self.sysinfo_dialog: QDialog = QDialog()
         self.dialog_ui: Ui_sys_info_dialog = Ui_sys_info_dialog()
-        self.dialog_ui.setupUi(self.sysinfo_dialog)
+        self.dialog_ui.setupUi(self.sysinfo_dialog) # pyright: ignore[reportUnknownMemberType]
 
         self.dialog_ui.appVersionLabel.setText(
             f"**App Version** : {app_name_str} {version_type_str} {version_str}"
