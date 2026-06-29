@@ -2,7 +2,7 @@
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "lce-qt-launcher";
-  version = "0.0.21.3";
+  version = "0.0.21.4";
   format = "pyproject";
 
   src = ./.;
@@ -69,7 +69,7 @@ pkgs.python3Packages.buildPythonApplication rec {
   '';
 
   meta = with pkgs.lib; {
-    description = "a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.";
+    description = "A free cross-platform custom Minecraft LCE launcher, written with PySide6 (Qt6 for Python).";
     license = licenses.gpl3;
     platforms = platforms.linux;
     mainProgram = "lce-qt-launcher";

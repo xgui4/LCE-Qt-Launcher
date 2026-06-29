@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>io.github.xgui4.lce_qt_launcher</id>
   <name>LCE Qt Launcher</name>
-  <summary>A custom Free/Libre Minecraft LCE Launcher written with PySide6 (Python for Qt 6)</summary>
+  <summary>A free cross-platform custom Minecraft LCE launcher, written with PySide6 (Qt6 for Python).</summary>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <categories>
@@ -10,7 +10,7 @@
   </categories>
   <description>
     <p> 
-        This is a custom Minecraft LCE Launcher written with PySide6 (Qt6 for Python) with Freedom and with GNU/Linux support in mind.
+      A free cross-platform custom Minecraft LCE launcher, written with PySide6 (Qt6 for Python).
     </p>
   </description>
   <launchable type="desktop-id">io.github.xgui4.lce_qt_launcher.desktop</launchable>
