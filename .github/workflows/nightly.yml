@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v6.0.2
       - uses: actions/setup-python@v6.2.0
         with:
-          python-version: "3.12.13"
+          python-version: "3.12"
           cache: 'pip'
       - name: Install dependencies
         run: |
@@ -103,7 +103,7 @@ jobs:
       - uses: actions/checkout@v6.0.2
       - uses: actions/setup-python@v6.2.0
         with:
-          python-version: "3.12.13"
+          python-version: "3.12"
           cache: 'pip'
 
       - name: Install dependencies

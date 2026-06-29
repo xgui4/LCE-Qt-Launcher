@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
 )
 from PySide6.QtGui import QPalette, QPixmap, QBrush
-from PySide6.QtCore import Qt, QFile, QIODevice
+from PySide6.QtCore import Qt #, QFile, QIODevice
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
     QWebEngineProfile,
@@ -69,6 +69,8 @@ class LauncherView(QMainWindow):
         self.instance_name: str = instanceManager.instance.name
         self.instances: list[Instance] = list[Instance]()
         self.username: str = appContext.username
+
+        skinUsername : str = appContext.username # pyright: ignore[reportUnusedVariable] # disabled temporably
 
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
@@ -140,9 +142,6 @@ class LauncherView(QMainWindow):
         def openWorkshopCommand() -> None:
             features.show_webbrowser(self, "https://lce-hub.github.io/piston/")
 
-        def openLegacymodsCommand() -> None:
-            features.show_webbrowser(self, "https://legacymods.org/")
-
         def openAppRootCommand() -> None:
             systemManager.open_url_with_system(appData.projectRootDir)
 
@@ -153,8 +152,8 @@ class LauncherView(QMainWindow):
         def openGitHubIssuesCommand() -> None:
             webbrowser.open(git_repo_url_str + "/issues")
 
-        def loadDefaultInstanceCommand() -> None:
-            self.loadInstanceData(dict(), instanceManager, appContext)
+        # def loadDefaultInstanceCommand() -> None:
+        #     self.loadInstanceData(dict(), instanceManager, appContext)
 
         def loadInstanceFromItemDataCommand() -> None:
             item = self.ui.listWidget.currentItem()
@@ -187,6 +186,12 @@ class LauncherView(QMainWindow):
                         instanceManager.instance.image,
                     )
                 instanceManager.instance.steam_link = value[0]
+
+        def changeTheSkinCommand():
+            skinUsername = self.ui.usernameSkinInputBox.text()
+            URL_STR = "https://kurojs.github.io/McView3D/embed.html?skin=Steve&width=400&height=400&animation=idle"
+            new_url_str : str = URL_STR.replace("Steve", skinUsername)
+            self.ui.skinManagerWebUI.setUrl(new_url_str)
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
         if not background_pixmap.isNull():
@@ -290,7 +295,6 @@ class LauncherView(QMainWindow):
         self.ui.actionInstall_Content.triggered.connect(installContentActionCommand)
         self.ui.actionInstances.triggered.connect(openAppInstancesDataCommand)
         self.ui.actionLCE_Hub_Workshop.triggered.connect(openWorkshopCommand)
-        self.ui.actionLegacyMods_Coming_Soon.triggered.connect(openLegacymodsCommand)
         self.ui.actionApp_Root.triggered.connect(openAppRootCommand)
 
         self.ui.actionConfigPath.triggered.connect(openAppConfigCommand)
@@ -302,60 +306,10 @@ class LauncherView(QMainWindow):
             openGitHubIssuesCommand
         )
 
-        self.ui.actionLoadDefaultInstance.triggered.connect(loadDefaultInstanceCommand)
-        self.ui.actionLoadmclceInstance.setText("MCLCE Source Code Backup")
+        self.ui.changeSkinButton.clicked.connect(changeTheSkinCommand)
 
-        mclceJson = QFile(":/instances/mclce.lce_inst")
-        if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open MCLCE Instance")
-            self.ui.actionLoadmclceInstance.setEnabled(False)
-            return None
-        else:
-            raw_text_neo: str = bytes(mclceJson.readAll().data()).decode("utf-8")
-            data_neo = json.loads(raw_text_neo)
-
-            self.ui.actionLoadmclceInstance.triggered.connect(
-                lambda: self.loadInstanceData(data_neo, instanceManager, appContext)
-            )
-
-        revelationJson = QFile(":/instances/revelations.lce_inst")
-        if not revelationJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open revelations Instance")
-            self.ui.actionLoadRevelationsInstance.setEnabled(False)
-            return None
-        else:
-            raw_text_rev = bytes(revelationJson.readAll().data()).decode("utf-8")
-            data_rev = json.loads(raw_text_rev)
-
-            self.ui.actionLoadRevelationsInstance.triggered.connect(
-                lambda: self.loadInstanceData(data_rev, instanceManager, appContext)
-            )
-
-        aetherJson = QFile(":/instances/aether.lce_inst")
-        if not aetherJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open Aether Instance")
-            self.ui.actionLoadAetherInstance.setEnabled(False)
-            return None
-        else:
-            raw_text_aether = bytes(aetherJson.readAll().data()).decode("utf-8")
-            data_aether = json.loads(raw_text_aether)
-
-            self.ui.actionLoadAetherInstance.triggered.connect(
-                lambda: self.loadInstanceData(data_aether, instanceManager, appContext)
-            )
-
-        mclceJson = QFile(":/instances/mclce.lce_inst")
-        if not mclceJson.open(QIODevice.OpenModeFlag.ReadOnly):
-            term_service.print_error("Cannot found or open MCLCE Instance")
-            self.ui.actionLoadmclceInstance.setEnabled(False)
-            return None
-        else:
-            raw_text_mcleJson = bytes(mclceJson.readAll().data()).decode("utf-8")
-            data_mclce = json.loads(raw_text_mcleJson)
-
-            self.ui.actionLoadAetherInstance.triggered.connect(
-                lambda: self.loadInstanceData(data_mclce, instanceManager, appContext)
-            )
+        self.ui.downloadSkinButton.setEnabled(False)
+        self.ui.downloadFromLabel.setText("Download Skin (Coming Soon)")
 
         self.setup_web_engine()
 

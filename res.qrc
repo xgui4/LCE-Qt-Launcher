@@ -33,12 +33,6 @@
         <file alias="dark.qss">assets/styles/dark.qss</file>
         <file alias="light.qss">assets/styles/light.qss</file>
     </qresource>
-    <qresource prefix="/instances">
-        <file alias="mclce.lce_inst">data/defaults_instances/mclce.lce_inst</file>
-        <file alias="neoLegacy.lce_inst">data/defaults_instances/neoLegacy.lce_inst</file>
-        <file alias="revelations.lce_inst">data/defaults_instances/revelation.lce_inst</file>
-        <file alias="aether.lce_inst">data/defaults_instances/aether.lce_inst</file>
-    </qresource>
     <qresource prefix="/languages">
         <file alias="fallback.json">assets/languages/translations.json</file>
         <file alias="fr.json">assets/languages/fr.json</file>
@@ -50,6 +44,5 @@
     </qresource>
     <qresource prefix="/website">
         <file alias="instance_news.html">src/instance_news.html</file>
-        <file alias="skins.html">src/skin-manager.html</file>
     </qresource>
 </RCC>
