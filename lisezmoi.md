@@ -2,6 +2,8 @@
 
 [Version anglaise](readme.md)
 
+![GPLV3 License Logo](.github/gplv3.png)
+
 ![LCE-QT-Launcher](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Capture d'écran du lanceur (version Alpha 0.0.20.0)](.github/screenshots/image.png)
 
