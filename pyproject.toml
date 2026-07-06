@@ -91,6 +91,7 @@ files = [
     "src/lce_qt_launcher/managers/import_manager.py",
     "src/lce_qt_launcher/managers/skin_manager.py",
     "src/lce_qt_launcher/managers/display_manager.py",
+    "src/lce_qt_launcher/managers/data_manager.py",
     "src/lce_qt_launcher/models/__init__.py",
     "src/lce_qt_launcher/models/pref.py",
     "src/lce_qt_launcher/models/theme.py",
