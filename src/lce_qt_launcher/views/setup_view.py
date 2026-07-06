@@ -1,3 +1,5 @@
+import platform
+
 from PySide6.QtWidgets import QWizard
 
 from PySide6.QtGui import QPixmap
@@ -16,14 +18,23 @@ class SetupView(QWizard):
         super().__init__()
         self.ui_dialog: Ui_LCE_Qt_Launcher_Wizard = Ui_LCE_Qt_Launcher_Wizard()
         self.dialog: QWizard = QWizard()
-        self.ui_dialog.setupUi(self.dialog)
+        self.ui_dialog.setupUi(self.dialog) # type: ignore
+
+        if platform.system == "Windows":
+            self.dialog.setWizardStyle(QWizard.WizardStyle.AeroStyle)
+        if platform.system == "MacOS":
+            self.dialog.setWizardStyle(QWizard.WizardStyle.MacStyle)
+        else:
+            self.dialog.setWizardStyle(QWizard.WizardStyle.ModernStyle)
 
         icon_pixmap = QPixmap(":/assets/jigsaw-ico.png")
+        watermark = QPixmap(":/assets/watermark.png")
+        # banner = QPixmap(":/assets/banner.png")
         background_pixmap = QPixmap(":/assets/background.png")
 
         self.dialog.setPixmap(QWizard.WizardPixmap.LogoPixmap, icon_pixmap)
-        # self.dialog.setPixmap(QWizard.WizardPixmap.WatermarkPixmap, background_pixmap)
-        # self.dialog.setPixmap(QWizard.WizardPixmap.BannerPixmap, background_pixmap)
+        self.dialog.setPixmap(QWizard.WizardPixmap.WatermarkPixmap, watermark)
+        # self.dialog.setPixmap(QWizard.WizardPixmap.BannerPixmap, banner)
         self.dialog.setPixmap(QWizard.WizardPixmap.BackgroundPixmap, background_pixmap)
 
         def generate_config():
