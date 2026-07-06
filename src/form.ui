@@ -730,7 +730,7 @@
      <x>0</x>
      <y>0</y>
      <width>1205</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1231,11 +1231,10 @@
   </action>
   <action name="actionDownload_Instances_Data">
    <property name="icon">
-    <iconset resource="../res.qrc">
-     <normaloff>:/assets/jigsaw-ico.png</normaloff>:/assets/jigsaw-ico.png</iconset>
+    <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
    </property>
    <property name="text">
-    <string>Download Instances Data</string>
+    <string>Sync Instances Data</string>
    </property>
   </action>
  </widget>

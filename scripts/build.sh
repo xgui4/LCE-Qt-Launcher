@@ -3,7 +3,7 @@
 set -e
 
 QT_RESSOURCE="res.qrc"
-UI_FILES=("form" "system_info" "instance" "settingDialog" "about" "contentInstaller")
+UI_FILES=("form" "system_info" "instance" "settingDialog" "about" "contentInstaller" "setup")
 
 RCC="pyside6-rcc"
 UIC="pyside6-ui"

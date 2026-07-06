@@ -6,7 +6,7 @@ Write-Output "done"
 
 Write-Output "Compilation of Qt ui files"
 
-$QT_UI_ARRAY="system_info","form","instance","settingDialog","about", "contentInstaller"
+$QT_UI_ARRAY="system_info","form","instance","settingDialog","about", "contentInstaller", "setup"
 
 foreach ($QT_UI in $QT_UI_ARRAY)
 {

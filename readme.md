@@ -2,6 +2,8 @@
 
 [French Version](lisezmoi.md)
 
+![GPLV3 License Logo](.github/gplv3.png)
+
 ![LCE-Qt-Launcher Icon](assets/io.github.xgui4.lce_qt_launcher.png)
 ![Screenshot of the launcher in version 0.0.20a0 of the launcher)](.github/screenshots/image.png)
 
