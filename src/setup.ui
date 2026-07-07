@@ -95,7 +95,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </font>
       </property>
       <property name="text">
-       <string>Instance Data Source (leave as is for default)</string>
+       <string>Instance Data Source</string>
       </property>
      </widget>
     </item>

@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LCE-Qt-Launcher"
-version = "0.0.21a4"
+version = "0.0.21a5"
 description = "A free cross-platform custom Minecraft LCE launcher, written with PySide6 (Qt6 for Python).."
 requires-python = ">3.10, <3.13"
 license = "GPL-3.0-or-later"
@@ -42,6 +42,7 @@ LicenseURL = "https://www.gnu.org/licenses/gpl-3.0"
 path = "hatch_build.py"
 
 [tool.hatch.envs.default.scripts]
+compile-qt = "python compile-qt.py"
 packages = "python packages.py"
 
 [tool.pyright]
@@ -88,7 +89,6 @@ files = [
     "src/lce_qt_launcher/managers/steam_manager.py",
     "src/lce_qt_launcher/managers/mod_manager.py",
     "src/lce_qt_launcher/managers/import_managers.py",
-    "src/lce_qt_launcher/managers/skin_manager.py",
     "src/lce_qt_launcher/managers/display_manager.py",
     "src/lce_qt_launcher/managers/data_manager.py",
     "src/lce_qt_launcher/models/__init__.py",

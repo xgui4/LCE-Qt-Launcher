@@ -24,6 +24,7 @@ from PySide6.QtGui import QFontDatabase
 
 import lce_qt_launcher.views.setup_view as SetupView
 
+
 def main():
     app = QApplication()
     app.setStyle("Fusion")
@@ -31,12 +32,13 @@ def main():
     font_id = QFontDatabase.addApplicationFont(":/fonts/monocraft.ttc")
 
     if font_id == -1:
-                print("Error: Font could not be loaded.")
+        print("Error: Font could not be loaded.")
     else:
         family = QFontDatabase.applicationFontFamilies(font_id)[0]
         app.setFont(family)
 
     SetupView.SetupView()
+
 
 if __name__ == "__main__":
     main()

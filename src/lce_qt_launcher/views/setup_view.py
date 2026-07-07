@@ -18,7 +18,7 @@ class SetupView(QWizard):
         super().__init__()
         self.ui_dialog: Ui_LCE_Qt_Launcher_Wizard = Ui_LCE_Qt_Launcher_Wizard()
         self.dialog: QWizard = QWizard()
-        self.ui_dialog.setupUi(self.dialog) # type: ignore
+        self.ui_dialog.setupUi(self.dialog)  # type: ignore
 
         if platform.system == "Windows":
             self.dialog.setWizardStyle(QWizard.WizardStyle.AeroStyle)
@@ -38,8 +38,8 @@ class SetupView(QWizard):
         self.dialog.setPixmap(QWizard.WizardPixmap.BackgroundPixmap, background_pixmap)
 
         def generate_config():
-            dataSource : str = self.ui_dialog.instanceDataSourceInputBox.text()
-            username : str = self.ui_dialog.usernameInputBox.text()
+            dataSource: str = self.ui_dialog.instanceDataSourceInputBox.text()
+            username: str = self.ui_dialog.usernameInputBox.text()
 
             print(f"data source : {dataSource}\nusername : {username}")
 

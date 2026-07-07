@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
 )
 from PySide6.QtGui import QPalette, QPixmap, QBrush
-from PySide6.QtCore import Qt #, QFile, QIODevice
+from PySide6.QtCore import Qt  # , QFile, QIODevice
 from PySide6.QtWebEngineCore import (
     QWebEnginePage,
     QWebEngineProfile,
@@ -70,7 +70,8 @@ class LauncherView(QMainWindow):
         self.instances: list[Instance] = list[Instance]()
         self.username: str = appContext.username
 
-        skinUsername : str = appContext.username # pyright: ignore[reportUnusedVariable] # disabled temporably
+        # HACK : i disabled this report for now, until i found the solution to why it report it as unused
+        skinUsername: str = appContext.username  # pyright: ignore[reportUnusedVariable] # disabled temporably  # noqa: F841
 
         STARTING_GAME_MSG: str = translator.translate("start_game_msg")
 
@@ -190,7 +191,7 @@ class LauncherView(QMainWindow):
         def changeTheSkinCommand():
             skinUsername = self.ui.usernameSkinInputBox.text()
             URL_STR = "https://kurojs.github.io/McView3D/embed.html?skin=Steve&width=400&height=400&animation=idle"
-            new_url_str : str = URL_STR.replace("Steve", skinUsername)
+            new_url_str: str = URL_STR.replace("Steve", skinUsername)
             self.ui.skinManagerWebUI.setUrl(new_url_str)
 
         background_pixmap = QPixmap(appContext.BACKGROUND_PIXMAP_IMG)
