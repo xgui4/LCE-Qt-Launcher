@@ -1,6 +1,6 @@
 import platform
 
-from PySide6.QtWidgets import QWizard
+from PySide6.QtWidgets import QMessageBox, QWizard
 
 from PySide6.QtGui import QPixmap
 
@@ -41,7 +41,7 @@ class SetupView(QWizard):
             dataSource: str = self.ui_dialog.instanceDataSourceInputBox.text()
             username: str = self.ui_dialog.usernameInputBox.text()
 
-            print(f"data source : {dataSource}\nusername : {username}")
+            QMessageBox(QMessageBox.Icon.Information, "LCE Qt Launcher", f"Data Source : {dataSource}\nusername : {username}")
 
         self.dialog.finished.connect(generate_config)
 
