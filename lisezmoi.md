@@ -15,13 +15,6 @@
 > Ce lanceur est en cours de développement et ses fonctionnalités peuvent être modifiées ou supprimées à tout moment.
 > Les demandes d'aide (PR) pour corriger ou ajouter des fonctionnalités sont les bienvenues. Veuillez simplement respecter la [GPLv3](license.md) et le [Code de conduite](code-of-conduct.md).
 
-##
-
-> [!NOTE]
-> Les mises à jour et installations automatiques des fichiers du jeu sont instables et peu fiables. Il est recommandé d'avoir déjà installé le jeu.
-> En effet, le mécanisme d'installation et de mise à jour nécessite un dépôt externe qui peut être fermé sans préavis. Je fais de mon mieux, et les versions de développement (nightly) sont généralement à jour,
-> mais la version stable est parfois retardée et nécessite une intervention manuelle.
-
 ## À propos
 
 Un lanceur Minecraft LCE personnalisé multiplateforme gratuit, écrit avec PySide6 (Qt6 pour Python).
