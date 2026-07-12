@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QFontDatabase
 
-import lce_qt_launcher.views.setup_view as SetupView
+from lce_qt_launcher.views.setup_view import SetupView
 
 
 def main():
@@ -37,7 +37,7 @@ def main():
         family = QFontDatabase.applicationFontFamilies(font_id)[0]
         app.setFont(family)
 
-    SetupView.SetupView()
+    SetupView()
 
 
 if __name__ == "__main__":

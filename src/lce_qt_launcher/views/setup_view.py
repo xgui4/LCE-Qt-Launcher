@@ -37,11 +37,11 @@ class SetupView(QWizard):
         # self.dialog.setPixmap(QWizard.WizardPixmap.BannerPixmap, banner)
         self.dialog.setPixmap(QWizard.WizardPixmap.BackgroundPixmap, background_pixmap)
 
-        def generate_config():
+        def generate_config() -> None:
             dataSource: str = self.ui_dialog.instanceDataSourceInputBox.text()
             username: str = self.ui_dialog.usernameInputBox.text()
 
-            QMessageBox(QMessageBox.Icon.Information, "LCE Qt Launcher", f"Data Source : {dataSource}\nusername : {username}")
+            QMessageBox(QMessageBox.Icon.Information, "LCE Qt Launcher", f"Data Source : {dataSource}\nUsername : {username}").exec()
 
         self.dialog.finished.connect(generate_config)
 
