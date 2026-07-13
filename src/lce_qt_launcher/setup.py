@@ -24,6 +24,8 @@ from PySide6.QtGui import QFontDatabase
 
 from lce_qt_launcher.views.setup_view import SetupView
 
+from lce_qt_launcher.models.app_data import AppData
+
 
 def main():
     app = QApplication()
@@ -36,8 +38,10 @@ def main():
     else:
         family = QFontDatabase.applicationFontFamilies(font_id)[0]
         app.setFont(family)
-
-    SetupView()
+    
+    appData = AppData()
+    
+    SetupView(appData)
 
 
 if __name__ == "__main__":

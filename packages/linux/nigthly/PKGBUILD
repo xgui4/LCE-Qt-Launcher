@@ -12,6 +12,7 @@ depends=(
     'python-vdf'
     'python-platformdirs'
     'python-rich'
+    'git'
 ) 
 makedepends=(
     'git'     
