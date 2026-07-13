@@ -211,7 +211,7 @@ def new_instance_from_form(mainWindow) -> Instance:  # type: ignore
     path_str: str = form.pathInputBox.text()  # type: ignore
     repo_url_str: str = form.repoURLInputBox.text()  # type: ignore
     instance_name: str = QInputDialog.getText(
-        mainWindow,
+        mainWindow, # type: ignore
         "Name your instance",
         "Set the name of the instance",  # type: ignore
     )[0]

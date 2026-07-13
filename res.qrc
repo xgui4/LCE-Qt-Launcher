@@ -2,6 +2,8 @@
     <qresource prefix="/assets">
         <file alias="launcher_small.png">assets/images/Launcher_small.png</file>
         <file alias="background.png">assets/images/background.png</file>
+        <file alias="watermark.png">assets/images/watermark.png</file>
+        <file alias="banner.png">assets/images/banner.png</file>
         <file alias="launcher_medium.png">assets/images/Launcher_medium.png</file>
         <file alias="launcher_big.png">assets/images/Launcher.png</file>
         <file alias="minecraft.png">assets/images/minecraft.png</file>

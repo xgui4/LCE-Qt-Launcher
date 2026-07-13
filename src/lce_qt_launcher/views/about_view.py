@@ -26,7 +26,7 @@ class AboutView(QDialog):
         self.about: Ui_AboutDialog = Ui_AboutDialog()
         self.aboutDialog: QDialog = QDialog()
 
-        self.about.setupUi(self.aboutDialog)
+        self.about.setupUi(self.aboutDialog)  # type: ignore
 
         self.about.title.setText(app_name_str)
         self.about.versionLabel.setText(f"{version_str}")

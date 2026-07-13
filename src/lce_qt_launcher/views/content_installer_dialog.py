@@ -15,7 +15,7 @@ class ContentInstallerView(QDialog):
         super().__init__()
         self.ui_dialog: Ui_contentInstallerDialog = Ui_contentInstallerDialog()
         self.dialog: QDialog = QDialog()
-        self.ui_dialog.setupUi(self.dialog)
+        self.ui_dialog.setupUi(self.dialog)  # type: ignore
 
         self.contentToInstallPath: str = ""
         self.instancePath: str = ""

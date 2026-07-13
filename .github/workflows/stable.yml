@@ -63,6 +63,38 @@ jobs:
           name: installer-windows
           path: packages\windows\Output\*.exe 
 
-    # FIXME : both the appimage and arch packages action
+  build_arch_package:
+    name: "Build Arch Packages"
+    runs-on: ubuntu-latest
+    container:
+     image: archlinux:latest
+     options: --privileged
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup build environment
+      run: |
+        echo "Starting System Update and installation of build tools"
+        pacman -Syu --noconfirm base-devel sudo
+        echo "Preparation of builduser"
+        useradd -m builduser
+        passwd -d builduser
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        chown -R builduser:builduser .
+
+    - name: Build Arch Packages
+      run: |
+        cd packages/linux/nigthly
+        sudo -u builduser makepkg -s --noconfirm
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: packages-arch
+        path: |
+          packages/linux/nigthly/lce-qt-launcher-git-*.pkg.tar.zst
+
+    # FIXME : both the appimage
 
     # TODO : Add a upload to a release job

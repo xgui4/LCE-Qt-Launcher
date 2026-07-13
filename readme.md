@@ -15,13 +15,6 @@
 > This launcher is under development and its features may be modified or removed at any time.
 > Requests for help (PR) are welcome to fix or add features. Please simply adhere to the [GPLv3](license.md) and the [Code of Conduct](code-of-conduct.md).
 
-##
-
-> [!NOTE]
-> Automatic updates and installations of game files are unstable and unreliable. It is recommended that you already have the game installed.
-> This is because the installation and update mechanism requires an external repository that can be shut down without notice. I do my best, and the development versions (nightly) are generally up-to-date,
-> but the stable version is sometimes delayed and requires manual intervention.
-
 ## About
 
 A free cross-platform custom Minecraft LCE launcher, written with PySide6 (Qt6 for Python).
