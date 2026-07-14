@@ -324,6 +324,14 @@ class InstanceManager:
             return False
 
     def expanded_path(self, appContext: AppContext) -> str:
+        """_summary_  #TODO DO the docstring
+
+        Args:
+            appContext (AppContext): _description_
+
+        Returns:
+            str: _description_
+        """
         return self.instance.installation_path.replace(
             "{appInstancePath}", appContext.instancePath
         )

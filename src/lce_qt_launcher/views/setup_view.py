@@ -16,7 +16,7 @@ class SetupView(QWizard):
         QDialog (_type_): _description_ inherited from QDialog
     """
 
-    def __init__(self, appData : AppData) -> None:
+    def __init__(self, appData: AppData) -> None:
         super().__init__()
         self.ui_dialog: Ui_LCE_Qt_Launcher_Wizard = Ui_LCE_Qt_Launcher_Wizard()
         self.dialog: QWizard = QWizard()
@@ -43,8 +43,12 @@ class SetupView(QWizard):
             dataSource: str = self.ui_dialog.instanceDataSourceInputBox.text()
             username: str = self.ui_dialog.usernameInputBox.text()
 
-            QMessageBox(QMessageBox.Icon.Information, "LCE Qt Launcher", f"Data Source : {dataSource}\nUsername : {username}").exec()
-            
+            QMessageBox(
+                QMessageBox.Icon.Information,
+                "LCE Qt Launcher",
+                f"Data Source : {dataSource}\nUsername : {username}",
+            ).exec()
+
             git_manager.clone_repo(dataSource, "data", appData)
 
         self.dialog.finished.connect(generate_config)

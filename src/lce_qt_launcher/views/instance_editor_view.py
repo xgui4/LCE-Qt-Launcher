@@ -15,7 +15,7 @@ class InstanceEditorView(QDialog):
 
         self.instance_window: QDialog = QDialog()
         self.instance_editor: Ui_InstancesEditor = Ui_InstancesEditor()
-        self.instance_editor.setupUi(self.instance_window) # type: ignore
+        self.instance_editor.setupUi(self.instance_window)  # type: ignore
         self.instance_window.setWindowTitle(app_name_str)
 
         self.instance_window.show()

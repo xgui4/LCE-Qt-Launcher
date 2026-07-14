@@ -38,9 +38,9 @@ def main():
     else:
         family = QFontDatabase.applicationFontFamilies(font_id)[0]
         app.setFont(family)
-    
+
     appData = AppData()
-    
+
     SetupView(appData)
 
 

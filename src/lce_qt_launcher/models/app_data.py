@@ -72,7 +72,7 @@ class AppData(QObject):
                 else:
                     term_service.print_information(f"{file_path} was not a file.")
         self.instsList = instancesLists
-        
+
     def is_data_installed(self) -> bool:
         return Path.exists(Path(os.path.join(self.appDataDirs[0], "data")))
 
